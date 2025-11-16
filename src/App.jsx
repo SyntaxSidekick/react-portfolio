@@ -1,5 +1,4 @@
 
-//import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Bio from './components/bio/Bio';
@@ -14,6 +13,7 @@ import Contact from './components/contact/Contact';
 
 import DynamicTitle from './DynamicTitle';
 import { useState } from 'react';
+
 
 
 

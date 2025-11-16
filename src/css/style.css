@@ -692,6 +692,78 @@ input[type=submit]:hover {
   background: #005177;
 }
 
+:focus {
+  outline: 2.5px solid #2c94da;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+  transition: outline 0.2s, box-shadow 0.2s;
+}
+
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible,
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+}
+
+.card:focus,
+.card:focus-visible,
+.gallery-tile:focus,
+.gallery-tile:focus-visible,
+.clickable-card:focus,
+.clickable-card:focus-visible {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+  z-index: 2;
+}
+
+.btn:focus,
+.btn:focus-visible {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+}
+
+.gallery-tab-btn:focus,
+.gallery-tab-btn:focus-visible {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+}
+
+.lightbox-prev:focus,
+.lightbox-next:focus,
+.lightbox-close:focus {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+}
+
+.skip-link:focus {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+}
+
+*:focus {
+  outline-color: #2c94da;
+}
+
 .site-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -741,7 +813,7 @@ input[type=submit]:hover {
 .page-header p,
 .section-header p {
   font-size: 1rem;
-  color: #888;
+  color: #595959;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -754,6 +826,48 @@ figure {
   margin: 0;
 }
 
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  width: auto;
+  min-width: 160px;
+  height: auto;
+  overflow: hidden;
+  z-index: 10000;
+  background: #2c94da;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px rgba(44, 148, 218, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: none;
+  opacity: 0.95;
+  transition: left 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+  outline: none;
+}
+
+.skip-link:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  opacity: 1;
+  background: #fff;
+  color: #2c94da;
+  box-shadow: 0 8px 32px rgba(44, 148, 218, 0.25), 0 2px 8px rgba(0, 0, 0, 0.12);
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .skip-link:focus {
+    font-size: 1rem;
+    padding: 10px 12px;
+    min-width: 120px;
+  }
+}
 /*!
  * Partial: _header.scss
  * Purpose: Header styles for site-wide layout, branding, navigation, and menu toggle.
@@ -936,7 +1050,7 @@ figure {
  * Last updated: 2025-09-11
  */
 .site-footer {
-  color: #888;
+  color: #595959;
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   padding: 40px 0;
   box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.15), 0 -4px 20px rgba(142, 36, 170, 0.1);
@@ -1154,7 +1268,7 @@ figure {
   text-align: center;
   margin-top: 32px;
   font-size: 13px;
-  color: #888;
+  color: #595959;
   letter-spacing: 0.5px;
   opacity: 0.8;
 }
@@ -1644,7 +1758,7 @@ figure {
 }
 .hportfolio .container .port-header p {
   font-size: 1rem;
-  color: #888;
+  color: #595959;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -1720,7 +1834,7 @@ figure {
 .hportfolio .container .card .card-bod p {
   font-size: 1rem;
   margin-bottom: 20px;
-  color: #888;
+  color: #595959;
 }
 .hportfolio .container .card .card-bod .card-links {
   margin-top: auto;
@@ -2152,7 +2266,7 @@ figure {
 .portfolio .container .card .card-bod p {
   font-size: 1rem;
   margin-bottom: 20px;
-  color: #888;
+  color: #595959;
 }
 .portfolio .container .card .card-bod .card-links {
   margin-top: auto;

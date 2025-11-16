@@ -15,7 +15,7 @@ const BlogNav = ({ activeCategory }) => {
 
   return (
     categories.length > 0 && (
-      <nav className={`blog-nav${navOpen ? ' open' : ''}`} aria-label='Blog Navigation'>
+      <nav className={`blog-nav${navOpen ? ' open' : ''}`} aria-label='Blog Navigation' role="navigation">
         <div className='container'>
           <button
             className='blog-nav-toggle'

@@ -12,7 +12,10 @@ $text-white: #fff;
 $text-black: #000;
 $text-light: #f4f3f4;
 $text-dark: #333;
-$text-muted: #888;
+$text-muted: #595959; // WCAG AA compliant on #fff and #f4f3f4 (contrast > 7:1)
+// Accessibility Note:
+// $text-muted (#595959) meets WCAG AA contrast (4.5:1+) on $background-light (#f4f3f4) and #fff.
+// All primary text and UI colors should be checked for 4.5:1 contrast minimum.
 $primary: #0073aa;
 $secondary-blue: #005177;
 $primary-dark: #2c94da;

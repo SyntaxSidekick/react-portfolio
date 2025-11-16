@@ -88,7 +88,7 @@ const BlogArchive = () => {
   return (
     <>
       <BlogNav activeCategory={category} />
-      <main className='container blog-index-page'>
+      <main className='container blog-index-page' role="main" aria-label="Blog archive content">
         <div className='page-header'>
           <h2 id='page-title'>Latest Posts in {categoryName}</h2>
           <p>Intereseted in {categoryName}? Read more here.</p>
@@ -97,7 +97,7 @@ const BlogArchive = () => {
           <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; Category: {categoryName}
         </div>
         <div className='content-sidebar-wrapper'>
-          <section className='listing-content blog-content'>
+          <section className='listing-content blog-content' role="region" aria-label="Blog post list">
             <ul className='blog-index-list'>
               {posts.map(post => (
                 <li key={post.id} className='blog-index-item'>

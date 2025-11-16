@@ -97,12 +97,12 @@ const Blog = ({ setPageTitle }) => {
   return (
     <>
       <BlogNav />
-      <main className='blog-post-main blog-post-page'>
+      <main className='blog-post-main blog-post-page' role="main" aria-label="Blog post content">
         <div className='breadcrumbs'>
           <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; {post.title.rendered}
         </div>
         <div className='content-sidebar-wrapper'>
-          <section className='single-content blog-content'>
+          <section className='single-content blog-content' role="region" aria-label="Blog post">
             <article className='blog-full'>
               <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
               {post._embedded?.['wp:featuredmedia']?.[0]?.source_url && (

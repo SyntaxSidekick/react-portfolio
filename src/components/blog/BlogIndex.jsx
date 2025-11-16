@@ -24,13 +24,13 @@ const BlogIndex = () => {
   return (
     <>
       <BlogNav />
-      <main className='container blog-index-page'>
+      <main className='container blog-index-page' role="main" aria-label="Blog index content">
         <div className='page-header'>
           <h2 id='page-title'>Latest Blog Posts</h2>
           <p>From random thoughts to insightful articles.</p>
         </div>
         <div className='content-sidebar-wrapper'>
-          <section className='listing-content blog-content'>
+          <section className='listing-content blog-content' role="region" aria-label="Blog post list">
             <ul className='blog-index-list'>
               {posts.map(post => (
                 <li key={post.id} className='blog-index-item'>

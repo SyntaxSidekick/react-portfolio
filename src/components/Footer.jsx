@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Footer = () => (
-  <footer id="footer" className="site-footer">
+  <footer id="footer" className="site-footer" role="contentinfo">
     <div className="container">
       <div className="site-branding">
         {/* If you want this to route internally, use Link. Otherwise, keep as <a> for external. */}

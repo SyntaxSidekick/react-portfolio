@@ -69,7 +69,7 @@ function LightboxWithTouch({ images, index, setIndex, onClose, onPrev, onNext })
   const current = images[index];
   const sources = getOptimizedPaths(current, 1600);
   return (
-    <div className="modal lightbox active" id="gallery-lightbox" tabIndex={-1} style={{ display: 'block' }}>
+    <div className="modal lightbox active" id="gallery-lightbox" tabIndex={-1} style={{ display: 'block' }} role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
       <div className="lightbox-content">
         <span className="lightbox-close" onClick={onClose}>&times;</span>
         <button className="lightbox-nav lightbox-prev" aria-label="Previous image" onClick={onPrev}>
@@ -156,7 +156,7 @@ const Portfolio = () => {
 
   return (
     <>
-      <section className="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <section className="portfolio" id="portfolio" aria-labelledby="portfolio-title" role="region">
         <div className="container">
           <div className="page-header">
             <h2 id="page-title">Featured Work</h2>

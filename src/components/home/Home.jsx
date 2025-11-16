@@ -51,7 +51,13 @@ const Home = () => {
   const [modalProject, setModalProject] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   // Hero rotating titles
-  const TITLES = ["Front-end Developer", "React Specialist", "UI/UX Modernist"];
+  const [TITLES] = useState([
+    "Senior Front-End Developer",
+    "React Specialist",
+    "UI/UX Modernist",
+    "Design Systems Architect"
+    // Add more titles here as needed
+  ]);
   const [wordIndex, setWordIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -115,7 +121,7 @@ const Home = () => {
       if (intervalId) clearInterval(intervalId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, []);
+  }, [TITLES.length]);
 
   const openModal = (project) => {
     setModalProject(project);
@@ -131,7 +137,7 @@ const Home = () => {
   };
 
   return (
-    <div className="home-section">
+    <main className="home-section" id="main-content" role="main">
       <section className="hero" aria-labelledby="hero-title">
         <div className="container">
           <figure className="hero-image">
@@ -139,7 +145,7 @@ const Home = () => {
           </figure>
           <div className="hero-content">
             <h1 id="hero-title">
-              I am a{" "}
+              I am a{" "}<br/>
               <span
                 className={`hero-rotating ${visible ? "is-visible" : ""}`}
                 aria-live="polite"
@@ -320,7 +326,7 @@ const Home = () => {
         modalProject={modalProject}
         closeModal={closeModal}
       />
-    </div>
+    </main>
   );
 };
 

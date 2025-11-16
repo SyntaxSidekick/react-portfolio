@@ -92,7 +92,7 @@ const BlogTagArchive = () => {
   return (
     <>
       <BlogNav />
-      <main className='container blog-index-page'>
+      <main className='container blog-index-page' role="main" aria-label="Blog tag archive content">
         <div className='page-header'>
           <h2 id='page-title'>Latest Posts tagged '{tagName}'</h2>
           <p>Interested in {tagName}? Read more here.</p>
@@ -101,7 +101,7 @@ const BlogTagArchive = () => {
           <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; Tag: {tagName}
         </div>
         <div className='content-sidebar-wrapper'>
-          <section className='listing-content blog-content'>
+          <section className='listing-content blog-content' role="region" aria-label="Blog post list">
             <ul className='blog-index-list'>
               {posts.map(post => (
                 <li key={post.id} className='blog-index-item'>

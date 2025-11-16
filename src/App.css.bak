@@ -1,0 +1,81 @@
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  width: auto;
+  min-width: 160px;
+  height: auto;
+  overflow: hidden;
+  z-index: 10000;
+  background: #2563eb;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  opacity: 0.95;
+  transition: left 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+  outline: none;
+}
+.skip-link:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  opacity: 1;
+  background: #fff;
+  color: #2563eb;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.25), 0 2px 8px rgba(0,0,0,0.12);
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+@media (max-width: 600px) {
+  .skip-link:focus {
+    font-size: 1rem;
+    padding: 10px 12px;
+    min-width: 120px;
+  }
+}
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

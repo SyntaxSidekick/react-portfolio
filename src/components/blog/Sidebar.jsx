@@ -33,14 +33,14 @@ const Sidebar = () => {
     }
   };
 
-  return (
-    <aside className="blog-sidebar">
-      <div className="widget">
+    return (
+    <aside className="blog-sidebar" role="complementary" aria-label="Blog sidebar">
+      <div className="widget" role="region" aria-label="Blog search">
         <form onSubmit={handleSearch} style={{ marginBottom: "1.5rem" }}>
           <input type="text" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
         </form>
       </div>
-      <div className="widget">
+      <div className="widget" role="region" aria-label="Recent posts">
         <div className="widget-title">Recent Posts</div>
         <ul>
           {loading
@@ -56,7 +56,7 @@ const Sidebar = () => {
               ))}
         </ul>
       </div>
-      <div className="widget">
+      <div className="widget" role="region" aria-label="Tags">
         <div className="widget-title">Tags</div>
         <div className="tag-cloud">
           {loading
@@ -121,7 +121,7 @@ const Sidebar = () => {
               })()}
         </div>
       </div>
-      <div className="widget">
+      <div className="widget" role="region" aria-label="Links">
         <div className="widget-title">Links</div>
         <ul>
           <li>

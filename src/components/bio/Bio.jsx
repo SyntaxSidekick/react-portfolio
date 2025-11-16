@@ -51,13 +51,13 @@ const Bio = () => {
     }
   }, []);
 
-  return (
-    <section className="bio-section container" aria-labelledby="bio-title">
-      <div className="page-header">
+    return (
+    <section className="bio-section container" aria-labelledby="bio-title" role="region" aria-label="About Riad Kilani">
+      <div className="page-header" role="presentation">
         <h2 id="page-title">About Riad Kilani</h2>
         <h3>Front-End Developer &amp; UI Specialist</h3>
       </div>
-      <div className="bio-content" ref={bioContentRef}>
+      <div className="bio-content" ref={bioContentRef} role="group" aria-label="Bio content">
         <div className="bio-about">
           <div className="bio-image">
             <img src={profileImg} alt="Riad Kilani Portrait" />
@@ -79,7 +79,7 @@ const Bio = () => {
           </div>
         </div>
         <h3>My Front-End Process</h3>
-        <ol className="bio-process">
+        <ol className="bio-process" aria-label="Front-End Process Steps">
           {[
             "Discovery & Planning: Understand project goals, target audience, and requirements.",
             "Wireframing & Design: Create wireframes and UI designs using tools like Figma.",
@@ -100,11 +100,11 @@ const Bio = () => {
           ))}
         </ol>
         </div>
-        <div className="section-header">
+        <div className="section-header" role="presentation">
           <h3>My Skills</h3>
           <p>I’ve developed a very particular set of front-end skills, skills I’ve acquired over a long career, skills that make me a nightmare for bad code.</p>
         </div>
-        <div className="bio-skills-wrapper">
+        <div className="bio-skills-wrapper" role="group" aria-label="Skills">
           
           {/* Grouped skills by category */}
           <div className="skills-group">

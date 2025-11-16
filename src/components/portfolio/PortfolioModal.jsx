@@ -1,9 +1,52 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
   const fullscreen = true;
+  const modalRef = useRef(null);
+  const lastActiveElement = useRef(null);
+
+  // Focus trap and return focus to trigger
+  useEffect(() => {
+    if (modalOpen) {
+      lastActiveElement.current = document.activeElement;
+      setTimeout(() => {
+        if (modalRef.current) {
+          const focusable = modalRef.current.querySelector(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusable) focusable.focus();
+        }
+      }, 100);
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+        // Focus trap
+        if (e.key === "Tab" && modalRef.current) {
+          const focusableEls = modalRef.current.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          const first = focusableEls[0];
+          const last = focusableEls[focusableEls.length - 1];
+          if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          } else if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        }
+      };
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        if (lastActiveElement.current) lastActiveElement.current.focus();
+      };
+    }
+  }, [modalOpen, closeModal]);
+
   return (
     <Modal
       show={modalOpen}
@@ -12,6 +55,9 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
       centered
       size="lg"
       aria-labelledby="portfolio-modal-title"
+      aria-modal="true"
+      role="dialog"
+      ref={modalRef}
     >
       <Modal.Header closeButton>
         <Modal.Title as="h2" id="portfolio-modal-title">
@@ -35,8 +81,7 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
                 <h2>Overview</h2>
                 {modalProject.desc
                   .split(/\n\s*\n/)
-                  .map((para, idx) => <p key={idx}>{para}</p>)
-                }
+                  .map((para, idx) => <p key={idx}>{para}</p>)}
               </div>
             </div>
             {/* Second row: deliverables + secondary image */}

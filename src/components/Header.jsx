@@ -11,7 +11,25 @@ const Header = () => {
   const handleNavClick = () => setMenuOpen(false);
 
   return (
-    <header id="header" className="site-header">
+    <header id="header" className="site-header" style={{ position: 'relative' }} role="banner">
+      <button
+        className="skip-link"
+        onClick={() => {
+          const el = document.getElementById('main-content');
+          if (el) {
+            el.scrollIntoView({behavior: 'smooth', block: 'start'});
+            // Try to focus after scroll
+            setTimeout(() => {
+              if (el.tabIndex < 0) el.tabIndex = -1;
+              el.focus();
+            }, 300);
+          }
+        }}
+        tabIndex={0}
+        aria-label="Skip to main content"
+      >
+        Skip to main content
+      </button>
       <div className="container">
         <div className="site-branding">
           <Link
@@ -40,6 +58,7 @@ const Header = () => {
         <nav
           id="main-navigation"
           aria-label="Main navigation"
+          role="navigation"
           className={menuOpen ? "active" : ""}
         >
           <ul onClick={handleNavClick}>
