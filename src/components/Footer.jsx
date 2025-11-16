@@ -12,10 +12,10 @@ const Footer = () => (
       </div>
       <div className="footer-contact">
         <div className="socials">
-          <a href="https://www.linkedin.com/in/riad-kilani/" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin"></i></a>
-          <a href="https://github.com/f1ss1on" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-github"></i></a>
-          <a href="https://x.com/f1ss1on" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-x-twitter"></i></a>
-          <a href="https://codepen.io/f1ss1on" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-codepen"></i></a>
+          <a href="https://www.linkedin.com/in/riad-kilani/" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile"><i className="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://github.com/f1ss1on" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile"><i className="fa-brands fa-github" aria-hidden="true"></i></a>
+          <a href="https://x.com/f1ss1on" target="_blank" rel="noopener noreferrer" aria-label="Follow me on X (Twitter)"><i className="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://codepen.io/f1ss1on" target="_blank" rel="noopener noreferrer" aria-label="View my CodePen projects"><i className="fa-brands fa-codepen" aria-hidden="true"></i></a>
         </div>
       </div>      
     </div>

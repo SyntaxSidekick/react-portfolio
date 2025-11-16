@@ -3,28 +3,43 @@ export const projects = [
   {
     title: "Vistana – Mobile App Design",
     img: "/images/portfolio/projects/vistana-1.png",
-    desc: `The Vistana Signature Experiences mobile app** is designed to make planning, managing, and enjoying vacations seamless for travelers and owners alike. Users can browse destinations, explore resort amenities, and get inspired with vacation ideas, photos, and activities. The app provides access to upcoming reservations, resort details, and special offers, ensuring that members and guests stay informed and prepared for their trips. With a clean interface and imagery-driven design, the app balances inspiration with practical functionality.\n\nFor Vistana owners, the app extends further by offering access to ownership details such as benefit levels, StarOptions, and balances. Members can log in with their existing vistana.com credentials to view personalized dashboards, manage their profiles, and even share vacation photos, videos, and stories with the community. While some content is available without logging in, full functionality requires an account, making the app both a travel planning tool and an ownership companion that connects inspiration, management, and community in one platform.\n\n The project was originally designed with simple mockups and wireframes and then shipped off to an overseas development team. However, the overseas team needed more direction than mocks with generic text and images. That's where I came in. I took the initial wireframes and mockups and created a full design system with reusable components, a style guide, and a comprehensive page by page designs in photoshop and indesign. This ensured that the overseas developers had clear guidelines and assets to work with, leading to a more cohesive and efficient development process.`,
+    desc: "Enterprise mobile app design system for vacation ownership platform serving 500K+ users",
+    fullDesc: `The Vistana Signature Experiences mobile app** is designed to make planning, managing, and enjoying vacations seamless for travelers and owners alike. Users can browse destinations, explore resort amenities, and get inspired with vacation ideas, photos, and activities. The app provides access to upcoming reservations, resort details, and special offers, ensuring that members and guests stay informed and prepared for their trips. With a clean interface and imagery-driven design, the app balances inspiration with practical functionality.\n\nFor Vistana owners, the app extends further by offering access to ownership details such as benefit levels, StarOptions, and balances. Members can log in with their existing vistana.com credentials to view personalized dashboards, manage their profiles, and even share vacation photos, videos, and stories with the community. While some content is available without logging in, full functionality requires an account, making the app both a travel planning tool and an ownership companion that connects inspiration, management, and community in one platform.\n\n The project was originally designed with simple mockups and wireframes and then shipped off to an overseas development team. However, the overseas team needed more direction than mocks with generic text and images. That's where I came in. I took the initial wireframes and mockups and created a full design system with reusable components, a style guide, and a comprehensive page by page designs in photoshop and indesign. This ensured that the overseas developers had clear guidelines and assets to work with, leading to a more cohesive and efficient development process.`,
     secimg: "/images/portfolio/projects/vistana-2.png",
     addimg:
       "/images/portfolio/projects/vistana-3.png, /images/portfolio/projects/vistana-4.png",
     deliverables:
       "Vistana Signature Experiences had one of the most comprehensive designs ever pushed out to a dev team resulting in true pixel perfect app development for all 3 of their brands. \n\n Deliverables were: UI/UX Design, Prototyping, User Flows, Wireframes, Visual Design, Interactive Prototype, Interaction Design.",
     featured: true,
+    metrics: {
+      users: "500K+",
+      components: "200+"
+    },
+    role: "Lead UI/UX Designer & Design System Architect",
+    year: "2019",
     tech: [
       { name: "Photoshop", icon: "fab fa-photoshop" },
       { name: "Illustrator", icon: "fab fa-illustrator" },
       { name: "InDesign", icon: "fab fa-indesign" },
+      { name: "Design Systems", icon: "fas fa-layer-group" },
     ],
   },
   {
     title: "Virtued Online - Virtual Tutoring Platform",
     img: "/images/portfolio/projects/virtued-1.png",
-    desc: "VirtuedOnline is a virtual tutoring platform that reimagines and elevates the online learning experience. Through live, interactive sessions, the platform connects students with skilled educators in a seamless digital ecosystem—offering tutoring, personalized learning paths, and on-demand support—all wrapped in a responsive, intuitive interface. Its mission centers on accessibility and innovation, striving to create an environment where learners can thrive regardless of location. The product itself is built with modern web technologies that prioritize speed, reliability, and ease of use.\n\nWhen I joined the project, it was at risk of being shelved—after more than a year in development, the existing framework was failing to deliver results. As Project Lead and Lead Front-End Developer, I implemented a comprehensive project plan in Jira that brought clarity, accountability, and measurable progress. Simultaneously, I designed and developed a completely new front-end React framework to replace the faltering one, and within just seven months, transformed the project into a fully fledged virtual tutoring app—on time, on spec, and ready for users. \n\n Due to NDA agreements, I am unable to share the live site or codebase, but I can provide detailed insights into the technologies and methodologies used.",
+    desc: "Full-stack React platform rescued from failure and delivered in 7 months with complete framework rebuild",
+    fullDesc: "VirtuedOnline is a virtual tutoring platform that reimagines and elevates the online learning experience. Through live, interactive sessions, the platform connects students with skilled educators in a seamless digital ecosystem—offering tutoring, personalized learning paths, and on-demand support—all wrapped in a responsive, intuitive interface. Its mission centers on accessibility and innovation, striving to create an environment where learners can thrive regardless of location. The product itself is built with modern web technologies that prioritize speed, reliability, and ease of use.\n\nWhen I joined the project, it was at risk of being shelved—after more than a year in development, the existing framework was failing to deliver results. As Project Lead and Lead Front-End Developer, I implemented a comprehensive project plan in Jira that brought clarity, accountability, and measurable progress. Simultaneously, I designed and developed a completely new front-end React framework to replace the faltering one, and within just seven months, transformed the project into a fully fledged virtual tutoring app—on time, on spec, and ready for users. \n\n Due to NDA agreements, I am unable to share the live site or codebase, but I can provide detailed insights into the technologies and methodologies used.",
     secimg: "/images/portfolio/projects/virtued-2.png",
     addimg: "",
     deliverables:
       "Virtued Online has become a contender in the virtual tutoring world that allows certified teachers to focus more on tutoring while allowing the platform to handle the business side of the teachers side hustle.\n\nDeliverables were: Project Managment and Documentation, UI/UX Design/ Development, Prototyping, User stories and flows, HTML/CSS/JS templating, React Development",
     featured: true,
+    metrics: {
+      delivery: "7 months",
+      rebuild: "100%"
+    },
+    role: "Project Lead & Lead Front-End Developer",
+    year: "2020",
     tech: [
       {
         name: "React",
@@ -71,12 +86,19 @@ export const projects = [
   {
     title: "Time 2 Visit - Travel Booking Platform",
     img: "/images/portfolio/projects/time2visit-1.png",
-    desc: "Time 2 Visit is a travel platform that specializes in discounted vacation packages and hotel deals, connecting travelers with exclusive offers from resorts, hotels, and vacation clubs. The platform allows users to purchase open-dated travel packages, manage booking requests, and access important trip information such as confirmations and paperwork. With a user-friendly interface and integrated communication features, Time 2 Visit streamlines the booking process and provides a simple way for travelers to plan affordable getaways while partners promote their destinations through sponsored rates and campaigns.\n\nWhen I stepped into the project, it had been stalled and originally hardcoded in plain HTML rather than being properly developed on schedule. As Project Lead and Lead Front-End Developer, I restructured the effort by introducing a project plan in Jira while keeping development moving forward simultaneously. I implemented a full front-end templating system in Vue.js with PHP as the backend, building reusable, scalable components for destination and hotel displays, booking flows, confirmations, and automated email notifications. Beyond development, I also designed and developed ad campaigns and UI mockups, ensuring that the product not only functioned smoothly but also delivered a polished, market-ready experience.",
+    desc: "Vue.js travel platform rebuilt from static HTML to fully functional booking system with automated workflows",
+    fullDesc: "Time 2 Visit is a travel platform that specializes in discounted vacation packages and hotel deals, connecting travelers with exclusive offers from resorts, hotels, and vacation clubs. The platform allows users to purchase open-dated travel packages, manage booking requests, and access important trip information such as confirmations and paperwork. With a user-friendly interface and integrated communication features, Time 2 Visit streamlines the booking process and provides a simple way for travelers to plan affordable getaways while partners promote their destinations through sponsored rates and campaigns.\n\nWhen I stepped into the project, it had been stalled and originally hardcoded in plain HTML rather than being properly developed on schedule. As Project Lead and Lead Front-End Developer, I restructured the effort by introducing a project plan in Jira while keeping development moving forward simultaneously. I implemented a full front-end templating system in Vue.js with PHP as the backend, building reusable, scalable components for destination and hotel displays, booking flows, confirmations, and automated email notifications. Beyond development, I also designed and developed ad campaigns and UI mockups, ensuring that the product not only functioned smoothly but also delivered a polished, market-ready experience.",
     secimg: "/images/portfolio/projects/time2visit-2.png",
     addimg: "",
     deliverables:
       "By restructuring the development process and implementing a modern Vue.js front-end with a PHP backend, the Time 2 Visit platform was successfully transformed from a static, hardcoded site into a fully functional travel booking application. The project was put back on schedule and delivered within the set timeframe, resulting in a scalable, user-friendly system capable of handling bookings, confirmations, and automated communications. The improved interface and campaign materials directly contributed to stronger user engagement and a professional market presence.\n\nKey deliverables included a reusable front-end templating system built in Vue.js, integrated booking and confirmation workflows, automated email confirmation templates, and account management features. I also delivered complete UI mockups for travel destination and hotel displays, as well as designed and developed digital ad campaigns to support the platform’s launch and marketing initiatives. Together, these deliverables provided both the technical foundation and the polished presentation needed for the platform’s success.",
-    featured: false,
+    featured: true,
+    metrics: {
+      timeline: "On schedule",
+      automation: "Full system"
+    },
+    role: "Project Lead & Lead Front-End Developer",
+    year: "2018",
     tech: [
       {
         name: "JavaScript",

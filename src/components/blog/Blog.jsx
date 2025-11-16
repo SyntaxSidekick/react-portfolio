@@ -1,10 +1,34 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Skeleton, SkeletonBlock } from '../Skeleton'
-import hljs from 'highlight.js'
+// Import only core highlight.js with specific languages instead of full bundle
+import hljs from 'highlight.js/lib/core'
+// Import only commonly used languages to reduce bundle size from 1.5MB to ~100KB
+import javascript from 'highlight.js/lib/languages/javascript'
+import typescript from 'highlight.js/lib/languages/typescript'
+import css from 'highlight.js/lib/languages/css'
+import scss from 'highlight.js/lib/languages/scss'
+import xml from 'highlight.js/lib/languages/xml' // for HTML
+import json from 'highlight.js/lib/languages/json'
+import bash from 'highlight.js/lib/languages/bash'
+import php from 'highlight.js/lib/languages/php'
+import sql from 'highlight.js/lib/languages/sql'
 import 'highlight.js/styles/github-dark.css'
 import Sidebar from './Sidebar'
 import BlogNav from './BlogNav'
+
+// Register only the languages we need
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('scss', scss)
+hljs.registerLanguage('html', xml)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('shell', bash)
+hljs.registerLanguage('php', php)
+hljs.registerLanguage('sql', sql)
 
 const Blog = ({ setPageTitle }) => {
   // BlogPost logic

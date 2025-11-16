@@ -1,35 +1,48 @@
-import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+const navLinks = [
+  { to: "/bio", label: "Bio", title: "View Bio" },
+  { to: "/portfolio", label: "Portfolio", title: "View Portfolio" },
+  { to: "/blog", label: "Blog", title: "View Blog" },
+  { to: "/contact", label: "Contact", title: "Contact Riad Kilani" },
+];
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const handleToggle = () => setMenuOpen((open) => !open);
-
-  // Optionally close menu on nav click (for SPA UX)
   const handleNavClick = () => setMenuOpen(false);
 
+  // Keyboard accessibility for skip link
+  const handleSkip = (e) => {
+    e.preventDefault();
+    const el = document.getElementById("main-content");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        if (el.tabIndex < 0) el.tabIndex = -1;
+        el.focus();
+      }, 300);
+    }
+  };
+
   return (
-    <header id="header" className="site-header" style={{ position: 'relative' }} role="banner">
-      <button
+    <header id="header" className="site-header" role="banner">
+      <a
+        href="#main-content"
         className="skip-link"
-        onClick={() => {
-          const el = document.getElementById('main-content');
-          if (el) {
-            el.scrollIntoView({behavior: 'smooth', block: 'start'});
-            // Try to focus after scroll
-            setTimeout(() => {
-              if (el.tabIndex < 0) el.tabIndex = -1;
-              el.focus();
-            }, 300);
-          }
-        }}
         tabIndex={0}
         aria-label="Skip to main content"
+        onClick={handleSkip}
+        onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") handleSkip(e);
+        }}
       >
         Skip to main content
-      </button>
+      </a>
       <div className="container">
         <div className="site-branding">
           <Link
@@ -38,10 +51,8 @@ const Header = () => {
             aria-label="Riad Kilani Home"
             title="Riad Kilani - Front-end Developer"
           >
-            <span className="site-title">Riad Kilani</span>
-            <span className="site-description">
-              Senior Front-End Developer | React Specialist | UI/UX Modernist
-            </span>
+            {/* Logo image visually, text for screen readers */}
+            <span className="sr-only">Riad Kilani</span>
           </Link>
         </div>
         <button
@@ -51,9 +62,7 @@ const Header = () => {
           aria-expanded={menuOpen}
           onClick={handleToggle}
         >
-          <i
-            className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
-          ></i>
+          <i className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"} aria-hidden="true"></i>
         </button>
         <nav
           id="main-navigation"
@@ -62,26 +71,18 @@ const Header = () => {
           className={menuOpen ? "active" : ""}
         >
           <ul onClick={handleNavClick}>
-            <li>
-              <Link to="/bio" title="View Bio">
-                Bio
-              </Link>
-            </li>
-            <li>
-              <Link to="/portfolio" title="View Portfolio">
-                Portfolio
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" title="View Blog">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" title="Contact Riad Kilani">
-                Contact
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  title={link.title}
+                  className={location.pathname === link.to ? "active" : ""}
+                  tabIndex={menuOpen || window.innerWidth > 900 ? 0 : -1}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

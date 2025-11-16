@@ -1,22 +1,36 @@
 const { defineConfig } = require('vite');
 const react = require('@vitejs/plugin-react');
 const { viteStaticCopy } = require('vite-plugin-static-copy');
+const criticalCssPlugin = require('./vite-plugin-critical-css.cjs');
 
 // https://vite.dev/config/
 module.exports = defineConfig({
   build: {
     outDir: process.env.BUILD_OUT_DIR ?? 'dist',
+    cssCodeSplit: true, // Split CSS per route for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor code for better caching
+          'vendor-react': ['react', 'react-dom', 'react-router-dom']
+        }
+      }
+    }
   },
   plugins: [
     react(),
+    criticalCssPlugin(),
     viteStaticCopy({
       targets: [
-        // Copy only favicon and fonts, not images
+        // Copy SEO files
         {
-          src: 'favicon.*',
+          src: 'public/robots.txt',
           dest: '.'
         },
-        // No fonts to copy from public; handled by Vite from src/assets/fonts
+        {
+          src: 'public/sitemap.xml',
+          dest: '.'
+        }
       ]
     })
   ],

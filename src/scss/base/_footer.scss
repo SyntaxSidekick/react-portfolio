@@ -59,7 +59,14 @@
       display: block;
       width: 220px;
       height: 48px;
-      background: url(../assets/images/riad-kilani-logo.png) no-repeat center center;
+      background: image-set(
+        url(../assets/images/riad-kilani-logo.webp) type("image/webp"),
+        url(../assets/images/riad-kilani-logo.png) type("image/png")
+      ) no-repeat center center;
+      background: -webkit-image-set(
+        url(../assets/images/riad-kilani-logo.webp) 1x,
+        url(../assets/images/riad-kilani-logo.png) 1x
+      ) no-repeat center center;
       background-size: contain;
       overflow: hidden;
       text-indent: -1000px;      
