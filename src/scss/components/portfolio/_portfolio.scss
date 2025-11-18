@@ -32,7 +32,7 @@
       background: $text-white;
       color: $text-dark;
       border-radius: $radius-lg;
-      border: 1px solid #e3e3e3;
+      border: 1px solid $color-border-light;
       overflow: hidden;
       @include card-shadow;
       transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s;
@@ -44,7 +44,7 @@
       &:hover {
         
         box-shadow: 0 8px 32px rgba($primary, 0.13);
-        border-color: #dadada;
+        border-color: $color-border-medium;
       }
 
       .card-head {
@@ -55,7 +55,7 @@
           width: 100%;
           aspect-ratio: 16 / 9;
           overflow: hidden;
-          background: #f5f5f5;
+          background: $gray-100;
           border-radius: 8px;
           cursor: pointer;
           

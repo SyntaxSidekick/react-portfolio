@@ -30,6 +30,15 @@ $brand-accent: #8e24aa;
 $brand-accent-light: #ab47bc;
 $brand-accent-dark: #6a1b9a;
 
+// Accent opacity variants
+$brand-accent-50: rgba(142, 36, 170, 0.05);
+$brand-accent-100: rgba(142, 36, 170, 0.1);
+$brand-accent-200: rgba(142, 36, 170, 0.2);
+$brand-accent-300: rgba(142, 36, 170, 0.3);
+$brand-accent-400: rgba(142, 36, 170, 0.4);
+$brand-accent-500: rgba(142, 36, 170, 0.5);
+$brand-accent-800: rgba(142, 36, 170, 0.8);
+
 // ============================================================
 // NEUTRAL GRAYS
 // ============================================================
@@ -69,9 +78,17 @@ $color-border-dark: #adb5bd;
 
 // Status Colors
 $color-success: #28a745;
+$color-success-light: #d4edda;
+$color-success-dark: #155724;
 $color-warning: #ffc107;
+$color-warning-light: #fff3cd;
+$color-warning-dark: #856404;
 $color-error: #dc3545;
+$color-error-light: #f8d7da;
+$color-error-dark: #721c24;
 $color-info: #17a2b8;
+$color-info-light: #d1ecf1;
+$color-info-dark: #0c5460;
 
 // Legacy aliases (for backward compatibility - to be removed in Phase 2)
 $text: $color-text-primary;

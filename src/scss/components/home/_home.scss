@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(135deg, $background-light 0%, #ffffff 100%);
+  background: linear-gradient(135deg, $background-light 0%, $color-text-inverse 100%);
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
