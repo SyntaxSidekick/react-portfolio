@@ -22,29 +22,6 @@ const Home = () => {
   ]);
   const [titleIndex, setTitleIndex] = useState(0);
 
-  // Parallax scrolling refs
-  const heroRef = useRef(null);
-  const aboutRef = useRef(null);
-  
-  // Hero parallax
-  const { scrollYProgress: heroScrollProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const heroY = useTransform(heroScrollProgress, [0, 1], ["0%", "50%"]);
-  const heroOpacity = useTransform(heroScrollProgress, [0, 0.5, 1], [1, 0.8, 0]);
-  const heroScale = useTransform(heroScrollProgress, [0, 1], [1, 0.95]);
-  
-  // About parallax
-  const { scrollYProgress: aboutScrollProgress } = useScroll({
-    target: aboutRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const aboutY = useTransform(aboutScrollProgress, [0, 1], ["10%", "-10%"]);
-  const aboutImageY = useTransform(aboutScrollProgress, [0, 1], ["-20%", "20%"]);
-
   // Years of service calculation
   useEffect(() => {
     const startYear = 2009;
@@ -99,21 +76,17 @@ const Home = () => {
 
   return (
     <main className="home-section" id="main-content" role="main">
-      <motion.section 
-        ref={heroRef}
+      <section 
         className="hero" 
         aria-labelledby="hero-title"
-        style={{ y: heroY }}
       >
-        <motion.div 
+        <div 
           className="hero-background"
-          style={{ opacity: heroOpacity }}
         >
-          <motion.div 
+          <div 
             className="hero-gradient"
-            style={{ scale: heroScale }}
-          ></motion.div>
-        </motion.div>
+          ></div>
+        </div>
         <div className="container">
           <motion.div 
             className="hero-content"
@@ -225,14 +198,9 @@ const Home = () => {
           <motion.figure 
             className="hero-image" 
             aria-label="Profile photo"
-            style={{ y: useTransform(heroScrollProgress, [0, 1], ["0%", "-20%"]) }}
           >
             <motion.div 
               className="hero-image-wrapper"
-              style={{ 
-                y: useTransform(heroScrollProgress, [0, 1], ["0%", "10%"]),
-                rotate: useTransform(heroScrollProgress, [0, 1], [0, 5])
-              }}
             >
               <picture>
                 <source srcSet={profileImg} type="image/webp" />
@@ -241,7 +209,7 @@ const Home = () => {
                   alt="Riad Kilani - Front-end Developer"
                   className="hero-profile-image"
                   loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   width="360"
                   height="360"
                 />
@@ -249,14 +217,12 @@ const Home = () => {
             </motion.div>
           </motion.figure>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section 
-        ref={aboutRef}
+      <section
         className="about" 
         id="about" 
         aria-labelledby="about-title"
-        style={{ y: aboutY }}
       >
         <div className="container">
           <motion.div 
@@ -285,18 +251,21 @@ const Home = () => {
               <h3 className="visually-hidden">Core Technologies</h3>
               <div className="tech-icons-grid" role="list" aria-label="Key technologies and tools">
                 {[
-                  { name: "React", icon: "fab fa-react", color: "#61dafb" },
-                  { name: "JavaScript", icon: "fab fa-js", color: "#f0db4f" },
-                  { name: "HTML5", icon: "fab fa-html5", color: "#e44d26" },
-                  { name: "CSS3/Sass", icon: "fab fa-sass", color: "#cd6799" },
-                  { name: "Git", icon: "fab fa-git-alt", color: "#f05032" },
-                  { name: "Figma", icon: "fab fa-figma", color: "#f24e1e" },
+                  { name: "React", icon: "fab fa-react", color: "#61dafb", proficiency: 95 },
+                  { name: "JavaScript", icon: "fab fa-js", color: "#f0db4f", proficiency: 93 },
+                  { name: "HTML5", icon: "fab fa-html5", color: "#e44d26", proficiency: 100 },
+                  { name: "CSS3/Sass", icon: "fab fa-sass", color: "#cd6799", proficiency: 100 },
+                  { name: "Git", icon: "fab fa-git-alt", color: "#f05032", proficiency: 92 },
+                  { name: "Figma", icon: "fab fa-figma", color: "#f24e1e", proficiency: 89 },
                 ].map((tech, index) => (
                   <motion.div 
                     key={tech.name}
                     className="tech-icon-item" 
                     role="listitem"
-                    style={{ '--tech-color': tech.color }}
+                    style={{ 
+                      '--tech-color': tech.color,
+                      '--proficiency': tech.proficiency 
+                    }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -305,6 +274,9 @@ const Home = () => {
                   >
                     <i className={tech.icon} aria-hidden="true"></i>
                     <span className="tech-name">{tech.name}</span>
+                    <div className="tech-proficiency-bar">
+                      <div className="tech-proficiency-fill"></div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -334,9 +306,9 @@ const Home = () => {
             </motion.div>
           </motion.div>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section
+      <section
         className="featured-work"
         id="featured-work"
         aria-labelledby="portfolio-title"
@@ -487,15 +459,25 @@ const Home = () => {
           </motion.div>
           
           <div className="featured-work-cta">
-            <a href="/portfolio" className="portfolio-cta-button">
-              View Full Portfolio
-              <i className="fas fa-arrow-right" aria-hidden="true"></i>
+            <a 
+              href="/portfolio" 
+              className="portfolio-cta-button"
+              aria-label="View my complete portfolio and project case studies"
+            >
+              <span className="cta-content">
+                <i className="fas fa-briefcase" aria-hidden="true"></i>
+                <span className="cta-text">
+                  <strong>View Full Portfolio</strong>
+                  <small>Explore all projects and case studies</small>
+                </span>
+              </span>
+              <i className="fas fa-arrow-right cta-arrow" aria-hidden="true"></i>
             </a>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section
+      <section
         className="blog-section"
         id="blog"
         aria-labelledby="blog-title"
@@ -578,13 +560,23 @@ const Home = () => {
           </motion.div>
 
           <div className="blog-cta">
-            <a href="/blog" className="blog-cta-button">
-              View All Posts
-              <i className="fas fa-arrow-right" aria-hidden="true"></i>
+            <a 
+              href="/blog" 
+              className="blog-cta-button"
+              aria-label="Read all blog posts and articles"
+            >
+              <span className="cta-content">
+                <i className="fas fa-blog" aria-hidden="true"></i>
+                <span className="cta-text">
+                  <strong>View All Posts</strong>
+                  <small>Read insights, tutorials, and articles</small>
+                </span>
+              </span>
+              <i className="fas fa-arrow-right cta-arrow" aria-hidden="true"></i>
             </a>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <section
         className="contact-section"

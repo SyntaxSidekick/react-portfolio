@@ -588,6 +588,7 @@ p, .text-body {
  */
 html {
   overflow-x: hidden !important;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -1667,6 +1668,7 @@ html.dark-mode a:hover {
 * Last updated: 2025-11
  */
 .home-section {
+  position: relative;
   overflow-x: hidden;
   will-change: transform;
 }
@@ -1809,21 +1811,21 @@ html.dark-mode a:hover {
 }
 .hero .hero-content .hero-cta-buttons .btn-primary,
 .hero .hero-content .hero-cta-buttons .btn-secondary {
-  padding: 14px 28px;
-  border-radius: 8px;
+  padding: 16px 32px;
+  border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
+  gap: 12px;
+  font-size: 15px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   font-family: "dmsans", sans-serif;
 }
 .hero .hero-content .hero-cta-buttons .btn-primary i,
 .hero .hero-content .hero-cta-buttons .btn-secondary i {
-  font-size: 16px;
+  font-size: 18px;
   transition: transform 0.3s ease;
 }
 .hero .hero-content .hero-cta-buttons .btn-primary {
@@ -2086,9 +2088,7 @@ html.dark-mode a:hover {
   padding: 80px 0;
   background: linear-gradient(180deg, #ffffff 0%, #f4f3f4 100%);
   position: relative;
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  overflow: hidden;
 }
 .about .container {
   max-width: 1200px;
@@ -2155,9 +2155,8 @@ html.dark-mode a:hover {
 }
 .about .about-tech-preview .tech-icons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 24px;
-  max-width: 700px;
   margin: 0 auto;
 }
 @media (max-width: 900px) {
@@ -2205,11 +2204,39 @@ html.dark-mode a:hover {
   color: #333;
   font-family: "dmsans", sans-serif;
   letter-spacing: 0.3px;
+  margin-bottom: 8px;
 }
 @media (max-width: 600px) {
   .about .about-tech-preview .tech-icon-item .tech-name {
     font-size: 12px;
   }
+}
+.about .about-tech-preview .tech-icon-item .tech-proficiency-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.about .about-tech-preview .tech-icon-item .tech-proficiency-bar .tech-proficiency-fill {
+  height: 100%;
+  width: 0;
+  background: var(--tech-color);
+  border-radius: 2px;
+  transition: width 0.6s ease-in-out;
+  position: relative;
+}
+.about .about-tech-preview .tech-icon-item .tech-proficiency-bar .tech-proficiency-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
 }
 .about .about-tech-preview .tech-icon-item:hover {
   border-color: var(--tech-color);
@@ -2218,6 +2245,12 @@ html.dark-mode a:hover {
 }
 .about .about-tech-preview .tech-icon-item:hover i {
   transform: scale(1.1);
+}
+.about .about-tech-preview .tech-icon-item:hover .tech-proficiency-bar {
+  opacity: 1;
+}
+.about .about-tech-preview .tech-icon-item:hover .tech-proficiency-fill {
+  width: calc(var(--proficiency) * 1%);
 }
 .about .about-tech-preview .tech-icon-item:focus-visible {
   outline: 3px solid var(--tech-color);
@@ -2230,122 +2263,76 @@ html.dark-mode a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 24px 32px;
+  gap: 20px;
+  padding: 16px 32px;
   background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
   color: #fff;
   text-decoration: none;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.25);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: "dmsans", sans-serif;
-  min-width: 320px;
-  max-width: 600px;
-  position: relative;
-  overflow: hidden;
-}
-.about .about-cta .bio-cta-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  min-width: 280px;
+  max-width: 500px;
 }
 .about .about-cta .bio-cta-button .cta-content {
   display: flex;
   align-items: center;
-  gap: 16px;
-  position: relative;
-  z-index: 1;
+  gap: 12px;
 }
 .about .about-cta .bio-cta-button .cta-content i {
-  font-size: 32px;
+  font-size: 20px;
   flex-shrink: 0;
-}
-@media (max-width: 600px) {
-  .about .about-cta .bio-cta-button .cta-content i {
-    font-size: 28px;
-  }
 }
 .about .about-cta .bio-cta-button .cta-content .cta-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  gap: 2px;
 }
 .about .about-cta .bio-cta-button .cta-content .cta-text strong {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   letter-spacing: 0.3px;
-  margin-bottom: 4px;
-}
-@media (max-width: 600px) {
-  .about .about-cta .bio-cta-button .cta-content .cta-text strong {
-    font-size: 16px;
-  }
 }
 .about .about-cta .bio-cta-button .cta-content .cta-text small {
-  font-size: 0.875rem;
+  font-size: 13px;
   opacity: 0.9;
   font-weight: 400;
   letter-spacing: 0.2px;
 }
-@media (max-width: 600px) {
-  .about .about-cta .bio-cta-button .cta-content .cta-text small {
-    font-size: 13px;
-  }
-}
 .about .about-cta .bio-cta-button .cta-arrow {
-  font-size: 24px;
+  font-size: 18px;
   transition: transform 0.3s ease;
   flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-@media (max-width: 600px) {
-  .about .about-cta .bio-cta-button .cta-arrow {
-    font-size: 20px;
-  }
 }
 .about .about-cta .bio-cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.35);
-}
-.about .about-cta .bio-cta-button:hover::before {
-  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
 }
 .about .about-cta .bio-cta-button:hover .cta-arrow {
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 .about .about-cta .bio-cta-button:active {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 115, 170, 0.3);
+  transform: translateY(0);
 }
 .about .about-cta .bio-cta-button:focus-visible {
   outline: 3px solid rgba(0, 115, 170, 0.5);
-  outline-offset: 4px;
-}
-@media (max-width: 900px) {
-  .about .about-cta .bio-cta-button {
-    min-width: 280px;
-    padding: 20px 28px;
-    gap: 20px;
-  }
+  outline-offset: 3px;
 }
 @media (max-width: 600px) {
   .about .about-cta .bio-cta-button {
     min-width: auto;
     width: 100%;
     max-width: 100%;
-    padding: 18px 24px;
-    gap: 16px;
+    padding: 14px 24px;
   }
-  .about .about-cta .bio-cta-button .cta-content {
-    gap: 12px;
+  .about .about-cta .bio-cta-button .cta-content i {
+    font-size: 18px;
+  }
+  .about .about-cta .bio-cta-button .cta-arrow {
+    font-size: 16px;
   }
 }
 .about .about-expertise h3 {
@@ -3003,16 +2990,19 @@ html.dark-mode .about-tech-preview .tech-icon-item {
 html.dark-mode .about-tech-preview .tech-icon-item .tech-name {
   color: #e0e0e0;
 }
+html.dark-mode .about-tech-preview .tech-icon-item .tech-proficiency-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
 html.dark-mode .about-tech-preview .tech-icon-item:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--tech-color);
 }
 html.dark-mode .about-cta .bio-cta-button {
-  background: linear-gradient(135deg, rgb(0, 132.25, 195.5) 0%, #0073aa 100%);
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.3);
+  background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.35);
 }
 html.dark-mode .about-cta .bio-cta-button:hover {
-  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.45);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3030,6 +3020,9 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   .about .bio-cta-button:hover {
     transform: none;
   }
+  .about .tech-proficiency-fill {
+    transition: none;
+  }
   .about .bio-cta-button:hover .cta-arrow {
     transform: none;
   }
@@ -3038,6 +3031,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   padding: 80px 0;
   background: linear-gradient(180deg, #ffffff 0%, #f4f3f4 100%);
   position: relative;
+  overflow: hidden;
 }
 .featured-work .container {
   max-width: 1200px;
@@ -3295,31 +3289,59 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   margin-top: 48px;
 }
 .featured-work .portfolio-cta-button {
-  font-size: 0.875rem;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.5px;
-  font-family: "dmsans", sans-serif;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 32px;
   background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
   color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: "dmsans", sans-serif;
+  min-width: 280px;
+  max-width: 500px;
 }
-.featured-work .portfolio-cta-button i {
+.featured-work .portfolio-cta-button .cta-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.featured-work .portfolio-cta-button .cta-content i {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.featured-work .portfolio-cta-button .cta-content .cta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2px;
+}
+.featured-work .portfolio-cta-button .cta-content .cta-text strong {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.featured-work .portfolio-cta-button .cta-content .cta-text small {
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+.featured-work .portfolio-cta-button .cta-arrow {
   font-size: 18px;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 .featured-work .portfolio-cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
 }
-.featured-work .portfolio-cta-button:hover i {
-  transform: translateX(3px);
+.featured-work .portfolio-cta-button:hover .cta-arrow {
+  transform: translateX(4px);
 }
 .featured-work .portfolio-cta-button:active {
   transform: translateY(0);
@@ -3327,6 +3349,20 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .featured-work .portfolio-cta-button:focus-visible {
   outline: 3px solid rgba(0, 115, 170, 0.5);
   outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .featured-work .portfolio-cta-button {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+  }
+  .featured-work .portfolio-cta-button .cta-content i {
+    font-size: 18px;
+  }
+  .featured-work .portfolio-cta-button .cta-arrow {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 1050px) {
@@ -3696,6 +3732,8 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .blog-section {
   padding: 80px 0;
   background: linear-gradient(180deg, #ffffff 0%, #f4f3f4 100%);
+  position: relative;
+  overflow: hidden;
 }
 .blog-section .container {
   max-width: 1200px;
@@ -3866,34 +3904,59 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   margin-top: 48px;
 }
 .blog-section .blog-cta-button {
-  font-size: 0.875rem;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.5px;
   font-family: "dmsans", sans-serif;
-  background: #fff;
-  color: #0073aa;
-  border: 2px solid #0073aa;
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.1);
+  min-width: 280px;
+  max-width: 500px;
 }
-.blog-section .blog-cta-button i {
+.blog-section .blog-cta-button .cta-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.blog-section .blog-cta-button .cta-content i {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.blog-section .blog-cta-button .cta-content .cta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2px;
+}
+.blog-section .blog-cta-button .cta-content .cta-text strong {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.blog-section .blog-cta-button .cta-content .cta-text small {
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+.blog-section .blog-cta-button .cta-arrow {
   font-size: 18px;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 .blog-section .blog-cta-button:hover {
-  background: #0073aa;
-  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
 }
-.blog-section .blog-cta-button:hover i {
-  transform: scale(1.1);
+.blog-section .blog-cta-button:hover .cta-arrow {
+  transform: translateX(4px);
 }
 .blog-section .blog-cta-button:active {
   transform: translateY(0);
@@ -3902,11 +3965,26 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   outline: 3px solid rgba(0, 115, 170, 0.5);
   outline-offset: 3px;
 }
+@media (max-width: 600px) {
+  .blog-section .blog-cta-button {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+  }
+  .blog-section .blog-cta-button .cta-content i {
+    font-size: 18px;
+  }
+  .blog-section .blog-cta-button .cta-arrow {
+    font-size: 16px;
+  }
+}
 
 .contact-section {
   padding: 80px 0 100px;
   background: linear-gradient(180deg, #ffffff 0%, #f4f3f4 100%);
   position: relative;
+  overflow: hidden;
 }
 .contact-section::before {
   content: "";
@@ -3916,6 +3994,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(0, 115, 170, 0.2) 50%, transparent 100%);
+  display: none;
 }
 .contact-section .container {
   max-width: 1222px;
