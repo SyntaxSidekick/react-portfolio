@@ -269,231 +269,68 @@ const Home = () => {
             <span className="section-label">About Me</span>
             <h2 id="about-title">Crafting Digital Experiences</h2>
             <p className="about-intro">
-              Senior front-end developer with over <strong>{years}+ years</strong> of experience 
-              delivering exceptional websites and web applications. I transform designs into 
-              pixel-perfect, accessible, and performant code using modern tools and best practices.
+              With over <strong>{years}+ years</strong> of experience, I specialize in building modern, 
+              accessible, and high-performance web applications using React, TypeScript, and cutting-edge tools.
             </p>
           </motion.div>
 
-          <div className="about-content">
-            <div className="about-expertise">
-              <h3>Core Expertise</h3>
-              <motion.div 
-                className="expertise-grid"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              >
-                <motion.div 
-                  className="expertise-card"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                >
-                  <div className="expertise-icon">
-                    <i className="fas fa-code" aria-hidden="true"></i>
-                  </div>
-                  <h4>Front-End Development</h4>
-                  <p>Building responsive, accessible web applications with modern JavaScript frameworks and best practices.</p>
-                </motion.div>
-                <motion.div 
-                  className="expertise-card"
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { 
-                      opacity: 1, 
-                      y: 0, 
-                      transition: { 
-                        duration: 0.8, 
-                        ease: [0.25, 0.1, 0.25, 1],
-                        opacity: { duration: 0.6 }
-                      } 
-                    }
-                  }}
-                >
-                  <div className="expertise-icon">
-                    <i className="fas fa-palette" aria-hidden="true"></i>
-                  </div>
-                  <h4>UI/UX Implementation</h4>
-                  <p>Translating design systems into production-ready code with attention to detail and user experience.</p>
-                </motion.div>
-                <motion.div 
-                  className="expertise-card"
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { 
-                      opacity: 1, 
-                      y: 0, 
-                      transition: { 
-                        duration: 0.8, 
-                        ease: [0.25, 0.1, 0.25, 1],
-                        opacity: { duration: 0.6 }
-                      } 
-                    }
-                  }}
-                >
-                  <div className="expertise-icon">
-                    <i className="fas fa-rocket" aria-hidden="true"></i>
-                  </div>
-                  <h4>Performance Optimization</h4>
-                  <p>Optimizing web applications for speed, accessibility, and SEO to deliver exceptional user experiences.</p>
-                </motion.div>
-              </motion.div>
-            </div>
-
-            <div className="about-technologies">
-              <h3>Technologies & Tools</h3>
-              <div className="tech-showcase">
-                <div className="tech-group">
-                  <div className="tech-group-header">
-                    <i className="fas fa-layer-group" aria-hidden="true"></i>
-                    <h4>Front-End Development</h4>
-                  </div>
-                  <div className="tech-cards">
-                    {[
-                      { name: "React", level: 95, icon: "fab fa-react", color: "#61dafb" },
-                      { name: "TypeScript", level: 88, icon: "fab fa-js", color: "#3178c6" },
-                      { name: "JavaScript", level: 92, icon: "fab fa-js", color: "#f0db4f" },
-                      { name: "HTML5", level: 100, icon: "fab fa-html5", color: "#e44d26" },
-                      { name: "CSS3 / Sass", level: 100, icon: "fab fa-sass", color: "#cd6799" },
-                      { name: "Vue.js", level: 85, icon: "fab fa-vuejs", color: "#42b883" },
-                    ].map((skill, index) => (
-                      <div className="tech-card" key={skill.name} style={{ '--card-delay': `${index * 0.1}s`, '--tech-color': skill.color }}>
-                        <div className="tech-card-content">
-                          <div className="tech-card-icon">
-                            <i className={skill.icon} aria-hidden="true"></i>
-                          </div>
-                          <h5 className="tech-card-name">{skill.name}</h5>
-                        </div>
-                        <div className="tech-card-progress">
-                          <div className="tech-card-bar-container">
-                            <div className="tech-card-bar" style={{ '--skill-level': `${skill.level}%` }}></div>
-                          </div>
-                          <div className="tech-proficiency-label">Proficiency</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="tech-group">
-                  <div className="tech-group-header">
-                    <i className="fas fa-tools" aria-hidden="true"></i>
-                    <h4>Tools & Platforms</h4>
-                  </div>
-                  <div className="tech-grid">
-                    {[
-                      { name: "Git", icon: "fab fa-git-alt", color: "#f05032" },
-                      { name: "NPM", icon: "fab fa-npm", color: "#cb3837" },
-                      { name: "Webpack", icon: "fab fa-node-js", color: "#8dd6f9" },
-                      { name: "Vite", icon: "fas fa-bolt", color: "#646cff" },
-                      { name: "Gulp", icon: "fab fa-gulp", color: "#da4648" },
-                      { name: "REST API", icon: "fas fa-plug", color: "#61dafb" },
-                      { name: "WordPress", icon: "fab fa-wordpress", color: "#21759b" },
-                      { name: "Drupal", icon: "fab fa-drupal", color: "#0678be" },
-                    ].map((tool, index) => (
-                      <div className="tech-item" key={tool.name} style={{ '--tech-color': tool.color }}>
-                        <div className="tech-icon">
-                          <i className={tool.icon} aria-hidden="true"></i>
-                        </div>
-                        <span className="tech-label">{tool.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="tech-group">
-                  <div className="tech-group-header">
-                    <i className="fas fa-pencil-ruler" aria-hidden="true"></i>
-                    <h4>Design & Creative</h4>
-                  </div>
-                  <div className="tech-grid">
-                    {[
-                      { name: "Figma", icon: "fab fa-figma", color: "#f24e1e" },
-                      { name: "Adobe XD", icon: "fas fa-vector-square", color: "#ff61f6" },
-                      { name: "Photoshop", icon: "fas fa-image", color: "#31a8ff" },
-                      { name: "Illustrator", icon: "fas fa-bezier-curve", color: "#ff9a00" },
-                      { name: "Sketch", icon: "fas fa-pen-nib", color: "#f7b500" },
-                      { name: "InVision", icon: "fas fa-drafting-compass", color: "#ff3366" },
-                    ].map((tool) => (
-                      <div className="tech-item" key={tool.name} style={{ '--tech-color': tool.color }}>
-                        <div className="tech-icon">
-                          <i className={tool.icon} aria-hidden="true"></i>
-                        </div>
-                        <span className="tech-label">{tool.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <motion.div 
-            className="about-stats"
-            style={{ y: aboutImageY }}
+            className="about-content-condensed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <motion.div 
-              className="stat-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-              whileHover={{ scale: 1.05, y: -10 }}
-            >
-              <div className="stat-icon">
-                <i className="fas fa-code" aria-hidden="true"></i>
+            <div className="about-tech-preview">
+              <h3 className="visually-hidden">Core Technologies</h3>
+              <div className="tech-icons-grid" role="list" aria-label="Key technologies and tools">
+                {[
+                  { name: "React", icon: "fab fa-react", color: "#61dafb" },
+                  { name: "JavaScript", icon: "fab fa-js", color: "#f0db4f" },
+                  { name: "HTML5", icon: "fab fa-html5", color: "#e44d26" },
+                  { name: "CSS3/Sass", icon: "fab fa-sass", color: "#cd6799" },
+                  { name: "Git", icon: "fab fa-git-alt", color: "#f05032" },
+                  { name: "Figma", icon: "fab fa-figma", color: "#f24e1e" },
+                ].map((tech, index) => (
+                  <motion.div 
+                    key={tech.name}
+                    className="tech-icon-item" 
+                    role="listitem"
+                    style={{ '--tech-color': tech.color }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+                    whileHover={{ scale: 1.15, y: -5 }}
+                  >
+                    <i className={tech.icon} aria-hidden="true"></i>
+                    <span className="tech-name">{tech.name}</span>
+                  </motion.div>
+                ))}
               </div>
-              <div className="stat-number">30</div>
-              <div className="stat-label">Total Skills</div>
-            </motion.div>
+            </div>
+
             <motion.div 
-              className="stat-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              whileHover={{ scale: 1.05, y: -10 }}
-            >
-              <div className="stat-icon">
-                <i className="fas fa-layer-group" aria-hidden="true"></i>
-              </div>
-              <div className="stat-number">6</div>
-              <div className="stat-label">Categories</div>
-            </motion.div>
-            <motion.div 
-              className="stat-card"
+              className="about-cta"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-              whileHover={{ scale: 1.05, y: -10 }}
             >
-              <div className="stat-icon">
-                <i className="fas fa-calendar-check" aria-hidden="true"></i>
-              </div>
-              <div className="stat-number">{years}+</div>
-              <div className="stat-label">Years Experience</div>
-            </motion.div>
-            <motion.div 
-              className="stat-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-              whileHover={{ scale: 1.05, y: -10 }}
-            >
-              <div className="stat-icon">
-                <i className="fas fa-chart-line" aria-hidden="true"></i>
-              </div>
-              <div className="stat-number">91%</div>
-              <div className="stat-label">Avg Proficiency</div>
+              <a 
+                href="/bio" 
+                className="bio-cta-button"
+                aria-label="View my complete bio, skills, and experience"
+              >
+                <span className="cta-content">
+                  <i className="fas fa-user-circle" aria-hidden="true"></i>
+                  <span className="cta-text">
+                    <strong>Learn More About Me</strong>
+                    <small>View my full bio, process, and complete skillset</small>
+                  </span>
+                </span>
+                <i className="fas fa-arrow-right cta-arrow" aria-hidden="true"></i>
+              </a>
             </motion.div>
           </motion.div>
         </div>

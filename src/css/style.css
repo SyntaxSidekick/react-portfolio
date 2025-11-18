@@ -2134,6 +2134,220 @@ html.dark-mode a:hover {
   gap: 50px;
   margin-bottom: 60px;
 }
+.about .about-content-condensed {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about .about-tech-preview {
+  margin-bottom: 48px;
+}
+.about .about-tech-preview .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.about .about-tech-preview .tech-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .about .about-tech-preview .tech-icons-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .about .about-tech-preview .tech-icons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+.about .about-tech-preview .tech-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px;
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid rgba(204, 204, 204, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+.about .about-tech-preview .tech-icon-item i {
+  font-size: 48px;
+  color: var(--tech-color);
+  transition: transform 0.3s ease;
+}
+@media (max-width: 900px) {
+  .about .about-tech-preview .tech-icon-item i {
+    font-size: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .about .about-tech-preview .tech-icon-item i {
+    font-size: 36px;
+  }
+}
+.about .about-tech-preview .tech-icon-item .tech-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+  font-family: "dmsans", sans-serif;
+  letter-spacing: 0.3px;
+}
+@media (max-width: 600px) {
+  .about .about-tech-preview .tech-icon-item .tech-name {
+    font-size: 12px;
+  }
+}
+.about .about-tech-preview .tech-icon-item:hover {
+  border-color: var(--tech-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.98);
+}
+.about .about-tech-preview .tech-icon-item:hover i {
+  transform: scale(1.1);
+}
+.about .about-tech-preview .tech-icon-item:focus-visible {
+  outline: 3px solid var(--tech-color);
+  outline-offset: 2px;
+}
+.about .about-cta {
+  margin-top: 48px;
+}
+.about .about-cta .bio-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: "dmsans", sans-serif;
+  min-width: 320px;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+}
+.about .about-cta .bio-cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.about .about-cta .bio-cta-button .cta-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.about .about-cta .bio-cta-button .cta-content i {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .about .about-cta .bio-cta-button .cta-content i {
+    font-size: 28px;
+  }
+}
+.about .about-cta .bio-cta-button .cta-content .cta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.about .about-cta .bio-cta-button .cta-content .cta-text strong {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+@media (max-width: 600px) {
+  .about .about-cta .bio-cta-button .cta-content .cta-text strong {
+    font-size: 16px;
+  }
+}
+.about .about-cta .bio-cta-button .cta-content .cta-text small {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+@media (max-width: 600px) {
+  .about .about-cta .bio-cta-button .cta-content .cta-text small {
+    font-size: 13px;
+  }
+}
+.about .about-cta .bio-cta-button .cta-arrow {
+  font-size: 24px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 600px) {
+  .about .about-cta .bio-cta-button .cta-arrow {
+    font-size: 20px;
+  }
+}
+.about .about-cta .bio-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.35);
+}
+.about .about-cta .bio-cta-button:hover::before {
+  opacity: 1;
+}
+.about .about-cta .bio-cta-button:hover .cta-arrow {
+  transform: translateX(5px);
+}
+.about .about-cta .bio-cta-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 115, 170, 0.3);
+}
+.about .about-cta .bio-cta-button:focus-visible {
+  outline: 3px solid rgba(0, 115, 170, 0.5);
+  outline-offset: 4px;
+}
+@media (max-width: 900px) {
+  .about .about-cta .bio-cta-button {
+    min-width: 280px;
+    padding: 20px 28px;
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .about .about-cta .bio-cta-button {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 18px 24px;
+    gap: 16px;
+  }
+  .about .about-cta .bio-cta-button .cta-content {
+    gap: 12px;
+  }
+}
 .about .about-expertise h3 {
   font-family: "dmsans", sans-serif;
   font-size: 1.5rem;
@@ -2782,15 +2996,41 @@ html.dark-mode a:hover {
     font-size: 0.75rem;
   }
 }
+html.dark-mode .about-tech-preview .tech-icon-item {
+  background: #252525;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+html.dark-mode .about-tech-preview .tech-icon-item .tech-name {
+  color: #e0e0e0;
+}
+html.dark-mode .about-tech-preview .tech-icon-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--tech-color);
+}
+html.dark-mode .about-cta .bio-cta-button {
+  background: linear-gradient(135deg, rgb(0, 132.25, 195.5) 0%, #0073aa 100%);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.3);
+}
+html.dark-mode .about-cta .bio-cta-button:hover {
+  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.4);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about .expertise-card,
   .about .tech-tag,
-  .about .stat-card {
+  .about .stat-card,
+  .about .tech-icon-item,
+  .about .bio-cta-button {
     transition: none;
   }
   .about .expertise-card:hover,
   .about .tech-tag:hover,
-  .about .stat-card:hover {
+  .about .stat-card:hover,
+  .about .tech-icon-item:hover,
+  .about .bio-cta-button:hover {
+    transform: none;
+  }
+  .about .bio-cta-button:hover .cta-arrow {
     transform: none;
   }
 }
