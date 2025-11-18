@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
@@ -11,10 +11,28 @@ const navLinks = [
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check localStorage or system preference
+    const saved = localStorage.getItem('darkMode');
+    if (saved !== null) return saved === 'true';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   const location = useLocation();
+
+  useEffect(() => {
+    // Apply dark mode class to document
+    if (darkMode) {
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+    }
+    // Save preference
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
 
   const handleToggle = () => setMenuOpen((open) => !open);
   const handleNavClick = () => setMenuOpen(false);
+  const handleDarkModeToggle = () => setDarkMode((prev) => !prev);
 
   // Keyboard accessibility for skip link
   const handleSkip = (e) => {
@@ -63,6 +81,14 @@ const Header = () => {
           onClick={handleToggle}
         >
           <i className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"} aria-hidden="true"></i>
+        </button>
+        <button
+          className="dark-mode-toggle"
+          aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          onClick={handleDarkModeToggle}
+          title={darkMode ? "Light mode" : "Dark mode"}
+        >
+          <i className={darkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"} aria-hidden="true"></i>
         </button>
         <nav
           id="main-navigation"

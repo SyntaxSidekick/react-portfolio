@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
 import profileImg from "../../assets/images/riadkilani-profile.webp";
 import profileImgFallback from "../../assets/images/riadkilani-profile.png";
 import { Link } from "react-router-dom";
@@ -16,12 +17,33 @@ const Home = () => {
   const [TITLES] = useState([
     "Senior Front-End Developer",
     "React Specialist",
-    "UI/UX Modernist",
+    "UI/UX Expert",
     "Design Systems Architect"
-    // Add more titles here as needed
   ]);
-  const [wordIndex, setWordIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  // Parallax scrolling refs
+  const heroRef = useRef(null);
+  const aboutRef = useRef(null);
+  
+  // Hero parallax
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const heroY = useTransform(heroScrollProgress, [0, 1], ["0%", "50%"]);
+  const heroOpacity = useTransform(heroScrollProgress, [0, 0.5, 1], [1, 0.8, 0]);
+  const heroScale = useTransform(heroScrollProgress, [0, 1], [1, 0.95]);
+  
+  // About parallax
+  const { scrollYProgress: aboutScrollProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const aboutY = useTransform(aboutScrollProgress, [0, 1], ["10%", "-10%"]);
+  const aboutImageY = useTransform(aboutScrollProgress, [0, 1], ["-20%", "20%"]);
 
   // Years of service calculation
   useEffect(() => {
@@ -54,35 +76,12 @@ const Home = () => {
       });
   }, []);
 
-  // Rotate hero titles with a simple JS fade animation (respects reduced motion)
+  // Rotate hero titles every 3 seconds
   useEffect(() => {
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const fadeDuration = 300; // ms
-    const cycleDuration = 5000; // ms
-    let intervalId;
-    let timeoutId;
-
-    if (reduceMotion) {
-      intervalId = setInterval(() => {
-        setWordIndex((i) => (i + 1) % TITLES.length);
-      }, 4000);
-    } else {
-      intervalId = setInterval(() => {
-        setVisible(false);
-        timeoutId = setTimeout(() => {
-          setWordIndex((i) => (i + 1) % TITLES.length);
-          setVisible(true);
-        }, fadeDuration);
-      }, cycleDuration);
-    }
-
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
+    const interval = setInterval(() => {
+      setTitleIndex((prev) => (prev + 1) % TITLES.length);
+    }, 3000);
+    return () => clearInterval(interval);
   }, [TITLES.length]);
 
   const openModal = (project) => {
@@ -100,69 +99,173 @@ const Home = () => {
 
   return (
     <main className="home-section" id="main-content" role="main">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-background">
-          <div className="hero-gradient"></div>
-        </div>
+      <motion.section 
+        ref={heroRef}
+        className="hero" 
+        aria-labelledby="hero-title"
+        style={{ y: heroY }}
+      >
+        <motion.div 
+          className="hero-background"
+          style={{ opacity: heroOpacity }}
+        >
+          <motion.div 
+            className="hero-gradient"
+            style={{ scale: heroScale }}
+          ></motion.div>
+        </motion.div>
         <div className="container">
-          <div className="hero-content">
-            <p className="hero-greeting" aria-label="Greeting">Hello, I'm</p>
-            <h1 id="hero-title" className="hero-name">Riad Kilani</h1>
-            <div className="hero-title-wrapper">
-              <span
-                className={`hero-rotating ${visible ? "is-visible" : ""}`}
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                {TITLES[wordIndex]}
-              </span>
-            </div>
-            <p className="hero-description">
-              Crafting exceptional digital experiences with over {years} years of expertise.
-              I transform ideas into elegant, accessible, and high-performance web solutions.
-            </p>
-            <div className="hero-cta">
-              <Link 
-                to="/portfolio" 
-                className="btn btn-primary" 
-                title="View my portfolio"
-                aria-label="View my portfolio of work"
-              >
-                <i className="fas fa-briefcase" aria-hidden="true"></i>
+          <motion.div 
+            className="hero-content"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.15,
+                  delayChildren: 0.1
+                }
+              }
+            }}
+          >
+            {/* Availability Badge */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0 }
+              }}
+              className="availability-badge"
+            >
+              <span className="badge-text">Available for Opportunities</span>
+            </motion.div>
+
+            {/* Main Heading with Rotating Text */}
+            <motion.h1 
+              id="hero-title" 
+              className="hero-heading"
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0 }
+              }}
+            >
+              <span className="hero-heading-line">I'm a</span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={titleIndex}
+                  className="hero-heading-animated"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {TITLES[titleIndex]}
+                </motion.span>
+              </AnimatePresence>
+              <span className="hero-heading-line">based in Orlando</span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p 
+              className="hero-description"
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0 }
+              }}
+            >
+              Building scalable, performant web experiences with <span className="highlight-text">{years}+ years</span> of expertise. I transform ideas into elegant, user-centric solutions that drive measurable business impact.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              className="hero-cta-buttons"
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0 }
+              }}
+            >
+              <a href="#portfolio" className="btn-primary">
                 View My Work
-              </Link>
-              <Link 
-                to="/contact" 
-                className="btn btn-secondary" 
-                title="Get in touch"
-                aria-label="Contact me"
-              >
-                <i className="fas fa-envelope" aria-hidden="true"></i>
-                Get In Touch
-              </Link>
-            </div>
-          </div>
-          <figure className="hero-image" aria-label="Profile photo">
-            <div className="hero-image-wrapper">
+                <i className="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              <a href="#contact" className="btn-secondary">
+                Let's Talk
+                <i className="fas fa-comments" aria-hidden="true"></i>
+              </a>
+            </motion.div>
+
+            {/* Stats Grid */}
+            <motion.div 
+              className="hero-stats-grid"
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: { opacity: 1, x: 0 }
+              }}
+            >
+              <div className="stat-item">
+                <div className="stat-number">{years}+</div>
+                <div className="stat-label">Years Experience</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-number">100+</div>
+                <div className="stat-label">Projects Delivered</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-number">1M+</div>
+                <div className="stat-label">Users Served</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-number">99.4%</div>
+                <div className="stat-label">Client Satisfaction</div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.figure 
+            className="hero-image" 
+            aria-label="Profile photo"
+            style={{ y: useTransform(heroScrollProgress, [0, 1], ["0%", "-20%"]) }}
+          >
+            <motion.div 
+              className="hero-image-wrapper"
+              style={{ 
+                y: useTransform(heroScrollProgress, [0, 1], ["0%", "10%"]),
+                rotate: useTransform(heroScrollProgress, [0, 1], [0, 5])
+              }}
+            >
               <picture>
                 <source srcSet={profileImg} type="image/webp" />
-                <img 
-                  src={profileImgFallback} 
-                  alt="Riad Kilani - Senior Front-End Developer" 
+                <img
+                  src={profileImgFallback}
+                  alt="Riad Kilani - Front-end Developer"
+                  className="hero-profile-image"
                   loading="eager"
                   fetchpriority="high"
                   width="360"
                   height="360"
                 />
               </picture>
-            </div>
-          </figure>
+            </motion.div>
+          </motion.figure>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="about" id="about" aria-labelledby="about-title">
+      <motion.section 
+        ref={aboutRef}
+        className="about" 
+        id="about" 
+        aria-labelledby="about-title"
+        style={{ y: aboutY }}
+      >
         <div className="container">
-          <div className="about-header">
+          <motion.div 
+            className="about-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <span className="section-label">About Me</span>
             <h2 id="about-title">Crafting Digital Experiences</h2>
             <p className="about-intro">
@@ -170,34 +273,74 @@ const Home = () => {
               delivering exceptional websites and web applications. I transform designs into 
               pixel-perfect, accessible, and performant code using modern tools and best practices.
             </p>
-          </div>
+          </motion.div>
 
           <div className="about-content">
             <div className="about-expertise">
               <h3>Core Expertise</h3>
-              <div className="expertise-grid">
-                <div className="expertise-card">
+              <motion.div 
+                className="expertise-grid"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <motion.div 
+                  className="expertise-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                >
                   <div className="expertise-icon">
                     <i className="fas fa-code" aria-hidden="true"></i>
                   </div>
                   <h4>Front-End Development</h4>
                   <p>Building responsive, accessible web applications with modern JavaScript frameworks and best practices.</p>
-                </div>
-                <div className="expertise-card">
+                </motion.div>
+                <motion.div 
+                  className="expertise-card"
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0, 
+                      transition: { 
+                        duration: 0.8, 
+                        ease: [0.25, 0.1, 0.25, 1],
+                        opacity: { duration: 0.6 }
+                      } 
+                    }
+                  }}
+                >
                   <div className="expertise-icon">
                     <i className="fas fa-palette" aria-hidden="true"></i>
                   </div>
                   <h4>UI/UX Implementation</h4>
                   <p>Translating design systems into production-ready code with attention to detail and user experience.</p>
-                </div>
-                <div className="expertise-card">
+                </motion.div>
+                <motion.div 
+                  className="expertise-card"
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0, 
+                      transition: { 
+                        duration: 0.8, 
+                        ease: [0.25, 0.1, 0.25, 1],
+                        opacity: { duration: 0.6 }
+                      } 
+                    }
+                  }}
+                >
                   <div className="expertise-icon">
                     <i className="fas fa-rocket" aria-hidden="true"></i>
                   </div>
                   <h4>Performance Optimization</h4>
                   <p>Optimizing web applications for speed, accessibility, and SEO to deliver exceptional user experiences.</p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
 
             <div className="about-technologies">
@@ -288,41 +431,100 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="about-stats">
-            <div className="stat-card">
+          <motion.div 
+            className="about-stats"
+            style={{ y: aboutImageY }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <motion.div 
+              className="stat-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="stat-icon">
+                <i className="fas fa-code" aria-hidden="true"></i>
+              </div>
+              <div className="stat-number">30</div>
+              <div className="stat-label">Total Skills</div>
+            </motion.div>
+            <motion.div 
+              className="stat-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="stat-icon">
+                <i className="fas fa-layer-group" aria-hidden="true"></i>
+              </div>
+              <div className="stat-number">6</div>
+              <div className="stat-label">Categories</div>
+            </motion.div>
+            <motion.div 
+              className="stat-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="stat-icon">
+                <i className="fas fa-calendar-check" aria-hidden="true"></i>
+              </div>
               <div className="stat-number">{years}+</div>
               <div className="stat-label">Years Experience</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">100+</div>
-              <div className="stat-label">Projects Delivered</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">50+</div>
-              <div className="stat-label">Happy Clients</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">15+</div>
-              <div className="stat-label">Technologies</div>
-            </div>
-          </div>
+            </motion.div>
+            <motion.div 
+              className="stat-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="stat-icon">
+                <i className="fas fa-chart-line" aria-hidden="true"></i>
+              </div>
+              <div className="stat-number">91%</div>
+              <div className="stat-label">Avg Proficiency</div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section
+      <motion.section
         className="featured-work"
         id="featured-work"
         aria-labelledby="portfolio-title"
       >
         <div className="container">
-          <div className="featured-work-header">
+          <motion.div 
+            className="featured-work-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <span className="section-label">Portfolio</span>
             <h2 id="portfolio-title">Featured Work</h2>
             <p className="featured-work-intro">Discover my most impactful projects showcasing modern web development, design excellence, and user-centered solutions.</p>
-          </div>
-          <div className="featured-work-grid">
+          </motion.div>
+          <motion.div 
+            className="featured-work-grid"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             {projects.slice(0, 2).map((project, i) => (
-              <article
+              <motion.article
                 className="project-card"
                 key={i}
                 onClick={() => openModal(project)}
@@ -330,6 +532,10 @@ const Home = () => {
                 tabIndex={0}
                 aria-label={`View details for ${project.title}`}
                 style={{ '--card-delay': `${i * 0.15}s` }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
               >
                 {/* Image */}
                 <div className="project-card-image">
@@ -439,9 +645,9 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
           
           <div className="featured-work-cta">
             <a href="/portfolio" className="portfolio-cta-button">
@@ -450,31 +656,47 @@ const Home = () => {
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section
+      <motion.section
         className="blog-section"
         id="blog"
         aria-labelledby="blog-title"
       >
         <div className="container">
-          <div className="blog-header">
+          <motion.div 
+            className="blog-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <span className="section-label">Insights & Updates</span>
             <h2 id="blog-title">From the Blog</h2>
             <p className="blog-intro">
               Sharing knowledge, insights, and experiences from the world of web development and design.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="blog-posts-grid">
+          <motion.div 
+            className="blog-posts-grid"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             {blogPosts.length === 0 ? (
               <div className="blog-loading">Loading latest blog posts...</div>
             ) : (
               blogPosts.slice(0, 3).map((post, i) => (
-                <article 
+                <motion.article 
                   className="blog-card" 
                   key={i}
                   style={{ '--card-delay': `${i * 0.1}s` }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
                 >
                   <Link to={`/blog/${post.slug}`} className="blog-card-link">
                     {post.img && (
@@ -513,10 +735,10 @@ const Home = () => {
                       </span>
                     </div>
                   </Link>
-                </article>
+                </motion.article>
               ))
             )}
-          </div>
+          </motion.div>
 
           <div className="blog-cta">
             <a href="/blog" className="blog-cta-button">
@@ -525,7 +747,7 @@ const Home = () => {
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section
         className="contact-section"

@@ -1,0 +1,191 @@
+/**
+ * Partial: _dark-mode.scss
+ * Purpose: Dark mode theme styles
+ * Features: Dark color scheme, transitions
+ * Usage: Import in style.scss
+ * Dependencies: Uses _variables.scss
+ * Last updated: 2025-11
+ */
+@use "../abstracts/variables" as *;
+@use "sass:color";
+
+// Smooth transitions for dark mode
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark-mode {
+  // Base colors
+  background: $dark-bg;
+  color: $dark-text;
+  
+  // Body
+  body {
+    background: $dark-bg;
+    color: $dark-text;
+  }
+  
+  // Header
+  .site-header {
+    background: #1f1f1f;
+    border-bottom: 1px solid $dark-border;
+  }
+  
+  // Hero section
+  .hero {
+    background: linear-gradient(135deg, $dark-bg 0%, $dark-bg-secondary 100%);
+    
+    .hero-gradient {
+      background: radial-gradient(
+        circle at 30% 50%,
+        rgba($primary-dark, 0.12) 0%,
+        rgba($primary, 0.08) 35%,
+        transparent 70%
+      );
+    }
+    
+    .hero-heading-line,
+    .hero-description {
+      color: $dark-text;
+    }
+    
+    .availability-badge {
+      background: rgba($primary, 0.15);
+      color: $dark-text;
+    }
+  }
+  
+  // Sections
+  .about,
+  .featured-work,
+  .blog-section,
+  .contact-section {
+    background: $dark-bg;
+    color: $dark-text;
+    
+    .section-label {
+      color: $primary-dark;
+    }
+    
+    h2, h3, h4 {
+      color: $dark-text;
+    }
+    
+    p {
+      color: $dark-text-muted;
+    }
+  }
+  
+  // Cards
+  .expertise-card,
+  .stat-card,
+  .project-card,
+  .blog-card {
+    background: $dark-card-bg;
+    border-color: $dark-border;
+    color: $dark-text;
+    
+    &:hover {
+      background: color.adjust($dark-card-bg, $lightness: 3%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    
+    h3, h4, h5 {
+      color: $dark-text;
+    }
+    
+    p {
+      color: $dark-text-muted;
+    }
+  }
+  
+  // Buttons
+  .btn-secondary {
+    background: $dark-card-bg;
+    color: $dark-text;
+    border-color: $dark-border;
+    
+    &:hover {
+      background: color.adjust($dark-card-bg, $lightness: 5%);
+      border-color: $primary-dark;
+    }
+  }
+  
+  // Footer
+  .site-footer {
+    background: #1f1f1f;
+    border-top: 1px solid $dark-border;
+    color: $dark-text-muted;
+    
+    a {
+      color: $dark-text;
+      
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+  }
+  
+  // Forms
+  input,
+  textarea,
+  select {
+    background: $dark-card-bg;
+    color: $dark-text;
+    border-color: $dark-border;
+    
+    &:focus {
+      border-color: $primary-dark;
+      background: color.adjust($dark-card-bg, $lightness: 3%);
+    }
+    
+    &::placeholder {
+      color: $dark-text-muted;
+    }
+  }
+  
+  // Tech cards
+  .tech-card {
+    background: $dark-card-bg;
+    border-color: $dark-border;
+    
+    &:hover {
+      background: color.adjust($dark-card-bg, $lightness: 5%);
+    }
+  }
+  
+  // Modals
+  .modal-overlay {
+    background: rgba(0, 0, 0, 0.85);
+  }
+  
+  .modal-content {
+    background: $dark-card-bg;
+    color: $dark-text;
+    
+    h2, h3 {
+      color: $dark-text;
+    }
+  }
+  
+  // Code blocks
+  pre,
+  code {
+    background: color.adjust($dark-bg, $lightness: -3%);
+    color: #e0e0e0;
+  }
+  
+  // Borders
+  hr {
+    border-color: $dark-border;
+  }
+  
+  // Links
+  a {
+    color: $primary-dark;
+    
+    &:hover {
+      color: color.adjust($primary-dark, $lightness: 10%);
+    }
+  }
+}

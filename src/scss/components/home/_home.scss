@@ -1,15 +1,46 @@
 /**
  * Partial: _home.scss
  * Purpose: Styles for the home page, including hero, about, portfolio, blog, and contact sections.
- * Features: Hero section, about, portfolio grid, blog/contact layout, loading skeletons, responsive design.
+ * Features: Hero section, about, portfolio grid, blog/contact layout, loading skeletons, responsive design, parallax effects.
  * Usage: Import in style.scss for home page layout and components.
  * Dependencies: Uses _variables.scss and _mixins.scss.
-* Last updated: 2025-08
+* Last updated: 2025-11
  */
 @use "../../abstracts/variables" as *;
 @use "../../abstracts/mixins" as *;
 
-//Hero Section - Modern & Clean
+// Enable smooth parallax and prevent flashing
+.home-section {
+  overflow-x: hidden;
+  will-change: transform;
+  
+  // Prevent flash of unstyled content
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  // Ensure smooth transitions for all animated elements
+  .expertise-card,
+  .stat-card,
+  .project-card,
+  .blog-card {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    // Prevent layout shift during animation
+    contain: layout style paint;
+  }
+  
+  // Section headers
+  .about-header,
+  .featured-work-header,
+  .blog-header {
+    contain: layout style paint;
+  }
+}
+
+//Hero Section - Modern & Clean with Parallax
 .hero {
   position: relative;
   min-height: 60vh;
@@ -17,6 +48,9 @@
   align-items: center;
   overflow: hidden;
   background: linear-gradient(135deg, $background-light 0%, #ffffff 100%);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
   .hero-background {
     position: absolute;
@@ -26,6 +60,7 @@
     bottom: 0;
     z-index: 0;
     overflow: hidden;
+    will-change: opacity, transform;
 
     .hero-gradient {
       position: absolute;
@@ -70,141 +105,168 @@
   .hero-content {
     flex: 1;
     max-width: 600px;
-    animation: fadeInUp 0.8s ease-out;
 
-    .hero-greeting {
-      @include font-size-md;
-      color: $primary;
-      font-weight: 500;
-      margin-bottom: 8px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-family: $font-alt;
-    }
+    // Availability Badge
+    .availability-badge {
+      display: inline-block;
+      margin-bottom: 24px;
 
-    .hero-name {
-      font-family: $font-heading;
-      @include font-size-hero;
-      color: $text-dark;
-      font-weight: 400;
-      margin-bottom: 12px;
-      line-height: 1.15;
-      letter-spacing: 1px;
-    }
-
-    .hero-title-wrapper {
-      min-height: 50px;
-      margin-bottom: 16px;
-
-      .hero-rotating {
-        display: block;
-        @include font-size-xxl;
-        background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 700;
-        font-family: $font-alt;
+      .badge-text {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba($primary, 0.08);
+        color: $primary;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        border: 1px solid rgba($primary, 0.2);
         letter-spacing: 0.5px;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-
-        &.is-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        &::before {
-          content: '';
-          display: inline-block;
-          width: 40px;
-          height: 3px;
-          background: linear-gradient(90deg, $primary-dark 0%, $primary 100%);
-          margin-right: 12px;
-          vertical-align: middle;
-          border-radius: 2px;
-        }
+        font-family: $font-alt;
       }
     }
 
-    .hero-description {
-      @include font-size-md;
-      color: $text-muted;
-      line-height: 1.7;
+    // Main Heading
+    .hero-heading {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
       margin-bottom: 24px;
-      max-width: 540px;
-      font-weight: 400;
-      letter-spacing: 0.2px;
+      font-family: $font-alt;
+
+      .hero-heading-line {
+        display: block;
+        color: $text-dark;
+      }
+
+      .hero-heading-animated {
+        display: block;
+        background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        min-height: 1.2em;
+        animation: gradientShift 3s ease infinite;
+      }
     }
 
-    .hero-cta {
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    // Description
+    .hero-description {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: $text-muted;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+
+      .highlight-text {
+        color: $primary;
+        font-weight: 600;
+      }
+    }
+
+    // CTA Buttons
+    .hero-cta-buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
+      margin-bottom: 48px;
 
-      .btn {
-        @include font-size-sm;
+      .btn-primary,
+      .btn-secondary {
         padding: 14px 28px;
-        border-radius: $radius-lg;
+        border-radius: 8px;
         font-weight: 600;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 10px;
+        font-size: 14px;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         letter-spacing: 0.5px;
         font-family: $font-alt;
 
         i {
-          font-size: 18px;
+          font-size: 16px;
           transition: transform 0.3s ease;
         }
+      }
 
-        &.btn-primary {
+      .btn-primary {
+        background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+        color: $text-white;
+        box-shadow: 0 4px 16px rgba($primary, 0.25);
+        border: none;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba($primary, 0.35);
+
+          i {
+            transform: translateX(4px);
+          }
+        }
+      }
+
+      .btn-secondary {
+        background: $text-white;
+        color: $text-dark;
+        border: 2px solid $border;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        &:hover {
+          border-color: $primary;
+          background: rgba($primary, 0.03);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba($primary, 0.15);
+
+          i {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    // Stats Grid
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      padding-top: 32px;
+      border-top: 1px solid rgba($border, 0.3);
+
+      @media (min-width: $bp-sm) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .stat-item {
+        text-align: left;
+
+        .stat-number {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 700;
           background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
-          color: $text-white;
-          box-shadow: 0 4px 16px rgba($primary, 0.3);
-
-          &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba($primary, 0.4);
-
-            i {
-              transform: translateX(3px);
-            }
-          }
-
-          &:active {
-            transform: translateY(0);
-          }
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-family: $font-alt;
+          margin-bottom: 4px;
         }
 
-        &.btn-secondary {
-          background: $text-white;
-          color: $primary;
-          border: 2px solid $primary;
-          box-shadow: 0 4px 16px rgba($primary, 0.1);
-
-          &:hover {
-            background: $primary;
-            color: $text-white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba($primary, 0.3);
-
-            i {
-              transform: scale(1.1);
-            }
-          }
-
-          &:active {
-            transform: translateY(0);
-          }
-        }
-
-        &:focus-visible {
-          outline: 3px solid rgba($primary, 0.5);
-          outline-offset: 3px;
+        .stat-label {
+          font-size: 13px;
+          color: $text-muted;
+          margin-top: 4px;
+          font-weight: 500;
+          font-family: $font-alt;
         }
       }
     }
@@ -214,6 +276,8 @@
     flex: 0 0 auto;
     margin: 0;
     animation: fadeInRight 0.8s ease-out 0.2s both;
+    will-change: transform;
+    transform: translateZ(0);
 
     .hero-image-wrapper {
       position: relative;
@@ -226,6 +290,8 @@
         0 8px 24px rgba($primary, 0.1);
       border: 6px solid $text-white;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      backface-visibility: hidden;
 
       &::before {
         content: '';
@@ -459,11 +525,14 @@
     }
   }
 }
-//About Section - Modern & Clean
+//About Section - Modern & Clean with Parallax
 .about {
   padding: 80px 0;
   background: linear-gradient(180deg, #ffffff 0%, $background-light 100%);
   position: relative;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
   .container {
     max-width: 1200px;
@@ -989,6 +1058,23 @@
 
         .stat-number {
           transform: scale(1.1);
+        }
+
+        .stat-icon {
+          transform: scale(1.15) rotate(5deg);
+        }
+      }
+
+      .stat-icon {
+        font-size: 32px;
+        color: $text-white;
+        margin-bottom: 16px;
+        display: inline-block;
+        transition: transform 0.3s ease;
+        opacity: 0.9;
+
+        i {
+          display: block;
         }
       }
 
