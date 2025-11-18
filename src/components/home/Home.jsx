@@ -109,9 +109,8 @@ const Home = () => {
                 hidden: { opacity: 0, x: -20 },
                 visible: { opacity: 1, x: 0 }
               }}
-              className="availability-badge"
             >
-              <span className="badge-text">Available for Opportunities</span>
+              <span className="badge badge-success">Available for Opportunities</span>
             </motion.div>
 
             {/* Main Heading with Rotating Text */}
@@ -232,7 +231,7 @@ const Home = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span className="section-label">About Me</span>
+            <span className="badge badge-outline">About Me</span>
             <h2 id="about-title">Crafting Digital Experiences</h2>
             <p className="about-intro">
               With over <strong>{years}+ years</strong> of experience, I specialize in building modern, 
@@ -321,7 +320,7 @@ const Home = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span className="section-label">Portfolio</span>
+            <span className="badge badge-outline">Portfolio</span>
             <h2 id="portfolio-title">Featured Work</h2>
             <p className="featured-work-intro">Discover my most impactful projects showcasing modern web development, design excellence, and user-centered solutions.</p>
           </motion.div>
@@ -334,7 +333,7 @@ const Home = () => {
           >
             {projects.slice(0, 2).map((project, i) => (
               <motion.article
-                className="project-card"
+                className="card card-interactive project-card"
                 key={i}
                 onClick={() => openModal(project)}
                 onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openModal(project)}
@@ -426,7 +425,7 @@ const Home = () => {
                         return (
                           <span 
                             key={techIndex} 
-                            className="tech-badge" 
+                            className="badge tech-badge" 
                             title={tech.name}
                             style={{ 
                               borderColor: techColor,
@@ -447,7 +446,7 @@ const Home = () => {
                         );
                       })}
                       {project.tech.length > 3 && (
-                        <span className="tech-badge tech-badge-more">
+                        <span className="badge tech-badge tech-badge-more">
                           +{project.tech.length - 3}
                         </span>
                       )}
@@ -490,7 +489,7 @@ const Home = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span className="section-label">Insights & Updates</span>
+            <span className="badge badge-outline">Insights & Updates</span>
             <h2 id="blog-title">From the Blog</h2>
             <p className="blog-intro">
               Sharing knowledge, insights, and experiences from the world of web development and design.
@@ -509,7 +508,7 @@ const Home = () => {
             ) : (
               blogPosts.slice(0, 3).map((post, i) => (
                 <motion.article 
-                  className="blog-card" 
+                  className="card card-interactive blog-card" 
                   key={i}
                   style={{ '--card-delay': `${i * 0.1}s` }}
                   initial={{ opacity: 0, y: 20 }}
@@ -585,7 +584,7 @@ const Home = () => {
       >
         <div className="container">
           <div className="contact-header">
-            <span className="section-label">Let's Connect</span>
+            <span className="badge badge-outline">Let's Connect</span>
             <h2 id="contact-title">Get In Touch</h2>
             <p className="contact-intro">
               Have a project in mind or want to discuss opportunities? I'd love to hear from you.

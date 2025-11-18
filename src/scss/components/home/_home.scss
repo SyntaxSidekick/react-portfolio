@@ -108,23 +108,9 @@
     flex: 1;
     max-width: 600px;
 
-    // Availability Badge
-    .availability-badge {
-      display: inline-block;
+    // Badge styling (using UI Kit .badge .badge-success)
+    .badge {
       margin-bottom: 24px;
-
-      .badge-text {
-        display: inline-block;
-        padding: 8px 16px;
-        background: $brand-primary-50;
-        color: $primary;
-        border-radius: 50px;
-        font-size: $font-size-sm;
-        font-weight: 600;
-        border: 1px solid $brand-primary-200;
-        letter-spacing: 0.5px;
-        font-family: $font-alt;
-      }
     }
 
     // Main Heading
@@ -545,15 +531,9 @@
     max-width: 800px;
     margin: 0 auto 60px;
 
-    .section-label {
-      display: inline-block;
-      @include font-size-sm;
-      color: $primary;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    // Using UI Kit .badge .badge-outline
+    .badge {
       margin-bottom: 12px;
-      font-family: $font-alt;
     }
 
     h2 {
@@ -1449,9 +1429,7 @@
     .about-header {
       margin-bottom: 30px;
 
-      .section-label {
-        @include font-size-xs;
-      }
+      // Using UI Kit .badge .badge-outline
 
       h2 {
         @include font-size-md;
@@ -1683,20 +1661,7 @@ html.dark-mode {
     margin-bottom: 60px;
     animation: fadeInUp 0.6s ease-out;
 
-    .section-label {
-      display: inline-block;
-      font-family: $font-alt;
-      font-size: $font-size-xs;
-      font-weight: 600;
-      color: $primary;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding: 6px 16px;
-      background: $brand-primary-50;
-      border-radius: 20px;
-      border: 1px solid $brand-primary-100;
-    }
+    // Using UI Kit .badge .badge-outline
 
     h2 {
       font-family: $font-heading;
@@ -1723,23 +1688,17 @@ html.dark-mode {
     margin-bottom: 40px;
   }
 
+  // Project cards - extends UI Kit .card .card-interactive
   .project-card {
-    background: $text-white;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid $color-border-light;
-    box-shadow: 0 4px 16px $brand-primary-50;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
+    // Inherits base card styles from UI Kit
+    // Custom project-specific enhancements
     animation: fadeInUp 0.6s ease-out backwards;
     animation-delay: var(--card-delay);
-    position: relative;
     max-width: 100%;
 
     &:hover {
       transform: translateY(-12px) scale(1.02);
       box-shadow: 0 20px 50px $brand-primary-200;
-      border-color: $brand-primary-500;
 
       .project-card-image {
         img {
@@ -1922,39 +1881,31 @@ html.dark-mode {
       flex-wrap: wrap;
       gap: 8px;
 
+      // Using UI Kit .badge as base with improved contrast for tech colors
       .tech-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 14px;
-        background: $overlay-light;
+        // Extends .badge base styles with dark background for better contrast
+        background: rgba(0, 0, 0, 0.75) !important; // Dark semi-transparent bg for all tech badges
+        color: $text-white !important; // White text for readability
         border: 2px solid;
-        border-radius: 20px;
-        font-size: $font-size-xs;
-        font-weight: 700;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 2px 6px $overlay-light;
         cursor: pointer;
-
-        i {
-          font-size: $font-size-sm;
-        }
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &:hover {
           transform: translateY(-3px) scale(1.05);
-          background: $overlay-light;
+          background: rgba(0, 0, 0, 0.85) !important;
+          box-shadow: 0 4px 12px var(--tech-color, $brand-primary), 
+                      0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         &.tech-badge-more {
           border-color: $primary;
-          color: $primary;
-          background: $brand-primary-100;
+          color: $text-white;
+          background: $primary !important;
           font-weight: 800;
-          font-size: $font-size-xs;
-          padding: 8px 16px;
 
           &:hover {
-            background: $brand-primary-200;
+            background: $primary-dark !important;
             box-shadow: 0 0 12px $brand-primary-400, 0 4px 8px $brand-primary-200;
           }
         }
@@ -2123,10 +2074,7 @@ html.dark-mode {
     .featured-work-header {
       margin-bottom: 40px;
 
-      .section-label {
-        font-size: $font-size-xs;
-        padding: 5px 14px;
-      }
+      // Using UI Kit .badge .badge-outline
 
       h2 {
         @include font-size-lg;
@@ -2222,11 +2170,7 @@ html.dark-mode {
     .featured-work-header {
       margin-bottom: 32px;
 
-      .section-label {
-        font-size: $font-size-xs;
-        padding: 4px 12px;
-        letter-spacing: 1.5px;
-      }
+      // Using UI Kit .badge .badge-outline
 
       h2 {
         @include font-size-md;
@@ -2520,20 +2464,7 @@ html.dark-mode {
     margin-bottom: 60px;
     animation: fadeInUp 0.6s ease-out;
 
-    .section-label {
-      display: inline-block;
-      font-family: $font-alt;
-      font-size: $font-size-xs;
-      font-weight: 600;
-      color: $primary;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding: 6px 16px;
-      background: $brand-primary-50;
-      border-radius: 20px;
-      border: 1px solid $brand-primary-100;
-    }
+    // Using UI Kit .badge .badge-outline
 
     h2 {
       font-family: $font-heading;
@@ -2568,20 +2499,16 @@ html.dark-mode {
     font-family: $font-alt;
   }
 
+  // Blog cards - extends UI Kit .card .card-interactive
   .blog-card {
-    background: $text-white;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid $color-border-light;
-    box-shadow: 0 4px 16px $brand-primary-50;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    // Inherits base card styles from UI Kit
+    // Custom blog-specific enhancements
     animation: fadeInUp 0.6s ease-out backwards;
     animation-delay: var(--card-delay);
 
     &:hover {
       transform: translateY(-8px);
       box-shadow: 0 16px 40px $brand-primary-100;
-      border-color: $brand-primary-300;
 
       .blog-card-image {
         img {
@@ -2824,20 +2751,7 @@ html.dark-mode {
     margin-bottom: 60px;
     animation: fadeInUp 0.6s ease-out;
 
-    .section-label {
-      display: inline-block;
-      font-family: $font-alt;
-      font-size: $font-size-xs;
-      font-weight: 600;
-      color: $primary;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding: 6px 16px;
-      background: $brand-primary-50;
-      border-radius: 20px;
-      border: 1px solid $brand-primary-100;
-    }
+    // Using UI Kit .badge .badge-outline
 
     h2 {
       font-family: $font-heading;
