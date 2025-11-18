@@ -22,13 +22,13 @@
 
 .image-error {
   opacity: 0.5;
-  background: #f8f9fa;
-  border: 1px dashed #dee2e6;
+  background: $gray-50;
+  border: 1px dashed $gray-300;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6c757d;
-  font-size: 14px;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
 }
 
 .image-error::after {
@@ -37,7 +37,7 @@
 
 /* Smooth loading animations - keeps users happy while stuff loads */
 .loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, $gray-100 25%, $gray-200 50%, $gray-100 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 }
@@ -55,10 +55,12 @@
 
 /* Critical above-the-fold styles - inline these in HTML */
 .hero-critical {
-  background: linear-gradient(120deg, #0d1c2a 0%, #2b72c9 100%);
   min-height: 60vh;
   display: flex;
+  justify-content: center;
   align-items: center;
+  z-index: 9999;
+  background: linear-gradient(120deg, $brand-primary-dark 0%, $brand-primary-light 100%);
 }
 
 /* Font loading optimization - swap means fallback text shows while custom font loads */

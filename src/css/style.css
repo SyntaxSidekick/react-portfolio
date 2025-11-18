@@ -2291,7 +2291,7 @@ html.dark-mode a:hover {
   align-items: center;
   justify-content: center;
   color: #6c757d;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .image-error::after {
@@ -2300,7 +2300,7 @@ html.dark-mode a:hover {
 
 /* Smooth loading animations - keeps users happy while stuff loads */
 .loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #f4f3f4 25%, #e9ecef 50%, #f4f3f4 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 }
@@ -2321,10 +2321,12 @@ html.dark-mode a:hover {
 
 /* Critical above-the-fold styles - inline these in HTML */
 .hero-critical {
-  background: linear-gradient(120deg, #0d1c2a 0%, #2b72c9 100%);
   min-height: 60vh;
   display: flex;
+  justify-content: center;
   align-items: center;
+  z-index: 9999;
+  background: linear-gradient(120deg, #005177 0%, #2c94da 100%);
 }
 
 /* Font loading optimization - swap means fallback text shows while custom font loads */
@@ -2505,7 +2507,7 @@ html.dark-mode a:hover {
 .project-wrapper .tech-used {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #e3e3e3;
 }
 .project-wrapper .tech-used strong {
   display: block;
@@ -2663,7 +2665,7 @@ html.dark-mode a:hover {
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: 0.03em;
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3), 0 2px 8px rgba(0, 0, 0, 0.5);
   border: none;
   opacity: 0.95;
   transition: left 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
@@ -2671,7 +2673,7 @@ html.dark-mode a:hover {
 .skip-link:focus {
   left: 0;
   opacity: 1;
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.25), 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 .skip-link:hover {
   background: #2c94da;
