@@ -1,0 +1,196 @@
+/**
+ * Partial: _badges.scss
+ * Purpose: Badge and tag component system
+ * Features: Multiple variants, sizes, and interactive tags
+ * Usage: Apply .badge or .tag class with variant modifiers
+ * Dependencies: Uses tokens from _variables.scss
+ */
+@use '../abstracts/variables' as *;
+@use 'sass:color';
+
+// ============================================================
+// BASE BADGE
+// ============================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding-xs $padding-sm;
+  font-family: $font-ui;
+  font-size: $font-size-xs;
+  font-weight: $weight-semibold;
+  line-height: 1;
+  border-radius: $radius;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+// ============================================================
+// BADGE VARIANTS
+// ============================================================
+
+.badge-primary {
+  background: $brand-primary-100;
+  color: $brand-primary;
+}
+
+.badge-accent {
+  background: rgba($brand-accent, 0.1);
+  color: $brand-accent;
+}
+
+.badge-neutral {
+  background: $gray-200;
+  color: $gray-700;
+}
+
+.badge-light {
+  background: $gray-100;
+  color: $gray-600;
+}
+
+.badge-dark {
+  background: $gray-800;
+  color: $color-text-inverse;
+}
+
+.badge-success {
+  background: rgba($color-success, 0.1);
+  color: $color-success;
+}
+
+.badge-warning {
+  background: rgba($color-warning, 0.1);
+  color: color.adjust($color-warning, $lightness: -20%);
+}
+
+.badge-error {
+  background: rgba($color-error, 0.1);
+  color: $color-error;
+}
+
+.badge-info {
+  background: rgba($color-info, 0.1);
+  color: $color-info;
+}
+
+.badge-outline {
+  background: transparent;
+  border: 1px solid $color-border-medium;
+  color: $color-text-secondary;
+}
+
+// ============================================================
+// BADGE SIZES
+// ============================================================
+
+.badge-sm {
+  padding: $padding-xs * 0.5 $padding-sm * 0.75;
+  font-size: 0.625rem; // 10px
+}
+
+.badge-lg {
+  padding: $padding-sm $padding-md;
+  font-size: $font-size-sm;
+}
+
+// ============================================================
+// PILL BADGE
+// ============================================================
+
+.badge-pill {
+  border-radius: $radius-full;
+  padding-left: $padding-md;
+  padding-right: $padding-md;
+}
+
+// ============================================================
+// TAG COMPONENT (Interactive Badge)
+// ============================================================
+
+.tag {
+  @extend .badge;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: $gray-100;
+  color: $color-text-primary;
+  border: 1px solid transparent;
+  
+  &:hover {
+    background: $brand-primary-100;
+    color: $brand-primary;
+    border-color: $brand-primary-200;
+  }
+  
+  &:active {
+    background: $brand-primary-200;
+    transform: scale(0.98);
+  }
+  
+  // Tag with remove button
+  &.tag-removable {
+    padding-right: $padding-xs;
+    
+    .tag-remove {
+      margin-left: $space-xs;
+      padding: 0;
+      background: none;
+      border: none;
+      color: currentColor;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Active/Selected state
+.tag-active,
+.tag.active {
+  background: $brand-primary-200;
+  color: $brand-primary;
+  border-color: $brand-primary;
+}
+
+// ============================================================
+// TAG CLOUD
+// ============================================================
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  
+  .tag {
+    margin: 0;
+  }
+}
+
+// ============================================================
+// TECHNOLOGY BADGES
+// ============================================================
+
+.badge-tech {
+  background: $gray-100;
+  color: $gray-700;
+  border: 1px solid $gray-300;
+  
+  // Technology-specific colors
+  &.badge-react { color: $tech-react; border-color: rgba($tech-react, 0.3); }
+  &.badge-javascript { color: color.adjust($tech-javascript, $lightness: -30%); border-color: rgba($tech-javascript, 0.5); }
+  &.badge-html5 { color: $tech-html5; border-color: rgba($tech-html5, 0.3); }
+  &.badge-css3 { color: $tech-css3; border-color: rgba($tech-css3, 0.3); }
+  &.badge-sass { color: $tech-sass; border-color: rgba($tech-sass, 0.3); }
+  &.badge-node { color: $tech-node; border-color: rgba($tech-node, 0.3); }
+  &.badge-wordpress { color: $tech-wordpress; border-color: rgba($tech-wordpress, 0.3); }
+  &.badge-figma { color: $tech-figma; border-color: rgba($tech-figma, 0.3); }
+  &.badge-git { color: $tech-git; border-color: rgba($tech-git, 0.3); }
+  &.badge-vue { color: $tech-vue; border-color: rgba($tech-vue, 0.3); }
+  &.badge-php { color: $tech-php; border-color: rgba($tech-php, 0.3); }
+}

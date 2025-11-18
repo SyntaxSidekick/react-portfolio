@@ -1,0 +1,303 @@
+/**
+ * Partial: _typography.scss
+ * Purpose: Typography system with heading styles and text utilities
+ * Features: Heading hierarchy, text utilities, responsive typography
+ * Usage: Use heading classes or semantic HTML tags
+ * Dependencies: Uses tokens from _variables.scss
+ */
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use 'sass:color';
+
+// ============================================================
+// HEADING STYLES
+// ============================================================
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  margin-bottom: $margin-md;
+  font-weight: $weight-bold;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+}
+
+// Hero Heading (extra large)
+.heading-hero {
+  font-family: $font-heading-main;
+  font-size: $font-size-5xl;
+  font-weight: $weight-bold;
+  line-height: 1.1;
+  
+  @media (max-width: $bp-md) {
+    font-size: $font-size-4xl;
+  }
+  
+  @media (max-width: $bp-sm) {
+    font-size: $font-size-3xl;
+  }
+}
+
+// H1 - Main Heading
+h1, .h1 {
+  font-family: $font-heading-main;
+  font-size: $font-size-3xl;
+  
+  @media (max-width: $bp-md) {
+    font-size: $font-size-2xl;
+  }
+  
+  @media (max-width: $bp-sm) {
+    font-size: $font-size-xl;
+  }
+}
+
+// H2 - Section Heading
+h2, .h2 {
+  font-family: $font-heading-alt;
+  font-size: $font-size-2xl;
+  
+  @media (max-width: $bp-md) {
+    font-size: $font-size-xl;
+  }
+  
+  @media (max-width: $bp-sm) {
+    font-size: $font-size-lg;
+  }
+}
+
+// H3 - Subsection Heading
+h3, .h3 {
+  font-family: $font-heading-alt;
+  font-size: $font-size-xl;
+  
+  @media (max-width: $bp-sm) {
+    font-size: $font-size-lg;
+  }
+}
+
+// H4 - Card/Component Heading
+h4, .h4 {
+  font-family: $font-heading-alt;
+  font-size: $font-size-lg;
+}
+
+// H5 - Small Heading
+h5, .h5 {
+  font-family: $font-ui;
+  font-size: $font-size-base;
+  font-weight: $weight-semibold;
+}
+
+// H6 - Tiny Heading
+h6, .h6 {
+  font-family: $font-ui;
+  font-size: $font-size-sm;
+  font-weight: $weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// ============================================================
+// TEXT UTILITIES
+// ============================================================
+
+// Body text
+.text-body {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+}
+
+// Lead text (intro paragraph)
+.text-lead {
+  font-family: $font-body;
+  font-size: $font-size-md;
+  line-height: $line-height-relaxed;
+  color: $color-text-primary;
+}
+
+// Small text
+.text-small {
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+// Text colors
+.text-primary {
+  color: $brand-primary !important;
+}
+
+.text-accent {
+  color: $brand-accent !important;
+}
+
+.text-muted {
+  color: $color-text-muted !important;
+}
+
+.text-secondary {
+  color: $color-text-secondary !important;
+}
+
+.text-inverse {
+  color: $color-text-inverse !important;
+}
+
+.text-success {
+  color: $color-success !important;
+}
+
+.text-warning {
+  color: color.adjust($color-warning, $lightness: -20%) !important;
+}
+
+.text-error {
+  color: $color-error !important;
+}
+
+.text-info {
+  color: $color-info !important;
+}
+
+// Font weights
+.text-light {
+  font-weight: $weight-light !important;
+}
+
+.text-normal {
+  font-weight: $weight-normal !important;
+}
+
+.text-medium {
+  font-weight: $weight-medium !important;
+}
+
+.text-semibold {
+  font-weight: $weight-semibold !important;
+}
+
+.text-bold {
+  font-weight: $weight-bold !important;
+}
+
+// Text transforms
+.text-uppercase {
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+// Text alignment
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+// Line heights
+.line-height-tight {
+  line-height: $line-height-tight !important;
+}
+
+.line-height-normal {
+  line-height: $line-height-normal !important;
+}
+
+.line-height-relaxed {
+  line-height: $line-height-relaxed !important;
+}
+
+.line-height-loose {
+  line-height: $line-height-loose !important;
+}
+
+// ============================================================
+// LINK STYLES
+// ============================================================
+
+a {
+  color: $brand-primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $brand-primary-dark;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid $brand-primary-200;
+    outline-offset: 2px;
+  }
+}
+
+.link-muted {
+  color: $color-text-muted;
+  
+  &:hover {
+    color: $brand-primary;
+  }
+}
+
+.link-inverse {
+  color: $color-text-inverse;
+  
+  &:hover {
+    color: rgba($color-text-inverse, 0.8);
+  }
+}
+
+// ============================================================
+// LIST STYLES
+// ============================================================
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: $margin-md;
+  padding-left: $padding-xl;
+}
+
+li {
+  margin-bottom: $margin-xs;
+}
+
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}
+
+.list-inline {
+  list-style: none;
+  padding-left: 0;
+  
+  li {
+    display: inline-block;
+    margin-right: $margin-md;
+    margin-bottom: 0;
+    
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

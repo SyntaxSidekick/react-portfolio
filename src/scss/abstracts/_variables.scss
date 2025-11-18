@@ -1,33 +1,95 @@
 /**
  * Partial: _variables.scss
- * Purpose: Centralized SCSS variables for colors, spacing, typography, breakpoints, and component settings.
- * Features: Color palette, spacing units, margin/padding, breakpoints, font sizes, font families.
- * Usage: Import first in style.scss and all partials for consistent design tokens.
- * Dependencies: None (should be self-contained for all other partials).
- * Last updated: 2025-08-15
+ * Purpose: Centralized design tokens for professional UI Kit
+ * Features: Complete color system, typography scale, spacing, shadows, component tokens
+ * Usage: Import first in style.scss and all partials for consistent design
+ * Dependencies: None (self-contained design system)
+ * Last updated: 2025-11-18
  */
-// Colors
-$text: #333;
-$text-white: #fff;
-$text-black: #000;
-$text-light: #f4f3f4;
-$text-dark: #333;
-$text-muted: #595959; // WCAG AA compliant on #fff and #f4f3f4 (contrast > 7:1)
-// Accessibility Note:
-// $text-muted (#595959) meets WCAG AA contrast (4.5:1+) on $background-light (#f4f3f4) and #fff.
-// All primary text and UI colors should be checked for 4.5:1 contrast minimum.
-$primary: #0073aa;
-$secondary-blue: #005177;
-$primary-dark: #2c94da;
-// Accent Colors
-$accent-purple: #8e24aa;
 
+// ============================================================
+// BRAND COLORS
+// ============================================================
+
+// Primary Brand
+$brand-primary: #0073aa;
+$brand-primary-light: #2c94da;
+$brand-primary-dark: #005177;
+
+// Brand opacity variants
+$brand-primary-50: rgba(0, 115, 170, 0.05);
+$brand-primary-100: rgba(0, 115, 170, 0.1);
+$brand-primary-200: rgba(0, 115, 170, 0.2);
+$brand-primary-300: rgba(0, 115, 170, 0.3);
+$brand-primary-400: rgba(0, 115, 170, 0.4);
+$brand-primary-500: rgba(0, 115, 170, 0.5);
+$brand-primary-800: rgba(0, 115, 170, 0.8);
+
+// Accent Colors
+$brand-accent: #8e24aa;
+$brand-accent-light: #ab47bc;
+$brand-accent-dark: #6a1b9a;
+
+// ============================================================
+// NEUTRAL GRAYS
+// ============================================================
+
+$gray-50: #f8f9fa;
+$gray-100: #f4f3f4;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// ============================================================
+// SEMANTIC COLORS
+// ============================================================
+
+// Text Colors
+$color-text-primary: #333333;
+$color-text-secondary: #595959;
+$color-text-muted: #6c757d;
+$color-text-inverse: #ffffff;
+$color-text-black: #000000;
+
+// Background Colors
+$color-bg-primary: #ffffff;
+$color-bg-secondary: #f4f3f4;
+$color-bg-tertiary: #f8f9fa;
+$color-bg-elevated: #ffffff;
+
+// Border Colors
+$color-border-light: #e3e3e3;
+$color-border-medium: #cccccc;
+$color-border-dark: #adb5bd;
+
+// Status Colors
+$color-success: #28a745;
+$color-warning: #ffc107;
+$color-error: #dc3545;
+$color-info: #17a2b8;
+
+// Legacy aliases (for backward compatibility - to be removed in Phase 2)
+$text: $color-text-primary;
+$text-white: $color-text-inverse;
+$text-black: $color-text-black;
+$text-light: $gray-100;
+$text-dark: $color-text-primary;
+$text-muted: $color-text-secondary;
+$primary: $brand-primary;
+$secondary-blue: $brand-primary-dark;
+$primary-dark: $brand-primary-light;
+$accent-purple: $brand-accent;
 $primary-light: #4b92c2;
 $accent: #abafb2;
-$background-light: #f4f3f4;
-$progress-bg: #eee;
-$border: #ccc;
-$light: #f8f9fa;
+$background-light: $color-bg-secondary;
+$progress-bg: #eeeeee;
+$border: $color-border-medium;
+$light: $gray-50;
 
 // Dark mode colors
 $dark-bg: #1a1a1a;
@@ -37,17 +99,90 @@ $dark-text-muted: #a0a0a0;
 $dark-border: #404040;
 $dark-card-bg: #252525;
 
-// Spacing
-$container-max: 1140px;
-$radius: 4px;
-$radius-lg: 8px;
-$gap-sm: 10px;
-$gap: 20px;
-$gap-md: 30px;
-$gap-lg: 40px;
-$gap-xl: 60px;
+// ============================================================
+// TECHNOLOGY BRAND COLORS
+// ============================================================
 
-// Base spacing units
+$tech-react: #61DAFB;
+$tech-javascript: #F7DF1E;
+$tech-html5: #E34F26;
+$tech-css3: #1572B6;
+$tech-sass: #CC6699;
+$tech-bootstrap: #7952B3;
+$tech-node: #339933;
+$tech-wordpress: #21759B;
+$tech-figma: #F24E1E;
+$tech-git: #F05032;
+$tech-gulp: #CF4647;
+$tech-vue: #4FC08D;
+$tech-php: #777BB4;
+$tech-drupal: #0678BE;
+$tech-photoshop: #31A8FF;
+$tech-illustrator: #FF9A00;
+$tech-indesign: #FF3366;
+$tech-sketch: #F7B500;
+$tech-github: #181717;
+$tech-gitlab: #FC6D26;
+$tech-npm: #CB3837;
+$tech-yarn: #2C8EBB;
+$tech-docker: #2496ED;
+$tech-aws: #FF9900;
+$tech-google: #4285F4;
+$tech-microsoft: #00A1F1;
+$tech-apple: #000000;
+$tech-android: #3DDC84;
+$tech-python: #3776AB;
+$tech-java: #ED8B00;
+$tech-angular: #DD0031;
+$tech-laravel: #FF2D20;
+
+// ============================================================
+// SHADOW TOKENS
+// ============================================================
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-base: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 115, 170, 0.12);
+$shadow-lg: 0 8px 24px rgba(0, 115, 170, 0.15);
+$shadow-xl: 0 12px 32px rgba(0, 115, 170, 0.2);
+$shadow-2xl: 0 20px 60px rgba(44, 148, 218, 0.15);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+// Hover shadows
+$shadow-hover-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-hover-md: 0 8px 32px rgba(0, 115, 170, 0.13);
+$shadow-hover-lg: 0 12px 36px rgba(171, 175, 178, 0.18);
+$shadow-hover-xl: 0 24px 72px rgba(44, 148, 218, 0.2);
+
+// ============================================================
+// OVERLAY TOKENS
+// ============================================================
+
+$overlay-light: rgba(0, 0, 0, 0.5);
+$overlay-medium: rgba(0, 0, 0, 0.8);
+$overlay-dark: rgba(0, 0, 0, 0.9);
+$overlay-white-light: rgba(255, 255, 255, 0.1);
+$overlay-white-medium: rgba(255, 255, 255, 0.4);
+$overlay-white-heavy: rgba(255, 255, 255, 0.98);
+
+// ============================================================
+// SPACING SYSTEM
+// ============================================================
+// ============================================================
+// SPACING SYSTEM
+// ============================================================
+
+// Container
+$container-max: 1140px;
+
+// Border Radius
+$radius: 4px;
+$radius-sm: 3px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+$radius-full: 9999px;
+
+// Base spacing units (4px scale)
 $space-base: 4px;
 $space-xs: $space-base * 1;     // 4px
 $space-sm: $space-base * 2;     // 8px
@@ -56,6 +191,15 @@ $space-lg: $space-base * 4;     // 16px
 $space-xl: $space-base * 5;     // 20px
 $space-xxl: $space-base * 6;    // 24px
 $space-xxxl: $space-base * 8;   // 32px
+$space-huge: $space-base * 10;  // 40px
+$space-massive: $space-base * 15; // 60px
+
+// Legacy gap variables (to be deprecated)
+$gap-sm: 10px;
+$gap: 20px;
+$gap-md: 30px;
+$gap-lg: 40px;
+$gap-xl: 60px;
 
 // Margin variables
 $margin-xs: $space-xs;          // 4px
@@ -232,24 +376,52 @@ $bp-lg: 1050px;
 $bp-md: 900px;
 $bp-sm: 600px;
 
-// Font sizes
-$font-size-xs: 12;
-$font-size-sm: 14;
-$font-size-md: 16;
-$font-size-lg: 20;
-$font-size-xl: 24;
-$font-size-xxl: 32;
+// ============================================================
+// TYPOGRAPHY SYSTEM
+// ============================================================
+
+// Font Families
+$font-heading-main: "trajan-pro-3", serif;        // Primary headings (Hero, H1)
+$font-heading-alt: "playfair_regular", serif;     // Secondary headings (H2, H3)
+$font-heading-alt-italic: "playfair_italic", serif; // Emphasis headings
+$font-body: "Inter", sans-serif;                   // Body text, paragraphs
+$font-ui: "dmsans", sans-serif;                    // Buttons, labels, UI elements
+
+// Legacy font aliases (to be deprecated)
+$font-heading: $font-heading-main;
+$font-heading-italic: $font-heading-alt-italic;
+$font-alt: $font-ui;
+$trajan: $font-heading-main;
+
+// Font Weights
+$weight-light: 300;
+$weight-normal: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+
+// Font Size Scale (responsive type scale - base 16px)
+$font-size-xs: 0.75rem;    // 12px - Small labels
+$font-size-sm: 0.875rem;   // 14px - Secondary text
+$font-size-base: 1rem;     // 16px - Body text
+$font-size-md: 1.125rem;   // 18px - Lead text
+$font-size-lg: 1.25rem;    // 20px - H4
+$font-size-xl: 1.5rem;     // 24px - H3
+$font-size-2xl: 2rem;      // 32px - H2
+$font-size-3xl: 2.5rem;    // 40px - H1
+$font-size-4xl: 3rem;      // 48px - Hero
+$font-size-5xl: 3.5rem;    // 56px - Hero Large
+
+// Legacy font sizes (pixel-based - to be deprecated)
 $font-size-hero: 50;
 $font-size-hero-md: 46;
 $font-size-hero-sm: 22;
 
-// Font families
-$font-heading: "trajan-pro-3", serif;
-$font-heading-alt: "playfair_regular", serif;
-$font-heading-italic: "playfair_italic", serif;
-$font-alt: "dmsans", sans-serif;
-$trajan: "trajan-pro-3", serif;
-$font-body: "Inter", sans-serif;
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+$line-height-loose: 2;
 
 // =====================
 // Widget/Sidebar Variables

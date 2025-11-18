@@ -1,0 +1,224 @@
+/**
+ * Partial: _cards.scss
+ * Purpose: Professional card component system
+ * Features: Multiple variants (default, elevated, flat, interactive), card parts (header, body, footer)
+ * Usage: Apply .card class with variant modifiers and part classes
+ * Dependencies: Uses tokens from _variables.scss
+ */
+@use '../abstracts/variables' as *;
+
+// ============================================================
+// BASE CARD
+// ============================================================
+
+.card {
+  background: $color-bg-primary;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  // Default variant
+  border: 1px solid $color-border-light;
+  box-shadow: $shadow-sm;
+  
+  &:hover {
+    box-shadow: $shadow-base;
+  }
+}
+
+// ============================================================
+// CARD VARIANTS
+// ============================================================
+
+// Elevated Card (floating appearance)
+.card-elevated {
+  border: none;
+  box-shadow: $shadow-md;
+  
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+  }
+}
+
+// Flat Card (minimal styling)
+.card-flat {
+  border: 1px solid $color-border-light;
+  box-shadow: none;
+  
+  &:hover {
+    border-color: $brand-primary;
+    box-shadow: $shadow-sm;
+  }
+}
+
+// Interactive Card (clickable)
+.card-interactive {
+  cursor: pointer;
+  border: 2px solid $color-border-light;
+  
+  &:hover {
+    border-color: $brand-primary;
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+  }
+  
+  &:active {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+// Outlined Card
+.card-outline {
+  background: transparent;
+  border: 2px solid $color-border-medium;
+  box-shadow: none;
+  
+  &:hover {
+    border-color: $brand-primary;
+    background: $brand-primary-50;
+  }
+}
+
+// ============================================================
+// CARD PARTS
+// ============================================================
+
+.card-header {
+  padding: $padding-lg $padding-xl;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-primary;
+}
+
+.card-body {
+  padding: $padding-xl;
+}
+
+.card-footer {
+  padding: $padding-lg $padding-xl;
+  border-top: 1px solid $color-border-light;
+  background: $color-bg-secondary;
+}
+
+// ============================================================
+// CARD MEDIA
+// ============================================================
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $padding-xl;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+// ============================================================
+// CARD CONTENT
+// ============================================================
+
+.card-title {
+  font-family: $font-heading-alt;
+  font-size: $font-size-xl;
+  font-weight: $weight-bold;
+  color: $color-text-primary;
+  margin-bottom: $margin-sm;
+  line-height: $line-height-tight;
+}
+
+.card-subtitle {
+  font-family: $font-ui;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $margin-md;
+  font-weight: $weight-medium;
+}
+
+.card-text {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  color: $color-text-primary;
+  line-height: $line-height-relaxed;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-link {
+  color: $brand-primary;
+  text-decoration: none;
+  font-weight: $weight-medium;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $brand-primary-dark;
+    text-decoration: underline;
+  }
+  
+  & + .card-link {
+    margin-left: $margin-md;
+  }
+}
+
+// ============================================================
+// CARD LAYOUTS
+// ============================================================
+
+// Horizontal Card
+.card-horizontal {
+  display: flex;
+  
+  .card-img-top {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    flex: 1;
+  }
+}
+
+// Card Grid
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $space-xl;
+  
+  &.card-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  &.card-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &.card-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  @media (max-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}

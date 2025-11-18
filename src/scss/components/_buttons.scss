@@ -1,0 +1,170 @@
+/**
+ * Partial: _buttons.scss
+ * Purpose: Professional button component system
+ * Features: Multiple variants (primary, secondary, outline, ghost), sizes (sm, md, lg, xl)
+ * Usage: Apply .btn class with variant and size modifiers
+ * Dependencies: Uses tokens from _variables.scss
+ */
+@use '../abstracts/variables' as *;
+
+// ============================================================
+// BASE BUTTON
+// ============================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  font-family: $font-ui;
+  font-weight: $weight-semibold;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: $radius;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  line-height: 1;
+  
+  // Default size (medium)
+  padding: $padding-md $padding-xl;
+  font-size: $font-size-sm;
+  
+  &:focus {
+    outline: 2px solid $brand-primary-200;
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ============================================================
+// SIZE VARIANTS
+// ============================================================
+
+.btn-sm {
+  padding: $padding-sm $padding-md;
+  font-size: $font-size-xs;
+}
+
+.btn-lg {
+  padding: $padding-lg $padding-xxl;
+  font-size: $font-size-base;
+}
+
+.btn-xl {
+  padding: $padding-xl $padding-xxxl;
+  font-size: $font-size-md;
+}
+
+// ============================================================
+// STYLE VARIANTS
+// ============================================================
+
+// Primary Button
+.btn-primary {
+  background: $brand-primary;
+  color: $color-text-inverse;
+  border-color: $brand-primary-dark;
+  
+  &:hover:not(:disabled) {
+    background: $brand-primary-dark;
+    box-shadow: $shadow-md;
+    transform: translateY(-1px);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+}
+
+// Secondary Button
+.btn-secondary {
+  background: $gray-600;
+  color: $color-text-inverse;
+  border-color: $gray-700;
+  
+  &:hover:not(:disabled) {
+    background: $gray-700;
+    box-shadow: $shadow-md;
+    transform: translateY(-1px);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+// Outline Button
+.btn-outline {
+  background: transparent;
+  color: $brand-primary;
+  border-color: $brand-primary;
+  
+  &:hover:not(:disabled) {
+    background: $brand-primary;
+    color: $color-text-inverse;
+    box-shadow: $shadow-md;
+  }
+  
+  &:active:not(:disabled) {
+    background: $brand-primary-dark;
+  }
+}
+
+// Ghost Button (minimal)
+.btn-ghost {
+  background: transparent;
+  color: $brand-primary;
+  border-color: transparent;
+  
+  &:hover:not(:disabled) {
+    background: $brand-primary-50;
+  }
+  
+  &:active:not(:disabled) {
+    background: $brand-primary-100;
+  }
+}
+
+// Accent Button
+.btn-accent {
+  background: $brand-accent;
+  color: $color-text-inverse;
+  border-color: $brand-accent-dark;
+  
+  &:hover:not(:disabled) {
+    background: $brand-accent-dark;
+    box-shadow: $shadow-md;
+    transform: translateY(-1px);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+// ============================================================
+// BUTTON GROUPS
+// ============================================================
+
+.btn-group {
+  display: inline-flex;
+  gap: $space-sm;
+  
+  &.btn-group-block {
+    display: flex;
+    width: 100%;
+    
+    .btn {
+      flex: 1;
+    }
+  }
+}
