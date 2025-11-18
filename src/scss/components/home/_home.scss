@@ -2386,7 +2386,7 @@ html.dark-mode {
 
       &:hover {
         box-shadow: 0 8px 32px $brand-primary-100;
-        border-color: #dadada;
+        border-color: $gray-300;
       }
 
       .card-head {
@@ -3175,7 +3175,7 @@ html.dark-mode {
         flex: 1 1 50%;
 
         article {
-          background: #fff;
+          background: $color-bg-primary;
           margin-bottom: 20px;
           border-bottom: solid 1px $progress-bg;
           padding: 0 0 20px 0;
@@ -3252,21 +3252,21 @@ html.dark-mode {
           font-weight: 500;
 
           &.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background-color: $color-success-light;
+            color: $color-success-dark;
+            border: 1px solid $color-success;
           }
 
           &.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background-color: $color-error-light;
+            color: $color-error-dark;
+            border: 1px solid $color-error;
           }
 
           &.info {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+            background-color: $color-info-light;
+            color: $color-info-dark;
+            border: 1px solid $color-info;
           }
         }
 
@@ -3274,7 +3274,7 @@ html.dark-mode {
           display: flex;
           flex-direction: column;
           gap: 15px;
-          background: #fff;
+          background: $color-bg-primary;
 
           input,
           textarea {
@@ -3283,7 +3283,7 @@ html.dark-mode {
             border: 1px solid #ccc;
             font-size: $font-size-base;
             font-family: inherit;
-            background-color: #f8f9fa;
+            background-color: $gray-50;
           }
 
           textarea {

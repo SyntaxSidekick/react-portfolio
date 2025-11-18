@@ -4942,7 +4942,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 }
 .hportfolio .container .card:hover {
   box-shadow: 0 8px 32px rgba(0, 115, 170, 0.1);
-  border-color: #dadada;
+  border-color: #dee2e6;
 }
 .hportfolio .container .card .card-head {
   width: 100%;
@@ -5616,7 +5616,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   flex: 1 1 50%;
 }
 .blog-contact .container .blog-contact-grid .blog article {
-  background: #fff;
+  background: #ffffff;
   margin-bottom: 20px;
   border-bottom: solid 1px #eeeeee;
   padding: 0 0 20px 0;
@@ -5683,23 +5683,23 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .blog-contact .container .blog-contact-grid .contacth .contact-message.success {
   background-color: #d4edda;
   color: #155724;
-  border: 1px solid #c3e6cb;
+  border: 1px solid #28a745;
 }
 .blog-contact .container .blog-contact-grid .contacth .contact-message.error {
   background-color: #f8d7da;
   color: #721c24;
-  border: 1px solid #f5c6cb;
+  border: 1px solid #dc3545;
 }
 .blog-contact .container .blog-contact-grid .contacth .contact-message.info {
   background-color: #d1ecf1;
   color: #0c5460;
-  border: 1px solid #bee5eb;
+  border: 1px solid #17a2b8;
 }
 .blog-contact .container .blog-contact-grid .contacth form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: #fff;
+  background: #ffffff;
 }
 .blog-contact .container .blog-contact-grid .contacth form input,
 .blog-contact .container .blog-contact-grid .contacth form textarea {
@@ -6311,7 +6311,7 @@ section.portfolio-gallery-tabs.container {
 .gallery-thumb-count {
   margin: 0 0 8px 0;
   font-size: 14px;
-  color: #217dbb;
+  color: #2c94da;
   font-weight: 500;
 }
 .gallery-thumb-count .thumb-count-desktop {

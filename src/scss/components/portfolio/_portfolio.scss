@@ -468,7 +468,7 @@ section.portfolio-gallery-tabs.container {
 .gallery-thumb-count {
   margin: 0 0 8px 0;
   font-size: 14px;
-  color: #217dbb;
+  color: $brand-primary-light;
   font-weight: 500;
   .thumb-count-desktop { display: inline; }
   .thumb-count-tablet, .thumb-count-mobile { display: none; }
