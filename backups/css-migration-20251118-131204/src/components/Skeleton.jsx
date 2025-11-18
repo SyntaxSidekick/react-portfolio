@@ -1,4 +1,6 @@
 import React from "react";
+import "./Skeleton.css";
+
 export function Skeleton({ width = "100%", height = 20, style = {}, className = "" }) {
   return (
     <div
