@@ -2426,7 +2426,7 @@ html.dark-mode a:hover {
 }
 .project-wrapper .additional-project-img img:hover {
   transform: scale(1.04) translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 115, 170, 0.13);
+  box-shadow: 0 6px 18px rgba(0, 115, 170, 0.1);
 }
 @media (max-width: 900px) {
   .project-wrapper .additional-project-img {
@@ -2528,19 +2528,19 @@ html.dark-mode a:hover {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, rgba(44, 148, 218, 0.1), rgba(44, 148, 218, 0.05));
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1), rgba(0, 115, 170, 0.05));
   color: #2c94da;
   padding: 8px 12px;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 500;
-  border: 1px solid rgba(44, 148, 218, 0.2);
+  border: 1px solid rgba(0, 115, 170, 0.2);
   transition: all 0.2s ease;
 }
 .project-wrapper .tech-used .project-tech-list li:hover {
-  background: linear-gradient(135deg, rgba(44, 148, 218, 0.15), rgba(44, 148, 218, 0.1));
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1), rgba(0, 115, 170, 0.1));
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(44, 148, 218, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 115, 170, 0.2);
 }
 .project-wrapper .tech-used .project-tech-list li i {
   font-size: 1rem;
@@ -2782,7 +2782,7 @@ html.dark-mode a:hover {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 115, 170, 0.9);
+  background: rgba(0, 115, 170, 0.8);
   color: #333333;
   border: none;
   font-size: 2rem;
@@ -2944,10 +2944,10 @@ html.dark-mode a:hover {
 .hero .hero-content .availability-badge .badge-text {
   display: inline-block;
   padding: 8px 16px;
-  background: rgba(0, 115, 170, 0.08);
+  background: rgba(0, 115, 170, 0.05);
   color: #0073aa;
   border-radius: 50px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   border: 1px solid rgba(0, 115, 170, 0.2);
   letter-spacing: 0.5px;
@@ -3008,25 +3008,25 @@ html.dark-mode a:hover {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-size: 15px;
+  font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.3px;
   font-family: "dmsans", sans-serif;
 }
 .hero .hero-content .hero-cta-buttons .btn-primary i,
 .hero .hero-content .hero-cta-buttons .btn-secondary i {
-  font-size: 18px;
+  font-size: 1.125rem;
   transition: transform 0.3s ease;
 }
 .hero .hero-content .hero-cta-buttons .btn-primary {
   background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
   color: #ffffff;
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.2);
   border: none;
 }
 .hero .hero-content .hero-cta-buttons .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.3);
 }
 .hero .hero-content .hero-cta-buttons .btn-primary:hover i {
   transform: translateX(4px);
@@ -3035,13 +3035,13 @@ html.dark-mode a:hover {
   background: #ffffff;
   color: #333333;
   border: 2px solid #cccccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 .hero .hero-content .hero-cta-buttons .btn-secondary:hover {
   border-color: #0073aa;
-  background: rgba(0, 115, 170, 0.03);
+  background: rgba(0, 115, 170, 0.05);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 115, 170, 0.1);
 }
 .hero .hero-content .hero-cta-buttons .btn-secondary:hover i {
   transform: scale(1.1);
@@ -3051,7 +3051,7 @@ html.dark-mode a:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   padding-top: 32px;
-  border-top: 1px solid rgba(204, 204, 204, 0.3);
+  border-top: 1px solid #e3e3e3;
 }
 @media (min-width: 600px) {
   .hero .hero-content .hero-stats-grid {
@@ -3072,7 +3072,7 @@ html.dark-mode a:hover {
   margin-bottom: 4px;
 }
 .hero .hero-content .hero-stats-grid .stat-item .stat-label {
-  font-size: 13px;
+  font-size: 0.875rem;
   color: #595959;
   margin-top: 4px;
   font-weight: 500;
@@ -3091,7 +3091,7 @@ html.dark-mode a:hover {
   height: 360px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(44, 148, 218, 0.15), 0 8px 24px rgba(0, 115, 170, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 115, 170, 0.1), 0 8px 24px rgba(0, 115, 170, 0.1);
   border: 6px solid #ffffff;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
@@ -3117,7 +3117,7 @@ html.dark-mode a:hover {
 }
 .hero .hero-image .hero-image-wrapper:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 24px 72px rgba(44, 148, 218, 0.2), 0 12px 32px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 24px 72px rgba(0, 115, 170, 0.2), 0 12px 32px rgba(0, 115, 170, 0.1);
 }
 .hero .hero-image .hero-image-wrapper:hover img {
   transform: scale(1.05);
@@ -3393,23 +3393,23 @@ html.dark-mode a:hover {
   padding: 24px 16px;
   background: #ffffff;
   border-radius: 8px;
-  border: 2px solid rgba(204, 204, 204, 0.3);
+  border: 2px solid #e3e3e3;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
 }
 .about .about-tech-preview .tech-icon-item i {
-  font-size: 48px;
+  font-size: 3rem;
   color: var(--tech-color);
   transition: transform 0.3s ease;
 }
 @media (max-width: 900px) {
   .about .about-tech-preview .tech-icon-item i {
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 }
 @media (max-width: 600px) {
   .about .about-tech-preview .tech-icon-item i {
-    font-size: 36px;
+    font-size: 2.5rem;
   }
 }
 .about .about-tech-preview .tech-icon-item .tech-name {
@@ -3422,13 +3422,13 @@ html.dark-mode a:hover {
 }
 @media (max-width: 600px) {
   .about .about-tech-preview .tech-icon-item .tech-name {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }
 .about .about-tech-preview .tech-icon-item .tech-proficiency-bar {
   width: 100%;
   height: 4px;
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   overflow: hidden;
   position: relative;
@@ -3454,7 +3454,7 @@ html.dark-mode a:hover {
 }
 .about .about-tech-preview .tech-icon-item:hover {
   border-color: var(--tech-color);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   background: rgba(255, 255, 255, 0.98);
 }
 .about .about-tech-preview .tech-icon-item:hover i {
@@ -3495,7 +3495,7 @@ html.dark-mode a:hover {
   gap: 12px;
 }
 .about .about-cta .bio-cta-button .cta-content i {
-  font-size: 20px;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 .about .about-cta .bio-cta-button .cta-content .cta-text {
@@ -3506,18 +3506,18 @@ html.dark-mode a:hover {
   gap: 2px;
 }
 .about .about-cta .bio-cta-button .cta-content .cta-text strong {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
 .about .about-cta .bio-cta-button .cta-content .cta-text small {
-  font-size: 13px;
+  font-size: 0.875rem;
   opacity: 0.9;
   font-weight: 400;
   letter-spacing: 0.2px;
 }
 .about .about-cta .bio-cta-button .cta-arrow {
-  font-size: 18px;
+  font-size: 1.125rem;
   transition: transform 0.3s ease;
   flex-shrink: 0;
 }
@@ -3543,10 +3543,10 @@ html.dark-mode a:hover {
     padding: 14px 24px;
   }
   .about .about-cta .bio-cta-button .cta-content i {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
   .about .about-cta .bio-cta-button .cta-arrow {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 .about .about-expertise h3 {
@@ -3566,13 +3566,13 @@ html.dark-mode a:hover {
   background: #ffffff;
   padding: 32px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(0, 115, 170, 0.1);
 }
 .about .about-expertise .expertise-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.1);
   border-color: rgba(0, 115, 170, 0.2);
 }
 .about .about-expertise .expertise-card:hover .expertise-icon {
@@ -3585,7 +3585,7 @@ html.dark-mode a:hover {
 .about .about-expertise .expertise-card .expertise-icon {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(44, 148, 218, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(0, 115, 170, 0.05) 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -3630,12 +3630,12 @@ html.dark-mode a:hover {
   background: #ffffff;
   border-radius: 8px;
   padding: 32px;
-  box-shadow: 0 4px 20px rgba(0, 115, 170, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 115, 170, 0.05);
   border: 1px solid rgba(0, 115, 170, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .about .about-technologies .tech-group:hover {
-  box-shadow: 0 12px 40px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 115, 170, 0.1);
   border-color: rgba(0, 115, 170, 0.2);
   transform: translateY(-4px);
 }
@@ -3655,7 +3655,7 @@ html.dark-mode a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(44, 148, 218, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(0, 115, 170, 0.05) 100%);
   border-radius: 8px;
 }
 .about .about-technologies .tech-group .tech-group-header h4 {
@@ -3676,7 +3676,7 @@ html.dark-mode a:hover {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 115, 170, 0.1);
-  border: 1px solid rgba(0, 115, 170, 0.12);
+  border: 1px solid rgba(0, 115, 170, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.6s ease-out backwards;
   animation-delay: var(--card-delay, 0s);
@@ -3759,11 +3759,11 @@ html.dark-mode a:hover {
 }
 .about .about-technologies .tech-group .tech-cards .tech-card .tech-card-progress .tech-card-bar-container {
   height: 8px;
-  background: linear-gradient(90deg, rgba(0, 115, 170, 0.12) 0%, rgba(44, 148, 218, 0.08) 100%);
+  background: linear-gradient(90deg, rgba(0, 115, 170, 0.1) 0%, rgba(0, 115, 170, 0.05) 100%);
   border-radius: 10px;
   overflow: visible;
   position: relative;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 115, 170, 0.1);
   margin-bottom: 6px;
 }
@@ -3799,7 +3799,7 @@ html.dark-mode a:hover {
   height: 4px;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.98);
 }
 .about .about-technologies .tech-group .tech-cards .tech-card .tech-card-progress .tech-proficiency-label {
   font-size: 0.75rem;
@@ -3808,7 +3808,7 @@ html.dark-mode a:hover {
   font-family: "dmsans", sans-serif;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  font-size: 9px;
+  font-size: 0.75rem;
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -3824,8 +3824,8 @@ html.dark-mode a:hover {
   align-items: center;
   gap: 10px;
   padding: 16px 12px;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.03) 0%, transparent 100%);
-  border: 1px solid rgba(0, 115, 170, 0.08);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.05) 0%, transparent 100%);
+  border: 1px solid rgba(0, 115, 170, 0.05);
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
@@ -3852,7 +3852,7 @@ html.dark-mode a:hover {
   left: 100%;
 }
 .about .about-technologies .tech-group .tech-grid .tech-item:hover .tech-icon {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   transform: scale(1.1) rotate(5deg);
 }
 .about .about-technologies .tech-group .tech-grid .tech-item:hover .tech-icon i {
@@ -3866,7 +3866,7 @@ html.dark-mode a:hover {
 .about .about-technologies .tech-group .tech-grid .tech-item .tech-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.08) 0%, rgba(44, 148, 218, 0.04) 100%);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.05) 0%, rgba(0, 115, 170, 0.05) 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -3934,7 +3934,7 @@ html.dark-mode a:hover {
   padding: 32px 24px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -3952,7 +3952,7 @@ html.dark-mode a:hover {
 }
 .about .about-stats .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 115, 170, 0.3);
 }
 .about .about-stats .stat-card:hover::before {
   opacity: 1;
@@ -3964,7 +3964,7 @@ html.dark-mode a:hover {
   transform: scale(1.15) rotate(5deg);
 }
 .about .about-stats .stat-card .stat-icon {
-  font-size: 32px;
+  font-size: 2rem;
   color: #ffffff;
   margin-bottom: 16px;
   display: inline-block;
@@ -3985,7 +3985,7 @@ html.dark-mode a:hover {
 }
 .about .about-stats .stat-card .stat-label {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.98);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -4164,7 +4164,7 @@ html.dark-mode a:hover {
     margin-bottom: 4px;
   }
   .about .about-technologies .tech-group .tech-cards .tech-card .tech-card-progress .tech-proficiency-label {
-    font-size: 8px;
+    font-size: 0.75rem;
   }
   .about .about-technologies .tech-group .tech-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -4181,7 +4181,7 @@ html.dark-mode a:hover {
     font-size: 1.25rem;
   }
   .about .about-technologies .tech-group .tech-grid .tech-item .tech-label {
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   .about .about-stats {
     grid-template-columns: 1fr;
@@ -4208,15 +4208,15 @@ html.dark-mode .about-tech-preview .tech-icon-item .tech-proficiency-bar {
   background: rgba(255, 255, 255, 0.1);
 }
 html.dark-mode .about-tech-preview .tech-icon-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   border-color: var(--tech-color);
 }
 html.dark-mode .about-cta .bio-cta-button {
   background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
 }
 html.dark-mode .about-cta .bio-cta-button:hover {
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4260,16 +4260,16 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .featured-work .featured-work-header .section-label {
   display: inline-block;
   font-family: "dmsans", sans-serif;
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #0073aa;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 12px;
   padding: 6px 16px;
-  background: rgba(0, 115, 170, 0.08);
+  background: rgba(0, 115, 170, 0.05);
   border-radius: 20px;
-  border: 1px solid rgba(0, 115, 170, 0.15);
+  border: 1px solid rgba(0, 115, 170, 0.1);
 }
 .featured-work .featured-work-header h2 {
   font-family: "trajan-pro-3", serif;
@@ -4296,8 +4296,8 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid rgba(232, 232, 232, 0.5);
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.08);
+  border: 2px solid #e3e3e3;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.05);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   animation: fadeInUp 0.6s ease-out backwards;
@@ -4327,7 +4327,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   position: relative;
   height: 220px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(44, 148, 218, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(0, 115, 170, 0.05) 100%);
 }
 .featured-work .project-card .project-card-image img {
   width: 100%;
@@ -4338,7 +4338,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .featured-work .project-card .project-card-image .project-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(31, 41, 55, 0.9) 0%, rgba(31, 41, 55, 0.6) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -4349,7 +4349,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .featured-work .project-card .project-card-image .project-card-overlay .view-project-text {
   color: #ffffff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.5px;
 }
 .featured-work .project-card .project-card-image .project-featured-badge {
@@ -4359,7 +4359,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   padding: 6px 12px;
   background: linear-gradient(to right, #0073aa 0%, #2c94da 100%);
   color: #ffffff;
-  font-size: 10px;
+  font-size: 0.75rem;
   font-weight: 700;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 115, 170, 0.4);
@@ -4375,14 +4375,14 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   top: 16px;
   left: 16px;
   padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #2c94da;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(44, 148, 218, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 115, 170, 0.1);
   border: 1px solid rgba(0, 115, 170, 0.2);
   z-index: 2;
 }
@@ -4401,7 +4401,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 }
 .featured-work .project-card .project-title .project-type {
   font-family: "dmsans", sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #595959;
   letter-spacing: 0.2px;
@@ -4429,14 +4429,14 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .featured-work .project-card .project-metrics .metric-item {
   text-align: center;
   padding: 12px;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.05) 0%, rgba(44, 148, 218, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.05) 0%, rgba(0, 115, 170, 0.05) 100%);
   border: 1px solid rgba(0, 115, 170, 0.2);
   border-radius: 12px;
   transition: all 0.3s ease;
 }
 .featured-work .project-card .project-metrics .metric-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 115, 170, 0.1);
 }
 .featured-work .project-card .project-metrics .metric-item .metric-value {
   font-size: 1.25rem;
@@ -4448,7 +4448,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   display: block;
 }
 .featured-work .project-card .project-metrics .metric-item .metric-label {
-  font-size: 10px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #333333;
   text-transform: uppercase;
@@ -4467,33 +4467,33 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.5);
   border: 2px solid;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 700;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 .featured-work .project-card .project-tech-stack .tech-badge i {
-  font-size: 13px;
+  font-size: 0.875rem;
 }
 .featured-work .project-card .project-tech-stack .tech-badge:hover {
   transform: translateY(-3px) scale(1.05);
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.5);
 }
 .featured-work .project-card .project-tech-stack .tech-badge.tech-badge-more {
   border-color: #0073aa;
   color: #0073aa;
-  background: rgba(0, 115, 170, 0.12);
+  background: rgba(0, 115, 170, 0.1);
   font-weight: 800;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 8px 16px;
 }
 .featured-work .project-card .project-tech-stack .tech-badge.tech-badge-more:hover {
   background: rgba(0, 115, 170, 0.2);
-  box-shadow: 0 0 12px rgba(0, 115, 170, 0.4), 0 4px 8px rgba(0, 115, 170, 0.25);
+  box-shadow: 0 0 12px rgba(0, 115, 170, 0.4), 0 4px 8px rgba(0, 115, 170, 0.2);
 }
 .featured-work .project-card .project-card-footer {
   display: none;
@@ -4524,7 +4524,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   gap: 12px;
 }
 .featured-work .portfolio-cta-button .cta-content i {
-  font-size: 20px;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 .featured-work .portfolio-cta-button .cta-content .cta-text {
@@ -4535,18 +4535,18 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   gap: 2px;
 }
 .featured-work .portfolio-cta-button .cta-content .cta-text strong {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
 .featured-work .portfolio-cta-button .cta-content .cta-text small {
-  font-size: 13px;
+  font-size: 0.875rem;
   opacity: 0.9;
   font-weight: 400;
   letter-spacing: 0.2px;
 }
 .featured-work .portfolio-cta-button .cta-arrow {
-  font-size: 18px;
+  font-size: 1.125rem;
   transition: transform 0.3s ease;
   flex-shrink: 0;
 }
@@ -4572,10 +4572,10 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     padding: 14px 24px;
   }
   .featured-work .portfolio-cta-button .cta-content i {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
   .featured-work .portfolio-cta-button .cta-arrow {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
@@ -4611,10 +4611,10 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     padding: 6px;
   }
   .featured-work .project-card .project-metrics .metric-item .metric-value {
-    font-size: 13px;
+    font-size: 0.875rem;
   }
   .featured-work .project-card .project-metrics .metric-item .metric-label {
-    font-size: 8px;
+    font-size: 0.75rem;
   }
 }
 @media (max-width: 900px) {
@@ -4628,7 +4628,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     margin-bottom: 40px;
   }
   .featured-work .featured-work-header .section-label {
-    font-size: 10px;
+    font-size: 0.75rem;
     padding: 5px 14px;
   }
   .featured-work .featured-work-header h2 {
@@ -4648,13 +4648,13 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     top: 12px;
     right: 12px;
     padding: 5px 11px;
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-card-image .project-year {
     top: 12px;
     left: 12px;
     padding: 5px 11px;
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-card-content {
     padding: 20px;
@@ -4664,10 +4664,10 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     font-size: 1rem;
   }
   .featured-work .project-card .project-card-header .project-role-year {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-excerpt {
-    font-size: 13px;
+    font-size: 0.875rem;
   }
   .featured-work .project-card .project-metrics {
     grid-template-columns: repeat(2, 1fr);
@@ -4677,17 +4677,17 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     padding: 10px 8px;
   }
   .featured-work .project-card .project-metrics .metric-item .metric-value {
-    font-size: 16px;
+    font-size: 1rem;
   }
   .featured-work .project-card .project-metrics .metric-item .metric-label {
-    font-size: 9px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-tech-stack .tech-badge {
-    font-size: 10px;
+    font-size: 0.75rem;
     padding: 7px 12px;
   }
   .featured-work .project-card .project-tech-stack .tech-badge i {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }
 @media (max-width: 600px) {
@@ -4701,7 +4701,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     margin-bottom: 32px;
   }
   .featured-work .featured-work-header .section-label {
-    font-size: 9px;
+    font-size: 0.75rem;
     padding: 4px 12px;
     letter-spacing: 1.5px;
   }
@@ -4718,32 +4718,32 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     height: 160px;
   }
   .featured-work .project-card .project-card-image .project-card-overlay .view-project-text {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-card-image .project-featured-badge {
     top: 12px;
     right: 12px;
     padding: 5px 10px;
-    font-size: 9px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-card-image .project-year {
     top: 12px;
     left: 12px;
     padding: 5px 12px;
-    font-size: 10px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-card-content {
     padding: 18px;
     gap: 12px;
   }
   .featured-work .project-card .project-card-header .project-title {
-    font-size: 16px;
+    font-size: 1rem;
   }
   .featured-work .project-card .project-card-header .project-role-year {
-    font-size: 11px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-excerpt {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-metrics {
     grid-template-columns: repeat(2, 1fr);
@@ -4753,21 +4753,21 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     padding: 10px 8px;
   }
   .featured-work .project-card .project-metrics .metric-item .metric-value {
-    font-size: 15px;
+    font-size: 1rem;
   }
   .featured-work .project-card .project-metrics .metric-item .metric-label {
-    font-size: 8px;
+    font-size: 0.75rem;
   }
   .featured-work .project-card .project-tech-stack {
     gap: 6px;
   }
   .featured-work .project-card .project-tech-stack .tech-badge {
-    font-size: 9px;
+    font-size: 0.75rem;
     padding: 6px 10px;
     gap: 5px;
   }
   .featured-work .project-card .project-tech-stack .tech-badge i {
-    font-size: 11px;
+    font-size: 0.75rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -4789,7 +4789,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   background: #f4f4f4;
   padding: 40px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(0, 115, 170, 0.09);
+  box-shadow: 0 4px 24px rgba(0, 115, 170, 0.05);
 }
 .hportfolio .container .port-header {
   text-align: center;
@@ -4819,7 +4819,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   border-radius: 8px;
   border: 1px solid #e3e3e3;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0, 115, 170, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 115, 170, 0.05);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
   display: flex;
   flex-direction: column;
@@ -4827,7 +4827,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   position: relative;
 }
 .hportfolio .container .card:hover {
-  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.13);
+  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.1);
   border-color: #dadada;
 }
 .hportfolio .container .card .card-head {
@@ -4901,12 +4901,12 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   background: #005177;
 }
 .hportfolio .container .card .card-bod .card-links a {
-  font-size: 13px;
+  font-size: 0.875rem;
   padding: 8px 16px;
 }
 .hportfolio .container .card .card-bod .card-links a i {
   margin-right: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   vertical-align: middle;
 }
 
@@ -4939,7 +4939,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     font-size: 0.75rem;
   }
   .hportfolio .container .card-links a {
-    font-size: 11px;
+    font-size: 0.75rem;
     padding: 6px 10px;
   }
 }
@@ -4962,16 +4962,16 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .blog-section .blog-header .section-label {
   display: inline-block;
   font-family: "dmsans", sans-serif;
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #0073aa;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 12px;
   padding: 6px 16px;
-  background: rgba(0, 115, 170, 0.08);
+  background: rgba(0, 115, 170, 0.05);
   border-radius: 20px;
-  border: 1px solid rgba(0, 115, 170, 0.15);
+  border: 1px solid rgba(0, 115, 170, 0.1);
 }
 .blog-section .blog-header h2 {
   font-family: "trajan-pro-3", serif;
@@ -5005,15 +5005,15 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid rgba(232, 232, 232, 0.5);
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.08);
+  border: 2px solid #e3e3e3;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.05);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.6s ease-out backwards;
   animation-delay: var(--card-delay);
 }
 .blog-section .blog-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 115, 170, 0.1);
   border-color: rgba(0, 115, 170, 0.3);
 }
 .blog-section .blog-card:hover .blog-card-image img {
@@ -5037,7 +5037,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   position: relative;
   height: 220px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(44, 148, 218, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, rgba(0, 115, 170, 0.05) 100%);
 }
 .blog-section .blog-card .blog-card-image img {
   width: 100%;
@@ -5048,7 +5048,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .blog-section .blog-card .blog-card-image .blog-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(31, 41, 55, 0.9) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -5059,7 +5059,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .blog-section .blog-card .blog-card-image .blog-card-overlay .read-more-text {
   color: #ffffff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.5px;
 }
 .blog-section .blog-card .blog-card-content {
@@ -5110,7 +5110,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   letter-spacing: 0.3px;
 }
 .blog-section .blog-card .blog-card-content .blog-read-more i {
-  font-size: 12px;
+  font-size: 0.75rem;
   transition: transform 0.3s ease;
 }
 .blog-section .blog-cta {
@@ -5139,7 +5139,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   gap: 12px;
 }
 .blog-section .blog-cta-button .cta-content i {
-  font-size: 20px;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 .blog-section .blog-cta-button .cta-content .cta-text {
@@ -5150,18 +5150,18 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   gap: 2px;
 }
 .blog-section .blog-cta-button .cta-content .cta-text strong {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
 .blog-section .blog-cta-button .cta-content .cta-text small {
-  font-size: 13px;
+  font-size: 0.875rem;
   opacity: 0.9;
   font-weight: 400;
   letter-spacing: 0.2px;
 }
 .blog-section .blog-cta-button .cta-arrow {
-  font-size: 18px;
+  font-size: 1.125rem;
   transition: transform 0.3s ease;
   flex-shrink: 0;
 }
@@ -5187,10 +5187,10 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     padding: 14px 24px;
   }
   .blog-section .blog-cta-button .cta-content i {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
   .blog-section .blog-cta-button .cta-arrow {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
@@ -5223,16 +5223,16 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .contact-section .contact-header .section-label {
   display: inline-block;
   font-family: "dmsans", sans-serif;
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #0073aa;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 12px;
   padding: 6px 16px;
-  background: rgba(0, 115, 170, 0.08);
+  background: rgba(0, 115, 170, 0.05);
   border-radius: 20px;
-  border: 1px solid rgba(0, 115, 170, 0.15);
+  border: 1px solid rgba(0, 115, 170, 0.1);
 }
 .contact-section .contact-header h2 {
   font-family: "trajan-pro-3", serif;
@@ -5265,13 +5265,13 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   background: #ffffff;
   padding: 24px;
   border-radius: 12px;
-  border: 2px solid rgba(232, 232, 232, 0.5);
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.08);
+  border: 2px solid #e3e3e3;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contact-section .contact-info .contact-info-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.1);
   border-color: rgba(0, 115, 170, 0.3);
 }
 .contact-section .contact-info .contact-info-card:hover .info-icon {
@@ -5295,7 +5295,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contact-section .contact-info .contact-info-card .info-icon i {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 .contact-section .contact-info .contact-info-card h3 {
   font-family: "trajan-pro-3", serif;
@@ -5332,7 +5332,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   border-radius: 12px;
   padding: 32px;
   box-shadow: 0 8px 32px rgba(0, 115, 170, 0.1);
-  border: 2px solid rgba(232, 232, 232, 0.5);
+  border: 2px solid #e3e3e3;
   animation: fadeInRight 0.6s ease-out 0.2s backwards;
 }
 .contact-section .contact-form-wrapper .form-title {
@@ -5543,11 +5543,11 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   object-fit: cover;
   border-radius: 6px;
   transition: transform 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 .blog-contact .container .blog-contact-grid .blog article .blog-content .excerpt-with-image .blog-featured-image img:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 .blog-contact .container .blog-contact-grid .blog article .blog-content a {
   color: #333333;
@@ -5592,7 +5592,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: inherit;
   background-color: #f8f9fa;
 }
@@ -5673,17 +5673,17 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     padding: 15px;
   }
   .blog-contact .container .blog-contact-grid .blog article .blog-content h3 {
-    font-size: 16px;
+    font-size: 1rem;
   }
   .blog-contact .container .blog-contact-grid .blog article .blog-content small {
-    font-size: 13px;
+    font-size: 0.875rem;
   }
   .blog-contact .container .blog-contact-grid .blog article .blog-content .excerpt-with-image {
     flex-direction: column;
     gap: 12px;
   }
   .blog-contact .container .blog-contact-grid .blog article .blog-content .excerpt-with-image p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .blog-contact .container .blog-contact-grid .blog article .blog-content .excerpt-with-image .blog-featured-image {
     align-self: center;
@@ -5801,7 +5801,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   position: relative;
 }
 .portfolio .container .card:hover {
-  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.13);
+  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.1);
   border-color: #cccccc;
 }
 .portfolio .container .card .card-head {
@@ -5876,12 +5876,12 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   background: #005177;
 }
 .portfolio .container .card .card-bod .card-links a {
-  font-size: 13px;
+  font-size: 0.875rem;
   padding: 8px 16px;
 }
 .portfolio .container .card .card-bod .card-links a i {
   margin-right: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   vertical-align: middle;
 }
 
@@ -5950,7 +5950,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
     font-size: 0.75rem;
   }
   .portfolio .container .card-links a {
-    font-size: 11px;
+    font-size: 0.75rem;
     padding: 6px 10px;
   }
 }
@@ -5985,13 +5985,13 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .portfolio-gallery .gallery-grid-tiles .gallery-tile:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 36px rgba(171, 175, 178, 0.18);
+  box-shadow: 0 12px 36px rgba(142, 36, 170, 0.1);
 }
 
 section.portfolio-gallery-tabs.container {
@@ -6092,7 +6092,7 @@ section.portfolio-gallery-tabs.container {
   margin: 0;
   padding: 0 8px 8px 0;
   scrollbar-width: thin;
-  scrollbar-color: #0073aa #f5f5f5;
+  scrollbar-color: #0073aa #f4f3f4;
 }
 .portfolio-gallery-tabs .gallery-tabs-content .gallery-tab-panel .gallery-grid-tiles .gallery-tile {
   width: 235px;
@@ -6101,14 +6101,14 @@ section.portfolio-gallery-tabs.container {
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-right: 8px;
 }
 .portfolio-gallery-tabs .gallery-tabs-content .gallery-tab-panel .gallery-grid-tiles .gallery-tile:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 36px rgba(171, 175, 178, 0.18);
+  box-shadow: 0 12px 36px rgba(142, 36, 170, 0.1);
 }
 
 @media (max-width: 1024px) {
@@ -6149,7 +6149,7 @@ section.portfolio-gallery-tabs.container {
   height: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
-  background: #f5f5f5;
+  background: #f4f3f4;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -6178,15 +6178,15 @@ section.portfolio-gallery-tabs.container {
 }
 .proj-disc p {
   margin: 0;
-  color: #333;
+  color: #333333;
 }
 
 .modal-close {
   position: absolute;
   top: 16px;
   right: 16px;
-  font-size: 24px;
-  color: #333;
+  font-size: 1.5rem;
+  color: #333333;
   cursor: pointer;
   transition: color 0.2s;
 }

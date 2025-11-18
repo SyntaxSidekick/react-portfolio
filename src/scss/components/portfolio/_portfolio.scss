@@ -43,7 +43,7 @@
 
       &:hover {
         
-        box-shadow: 0 8px 32px rgba($primary, 0.13);
+        box-shadow: 0 8px 32px $brand-primary-100;
         border-color: $color-border-medium;
       }
 
@@ -111,11 +111,11 @@
           gap: 12px;
           a {
             @include btn;
-            font-size: 13px;
+            font-size: $font-size-sm;
             padding: 8px 16px;
             i {
               margin-right: 6px;
-              font-size: 16px;
+              font-size: $font-size-base;
               vertical-align: middle;
             }
           }
@@ -206,7 +206,7 @@
 
     .card-bod h3 { @include font-size-md; }
     .card-bod p { @include font-size-xs; }
-    .card-links a { font-size: 11px; padding: 6px 10px; }
+    .card-links a { font-size: $font-size-xs; padding: 6px 10px; }
   }
 }
 
@@ -244,13 +244,13 @@
       aspect-ratio: 4/3;
       object-fit: cover;
       border-radius: $radius-lg;
-      box-shadow: 0 4px 16px rgba($primary, 0.12);
+      box-shadow: 0 4px 16px $brand-primary-100;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       
       &:hover {
         transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 12px 36px rgba($accent, 0.18);
+        box-shadow: 0 12px 36px $brand-accent-100;
       }
     }
   }
@@ -302,7 +302,7 @@ section.portfolio-gallery-tabs.container {
       &.active {
         background: $secondary-blue;
         color: $text-white;
-        box-shadow: 0 4px 16px rgba($primary, 0.3);
+        box-shadow: 0 4px 16px $brand-primary-300;
         
         i {
           transform: scale(1.1);
@@ -351,7 +351,7 @@ section.portfolio-gallery-tabs.container {
         margin: 0;
         padding: 0 8px 8px 0;
         scrollbar-width: thin;
-        scrollbar-color: $primary #f5f5f5;
+        scrollbar-color: $primary $gray-100;
 
         .gallery-tile {
           width: 235px;
@@ -360,14 +360,14 @@ section.portfolio-gallery-tabs.container {
           aspect-ratio: 4/3;
           object-fit: cover;
           border-radius: $radius-lg;
-          box-shadow: 0 4px 16px rgba($primary, 0.12);
+          box-shadow: 0 4px 16px $brand-primary-100;
           cursor: pointer;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           margin-right: 8px;
 
           &:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 36px rgba($accent, 0.18);
+            box-shadow: 0 12px 36px $brand-accent-100;
           }
         }
       }
@@ -419,7 +419,7 @@ section.portfolio-gallery-tabs.container {
   height: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #f5f5f5;
+  background: $gray-100;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -448,15 +448,15 @@ section.portfolio-gallery-tabs.container {
   text-align: center;
   p {
     margin: 0;
-    color: #333;
+    color: $color-text-primary;
   }
 }
 .modal-close {
   position: absolute;
   top: 16px;
   right: 16px;
-  font-size: 24px;
-  color: #333;
+  font-size: $font-size-xl;
+  color: $color-text-primary;
   cursor: pointer;
   transition: color 0.2s;
   

@@ -25,7 +25,7 @@
     }
     img:hover {
       transform: scale(1.04) translateY(-2px);
-      box-shadow: 0 6px 18px rgba($primary,0.13);
+      box-shadow: 0 6px 18px $brand-primary-100;
     }
   }
 
@@ -140,19 +140,19 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        background: linear-gradient(135deg, rgba($primary-dark, 0.1), rgba($primary-dark, 0.05));
+        background: linear-gradient(135deg, $brand-primary-100, $brand-primary-50);
         color: $primary-dark;
         padding: 8px 12px;
         border-radius: 20px;
         font-size: 0.875rem;
         font-weight: 500;
-        border: 1px solid rgba($primary-dark, 0.2);
+        border: 1px solid $brand-primary-200;
         transition: all 0.2s ease;
 
         &:hover {
-          background: linear-gradient(135deg, rgba($primary-dark, 0.15), rgba($primary-dark, 0.1));
+          background: linear-gradient(135deg, $brand-primary-100, $brand-primary-100);
           transform: translateY(-1px);
-          box-shadow: 0 2px 8px rgba($primary-dark, 0.2);
+          box-shadow: 0 2px 8px $brand-primary-200;
         }
 
         i {
