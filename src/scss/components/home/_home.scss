@@ -72,8 +72,8 @@
       right: -25%;
       background: radial-gradient(
         circle at 30% 50%,
-        rgba($primary-dark, 0.08) 0%,
-        rgba($primary, 0.05) 35%,
+        $brand-primary-50 0%,
+        $brand-primary-50 35%,
         transparent 70%
       );
       animation: float 20s ease-in-out infinite;
