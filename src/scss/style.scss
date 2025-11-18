@@ -30,6 +30,7 @@
 // ============================================================
 // UTILITIES
 // ============================================================
+@use 'utils/bootstrap-modal';  // Minimal Bootstrap modal mechanics
 @use 'utils/performance';
 @use 'utils/modal';
 @use 'utils/skip-link';

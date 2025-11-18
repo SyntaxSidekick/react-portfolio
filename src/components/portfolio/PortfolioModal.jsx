@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 
 const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
   const fullscreen = true;
-  const modalRef = useRef(null);
   const lastActiveElement = useRef(null);
 
   // Focus trap and return focus to trigger
@@ -12,8 +11,10 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
     if (modalOpen) {
       lastActiveElement.current = document.activeElement;
       setTimeout(() => {
-        if (modalRef.current) {
-          const focusable = modalRef.current.querySelector(
+        // Focus the first button in the modal (close button)
+        const modalElement = document.querySelector('.modal.show');
+        if (modalElement) {
+          const focusable = modalElement.querySelector(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
           );
           if (focusable) focusable.focus();
@@ -24,18 +25,21 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
           closeModal();
         }
         // Focus trap
-        if (e.key === "Tab" && modalRef.current) {
-          const focusableEls = modalRef.current.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
-          const first = focusableEls[0];
-          const last = focusableEls[focusableEls.length - 1];
-          if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          } else if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
+        if (e.key === "Tab") {
+          const modalElement = document.querySelector('.modal.show');
+          if (modalElement) {
+            const focusableEls = modalElement.querySelectorAll(
+              'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const first = focusableEls[0];
+            const last = focusableEls[focusableEls.length - 1];
+            if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            } else if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
           }
         }
       };
@@ -57,7 +61,6 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
       aria-labelledby="portfolio-modal-title"
       aria-modal="true"
       role="dialog"
-      ref={modalRef}
     >
       <Modal.Header closeButton>
         <Modal.Title as="h2" id="portfolio-modal-title">
