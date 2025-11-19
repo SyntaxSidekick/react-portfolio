@@ -1,0 +1,54 @@
+// ============================================================================
+// PAGE HEADER - Universal title/subtitle component
+// ============================================================================
+// Used across Bio, Portfolio, Blog, Contact pages
+// Simple header section for page titles
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.page-header {
+  text-align: center;
+  margin-bottom: $gap-xl;
+  padding-top: $gap-lg;
+
+  .page-title {
+    font-family: $font-heading;
+    @include font-size-hero;
+    font-weight: $weight-normal;
+    color: $primary;
+    margin: 0 0 $space-sm 0;
+    letter-spacing: $letter-spacing-tight;
+    line-height: $line-height-tight;
+  }
+
+  .page-subtitle {
+    font-family: $font-alt;
+    @include font-size-lg;
+    font-weight: $weight-medium;
+    color: $text-muted;
+    margin: 0;
+    letter-spacing: $letter-spacing-wide;
+  }
+}
+
+// Dark mode
+html.dark-mode {
+  .page-header {
+    .page-title {
+      color: $text-white;
+    }
+
+    .page-subtitle {
+      color: $text-light;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: $bp-md) {
+  .page-header {
+    margin-bottom: $gap-lg;
+    padding-top: $gap;
+  }
+}

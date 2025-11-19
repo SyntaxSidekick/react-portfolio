@@ -72,13 +72,6 @@ body {
     @media (max-width: 600px) {
       padding: clamp(4px, 2vw, 8px);
     }
-
-    h2 {
-      text-transform: uppercase;
-      margin-bottom: 40px;
-      color: $text-white;
-      // Typography handled by _typography.scss
-    }
   }
 }
 
@@ -303,9 +296,5 @@ figure {
   .blog-intro,
   .contact-intro {
     color: $gray-400 !important;
-  }
-
-  .container h2 {
-    color: $text-white !important;
   }
 }

@@ -152,6 +152,12 @@ $tech-python: #3776AB;
 $tech-java: #ED8B00;
 $tech-angular: #DD0031;
 $tech-laravel: #FF2D20;
+$tech-webpack: #8DD6F9;
+$tech-magento: #EE672F;
+$tech-jquery: #0769AD;
+$tech-azure: #0089D6;
+$tech-adobe: #FF0000;
+$tech-hotjar: #F04D4E;
 
 // ============================================================
 // SHADOW TOKENS
@@ -439,6 +445,13 @@ $line-height-tight: 1.25;
 $line-height-normal: 1.5;
 $line-height-relaxed: 1.75;
 $line-height-loose: 2;
+
+// Letter Spacing
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.02em;
+$letter-spacing-wider: 0.05em;
+$letter-spacing-widest: 0.1em;
 
 // =====================
 // Widget/Sidebar Variables

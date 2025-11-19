@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import profileImg from "../../assets/images/riad-kilani-profile.jpg";
+import { PageHeader } from "../";
 
 const Bio = () => {
   const [years, setYears] = useState(0);
@@ -53,10 +54,10 @@ const Bio = () => {
 
     return (
     <section className="bio-section container" aria-labelledby="bio-title" role="region" aria-label="About Riad Kilani">
-      <div className="page-header" role="presentation">
-        <h2 id="page-title">About Riad Kilani</h2>
-        <h3>Front-End Developer &amp; UI Specialist</h3>
-      </div>
+      <PageHeader 
+        title="About Riad Kilani" 
+        subtitle="Senior Front-End Developer | React & UI/UX Expert" 
+      />
       <div className="bio-content" ref={bioContentRef} role="group" aria-label="Bio content">
         <div className="bio-about">
           <div className="bio-image">
@@ -64,17 +65,10 @@ const Bio = () => {
           </div>
           <div className="text-wrap">
             <p>
-              With over <span>{years}</span> years of experience, I specialize
-              in crafting modern, accessible, and high-performance web
-              interfaces. My passion lies in transforming ideas into engaging
-              digital experiences using the latest technologies and design
-              systems.
+              With <span>{years}</span>+ years of front-end experience, I focus on building modern, accessible, and high-performance interfaces that scale. I'm passionate about turning complex ideas into intuitive, user-centered digital experiences powered by strong design systems and reliable engineering practices.
             </p>
             <p>
-              I have worked with startups, agencies, and global brands,
-              delivering solutions that blend creativity with technical
-              excellence. My toolkit includes React, Sass, Figma, and a strong
-              foundation in HTML, CSS, and JavaScript.
+              I've partnered with startups, agencies, and global brands to deliver interfaces that balance craftsmanship with performance. My toolkit includes React, modern CSS, Sass, Figma, and deep expertise across HTML, CSS, and JavaScript—supported by a strong understanding of usability, accessibility, and interaction design.
             </p>
           </div>
         </div>
@@ -129,7 +123,7 @@ const Bio = () => {
                 { icon: "fab fa-react", label: "React/Redux" },
                 { icon: "fab fa-vuejs", label: "Vue.js" },
                 { icon: "fab fa-angular", label: "AngularJS" },
-                { icon: "fab fa-js", label: "jQuery" },
+                { icon: "fab fa-js jquery-icon", label: "jQuery" },
                 { icon: "fab fa-bootstrap", label: "Bootstrap" },
                 { icon: "fab fa-node-js", label: "Node.js" },
               ].map((skill, i) => (
@@ -147,7 +141,7 @@ const Bio = () => {
                 { icon: "fab fa-gulp", label: "Gulp" },
                 { icon: "fab fa-aws", label: "AWS" },
                 { icon: "fab fa-microsoft", label: "Azure" },
-                { icon: "fab fa-webpack", label: "Webpack" },
+                { icon: "fas fa-cube", label: "Webpack" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[20 + i] = el)}>
                   <i className={skill.icon}></i> {skill.label}
@@ -174,11 +168,11 @@ const Bio = () => {
             <ul className="bio-skills">
               {[
                 { icon: "fab fa-figma", label: "Figma" },
-                { icon: "fab adb fa-illustrator", label: "Illustrator" },
-                { icon: "fab adb fa-photoshop", label: "Photoshop" },
-                { icon: "fab fa-adobe", label: "Adobe CC" },
-                { icon: "fab fa-css3-alt", label: "Responsive Design" },
-                { icon: "fab fa-css3-alt", label: "CSS Grid/Flexbox" },
+                { icon: "fas fa-pencil-ruler", label: "Illustrator" },
+                { icon: "fas fa-image", label: "Photoshop" },
+                { icon: "fas fa-cloud", label: "Adobe CC" },
+                { icon: "fas fa-mobile-alt", label: "Responsive Design" },
+                { icon: "fas fa-th", label: "CSS Grid/Flexbox" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[40 + i] = el)}>
                   <i className={skill.icon}></i> {skill.label}
@@ -203,31 +197,48 @@ const Bio = () => {
             </ul>
           </div>
         </div>
-        <p>
-          <strong>Let's connect:</strong>
-          <a
-            href="https://www.linkedin.com/in/riadkilani"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn"
-          >
-            <i className="fab fa-linkedin"></i> LinkedIn
-          </a>
-          <a
-            href="https://github.com/f1ss1on"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn"
-          >
-            <i className="fab fa-github"></i> GitHub
-          </a>
-          <a href="https://codepen.io/f1ss1on" className="btn">
-            <i className="fab fa-codepen"></i> Codepen
-          </a>
-          <a href="https://x.com/f1ss1on" className="btn">
-            <i className="fab fa-x-twitter"></i> X
-          </a>
-        </p>
+        
+        <div className="bio-connect">
+          <h3>Let's Connect</h3>
+          <div className="social-links">
+            <a
+              href="https://www.linkedin.com/in/riadkilani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link linkedin"
+            >
+              <i className="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://github.com/f1ss1on"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link github"
+            >
+              <i className="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a 
+              href="https://codepen.io/f1ss1on" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link codepen"
+            >
+              <i className="fab fa-codepen"></i>
+              <span>CodePen</span>
+            </a>
+            <a 
+              href="https://x.com/f1ss1on" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link twitter"
+            >
+              <i className="fab fa-x-twitter"></i>
+              <span>X (Twitter)</span>
+            </a>
+          </div>
+        </div>
       
     </section>
   );
