@@ -17,8 +17,8 @@ const routeTitles = [
   },
   { 
     path: /^\/bio$/, 
-    title: "About Riad Kilani | Front-end Developer & Designer",
-    description: "Learn about Riad Kilani's 12+ years of experience in front-end development, design, and creating user-centered digital solutions."
+    title: "About Riad Kilani | Senior Front-End Engineer & React Specialist",
+    description: "Learn about Riad Kilani's 16+ years of experience in front-end engineering, specializing in React, accessible UI development, design systems, and high-performance web applications."
   },
   { 
     path: /^\/portfolio$/, 

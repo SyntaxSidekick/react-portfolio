@@ -7059,6 +7059,19 @@ html.dark-mode .bio-section .bio-process li:hover {
 .bio-section .bio-connect .social-links .social-link:hover span {
   color: currentColor;
 }
+.bio-section .bio-connect .social-links .social-link:focus {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+  transform: translateY(-8px);
+  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.13);
+}
+.bio-section .bio-connect .social-links .social-link:focus:not(:focus-visible) {
+  outline: none;
+}
+.bio-section .bio-connect .social-links .social-link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
 .bio-section .bio-connect .social-links .social-link.linkedin {
   color: #0A66C2;
 }

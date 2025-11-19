@@ -669,6 +669,23 @@
           }
         }
 
+        // Focus state for keyboard navigation
+        &:focus {
+          outline: 3px solid currentColor;
+          outline-offset: 4px;
+          transform: translateY(-8px);
+          box-shadow: $shadow-hover-md;
+        }
+
+        &:focus:not(:focus-visible) {
+          outline: none;
+        }
+
+        &:focus-visible {
+          outline: 3px solid currentColor;
+          outline-offset: 4px;
+        }
+
         // Brand colors
         &.linkedin {
           color: #0A66C2;

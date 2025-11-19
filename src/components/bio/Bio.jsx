@@ -16,6 +16,7 @@ import step4Image from "../../assets/images/steps/testing-accessibility-step-4.p
 import step5Image from "../../assets/images/steps/performance-optimization-step-5.png";
 import step6Image from "../../assets/images/steps/deployment-maintenance-step-6.png";
 import { PageHeader } from "../";
+import DynamicTitle from "../../DynamicTitle";
 
 const Bio = () => {
   const [years, setYears] = useState(0);
@@ -27,6 +28,50 @@ const Bio = () => {
   useEffect(() => {
     const startYear = 2009;
     setYears(new Date().getFullYear() - startYear);
+  }, []);
+
+  // Add structured data for SEO
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Riad Kilani",
+      "jobTitle": "Senior Front-End Engineer",
+      "description": "Senior Front-End Engineer specializing in React, accessible UI development, and high-performance web applications with 16+ years of experience.",
+      "url": "https://riadkilani.com",
+      "image": "https://riadkilani.com/assets/images/riad-kilani-profile.jpg",
+      "sameAs": [
+        "https://linkedin.com/in/riad-kilani",
+        "https://github.com/SyntaxSidekick",
+        "https://codepen.io/SyntaxSidekick",
+        "https://x.com/syntaxsidekick"
+      ],
+      "knowsAbout": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "Sass/SCSS",
+        "Accessibility",
+        "Web Performance",
+        "UI/UX Design",
+        "Front-End Architecture"
+      ],
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Front-End Development"
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
   }, []);
 
   // Fade-in/intersection animations
@@ -69,6 +114,7 @@ const Bio = () => {
 
     return (
     <main className="bio-section container" id="main-content" aria-labelledby="page-title">
+      <DynamicTitle />
       <PageHeader 
         title="About Riad Kilani" 
         subtitle="Senior Front-End Engineer | React Specialist | UX & Interface Architecture"
@@ -79,7 +125,7 @@ const Bio = () => {
             <div className="bio-image">
               <img 
                 src={profileImg} 
-                alt="Riad Kilani, Senior Front-End Developer" 
+                alt="Portrait of Riad Kilani, Senior Front-End Engineer specializing in React and accessible UI development" 
                 width="180" 
                 height="180"
                 loading="eager"
@@ -138,7 +184,13 @@ const Bio = () => {
             ].map((step, i) => (
               <li key={i} ref={(el) => (processRefs.current[i] = el)}>
                 <div className="process-image">
-                  <img src={step.image} alt={step.title} loading="lazy" />
+                  <img 
+                    src={step.image} 
+                    alt={`Illustration for ${step.title} step in the front-end development process`}
+                    width="600" 
+                    height="400"
+                    loading="lazy" 
+                  />
                 </div>
                 <div className="process-content">
                   <strong>{step.title}:</strong> {step.description}
@@ -165,14 +217,14 @@ const Bio = () => {
                 { icon: "fab fa-html5", label: "HTML5" },
                 { icon: "fab fa-css3-alt", label: "CSS3" },
                 { icon: "fab fa-js", label: "JavaScript" },
-                { icon: "svg", svg: typescriptIcon, label: "TypeScript" },
+                { icon: "svg", svg: typescriptIcon, label: "TypeScript", altText: "TypeScript logo - typed JavaScript for scalable applications" },
                 { icon: "fab fa-php", label: "PHP" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[i] = el)}>
                   {skill.icon === "svg" ? (
-                    <img src={skill.svg} alt={skill.label} className="skill-svg-icon" />
+                    <img src={skill.svg} alt={skill.altText || skill.label} className="skill-svg-icon" title={skill.label} />
                   ) : (
-                    <i className={skill.icon}></i>
+                    <i className={skill.icon} aria-hidden="true"></i>
                   )}
                   {" "}{skill.label}
                 </li>
@@ -184,17 +236,17 @@ const Bio = () => {
             <ul className="bio-skills" aria-label="Front-end frameworks and libraries">
               {[
                 { icon: "fab fa-react", label: "React/Redux" },
-                { icon: "svg", svg: nextjsIcon, label: "Next.js" },
-                { icon: "svg", svg: tailwindIcon, label: "Tailwind CSS" },
+                { icon: "svg", svg: nextjsIcon, label: "Next.js", altText: "Next.js logo - React framework for production" },
+                { icon: "svg", svg: tailwindIcon, label: "Tailwind CSS", altText: "Tailwind CSS logo - utility-first CSS framework" },
                 { icon: "fab fa-node-js", label: "Node.js" },
                 { icon: "fab fa-sass", label: "Sass/SCSS" },
                 { icon: "fab fa-vuejs", label: "Vue.js" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[10 + i] = el)}>
                   {skill.icon === "svg" ? (
-                    <img src={skill.svg} alt={skill.label} className="skill-svg-icon" />
+                    <img src={skill.svg} alt={skill.altText || skill.label} className="skill-svg-icon" title={skill.label} />
                   ) : (
-                    <i className={skill.icon}></i>
+                    <i className={skill.icon} aria-hidden="true"></i>
                   )}
                   {" "}{skill.label}
                 </li>
@@ -211,7 +263,7 @@ const Bio = () => {
                 { icon: "fas fa-cube", label: "Webpack" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[20 + i] = el)}>
-                  <i className={skill.icon}></i> {skill.label}
+                  <i className={skill.icon} aria-hidden="true"></i> {skill.label}
                 </li>
               ))}
             </ul>
@@ -223,16 +275,16 @@ const Bio = () => {
                 { icon: "fas fa-layer-group", label: "Design Systems" },
                 { icon: "fas fa-mobile-alt", label: "Responsive Design" },
                 { icon: "fab fa-figma", label: "Figma" },
-                { icon: "svg", svg: xdIcon, label: "Adobe XD" },
-                { icon: "svg", svg: adobeCCIcon, label: "Adobe CC" },
-                { icon: "svg", svg: photoshopIcon, label: "Photoshop" },
-                { icon: "svg", svg: illustratorIcon, label: "Illustrator" },
+                { icon: "svg", svg: xdIcon, label: "Adobe XD", altText: "Adobe XD logo - design and prototyping tool" },
+                { icon: "svg", svg: adobeCCIcon, label: "Adobe CC", altText: "Adobe Creative Cloud logo - creative design suite" },
+                { icon: "svg", svg: photoshopIcon, label: "Photoshop", altText: "Adobe Photoshop logo - image editing software" },
+                { icon: "svg", svg: illustratorIcon, label: "Illustrator", altText: "Adobe Illustrator logo - vector graphics editor" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[30 + i] = el)}>
                   {skill.icon === "svg" ? (
-                    <img src={skill.svg} alt={skill.label} className="skill-svg-icon" />
+                    <img src={skill.svg} alt={skill.altText || skill.label} className="skill-svg-icon" title={skill.label} />
                   ) : (
-                    <i className={skill.icon}></i>
+                    <i className={skill.icon} aria-hidden="true"></i>
                   )}
                   {" "}{skill.label}
                 </li>
@@ -250,7 +302,7 @@ const Bio = () => {
                 { icon: "fas fa-search", label: "SEO" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[40 + i] = el)}>
-                  <i className={skill.icon}></i> {skill.label}
+                  <i className={skill.icon} aria-hidden="true"></i> {skill.label}
                 </li>
               ))}
             </ul>
@@ -268,7 +320,7 @@ const Bio = () => {
                 { icon: "fab fa-magento", label: "Magento" },
               ].map((skill, i) => (
                 <li key={skill.label} ref={(el) => (skillsRefs.current[50 + i] = el)}>
-                  <i className={skill.icon}></i> {skill.label}
+                  <i className={skill.icon} aria-hidden="true"></i> {skill.label}
                 </li>
               ))}
             </ul>
@@ -291,6 +343,7 @@ const Bio = () => {
               rel="noopener noreferrer"
               className="social-link linkedin"
               aria-label="Connect with Riad Kilani on LinkedIn"
+              title="Connect with Riad Kilani on LinkedIn"
             >
               <i className="fab fa-linkedin" aria-hidden="true"></i>
               <span>LinkedIn</span>
@@ -301,6 +354,7 @@ const Bio = () => {
               rel="noopener noreferrer"
               className="social-link github"
               aria-label="View Riad Kilani's code on GitHub"
+              title="View Riad Kilani's open source projects and code on GitHub"
             >
               <i className="fab fa-github" aria-hidden="true"></i>
               <span>GitHub</span>
@@ -311,6 +365,7 @@ const Bio = () => {
               rel="noopener noreferrer"
               className="social-link codepen"
               aria-label="See Riad Kilani's experiments on CodePen"
+              title="Explore Riad Kilani's front-end experiments and demos on CodePen"
             >
               <i className="fab fa-codepen" aria-hidden="true"></i>
               <span>CodePen</span>
@@ -321,6 +376,7 @@ const Bio = () => {
               rel="noopener noreferrer"
               className="social-link twitter"
               aria-label="Follow Riad Kilani on X (formerly Twitter)"
+              title="Follow Riad Kilani on X for web development insights and updates"
             >
               <i className="fab fa-x-twitter" aria-hidden="true"></i>
               <span>X (Twitter)</span>
