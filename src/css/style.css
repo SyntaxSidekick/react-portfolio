@@ -1191,8 +1191,12 @@ li {
   padding-top: 40px;
 }
 .page-header .page-title {
-  font-family: "trajan-pro-3", serif;
   font-size: 3rem;
+  font-weight: 400;
+  color: #0073aa;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 @media (max-width: 900px) {
   .page-header .page-title {
@@ -1204,26 +1208,20 @@ li {
     font-size: 1.5rem;
   }
 }
-.page-header .page-title {
-  font-weight: 400;
-  color: #0073aa;
-  margin: 0 0 8px 0;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-}
-.page-header .page-subtitle {
+.page-header h2.page-subtitle {
   font-family: "dmsans", sans-serif;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #595959;
   margin: 0;
   letter-spacing: 0.02em;
+  text-align: center;
 }
 
 html.dark-mode .page-header .page-title {
   color: #ffffff;
 }
-html.dark-mode .page-header .page-subtitle {
+html.dark-mode .page-header h2.page-subtitle {
   color: #f4f3f4;
 }
 
@@ -1445,28 +1443,22 @@ textarea:focus-visible {
   transition: opacity 0.3s;
 }
 
-.page-header,
 .section-header {
   text-align: center;
+  margin-top: 60px;
   margin-bottom: 40px;
 }
-.page-header h2,
 .section-header h2 {
   font-size: 2rem;
   color: #2c94da;
   font-family: "trajan-pro-3", serif;
   margin-bottom: 20px !important;
 }
-.page-header p,
 .section-header p {
   font-size: 1rem;
   color: #595959;
   max-width: 800px;
   margin: 0 auto;
-}
-
-.section-header {
-  margin-top: 60px;
 }
 
 figure {
@@ -6321,15 +6313,49 @@ section.portfolio-gallery-tabs.container {
 .bio-section {
   margin: 0 auto;
 }
-.bio-section h1 {
+.bio-section section {
+  margin-bottom: 60px;
+}
+.bio-section section:last-child {
+  margin-bottom: 0;
+}
+.bio-section section header {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.bio-section section header h2 {
+  font-family: "trajan-pro-3", serif;
   font-size: 2rem;
   color: #0073aa;
-  text-align: center;
-  margin-bottom: 20px;
-  font-family: "trajan-pro-3", serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-  position: relative;
+  margin: 0 0 20px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+@media (max-width: 900px) {
+  .bio-section section header h2 {
+    font-size: 1.5rem;
+  }
+}
+.bio-section section header p {
+  font-size: 1.125rem;
+  color: #333333;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bio-section .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .bio-section .bio-content {
   display: flex;
@@ -6341,12 +6367,10 @@ section.portfolio-gallery-tabs.container {
   z-index: 1;
 }
 .bio-section .bio-about {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 60px;
-  align-items: center;
   max-width: 1200px;
   margin: 0 auto 60px;
+}
+.bio-section .bio-about .bio-about-card {
   padding: 60px;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
@@ -6354,23 +6378,55 @@ section.portfolio-gallery-tabs.container {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  margin-top: 20px;
 }
-.bio-section .bio-about::before {
+.bio-section .bio-about .bio-about-card::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(0, 115, 170, 0.05) 0%, transparent 50%, rgba(142, 36, 170, 0.05) 100%);
   pointer-events: none;
   z-index: 0;
+  border-radius: 12px;
 }
-.bio-section .bio-about > * {
+.bio-section .bio-about .bio-about-card > * {
   position: relative;
   z-index: 1;
+}
+.bio-section .bio-about .bio-about-card .section-badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 16px;
+  background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+  color: #ffffff;
+  font-family: "dmsans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+  white-space: nowrap;
+  z-index: 2;
+}
+.bio-section .bio-about .bio-about-card .bio-about-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 60px;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .bio-section .bio-about .bio-about-card .bio-about-content {
+    align-items: center;
+  }
 }
 .bio-section .bio-about .bio-image {
   position: relative;
   flex-shrink: 0;
+  align-self: center;
 }
 .bio-section .bio-about .bio-image img {
   width: 180px;
@@ -6381,6 +6437,7 @@ section.portfolio-gallery-tabs.container {
   background: #ffffff;
   box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
 }
 .bio-section .bio-about .bio-image img:hover {
   transform: scale(1.05);
@@ -6389,6 +6446,7 @@ section.portfolio-gallery-tabs.container {
 .bio-section .bio-about .text-wrap {
   flex: 1;
   min-width: 0;
+  align-self: center;
 }
 .bio-section .bio-about .text-wrap p {
   font-size: 1.125rem;
@@ -6405,53 +6463,77 @@ section.portfolio-gallery-tabs.container {
   font-size: 1.1em;
 }
 @media (max-width: 900px) {
-  .bio-section .bio-about {
+  .bio-section .bio-about .bio-about-card {
+    padding: 20px;
+  }
+  .bio-section .bio-about .bio-about-card .bio-about-content {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
-    padding: 20px;
   }
-  .bio-section .bio-about .bio-image img {
+  .bio-section .bio-about .bio-about-card .bio-about-content .bio-image img {
     width: 160px;
     height: 160px;
   }
 }
-html.dark-mode .bio-section .bio-about {
+html.dark-mode .bio-section .bio-about .bio-about-card {
   background: rgba(0, 0, 0, 0.8);
   border-color: rgba(255, 255, 255, 0.1);
 }
-html.dark-mode .bio-section .bio-about::before {
+html.dark-mode .bio-section .bio-about .bio-about-card::before {
   background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, transparent 50%, rgba(142, 36, 170, 0.1) 100%);
 }
-html.dark-mode .bio-section .bio-about .bio-image img {
+html.dark-mode .bio-section .bio-about .bio-about-card .section-badge {
+  background: linear-gradient(135deg, #2c94da 0%, #0073aa 100%);
+}
+html.dark-mode .bio-section .bio-about .bio-about-card .bio-image img {
   border-color: #1a1a1a;
   background: #1a1a1a;
 }
-html.dark-mode .bio-section .bio-about .text-wrap p {
+html.dark-mode .bio-section .bio-about .bio-about-card .text-wrap p {
   color: #f4f3f4;
 }
-html.dark-mode .bio-section .bio-about .text-wrap p span {
+html.dark-mode .bio-section .bio-about .bio-about-card .text-wrap p span {
   color: #2c94da;
 }
-.bio-section h3 {
+html.dark-mode .bio-section section header h2 {
+  color: #2c94da;
+}
+html.dark-mode .bio-section section header p {
+  color: #f4f3f4;
+}
+.bio-section .section-header {
+  max-width: 900px;
+  margin: 60px auto 40px;
+  text-align: center;
+}
+.bio-section .section-header h3 {
   font-family: "trajan-pro-3", serif;
   font-size: 2rem;
   color: #0073aa;
-  text-align: center;
-  margin: 60px 0 40px;
+  margin: 0 0 20px;
   font-weight: 400;
   letter-spacing: 0.02em;
 }
 @media (max-width: 900px) {
-  .bio-section h3 {
+  .bio-section .section-header h3 {
     font-size: 1.5rem;
   }
+}
+.bio-section .section-header p {
+  font-size: 1.125rem;
+  color: #333333;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .bio-section .bio-process {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  margin: 40px 0 60px;
+  margin: 0 0 60px;
   padding: 0;
   list-style: none;
   counter-reset: process-step;
@@ -6467,6 +6549,10 @@ html.dark-mode .bio-section .bio-about .text-wrap p span {
   counter-increment: process-step;
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 .bio-section .bio-process li:nth-child(1) {
   animation-delay: 0.1s;
@@ -6491,13 +6577,38 @@ html.dark-mode .bio-section .bio-about .text-wrap p span {
   box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
   border-color: #0073aa;
 }
+.bio-section .bio-process li:hover .process-image {
+  transform: scale(1.05);
+}
+.bio-section .bio-process li:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
+}
+.bio-section .bio-process li .process-image {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 115, 170, 0.03);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.bio-section .bio-process li .process-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .bio-section .bio-process li::before {
   content: counter(process-step);
   position: absolute;
   top: 16px;
   left: 16px;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
   color: #ffffff;
   border-radius: 50%;
@@ -6505,27 +6616,27 @@ html.dark-mode .bio-section .bio-about .text-wrap p span {
   align-items: center;
   justify-content: center;
   font-family: "trajan-pro-3", serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.bio-section .bio-process li strong {
+.bio-section .bio-process li .process-content {
+  flex: 1;
+}
+.bio-section .bio-process li .process-content strong {
   display: block;
   color: #0073aa;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 8px;
-  padding-left: 48px;
   font-family: "dmsans", sans-serif;
-}
-.bio-section .bio-process li::after {
-  content: attr(data-text);
 }
 .bio-section .bio-process li {
   color: #333333;
   font-size: 1rem;
   line-height: 1.75;
-  padding-left: 20px;
 }
 @keyframes fadeInUp {
   from {
@@ -6555,7 +6666,7 @@ html.dark-mode .bio-section .bio-process li:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  margin-bottom: 60px;
+  margin: 0 0 60px;
 }
 .bio-section .bio-skills-wrapper .skills-group {
   background: #ffffff;
@@ -6581,7 +6692,7 @@ html.dark-mode .bio-section .bio-process li:hover {
   box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
   border-color: #0073aa;
 }
-.bio-section .bio-skills-wrapper .skills-group h4 {
+.bio-section .bio-skills-wrapper .skills-group h3 {
   color: #0073aa;
   font-size: 1.25rem;
   font-weight: 600;
@@ -6629,6 +6740,13 @@ html.dark-mode .bio-section .bio-process li:hover {
   text-align: center;
   transition: transform 0.2s ease;
 }
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li .skill-svg-icon {
+  width: 24px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 32px rgba(0, 115, 170, 0.13);
@@ -6637,6 +6755,9 @@ html.dark-mode .bio-section .bio-process li:hover {
   transform: scaleX(1);
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:hover i {
+  transform: scale(1.2);
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:hover .skill-svg-icon {
   transform: scale(1.2);
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-html5) .fa-html5 {
@@ -6656,6 +6777,12 @@ html.dark-mode .bio-section .bio-process li:hover {
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-js):hover {
   color: #F7DF1E;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-code) .fa-code {
+  color: #3178C6;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-code):hover {
+  color: #3178C6;
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.jquery-icon) .jquery-icon {
   color: #0769AD;
@@ -6698,6 +6825,30 @@ html.dark-mode .bio-section .bio-process li:hover {
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-node-js):hover {
   color: #339933;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-wind) .fa-wind {
+  color: #06B6D4;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-wind):hover {
+  color: #06B6D4;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-rocket) .fa-rocket {
+  color: #000000;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-rocket):hover {
+  color: #000000;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-sass) .fa-sass {
+  color: #CC6699;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-sass):hover {
+  color: #CC6699;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-layer-group) .fa-layer-group {
+  color: #0073aa;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-layer-group):hover {
+  color: #0073aa;
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-git-alt) .fa-git-alt {
   color: #F05032;
@@ -6753,6 +6904,12 @@ html.dark-mode .bio-section .bio-process li:hover {
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-figma):hover {
   color: #F24E1E;
 }
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pen-nib) .fa-pen-nib {
+  color: #FF61F6;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pen-nib):hover {
+  color: #FF61F6;
+}
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pencil-ruler) .fa-pencil-ruler {
   color: #FF9A00;
 }
@@ -6783,16 +6940,31 @@ html.dark-mode .bio-section .bio-process li:hover {
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-hotjar):hover {
   color: #F04D4E;
 }
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt=TypeScript]):hover {
+  color: #3178C6;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Tailwind CSS"]):hover {
+  color: #06B6D4;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Next.js"]):hover {
+  color: #000000;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Adobe XD"]):hover {
+  color: #FF61F6;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Adobe CC"]):hover::before {
+  background: linear-gradient(90deg, #FF0000 0%, #00FF00 33%, #0000FF 66%, #FF0000 100%);
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt=Photoshop]):hover {
+  color: #31A8FF;
+}
+.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt=Illustrator]):hover {
+  color: #FF9A00;
+}
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-mobile-alt) .fa-mobile-alt {
   color: #0073aa;
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-mobile-alt):hover {
-  color: #0073aa;
-}
-.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-th) .fa-th {
-  color: #0073aa;
-}
-.bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-th):hover {
   color: #0073aa;
 }
 .bio-section .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-vial) .fa-vial {
@@ -6909,6 +7081,22 @@ html.dark-mode .bio-section .bio-process li:hover {
     grid-template-columns: 1fr;
   }
 }
+html.dark-mode .bio-section .bio-process li {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+html.dark-mode .bio-section .bio-process li .process-image {
+  background: rgba(44, 148, 218, 0.08);
+}
+html.dark-mode .bio-section .bio-process li:hover {
+  border-color: #2c94da;
+}
+html.dark-mode .bio-section .bio-process li .process-content strong {
+  color: #2c94da;
+}
+html.dark-mode .bio-section .bio-process li::before {
+  background: linear-gradient(135deg, #2c94da 0%, #0073aa 100%);
+}
 html.dark-mode .bio-section .bio-connect h3 {
   color: #2c94da;
 }
@@ -6935,7 +7123,7 @@ html.dark-mode .bio-section .bio-skills-wrapper .skills-group {
 html.dark-mode .bio-section .bio-skills-wrapper .skills-group::before {
   background: linear-gradient(90deg, #2c94da 0%, #0073aa 50%, #ab47bc 100%);
 }
-html.dark-mode .bio-section .bio-skills-wrapper .skills-group h4 {
+html.dark-mode .bio-section .bio-skills-wrapper .skills-group h3 {
   color: #2c94da;
 }
 html.dark-mode .bio-section .bio-skills-wrapper .skills-group .bio-skills li {
@@ -7013,14 +7201,19 @@ html.dark-mode .bio-section .bio-skills-wrapper .skills-group .bio-skills li:hov
   .bio-section .bio-text .bio-skills li {
     font-size: 13px;
   }
-  .bio-section .bio-process li {
-    min-width: 160px;
-    padding: 14px 16px 14px 38px;
+  .bio-section .bio-process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bio-section .bio-process li .process-image {
+    height: 160px;
   }
   .bio-section .bio-process li::before {
-    font-size: 15px;
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+  .bio-section .bio-process li .process-content strong {
+    font-size: 1rem;
   }
 }
 @media (max-width: 600px) {
@@ -7044,19 +7237,19 @@ html.dark-mode .bio-section .bio-skills-wrapper .skills-group .bio-skills li:hov
     padding: 5px 8px;
   }
   .bio-section .bio-process {
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .bio-section .bio-process li {
-    min-width: 100px;
-    padding: 10px 30px;
+  .bio-section .bio-process li .process-image {
+    height: 140px;
   }
   .bio-section .bio-process li::before {
-    font-size: 12px;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
   }
-  .bio-section .bio-process li strong::before {
-    font-size: 52px;
+  .bio-section .bio-process li .process-content strong {
+    font-size: 0.875rem;
   }
 }
 /*!

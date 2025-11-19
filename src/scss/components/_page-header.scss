@@ -13,22 +13,29 @@
   padding-top: $gap-lg;
 
   .page-title {
-    font-family: $font-heading;
-    @include font-size-hero;
+    font-size: $font-size-4xl;
     font-weight: $weight-normal;
     color: $primary;
     margin: 0 0 $space-sm 0;
     letter-spacing: $letter-spacing-tight;
     line-height: $line-height-tight;
+    
+    @media (max-width: $bp-md) {
+      font-size: $font-size-3xl;
+    }
+    @media (max-width: $bp-sm) {
+      font-size: $font-size-xl;
+    }
   }
 
-  .page-subtitle {
+  h2.page-subtitle {
     font-family: $font-alt;
-    @include font-size-lg;
-    font-weight: $weight-medium;
+    font-size: $font-size-lg;
+    font-weight: $weight-bold;
     color: $text-muted;
     margin: 0;
     letter-spacing: $letter-spacing-wide;
+    text-align: center;
   }
 }
 
@@ -39,7 +46,7 @@ html.dark-mode {
       color: $text-white;
     }
 
-    .page-subtitle {
+    h2.page-subtitle {
       color: $text-light;
     }
   }

@@ -11,22 +11,49 @@
 @use "../../abstracts/mixins" as *;
 
 .bio-section {
-  //max-width: 900px;
   margin: 0 auto;
-  //padding: $gap-lg $gap;
-  //background: $background-light;
-  //border-radius: $radius-lg;
-  //box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 
-  h1 {
-    @include font-size-xxl;
-    color: $primary;
-    text-align: center;
-    margin-bottom: $gap;
-    font-family: $font-heading;
-    font-weight: 700;
-    letter-spacing: 1px;
-    position: relative;
+  // Semantic section styling
+  section {
+    margin-bottom: $gap-xl;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto $gap-lg;
+      text-align: center;
+
+      h2 {
+        font-family: $font-heading;
+        font-size: $font-size-2xl;
+        color: $primary;
+        margin: 0 0 $gap;
+        font-weight: $weight-normal;
+        letter-spacing: $letter-spacing-wide;
+
+        @media (max-width: $bp-md) {
+          font-size: $font-size-xl;
+        }
+      }
+
+      p {
+        font-size: $font-size-md;
+        color: $text-dark;
+        line-height: $line-height-relaxed;
+        margin: 0;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  // Visually hidden utility for screen readers
+  .visually-hidden {
+    @include visually-hidden;
   }
 
   .bio-content {
@@ -41,39 +68,71 @@
 
   // Modern bio about section with glassmorphism
   .bio-about {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: $gap-xl;
-    align-items: center;
     max-width: 1200px;
     margin: 0 auto $gap-xl;
-    padding: $gap-xl;
-    background: $overlay-white-heavy;
-    backdrop-filter: blur(20px);
-    border-radius: $radius-xl;
-    border: 1px solid $overlay-white-light;
-    box-shadow: $shadow-lg;
-    position: relative;
-    overflow: hidden;
 
-    // Subtle gradient overlay
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, $brand-primary-50 0%, transparent 50%, $brand-accent-50 100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    > * {
+    .bio-about-card {
+      padding: $gap-xl;
+      background: $overlay-white-heavy;
+      backdrop-filter: blur(20px);
+      border-radius: $radius-xl;
+      border: 1px solid $overlay-white-light;
+      box-shadow: $shadow-lg;
       position: relative;
-      z-index: 1;
+      overflow: visible; // Allow badge to overflow
+      margin-top: 20px; // Space for badge
+
+      // Subtle gradient overlay
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, $brand-primary-50 0%, transparent 50%, $brand-accent-50 100%);
+        pointer-events: none;
+        z-index: 0;
+        border-radius: $radius-xl;
+      }
+
+      > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-badge {
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: $space-xs $space-lg;
+        background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+        color: $text-white;
+        font-family: $font-alt;
+        font-size: $font-size-sm;
+        font-weight: $weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: $letter-spacing-wide;
+        border-radius: $radius-full;
+        box-shadow: $shadow-md;
+        white-space: nowrap;
+        z-index: 2;
+      }
+
+      .bio-about-content {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: $gap-xl;
+        align-items: start;
+
+        @media (min-width: $bp-md) {
+          align-items: center;
+        }
+      }
     }
 
     .bio-image {
       position: relative;
       flex-shrink: 0;
+      align-self: center;
 
       img {
         width: 180px;
@@ -84,6 +143,7 @@
         background: $color-bg-primary;
         box-shadow: $shadow-md;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: block;
 
         &:hover {
           transform: scale(1.05);
@@ -95,6 +155,7 @@
     .text-wrap {
       flex: 1;
       min-width: 0;
+      align-self: center;
 
       p {
         font-size: $font-size-md;
@@ -115,54 +176,90 @@
     }
 
     @media (max-width: $bp-md) {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      text-align: center;
-      padding: $gap;
+      .bio-about-card {
+        padding: $gap;
 
-      .bio-image img {
-        width: 160px;
-        height: 160px;
+        .bio-about-content {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+
+          .bio-image img {
+            width: 160px;
+            height: 160px;
+          }
+        }
       }
     }
   }
 
   html.dark-mode & {
     .bio-about {
-      background: $overlay-medium;
-      border-color: $overlay-white-light;
+      .bio-about-card {
+        background: $overlay-medium;
+        border-color: $overlay-white-light;
 
-      &::before {
-        background: linear-gradient(135deg, $brand-primary-100 0%, transparent 50%, $brand-accent-100 100%);
-      }
-
-      .bio-image img {
-        border-color: $dark-bg;
-        background: $dark-bg;
-      }
-
-      .text-wrap p {
-        color: $text-light;
-
-        span {
-          color: $brand-primary-light;
+        &::before {
+          background: linear-gradient(135deg, $brand-primary-100 0%, transparent 50%, $brand-accent-100 100%);
         }
+
+        .section-badge {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        }
+
+        .bio-image img {
+          border-color: $dark-bg;
+          background: $dark-bg;
+        }
+
+        .text-wrap p {
+          color: $text-light;
+
+          span {
+            color: $brand-primary-light;
+          }
+        }
+      }
+    }
+
+    section header {
+      h2 {
+        color: $brand-primary-light;
+      }
+
+      p {
+        color: $text-light;
       }
     }
   }
 
   // Section headers with Trajan font (consistent with home page)
-  h3 {
-    font-family: $font-heading;
-    font-size: $font-size-2xl;
-    color: $primary;
+  .section-header {
+    max-width: 900px;
+    margin: $gap-xl auto $gap-lg;
     text-align: center;
-    margin: $gap-xl 0 $gap-lg;
-    font-weight: $weight-normal;
-    letter-spacing: $letter-spacing-wide;
 
-    @media (max-width: $bp-md) {
-      font-size: $font-size-xl;
+    h3 {
+      font-family: $font-heading;
+      font-size: $font-size-2xl;
+      color: $primary;
+      margin: 0 0 $gap;
+      font-weight: $weight-normal;
+      letter-spacing: $letter-spacing-wide;
+
+      @media (max-width: $bp-md) {
+        font-size: $font-size-xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-md;
+      color: $text-dark;
+      line-height: $line-height-relaxed;
+      margin: 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
@@ -171,7 +268,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: $gap-lg;
-    margin: $gap-lg 0 $gap-xl;
+    margin: 0 0 $gap-xl;
     padding: 0;
     list-style: none;
     counter-reset: process-step;
@@ -187,6 +284,10 @@
       counter-increment: process-step;
       opacity: 0;
       animation: fadeInUp 0.6s ease forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $gap;
       
       @for $i from 1 through 6 {
         &:nth-child(#{$i}) {
@@ -198,6 +299,36 @@
         transform: translateY(-4px);
         box-shadow: $shadow-lg;
         border-color: $primary;
+        
+        .process-image {
+          transform: scale(1.05);
+        }
+        
+        &::before {
+          transform: scale(1.1);
+          box-shadow: $shadow-lg;
+        }
+      }
+
+      // Image container
+      .process-image {
+        width: 100%;
+        height: 180px;
+        border-radius: $radius-lg;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba($primary, 0.03);
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
       }
 
       // Step number badge
@@ -206,8 +337,8 @@
         position: absolute;
         top: $space-lg;
         left: $space-lg;
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
         color: $text-white;
         border-radius: 50%;
@@ -215,32 +346,31 @@
         align-items: center;
         justify-content: center;
         font-family: $font-heading;
-        font-size: $font-size-sm;
+        font-size: $font-size-base;
         font-weight: $weight-bold;
         box-shadow: $shadow-md;
+        z-index: 2;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
-      // Content with padding for step number
-      strong {
-        display: block;
-        color: $primary;
-        font-size: $font-size-lg;
-        font-weight: $weight-semibold;
-        margin-bottom: $space-sm;
-        padding-left: 48px;
-        font-family: $font-alt;
+      // Content container
+      .process-content {
+        flex: 1;
+        
+        strong {
+          display: block;
+          color: $primary;
+          font-size: $font-size-lg;
+          font-weight: $weight-semibold;
+          margin-bottom: $space-sm;
+          font-family: $font-alt;
+        }
       }
 
       // Description text
-      &::after {
-        content: attr(data-text);
-      }
-
-      // Remove default text, we'll use strong for title
       color: $text-dark;
       font-size: $font-size-base;
       line-height: $line-height-relaxed;
-      padding-left: $padding-xl;
     }
   }
 
@@ -281,7 +411,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: $gap-lg;
-    margin-bottom: $gap-xl;
+    margin: 0 0 $gap-xl;
 
     .skills-group {
       background: $color-bg-primary;
@@ -310,7 +440,7 @@
         border-color: $primary;
       }
 
-      h4 {
+      h3 {
         color: $primary;
         font-size: $font-size-lg;
         font-weight: $weight-semibold;
@@ -361,6 +491,14 @@
             transition: transform 0.2s ease;
           }
 
+          .skill-svg-icon {
+            width: 24px;
+            height: 20px;
+            object-fit: contain;
+            vertical-align: middle;
+            transition: transform 0.2s ease;
+          }
+
           &:hover {
             transform: translateY(-4px);
             box-shadow: $shadow-hover-md;
@@ -374,10 +512,15 @@
             transform: scale(1.2);
           }
 
+          &:hover .skill-svg-icon {
+            transform: scale(1.2);
+          }
+
           // Brand colors for each technology
           &:has(.fa-html5) { .fa-html5 { color: $tech-html5; } &:hover { color: $tech-html5; } }
           &:has(.fa-css3-alt) { .fa-css3-alt { color: $tech-css3; } &:hover { color: $tech-css3; } }
           &:has(.fa-js) { .fa-js { color: $tech-javascript; } &:hover { color: $tech-javascript; } }
+          &:has(.fa-code) { .fa-code { color: $tech-typescript; } &:hover { color: $tech-typescript; } }
           &:has(.jquery-icon) { .jquery-icon { color: $tech-jquery; } &:hover { color: $tech-jquery; } }
           &:has(.fa-php) { .fa-php { color: $tech-php; } &:hover { color: $tech-php; } }
           &:has(.fa-react) { .fa-react { color: $tech-react; } &:hover { color: $tech-react; } }
@@ -386,6 +529,10 @@
           &:has(.fa-angular) { .fa-angular { color: $tech-angular; } &:hover { color: $tech-angular; } }
           &:has(.fa-bootstrap) { .fa-bootstrap { color: $tech-bootstrap; } &:hover { color: $tech-bootstrap; } }
           &:has(.fa-node-js) { .fa-node-js { color: $tech-node; } &:hover { color: $tech-node; } }
+          &:has(.fa-wind) { .fa-wind { color: $tech-tailwind; } &:hover { color: $tech-tailwind; } }
+          &:has(.fa-rocket) { .fa-rocket { color: $tech-nextjs; } &:hover { color: $tech-nextjs; } }
+          &:has(.fa-sass) { .fa-sass { color: $tech-sass; } &:hover { color: $tech-sass; } }
+          &:has(.fa-layer-group) { .fa-layer-group { color: $primary; } &:hover { color: $primary; } }
           &:has(.fa-git-alt) { .fa-git-alt { color: $tech-git; } &:hover { color: $tech-git; } }
           &:has(.fa-gulp) { .fa-gulp { color: $tech-gulp; } &:hover { color: $tech-gulp; } }
 
@@ -397,6 +544,7 @@
           &:has(.fa-magento) { .fa-magento { color: $tech-magento; } &:hover { color: $tech-magento; } }
 
           &:has(.fa-figma) { .fa-figma { color: $tech-figma; } &:hover { color: $tech-figma; } }
+          &:has(.fa-pen-nib) { .fa-pen-nib { color: $tech-xd; } &:hover { color: $tech-xd; } }
           &:has(.fa-pencil-ruler) { .fa-pencil-ruler { color: $tech-illustrator; } &:hover { color: $tech-illustrator; } }
           &:has(.fa-image) { .fa-image { color: $tech-photoshop; } &:hover { color: $tech-photoshop; } }
           &:has(.fa-cloud) { 
@@ -410,9 +558,23 @@
           &:has(.fa-google) { .fa-google { color: $tech-google; } &:hover { color: $tech-google; } }
           &:has(.fa-hotjar) { .fa-hotjar { color: $tech-hotjar; } &:hover { color: $tech-hotjar; } }
           
+          // SVG icon brand colors
+          &:has(.skill-svg-icon[alt="TypeScript"]) { &:hover { color: $tech-typescript; } }
+          &:has(.skill-svg-icon[alt="Tailwind CSS"]) { &:hover { color: $tech-tailwind; } }
+          &:has(.skill-svg-icon[alt="Next.js"]) { &:hover { color: $tech-nextjs; } }
+          &:has(.skill-svg-icon[alt="Adobe XD"]) { &:hover { color: $tech-xd; } }
+          &:has(.skill-svg-icon[alt="Adobe CC"]) { 
+            &:hover { 
+              &::before {
+                background: linear-gradient(90deg, #FF0000 0%, #00FF00 33%, #0000FF 66%, #FF0000 100%);
+              }
+            }
+          }
+          &:has(.skill-svg-icon[alt="Photoshop"]) { &:hover { color: $tech-photoshop; } }
+          &:has(.skill-svg-icon[alt="Illustrator"]) { &:hover { color: $tech-illustrator; } }
+          
           // Generic icons - use primary brand color
           &:has(.fa-mobile-alt) { .fa-mobile-alt { color: $primary; } &:hover { color: $primary; } }
-          &:has(.fa-th) { .fa-th { color: $primary; } &:hover { color: $primary; } }
           &:has(.fa-vial) { .fa-vial { color: $primary; } &:hover { color: $primary; } }
           &:has(.fa-search) { .fa-search { color: $primary; } &:hover { color: $primary; } }
         }
@@ -537,6 +699,29 @@
 
   // Dark mode
   html.dark-mode & {
+    .bio-process {
+      li {
+        background: $dark-bg;
+        border-color: $overlay-white-light;
+        
+        .process-image {
+          background: rgba($brand-primary-light, 0.08);
+        }
+        
+        &:hover {
+          border-color: $brand-primary-light;
+        }
+        
+        .process-content strong {
+          color: $brand-primary-light;
+        }
+        
+        &::before {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        }
+      }
+    }
+    
     .bio-connect {
       h3 {
         color: $brand-primary-light;
@@ -573,7 +758,7 @@
           background: linear-gradient(90deg, $brand-primary-light 0%, $primary 50%, $brand-accent-light 100%);
         }
 
-        h4 {
+        h3 {
           color: $brand-primary-light;
         }
 
@@ -647,14 +832,23 @@
         font-size: 13px;
       }
     }
-    .bio-process li {
-      min-width: 160px;
-      padding: 14px 16px 14px 38px;
-      //font-size: 13px;
-      &::before {
-        font-size: 15px;
-        width: 22px;
-        height: 22px;
+    .bio-process {
+      grid-template-columns: repeat(2, 1fr);
+      
+      li {
+        .process-image {
+          height: 160px;
+        }
+        
+        &::before {
+          width: 28px;
+          height: 28px;
+          font-size: 0.875rem;
+        }
+        
+        .process-content strong {
+          font-size: $font-size-base;
+        }
       }
     }
   }
@@ -682,20 +876,22 @@
       }
     }
     .bio-process {
-      gap: 8px;
+      grid-template-columns: 1fr;
+      gap: $gap;
+      
       li {
-        min-width: 100px;
-        padding: 10px 30px;
-        //font-size: 11px;
-        &::before {
-          font-size: 12px;
-          width: 16px;
-          height: 16px;
+        .process-image {
+          height: 140px;
         }
-        strong {
-          &::before {
-            font-size: 52px;
-          }
+        
+        &::before {
+          width: 24px;
+          height: 24px;
+          font-size: 0.75rem;
+        }
+        
+        .process-content strong {
+          font-size: $font-size-sm;
         }
       }
     }

@@ -205,9 +205,9 @@ textarea:focus-visible {
   transition: opacity 0.3s;
 }
 
-.page-header,
 .section-header {
   text-align: center;
+  margin-top: $gap-xl;
   margin-bottom: $gap-lg;
 
   h2 {
@@ -223,10 +223,6 @@ textarea:focus-visible {
     max-width: 800px;
     margin: 0 auto;
   }
-}
-
-.section-header {
-  margin-top: $gap-xl;
 }
 
 figure {

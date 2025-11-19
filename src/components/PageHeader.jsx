@@ -12,15 +12,15 @@ import PropTypes from 'prop-types';
  */
 const PageHeader = ({ title, subtitle, className = '' }) => {
   return (
-    <div className={`page-header ${className}`}>
+    <header className={`page-header ${className}`}>
       {title && (
         <h1 className="page-title">{title}</h1>
       )}
       
       {subtitle && (
-        <p className="page-subtitle">{subtitle}</p>
+        <h2 className="page-subtitle">{subtitle}</h2>
       )}
-    </div>
+    </header>
   );
 };
 
