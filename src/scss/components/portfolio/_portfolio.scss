@@ -9,6 +9,7 @@
 //@use 'sass:color';
 @use '../../abstracts/variables' as *;
 @use '../../abstracts/mixins' as *;
+@use '../../abstracts/mixins-effects' as *;
 
 .portfolio {
   color: $text-dark;
@@ -42,8 +43,7 @@
       position: relative;
 
       &:hover {
-        
-        box-shadow: 0 8px 32px $brand-primary-100;
+        @include shadow-lg($brand-primary-100);
         border-color: $color-border-medium;
       }
 
@@ -124,24 +124,7 @@
     }
   }
 }
-.modal {
-  .modal-header {
-    .btn-close {
-      position: relative;
-      right: 20px;
-      &:hover {
-        background: $secondary-blue;
-        color: $text-white;
-      }
-    }
-  }
-  .modal-body {
-   // 
-  }
-  .modal-footer {
-    //
-  }
-}
+
 .tech-used {
   .fa-illustrator,
   .fa-photoshop,
@@ -244,13 +227,13 @@
       aspect-ratio: 4/3;
       object-fit: cover;
       border-radius: $radius-lg;
-      box-shadow: 0 4px 16px $brand-primary-100;
+      @include shadow-base($brand-primary-100);
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      @include transition-smooth((transform, box-shadow), 0.3s);
       
       &:hover {
         transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 12px 36px $brand-accent-100;
+        @include shadow-lg($brand-accent-100);
       }
     }
   }

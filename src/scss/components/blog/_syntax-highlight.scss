@@ -7,6 +7,7 @@
  * Last updated: 2025-09-11
  */
 @use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins-effects' as *;
 pre, code {
   font-family: "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
   font-size: 14px;
@@ -79,8 +80,7 @@ pre:hover .copy-button {
   font-size: 11px;
   cursor: pointer;
   opacity: 0;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+  @include transition-fast(all, 0.2s);
 }
 .copy-button:hover {
   background: #3c3c3c;

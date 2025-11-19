@@ -9,6 +9,7 @@
 @use "sass:color";
 @use "../../abstracts/variables" as *;
 @use "../../abstracts/mixins" as *;
+@use "../../abstracts/mixins-effects" as *;
 
 // Enable smooth parallax and prevent flashing
 .home-section {
@@ -39,6 +40,41 @@
   .featured-work-header,
   .blog-header {
     contain: layout style paint;
+  }
+
+  // Unified section intro styles
+  .section-intro {
+    @include font-size-md;
+    color: $color-text-secondary;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+
+    strong {
+      color: $color-text-primary;
+      font-weight: 600;
+    }
+  }
+
+  // Unified section header styles
+  .home-section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInUp 0.6s ease-out;
+
+    .badge {
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: $font-heading;
+      @include font-size-xxl;
+      color: $color-text-primary;
+      margin-bottom: 16px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
   }
 }
 
@@ -189,14 +225,14 @@
       }
 
       .btn-primary {
-        background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+        @include gradient-primary();
         color: $text-white;
-        box-shadow: 0 4px 16px $brand-primary-200;
+        @include shadow-base($brand-primary-200);
         border: none;
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px $brand-primary-300;
+          @include shadow-md($brand-primary-300);
 
           i {
             transform: translateX(4px);
@@ -208,13 +244,13 @@
         background: $text-white;
         color: $text-dark;
         border: 2px solid $border;
-        box-shadow: 0 2px 8px $overlay-light;
+        @include shadow-sm($overlay-light);
 
         &:hover {
           border-color: $primary;
           background: $brand-primary-50;
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px $brand-primary-100;
+          @include shadow-base($brand-primary-100);
 
           i {
             transform: scale(1.1);
@@ -241,7 +277,7 @@
         .stat-number {
           font-size: clamp(1.5rem, 3vw, 2rem);
           font-weight: 700;
-          background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+          @include gradient-primary();
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -273,9 +309,7 @@
       height: 360px;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 
-        0 20px 60px $brand-primary-100,
-        0 8px 24px $brand-primary-100;
+      @include shadow-layered($brand-primary-100, $brand-primary-100);
       border: 6px solid $text-white;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       will-change: transform;
@@ -526,39 +560,6 @@
     padding: 0 40px;
   }
 
-  .about-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
-
-    // Using UI Kit .badge .badge-outline
-    .badge {
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-family: $font-heading;
-      @include font-size-xxl;
-      color: $text-dark;
-      font-weight: 400;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-      line-height: 1.3;
-    }
-
-    .about-intro {
-      @include font-size-md;
-      color: $text-muted;
-      line-height: 1.7;
-      letter-spacing: 0.2px;
-
-      strong {
-        color: $primary-dark;
-        font-weight: 600;
-      }
-    }
-  }
-
   .about-content {
     display: grid;
     gap: 50px;
@@ -675,7 +676,7 @@
 
       &:hover {
         border-color: var(--tech-color);
-        box-shadow: 0 8px 24px $overlay-light;
+        @include shadow-md($overlay-light);
         background: $overlay-white-heavy;
 
         i {
@@ -707,11 +708,11 @@
       justify-content: space-between;
       gap: 20px;
       padding: 16px 32px;
-      background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+      @include gradient-primary();
       color: $text-white;
       text-decoration: none;
       border-radius: 10px;
-      box-shadow: 0 4px 16px $brand-primary-300;
+      @include shadow-base($brand-primary-300);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: $font-alt;
       min-width: 280px;
@@ -757,7 +758,7 @@
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px $brand-primary-400;
+        @include shadow-md($brand-primary-400);
 
         .cta-arrow {
           transform: translateX(4px);
@@ -810,17 +811,17 @@
       background: $text-white;
       padding: 32px 24px;
       border-radius: $radius-lg;
-      box-shadow: 0 4px 16px $brand-primary-50;
+      @include shadow-base($brand-primary-50);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border: 1px solid $brand-primary-100;
 
       &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 32px $brand-primary-100;
+        @include shadow-lg($brand-primary-100);
         border-color: $brand-primary-200;
 
         .expertise-icon {
-          background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+          @include gradient-primary();
           transform: scale(1.05);
 
           i {
@@ -832,7 +833,7 @@
       .expertise-icon {
         width: 56px;
         height: 56px;
-        background: linear-gradient(135deg, $brand-primary-100 0%, $brand-primary-50 100%);
+        @include gradient-card();
         border-radius: 12px;
         display: flex;
         align-items: center;
@@ -886,7 +887,7 @@
       background: $text-white;
       border-radius: $radius-lg;
       padding: 32px;
-      box-shadow: 0 4px 20px $brand-primary-50;
+      @include shadow-base($brand-primary-50);
       border: 1px solid $brand-primary-100;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -1232,11 +1233,11 @@
     margin-top: 40px;
 
     .stat-card {
-      background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+      @include gradient-primary();
       padding: 32px 24px;
       border-radius: $radius-lg;
       text-align: center;
-      box-shadow: 0 8px 24px $brand-primary-200;
+      @include shadow-md($brand-primary-200);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
@@ -1248,14 +1249,14 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(135deg, $overlay-white-light 0%, transparent 100%);
+        @include gradient-overlay-light();
         opacity: 0;
         transition: opacity 0.3s ease;
       }
 
       &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 32px $brand-primary-300;
+        @include shadow-lg($brand-primary-300);
 
         &::before {
           opacity: 1;
@@ -1584,6 +1585,95 @@
 
 // Dark mode support for condensed About section
 html.dark-mode {
+  // Section backgrounds matching hero gradient
+  .about {
+    @include gradient-dark-section();
+  }
+
+  .featured-work {
+    @include gradient-dark-section();
+  }
+
+  .blog-section {
+    @include gradient-dark-section();
+  }
+
+  .contact-section {
+    @include gradient-dark-section();
+
+    &::before {
+      background: radial-gradient(
+        ellipse at top center,
+        $brand-primary-200 0%,
+        transparent 60%
+      );
+    }
+
+    .contact-info-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+      box-shadow: 
+        0 4px 16px -2px rgba(0, 0, 0, 0.3),
+        0 0 0 1px $dark-border;
+
+      &::before {
+        background: linear-gradient(135deg, $primary-dark 0%, $accent 100%);
+      }
+
+      &:hover {
+        box-shadow: 
+          0 12px 32px -4px rgba(0, 0, 0, 0.5),
+          0 0 0 1px $brand-primary-400;
+      }
+
+      h3 {
+        color: $dark-text;
+      }
+
+      p {
+        color: $dark-text-muted;
+      }
+
+      .contact-link {
+        color: $dark-text;
+
+        &:hover {
+          color: $primary-dark;
+        }
+      }
+
+      .info-icon {
+        background: linear-gradient(135deg, $brand-primary-300 0%, $brand-primary-200 100%);
+        box-shadow: 0 4px 12px $brand-primary-300;
+      }
+    }
+
+    .contact-form-wrapper {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+      box-shadow: 
+        0 8px 32px -4px rgba(0, 0, 0, 0.4),
+        0 0 0 1px $dark-border;
+
+      &::before {
+        background: radial-gradient(
+          circle at top right,
+          $brand-primary-200 0%,
+          transparent 70%
+        );
+      }
+
+      .form-title {
+        color: $dark-text;
+      }
+
+      iframe {
+        border-color: $dark-border;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+
   .about-tech-preview {
     .tech-icon-item {
       background: $dark-card-bg;
@@ -1654,31 +1744,6 @@ html.dark-mode {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
-  }
-
-  .featured-work-header {
-    text-align: center;
-    margin-bottom: 60px;
-    animation: fadeInUp 0.6s ease-out;
-
-    // Using UI Kit .badge .badge-outline
-
-    h2 {
-      font-family: $font-heading;
-      @include font-size-xxl;
-      color: $primary-dark;
-      margin-bottom: 16px;
-      font-weight: 400;
-      letter-spacing: 1px;
-    }
-
-    .featured-work-intro {
-      @include font-size-md;
-      color: $text-muted;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
   }
 
   .featured-work-grid {
@@ -1802,7 +1867,6 @@ html.dark-mode {
     .project-title {
       font-family: $font-heading;
       @include font-size-xl;
-      color: $text-dark;
       margin: 0 0 12px 0;
       font-weight: 700;
       letter-spacing: 0.3px;
@@ -1813,14 +1877,12 @@ html.dark-mode {
         font-family: $font-alt;
         font-size: $font-size-md;
         font-weight: 700;
-        color: $text-muted;
         letter-spacing: 0.2px;
       }
     }
 
     .project-role-year {
       @include font-size-sm;
-      color: $text-dark;
       font-weight: 600;
       margin: 0 0 16px 0;
       line-height: 1.4;
@@ -1828,7 +1890,6 @@ html.dark-mode {
 
     .project-excerpt {
       @include font-size-sm;
-      color: $text-dark;
       line-height: 1.6;
       margin: 0 0 20px 0;
       font-weight: 500;
@@ -1866,7 +1927,6 @@ html.dark-mode {
         .metric-label {
           font-size: $font-size-xs;
           font-weight: 600;
-          color: $text-dark;
           text-transform: uppercase;
           letter-spacing: 0.5px;
           display: block;
@@ -2289,7 +2349,7 @@ html.dark-mode {
     background: #f4f4f4;
     padding: $gap-lg $gap;
     border-radius: $radius-lg;
-    box-shadow: 0 4px 24px $brand-primary-50;
+    @include shadow-base($brand-primary-50);
 
     .port-header {
       text-align: center;
@@ -2321,15 +2381,15 @@ html.dark-mode {
       border-radius: $radius-lg;
       border: 1px solid #e3e3e3;
       overflow: hidden;
-      box-shadow: 0 2px 16px $brand-primary-50;
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+      @include shadow-sm($brand-primary-50);
+      @include transition-smooth((transform, box-shadow), 0.25s);
       display: flex;
       flex-direction: column;
       min-height: 420px;
       position: relative;
 
       &:hover {
-        box-shadow: 0 8px 32px $brand-primary-100;
+        @include shadow-lg($brand-primary-100);
         border-color: $gray-300;
       }
 
@@ -2459,31 +2519,6 @@ html.dark-mode {
     padding: 0 40px;
   }
 
-  .blog-header {
-    text-align: center;
-    margin-bottom: 60px;
-    animation: fadeInUp 0.6s ease-out;
-
-    // Using UI Kit .badge .badge-outline
-
-    h2 {
-      font-family: $font-heading;
-      @include font-size-xxl;
-      color: $primary-dark;
-      margin-bottom: 16px;
-      font-weight: 400;
-      letter-spacing: 1px;
-    }
-
-    .blog-intro {
-      @include font-size-md;
-      color: $text-muted;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-  }
-
   .blog-posts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2508,7 +2543,7 @@ html.dark-mode {
 
     &:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 40px $brand-primary-100;
+      @include shadow-xl($brand-primary-100);
 
       .blog-card-image {
         img {
@@ -2587,7 +2622,6 @@ html.dark-mode {
       .blog-title {
         font-family: $font-heading;
         @include font-size-lg;
-        color: $text-dark;
         margin: 0 0 12px 0;
         line-height: 1.4;
         transition: color 0.3s ease;
@@ -2601,7 +2635,6 @@ html.dark-mode {
 
       .blog-excerpt {
         @include font-size-sm;
-        color: $text-muted;
         line-height: 1.7;
         margin-bottom: 16px;
         display: -webkit-box;
@@ -2722,121 +2755,136 @@ html.dark-mode {
   }
 }
 
-// Contact Section
+// Contact Section - Modern Design
 .contact-section {
-  padding: 80px 0 100px;
+  padding: 100px 0 120px;
   background: linear-gradient(180deg, $color-bg-primary 0%, $background-light 100%);
   position: relative;
   overflow: hidden;
 
+  // Decorative gradient overlay
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, $brand-primary-200 50%, transparent 100%);
-    display: none;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at top center,
+      $brand-primary-50 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    z-index: 0;
   }
 
   .container {
-    max-width: 1222px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
-  }
-
-  .contact-header {
-    text-align: center;
-    margin-bottom: 60px;
-    animation: fadeInUp 0.6s ease-out;
-
-    // Using UI Kit .badge .badge-outline
-
-    h2 {
-      font-family: $font-heading;
-      @include font-size-xxl;
-      color: $primary-dark;
-      margin-bottom: 16px;
-      font-weight: 400;
-      letter-spacing: 1px;
-    }
-
-    .contact-intro {
-      @include font-size-md;
-      color: $text-muted;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+    position: relative;
+    z-index: 1;
   }
 
   .contact-grid {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 32px;
+    grid-template-columns: 360px 1fr;
+    gap: 40px;
     align-items: start;
   }
 
   .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    position: sticky;
+    top: 100px;
     animation: fadeInLeft 0.6s ease-out 0.2s backwards;
 
     .contact-info-card {
+      position: relative;
       background: $text-white;
-      padding: 24px;
-      border-radius: 12px;
-      border: 2px solid $color-border-light;
-      box-shadow: 0 4px 16px $brand-primary-50;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid $color-border-light;
+      @include shadow-layered($brand-primary-50, rgba($primary, 0.05));
+      @include transition-spring(all, 0.4s);
+      overflow: hidden;
+
+      // Animated gradient border on hover
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px;
+        padding: 2px;
+        @include gradient-border-animated();
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
 
       &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px $brand-primary-100;
-        border-color: $brand-primary-300;
+        transform: translateY(-6px) scale(1.02);
+        @include shadow-layered($brand-primary-100, $brand-primary-200);
+        border-color: transparent;
+
+        &::before {
+          opacity: 1;
+        }
 
         .info-icon {
-          background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+          @include gradient-primary();
           color: $text-white;
-          transform: scale(1.1);
+          transform: scale(1.1) rotate(5deg);
+          @include shadow-md($brand-primary-300);
         }
 
         .contact-link {
           color: $primary;
+          transform: translateX(4px);
         }
       }
 
       .info-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        background: $brand-primary-100;
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        @include gradient-card();
         color: $primary;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 16px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-bottom: 20px;
+        @include transition-spring(all, 0.4s);
+        @include shadow-base($brand-primary-100);
 
         i {
-          font-size: $font-size-lg;
+          @include font-size-lg;
         }
       }
 
       h3 {
         font-family: $font-heading;
-        @include font-size-md;
+        font-size: $font-size-base;
         color: $text-dark;
-        margin: 0 0 8px 0;
+        margin: 0 0 6px 0;
         font-weight: 600;
+        letter-spacing: 0.3px;
       }
 
       p {
         @include font-size-sm;
         color: $text-muted;
-        margin: 0 0 12px 0;
+        margin: 0 0 16px 0;
         line-height: 1.6;
       }
 
@@ -2845,18 +2893,30 @@ html.dark-mode {
         color: $text-dark;
         text-decoration: none;
         font-weight: 600;
-        transition: color 0.3s ease;
+        transition: all 0.3s ease;
         word-break: break-word;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+
+        &::after {
+          content: '→';
+          font-size: $font-size-base;
+          transition: transform 0.3s ease;
+        }
 
         &:hover {
           color: $primary;
-          text-decoration: underline;
+
+          &::after {
+            transform: translateX(4px);
+          }
         }
 
         &:focus-visible {
-          outline: 2px solid $primary;
-          outline-offset: 2px;
-          border-radius: 4px;
+          outline: 3px solid $brand-primary-300;
+          outline-offset: 4px;
+          border-radius: 6px;
         }
       }
     }
@@ -2864,26 +2924,65 @@ html.dark-mode {
 
   .contact-form-wrapper {
     background: $text-white;
-    border-radius: 12px;
-    padding: 32px;
-    box-shadow: 0 8px 32px $brand-primary-100;
-    border: 2px solid $color-border-light;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 
+      0 8px 32px -4px $brand-primary-100,
+      0 0 0 1px $color-border-light;
+    border: 1px solid $color-border-light;
     animation: fadeInRight 0.6s ease-out 0.2s backwards;
+    position: relative;
+
+    // Subtle decorative gradient
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(
+        circle at top right,
+        $brand-primary-50 0%,
+        transparent 70%
+      );
+      border-radius: 20px;
+      pointer-events: none;
+    }
 
     .form-title {
       font-family: $font-heading;
-      @include font-size-lg;
+      @include font-size-xl;
       color: $text-dark;
-      margin: 0 0 24px 0;
+      margin: 0 0 32px 0;
       font-weight: 600;
-      padding-bottom: 16px;
-      border-bottom: 2px solid $brand-primary-100;
+      letter-spacing: 0.5px;
+      position: relative;
+      padding-bottom: 20px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, $primary 0%, $accent 100%);
+        border-radius: 2px;
+      }
     }
 
     .contact-form {
+      position: relative;
+      z-index: 1;
+
       iframe {
-        border-radius: 8px;
+        border-radius: 12px;
         display: block;
+        border: 1px solid $color-border-light;
+        box-shadow: 0 2px 8px $brand-primary-50;
+        transition: height 0.3s ease;
+        // Remove max-height constraint
       }
     }
   }
@@ -3411,6 +3510,7 @@ html.dark-mode {
     opacity: 0.7;
   }
 }
+
 
 
 

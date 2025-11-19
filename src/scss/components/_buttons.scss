@@ -6,6 +6,7 @@
  * Dependencies: Uses tokens from _variables.scss
  */
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins-effects' as *;
 
 // ============================================================
 // BASE BUTTON
@@ -24,7 +25,7 @@
   border-radius: $radius;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
+  @include transition-smooth();
   white-space: nowrap;
   line-height: 1;
   

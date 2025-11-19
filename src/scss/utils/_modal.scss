@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
+@use "../abstracts/mixins-effects" as *;
 
 .project-wrapper {
   .additional-project-img {
@@ -147,7 +148,7 @@
         font-size: 0.875rem;
         font-weight: 500;
         border: 1px solid $brand-primary-200;
-        transition: all 0.2s ease;
+        @include transition-fast(all, 0.2s);
 
         &:hover {
           background: linear-gradient(135deg, $brand-primary-100, $brand-primary-100);

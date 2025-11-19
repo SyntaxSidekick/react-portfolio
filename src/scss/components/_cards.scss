@@ -6,6 +6,7 @@
  * Dependencies: Uses tokens from _variables.scss
  */
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins-effects' as *;
 
 // ============================================================
 // BASE CARD
@@ -15,7 +16,7 @@
   background: $color-bg-primary;
   border-radius: $radius-lg;
   overflow: hidden;
-  transition: all 0.3s ease;
+  @include transition-smooth();
   
   // Default variant
   border: 1px solid $color-border-light;
@@ -220,5 +221,65 @@
   
   @media (max-width: $bp-sm) {
     grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// DARK MODE OVERRIDES
+// ============================================================
+
+.dark-mode {
+  .card {
+    background: $dark-bg-secondary;
+    border-color: $gray-700;
+  }
+
+  .card-header,
+  .card-body,
+  .card-footer {
+    background: $dark-bg-secondary;
+  }
+
+  .card-footer {
+    background: $dark-bg;
+    border-color: $gray-700;
+  }
+
+  .card-header {
+    border-color: $gray-700;
+  }
+
+  .card-title {
+    color: $text-white;
+  }
+
+  .card-subtitle,
+  .card-text {
+    color: $gray-300;
+  }
+
+  .card-flat:hover {
+    background: $dark-bg-secondary;
+  }
+
+  .card-outline {
+    background: transparent;
+    border-color: $gray-700;
+
+    &:hover {
+      background: rgba($brand-primary, 0.1);
+    }
+  }
+
+  .card-interactive {
+    border-color: $gray-700;
+
+    &:hover {
+      background: $dark-bg-secondary;
+    }
+  }
+
+  .metric-label {
+    color: $gray-300;
   }
 }

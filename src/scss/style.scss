@@ -3,9 +3,11 @@
 // Forward variables and mixins to make them available globally
 @forward 'abstracts/variables';
 @forward 'abstracts/mixins';
+@forward 'abstracts/mixins-effects';
 
 @use 'base/normalize';
 @use 'abstracts/mixins' as *;
+@use 'abstracts/mixins-effects' as *;
 @use 'abstracts/variables' as *;
 
 // ============================================================

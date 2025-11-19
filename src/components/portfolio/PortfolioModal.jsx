@@ -11,7 +11,6 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
     if (modalOpen) {
       lastActiveElement.current = document.activeElement;
       setTimeout(() => {
-        // Focus the first button in the modal (close button)
         const modalElement = document.querySelector('.modal.show');
         if (modalElement) {
           const focusable = modalElement.querySelector(
@@ -24,7 +23,6 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
         if (e.key === "Escape") {
           closeModal();
         }
-        // Focus trap
         if (e.key === "Tab") {
           const modalElement = document.querySelector('.modal.show');
           if (modalElement) {

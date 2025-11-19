@@ -1,0 +1,330 @@
+// ============================================================================
+// MIXINS - EFFECTS
+// ============================================================================
+// Reusable mixins for shadows, gradients, animations, and visual effects
+// Created to reduce CSS bloat from repetitive declarations
+
+@use 'variables' as *;
+
+// ----------------------------------------------------------------------------
+// BOX SHADOWS
+// ----------------------------------------------------------------------------
+
+// Small shadow - used for subtle depth on cards, buttons
+@mixin shadow-sm($color: $brand-primary-100) {
+  box-shadow: 0 2px 8px $color;
+}
+
+// Base shadow - standard card shadow
+@mixin shadow-base($color: $brand-primary-200) {
+  box-shadow: 0 4px 16px $color;
+}
+
+// Medium shadow - elevated components
+@mixin shadow-md($color: $brand-primary-300) {
+  box-shadow: 0 8px 24px $color;
+}
+
+// Large shadow - modals, dropdowns, high elevation
+@mixin shadow-lg($color: $brand-primary-400) {
+  box-shadow: 0 12px 32px $color;
+}
+
+// Extra large shadow - hero elements, maximum elevation
+@mixin shadow-xl($color: $brand-primary-100) {
+  box-shadow: 0 20px 50px $color;
+}
+
+// Layered shadow - depth with multiple shadows
+@mixin shadow-layered($primary-color: $brand-primary-300, $secondary-color: $brand-primary-100) {
+  box-shadow: 
+    0 4px 12px $primary-color,
+    0 8px 24px $secondary-color;
+}
+
+// Inset shadow - recessed elements
+@mixin shadow-inset($color: $overlay-light) {
+  box-shadow: inset 0 1px 3px $color;
+}
+
+// Glow effect - for focused or active states
+@mixin shadow-glow($color: $brand-primary-400, $spread: 12px) {
+  box-shadow: 0 0 $spread $color, 0 4px 8px rgba($color, 0.3);
+}
+
+// Tech color shadow with dynamic color
+@mixin shadow-tech($opacity: 0.25) {
+  box-shadow: 0 12px 32px rgba(var(--tech-color, $primary), $opacity);
+}
+
+// Focus ring shadow - accessibility
+@mixin shadow-focus($color: $brand-primary-300, $size: 0 0 0 3px) {
+  box-shadow: $size rgba($color, 0.4);
+}
+
+// ----------------------------------------------------------------------------
+// TEXT SHADOWS
+// ----------------------------------------------------------------------------
+
+@mixin text-shadow-sm($color: rgba(0, 0, 0, 0.1)) {
+  text-shadow: 0 1px 2px $color;
+}
+
+@mixin text-shadow-md($color: rgba(0, 0, 0, 0.2)) {
+  text-shadow: 0 2px 4px $color;
+}
+
+@mixin text-shadow-lg($color: rgba(0, 0, 0, 0.3)) {
+  text-shadow: 0 4px 8px $color;
+}
+
+// Glow effect for text
+@mixin text-glow($color: $brand-primary-300) {
+  text-shadow: 0 0 20px rgba($color, 0.6), 0 0 40px rgba($color, 0.4);
+}
+
+// ----------------------------------------------------------------------------
+// GRADIENTS
+// ----------------------------------------------------------------------------
+
+// Primary gradient - brand colors
+@mixin gradient-primary($start: $primary, $end: $primary-dark) {
+  background: linear-gradient(135deg, $start 0%, $end 100%);
+}
+
+// Dark mode section gradient
+@mixin gradient-dark-section() {
+  background: linear-gradient(135deg, $dark-bg 0%, $dark-bg-secondary 100%);
+}
+
+// Light mode section gradient
+@mixin gradient-light-section() {
+  background: linear-gradient(180deg, $color-bg-primary 0%, $background-light 100%);
+}
+
+// Hero gradient - top to bottom
+@mixin gradient-hero-light() {
+  background: linear-gradient(135deg, $background-light 0%, $color-text-inverse 100%);
+}
+
+// Subtle overlay gradient
+@mixin gradient-overlay-light() {
+  background: linear-gradient(135deg, $overlay-white-light 0%, transparent 100%);
+}
+
+// Card subtle gradient
+@mixin gradient-card($start: $brand-primary-100, $end: $brand-primary-50) {
+  background: linear-gradient(135deg, $start 0%, $end 100%);
+}
+
+// Tech badge gradient with dynamic color
+@mixin gradient-tech($opacity: 0.1) {
+  background: linear-gradient(135deg, rgba(var(--tech-color), $opacity) 0%, rgba(var(--tech-color), calc($opacity / 2)) 100%);
+}
+
+// Shimmer animation gradient
+@mixin gradient-shimmer($color1: $gray-100, $color2: $gray-200) {
+  background: linear-gradient(90deg, $color1 25%, $color2 50%, $color1 75%);
+}
+
+// Progress bar gradient
+@mixin gradient-progress($start: $brand-primary-100, $end: $brand-primary-50) {
+  background: linear-gradient(90deg, $start 0%, $end 100%);
+}
+
+// Animated gradient border (for ::before pseudo-element)
+@mixin gradient-border-animated($color1: $primary, $color2: $accent) {
+  background: linear-gradient(135deg, $color1 0%, $color2 100%);
+}
+
+// Radial gradient for spotlight effects
+@mixin gradient-radial($inner: $brand-primary-100, $outer: transparent) {
+  background: radial-gradient(circle at center, $inner 0%, $outer 100%);
+}
+
+// ----------------------------------------------------------------------------
+// ANIMATIONS & TRANSITIONS
+// ----------------------------------------------------------------------------
+
+// Spring animation timing (Material Design)
+@mixin spring-timing() {
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+// Smooth transition - standard easing
+@mixin transition-smooth($properties: all, $duration: 0.3s) {
+  transition: $properties $duration ease-in-out;
+}
+
+// Fast transition - quick interactions
+@mixin transition-fast($properties: all, $duration: 0.15s) {
+  transition: $properties $duration ease;
+}
+
+// Slow transition - dramatic effects
+@mixin transition-slow($properties: all, $duration: 0.6s) {
+  transition: $properties $duration ease-out;
+}
+
+// Spring transition - bouncy effect
+@mixin transition-spring($properties: all, $duration: 0.4s) {
+  transition: $properties $duration cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+// Transform transitions
+@mixin transition-transform($duration: 0.3s) {
+  transition: transform $duration ease-in-out, box-shadow $duration ease-in-out;
+}
+
+// Stagger animation delay helper
+@mixin stagger-delay($count, $delay: 0.1s) {
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      animation-delay: ($i - 1) * $delay;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// HOVER EFFECTS
+// ----------------------------------------------------------------------------
+
+// Card hover - lift with shadow
+@mixin hover-lift($scale: 1.02, $shadow-color: $brand-primary-400) {
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px) scale($scale);
+    @include shadow-md($shadow-color);
+  }
+}
+
+// Button hover - scale with shadow
+@mixin hover-scale($scale: 1.05, $shadow-color: $brand-primary-300) {
+  &:hover,
+  &:focus-visible {
+    transform: scale($scale);
+    @include shadow-base($shadow-color);
+  }
+}
+
+// Glow on hover
+@mixin hover-glow($color: $brand-primary-400) {
+  &:hover,
+  &:focus-visible {
+    @include shadow-glow($color);
+  }
+}
+
+// Icon hover with rotation
+@mixin hover-icon-rotate($degrees: 10deg) {
+  &:hover,
+  &:focus-visible {
+    transform: rotate($degrees);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// GLASSMORPHISM
+// ----------------------------------------------------------------------------
+
+@mixin glass-card($bg-color: rgba(255, 255, 255, 0.1), $blur: 10px) {
+  background: $bg-color;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@mixin glass-card-dark($bg-color: rgba(255, 255, 255, 0.05), $blur: 12px) {
+  background: $bg-color;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// ----------------------------------------------------------------------------
+// FOCUS STATES (Accessibility)
+// ----------------------------------------------------------------------------
+
+@mixin focus-ring($color: $brand-primary-300) {
+  &:focus-visible {
+    outline: none;
+    @include shadow-focus($color);
+  }
+}
+
+@mixin focus-outline($color: $brand-primary-300, $width: 2px) {
+  &:focus-visible {
+    outline: $width solid $color;
+    outline-offset: 2px;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// LOADING & SKELETON
+// ----------------------------------------------------------------------------
+
+@mixin skeleton-shimmer() {
+  @include gradient-shimmer();
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// Loading spinner
+@mixin spinner($size: 40px, $border-width: 4px, $color: $brand-primary-300) {
+  width: $size;
+  height: $size;
+  border: $border-width solid rgba($color, 0.2);
+  border-top-color: $color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ----------------------------------------------------------------------------
+// SCROLLBAR STYLING
+// ----------------------------------------------------------------------------
+
+@mixin scrollbar-custom($thumb-color: $brand-primary-300, $track-color: $gray-100) {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: 4px;
+    
+    &:hover {
+      background: darken($thumb-color, 10%);
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// RESPONSIVE CONTAINERS
+// ----------------------------------------------------------------------------
+
+@mixin container-padding($mobile: 1.5rem, $desktop: 3rem) {
+  padding-left: $mobile;
+  padding-right: $mobile;
+
+  @media (min-width: 768px) {
+    padding-left: $desktop;
+    padding-right: $desktop;
+  }
+}
+
+// End of mixins-effects

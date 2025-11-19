@@ -6,6 +6,7 @@
  * Dependencies: Uses tokens from _variables.scss
  */
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins-effects' as *;
 @use 'sass:color';
 
 // ============================================================
@@ -113,7 +114,7 @@
 .tag {
   @extend .badge;
   cursor: pointer;
-  transition: all 0.2s ease;
+  @include transition-fast(all, 0.2s);
   background: $gray-100;
   color: $color-text-primary;
   border: 1px solid transparent;

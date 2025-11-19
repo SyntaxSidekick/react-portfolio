@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins-effects' as *;
 /**
  * Partial: _lightbox.scss
  * Purpose: Styles for the lightbox modal, including image display, navigation, and responsive design.
@@ -88,7 +89,7 @@
       color: v.$accent;
     cursor: pointer;
     z-index: 10001;
-    transition: all 0.3s ease;
+    @include transition-smooth();
     background: $overlay-light;
     border-radius: 50%;
     width: 50px;
@@ -117,7 +118,7 @@
     height: 56px;
     cursor: pointer;
     z-index: 10001;
-    transition: all 0.3s ease;
+    @include transition-smooth();
     display: flex;
     align-items: center;
     justify-content: center;

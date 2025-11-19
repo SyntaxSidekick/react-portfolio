@@ -224,8 +224,8 @@ const Home = () => {
         aria-labelledby="about-title"
       >
         <div className="container">
-          <motion.div 
-            className="about-header"
+          <motion.header 
+            className="home-section-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -233,11 +233,11 @@ const Home = () => {
           >
             <span className="badge badge-outline">About Me</span>
             <h2 id="about-title">Crafting Digital Experiences</h2>
-            <p className="about-intro">
+            <p className="section-intro">
               With over <strong>{years}+ years</strong> of experience, I specialize in building modern, 
               accessible, and high-performance web applications using React, TypeScript, and cutting-edge tools.
             </p>
-          </motion.div>
+          </motion.header>
 
           <motion.div 
             className="about-content-condensed"
@@ -313,8 +313,8 @@ const Home = () => {
         aria-labelledby="portfolio-title"
       >
         <div className="container">
-          <motion.div 
-            className="featured-work-header"
+          <motion.header 
+            className="home-section-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -322,8 +322,8 @@ const Home = () => {
           >
             <span className="badge badge-outline">Portfolio</span>
             <h2 id="portfolio-title">Featured Work</h2>
-            <p className="featured-work-intro">Discover my most impactful projects showcasing modern web development, design excellence, and user-centered solutions.</p>
-          </motion.div>
+            <p className="section-intro">Discover my most impactful projects showcasing modern web development, design excellence, and user-centered solutions.</p>
+          </motion.header>
           <motion.div 
             className="featured-work-grid"
             initial={{ opacity: 0 }}
@@ -354,9 +354,9 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="project-card-content">
+                <div className="card-body project-card-content">
                   {/* App Title / Type */}
-                  <h3 className="project-title">
+                  <h3 className="card-title project-title">
                     {project.title.includes('–') 
                       ? project.title.split('–')[0].trim()
                       : project.title.includes('-')
@@ -376,11 +376,11 @@ const Home = () => {
                   
                   {/* Position / Date */}
                   {project.role && (
-                    <p className="project-role-year">{project.role} • {project.year}</p>
+                    <p className="card-subtitle project-role-year">{project.role} • {project.year}</p>
                   )}
                   
                   {/* Project Description */}
-                  <p className="project-excerpt">{project.desc}</p>
+                  <p className="card-text project-excerpt">{project.desc}</p>
                   
                   {/* 2 Key Accomplishments (Data) */}
                   {project.metrics && (
@@ -482,8 +482,8 @@ const Home = () => {
         aria-labelledby="blog-title"
       >
         <div className="container">
-          <motion.div 
-            className="blog-header"
+          <motion.header 
+            className="home-section-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -491,10 +491,10 @@ const Home = () => {
           >
             <span className="badge badge-outline">Insights & Updates</span>
             <h2 id="blog-title">From the Blog</h2>
-            <p className="blog-intro">
+            <p className="section-intro">
               Sharing knowledge, insights, and experiences from the world of web development and design.
             </p>
-          </motion.div>
+          </motion.header>
 
           <motion.div 
             className="blog-posts-grid"
@@ -532,7 +532,7 @@ const Home = () => {
                       </div>
                     )}
                     
-                    <div className="blog-card-content">
+                    <div className="card-body blog-card-content">
                       <time className="blog-date" dateTime={post.date}>
                         {new Date(post.date).toLocaleDateString(undefined, {
                           year: "numeric",
@@ -542,11 +542,11 @@ const Home = () => {
                       </time>
                       
                       <h3 
-                        className="blog-title"
+                        className="card-title blog-title"
                         dangerouslySetInnerHTML={{ __html: post.title }}
                       />
                       
-                      <p className="blog-excerpt">{post.excerpt}</p>
+                      <p className="card-text blog-excerpt">{post.excerpt}</p>
                       
                       <span className="blog-read-more">
                         Read More <i className="fas fa-arrow-right" aria-hidden="true"></i>
@@ -583,27 +583,16 @@ const Home = () => {
         aria-labelledby="contact-title"
       >
         <div className="container">
-          <div className="contact-header">
+          <header className="home-section-header">
             <span className="badge badge-outline">Let's Connect</span>
             <h2 id="contact-title">Get In Touch</h2>
-            <p className="contact-intro">
+            <p className="section-intro">
               Have a project in mind or want to discuss opportunities? I'd love to hear from you.
             </p>
-          </div>
+          </header>
 
           <div className="contact-grid">
             <div className="contact-info">
-              <div className="contact-info-card">
-                <div className="info-icon">
-                  <i className="fas fa-envelope" aria-hidden="true"></i>
-                </div>
-                <h3>Email Me</h3>
-                <p>Let's discuss your project</p>
-                <a href="mailto:riad@riadkilani.com" className="contact-link">
-                  riad@riadkilani.com
-                </a>
-              </div>
-
               <div className="contact-info-card">
                 <div className="info-icon">
                   <i className="fab fa-linkedin" aria-hidden="true"></i>
@@ -633,9 +622,22 @@ const Home = () => {
                 <iframe
                   src="https://blog.riadkilani.com/shortcontact/"
                   width="100%"
-                  height="600"
+                  height="700"
                   frameBorder="0"
                   title="Contact Form"
+                  scrolling="auto"
+                  style={{ minHeight: '700px' }}
+                  onLoad={(e) => {
+                    // Listen for messages from iframe to adjust height
+                    window.addEventListener('message', (event) => {
+                      if (event.origin === 'https://blog.riadkilani.com') {
+                        if (event.data.height) {
+                          const newHeight = Math.max(700, event.data.height + 50); // Add padding, minimum 700px
+                          e.target.style.height = newHeight + 'px';
+                        }
+                      }
+                    });
+                  }}
                 ></iframe>
               </div>
             </div>

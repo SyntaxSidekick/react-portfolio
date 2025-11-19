@@ -87,8 +87,14 @@ const Header = () => {
           aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           onClick={handleDarkModeToggle}
           title={darkMode ? "Light mode" : "Dark mode"}
+          role="switch"
+          aria-checked={darkMode}
         >
-          <i className={darkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"} aria-hidden="true"></i>
+          <span className="toggle-track">
+            <span className="toggle-thumb">
+              <i className={darkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"} aria-hidden="true"></i>
+            </span>
+          </span>
         </button>
         <nav
           id="main-navigation"
