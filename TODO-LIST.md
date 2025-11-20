@@ -106,6 +106,7 @@ Create scripts/import-portfolio.js:
 #### **PROMPT 8: Polish & Features** (20 minutes)
 ```
 Add finishing touches:
+- When viewing current projects, Ensure thumbnails in portfolio-manager.html are correctly using the right directory /public/images/portfolio/. right now they are displaying images/portfolio
 - Undo/Redo functionality (keep last 10 actions in memory)
 - Dark mode toggle with localStorage persistence
 - Drag-drop reordering within lists

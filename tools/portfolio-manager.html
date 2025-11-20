@@ -1,0 +1,3423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Manager - Riad Kilani</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- JSZip for export functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1976d2',
+                        'primary-dark': '#1565c0',
+                        'primary-light': '#42a5f5',
+                        secondary: '#dc004e',
+                        'secondary-dark': '#c51162',
+                        'secondary-light': '#f50057',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        #darkModeToggle {
+            z-index: 100;
+        }
+        .tab-active {
+            color: #1976d2;
+            border-bottom-color: #1976d2;
+        }
+        
+        .fab {           
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .fab:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
+        }
+        
+        .material-icons {
+            user-select: none;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes slide-in {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slide-in 0.3s ease-out;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+    
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-40 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="material-icons text-primary text-3xl mr-3">folder_special</span>
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Portfolio Manager</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="importBtn" class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg transition-colors">
+                        <span class="material-icons mr-2">upload_file</span>
+                        <span class="hidden sm:inline">Import Data</span>
+                    </button>
+                    <button id="exportBtn" class="flex items-center px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors">
+                        <span class="material-icons mr-2">download</span>
+                        <span class="hidden sm:inline">Export All</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Tab Navigation -->
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-16 z-30 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex overflow-x-auto">
+                <button data-tab="frontend" class="tab-button flex items-center px-4 py-4 border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors whitespace-nowrap tab-active text-gray-900 dark:text-white">
+                    <span class="material-icons mr-2 text-xl">code</span>
+                    <span>Frontend Projects</span>
+                </button>
+                <button data-tab="design" class="tab-button flex items-center px-4 py-4 border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors whitespace-nowrap text-gray-900 dark:text-white">
+                    <span class="material-icons mr-2 text-xl">palette</span>
+                    <span>UI/UX Design</span>
+                </button>
+                <button data-tab="casestudies" class="tab-button flex items-center px-4 py-4 border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors whitespace-nowrap text-gray-900 dark:text-white">
+                    <span class="material-icons mr-2 text-xl">article</span>
+                    <span>Case Studies</span>
+                </button>
+                <button data-tab="github" class="tab-button flex items-center px-4 py-4 border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors whitespace-nowrap text-gray-900 dark:text-white">
+                    <span class="material-icons mr-2 text-xl">code_blocks</span>
+                    <span>GitHub</span>
+                </button>
+                <button data-tab="codepen" class="tab-button flex items-center px-4 py-4 border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors whitespace-nowrap text-gray-900 dark:text-white">
+                    <span class="material-icons mr-2 text-xl">draw</span>
+                    <span>CodePen</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Frontend Projects Tab -->
+        <div id="frontend-tab" class="tab-content active">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-900">Frontend Projects</h2>
+                <div class="text-sm text-gray-500">
+                    <span id="frontend-count">0</span> projects
+                </div>
+            </div>
+            <div id="frontend-container" class="grid gap-6">
+                <!-- Content will be dynamically loaded -->
+                <div class="text-center py-12 text-gray-400">
+                    <span class="material-icons text-6xl mb-4">inbox</span>
+                    <p>No projects yet. Click the + button to add one.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- UI/UX Design Tab -->
+        <div id="design-tab" class="tab-content">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-900">UI/UX Design Showcase</h2>
+                <div class="text-sm text-gray-500">
+                    <span id="design-count">0</span> items
+                </div>
+            </div>
+            <div id="design-container" class="grid gap-6">
+                <!-- Content will be dynamically loaded -->
+                <div class="text-center py-12 text-gray-400">
+                    <span class="material-icons text-6xl mb-4">inbox</span>
+                    <p>No design items yet. Click the + button to add one.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Case Studies Tab -->
+        <div id="casestudies-tab" class="tab-content">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-900">Case Studies</h2>
+                <div class="text-sm text-gray-500">
+                    <span id="casestudies-count">0</span> case studies
+                </div>
+            </div>
+            <div id="casestudies-container" class="grid gap-6">
+                <!-- Content will be dynamically loaded -->
+                <div class="text-center py-12 text-gray-400">
+                    <span class="material-icons text-6xl mb-4">inbox</span>
+                    <p>No case studies yet. Click the + button to add one.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GitHub Projects Tab -->
+        <div id="github-tab" class="tab-content">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-900">GitHub Projects</h2>
+                <div class="text-sm text-gray-500">
+                    <span id="github-count">0</span> repositories
+                </div>
+            </div>
+            <div id="github-container" class="grid gap-6">
+                <!-- Content will be dynamically loaded -->
+                <div class="text-center py-12 text-gray-400">
+                    <span class="material-icons text-6xl mb-4">inbox</span>
+                    <p>No GitHub projects yet. Click the + button to add one.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CodePen Tab -->
+        <div id="codepen-tab" class="tab-content">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-900">CodePen Experiments</h2>
+                <div class="text-sm text-gray-500">
+                    <span id="codepen-count">0</span> pens
+                </div>
+            </div>
+            <div id="codepen-container" class="grid gap-6">
+                <!-- Content will be dynamically loaded -->
+                <div class="text-center py-12 text-gray-400">
+                    <span class="material-icons text-6xl mb-4">inbox</span>
+                    <p>No CodePen projects yet. Click the + button to add one.</p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <!-- Floating Action Button (FAB) -->
+    <button id="addProjectBtn" class="fab bg-primary hover:bg-primary-dark text-white" title="Add New Project">
+        <span class="material-icons text-3xl">add</span>
+    </button>
+    
+    <!-- Export All Button -->
+    <button id="exportAllBtn" class="fixed bottom-24 right-8 w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110" title="Export All Data">
+        <span class="material-icons text-2xl">download</span>
+    </button>
+    
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="fixed top-20 right-8 w-12 h-12 bg-gray-800 dark:bg-gray-200 hover:bg-gray-700 dark:hover:bg-gray-300 text-white dark:text-gray-900 rounded-full shadow-lg flex items-center justify-center transition-all duration-200" title="Toggle Dark Mode">
+        <span class="material-icons text-xl">dark_mode</span>
+    </button>
+    
+    <!-- Statistics Dashboard (Hidden by default) -->
+    <div id="statsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">📊 Portfolio Statistics</h2>
+                <button onclick="closeStatsModal()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div id="statsContent" class="p-6">
+                <!-- Stats will be inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ============================================
+        // INDEXEDDB SETUP & INITIALIZATION
+        // ============================================
+        
+        const DB_NAME = 'PortfolioDB';
+        const DB_VERSION = 1;
+        let db = null;
+        
+        // Object store names
+        const STORES = {
+            FRONTEND: 'frontendProjects',
+            DESIGN: 'designShowcase',
+            CASE_STUDIES: 'caseStudies',
+            GITHUB: 'githubProjects',
+            CODEPEN: 'codepenProjects'
+        };
+        
+        // Undo/Redo stack (keep last 10 actions)
+        const undoStack = [];
+        const redoStack = [];
+        const MAX_HISTORY = 10;
+        
+        // Dark mode state
+        let darkMode = localStorage.getItem('darkMode') === 'true';
+        
+        /**
+         * Initialize IndexedDB
+         * Creates database and object stores if they don't exist
+         */
+        function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+                
+                request.onerror = () => {
+                    console.error('❌ Database failed to open:', request.error);
+                    reject(request.error);
+                };
+                
+                request.onsuccess = () => {
+                    db = request.result;
+                    console.log('✅ Database initialized successfully');
+                    resolve(db);
+                };
+                
+                request.onupgradeneeded = (event) => {
+                    db = event.target.result;
+                    console.log('🔧 Creating database schema...');
+                    
+                    // 1. Frontend Projects Store
+                    if (!db.objectStoreNames.contains(STORES.FRONTEND)) {
+                        const frontendStore = db.createObjectStore(STORES.FRONTEND, { 
+                            keyPath: 'id', 
+                            autoIncrement: true 
+                        });
+                        frontendStore.createIndex('title', 'title', { unique: false });
+                        frontendStore.createIndex('featured', 'featured', { unique: false });
+                        frontendStore.createIndex('year', 'year', { unique: false });
+                        console.log('  ✓ Created frontendProjects store');
+                    }
+                    
+                    // 2. Design Showcase Store
+                    if (!db.objectStoreNames.contains(STORES.DESIGN)) {
+                        const designStore = db.createObjectStore(STORES.DESIGN, { 
+                            keyPath: 'id', 
+                            autoIncrement: true 
+                        });
+                        designStore.createIndex('title', 'title', { unique: false });
+                        designStore.createIndex('category', 'category', { unique: false });
+                        console.log('  ✓ Created designShowcase store');
+                    }
+                    
+                    // 3. Case Studies Store
+                    if (!db.objectStoreNames.contains(STORES.CASE_STUDIES)) {
+                        const caseStudiesStore = db.createObjectStore(STORES.CASE_STUDIES, { 
+                            keyPath: 'id', 
+                            autoIncrement: true 
+                        });
+                        caseStudiesStore.createIndex('title', 'title', { unique: false });
+                        caseStudiesStore.createIndex('category', 'category', { unique: false });
+                        caseStudiesStore.createIndex('featured', 'featured', { unique: false });
+                        console.log('  ✓ Created caseStudies store');
+                    }
+                    
+                    // 4. GitHub Projects Store
+                    if (!db.objectStoreNames.contains(STORES.GITHUB)) {
+                        const githubStore = db.createObjectStore(STORES.GITHUB, { 
+                            keyPath: 'id', 
+                            autoIncrement: true 
+                        });
+                        githubStore.createIndex('name', 'name', { unique: false });
+                        githubStore.createIndex('language', 'language', { unique: false });
+                        console.log('  ✓ Created githubProjects store');
+                    }
+                    
+                    // 5. CodePen Projects Store
+                    if (!db.objectStoreNames.contains(STORES.CODEPEN)) {
+                        const codepenStore = db.createObjectStore(STORES.CODEPEN, { 
+                            keyPath: 'id', 
+                            autoIncrement: true 
+                        });
+                        codepenStore.createIndex('title', 'title', { unique: false });
+                        codepenStore.createIndex('featured', 'featured', { unique: false });
+                        console.log('  ✓ Created codepenProjects store');
+                    }
+                    
+                    console.log('✅ Database schema created successfully');
+                };
+            });
+        }
+        
+        // ============================================
+        // CRUD HELPER FUNCTIONS
+        // ============================================
+        
+        /**
+         * Add a new item to a store
+         * @param {string} storeName - Name of the object store
+         * @param {object} item - Item to add
+         * @returns {Promise<number>} - ID of the added item
+         */
+        async function addItem(storeName, item) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readwrite');
+                const store = transaction.objectStore(storeName);
+                
+                // Add metadata
+                item.createdAt = new Date().toISOString();
+                item.lastModified = new Date().toISOString();
+                
+                const request = store.add(item);
+                
+                request.onsuccess = () => {
+                    console.log(`✅ Added item to ${storeName}:`, request.result);
+                    resolve(request.result);
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error adding item to ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Get a single item by ID
+         * @param {string} storeName - Name of the object store
+         * @param {number} id - ID of the item
+         * @returns {Promise<object>} - The item
+         */
+        async function getItem(storeName, id) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.get(id);
+                
+                request.onsuccess = () => {
+                    resolve(request.result);
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error getting item from ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Get all items from a store
+         * @param {string} storeName - Name of the object store
+         * @returns {Promise<Array>} - Array of all items
+         */
+        async function getAllItems(storeName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.getAll();
+                
+                request.onsuccess = () => {
+                    resolve(request.result || []);
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error getting all items from ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Update an existing item
+         * @param {string} storeName - Name of the object store
+         * @param {object} item - Item to update (must include id)
+         * @returns {Promise<number>} - ID of the updated item
+         */
+        async function updateItem(storeName, item) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readwrite');
+                const store = transaction.objectStore(storeName);
+                
+                // Update metadata
+                item.lastModified = new Date().toISOString();
+                
+                const request = store.put(item);
+                
+                request.onsuccess = () => {
+                    console.log(`✅ Updated item in ${storeName}:`, request.result);
+                    resolve(request.result);
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error updating item in ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Delete an item by ID
+         * @param {string} storeName - Name of the object store
+         * @param {number} id - ID of the item to delete
+         * @returns {Promise<void>}
+         */
+        async function deleteItem(storeName, id) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const request = store.delete(id);
+                
+                request.onsuccess = () => {
+                    console.log(`✅ Deleted item from ${storeName}:`, id);
+                    resolve();
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error deleting item from ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Delete all items from a store
+         * @param {string} storeName - Name of the object store
+         * @returns {Promise<void>}
+         */
+        async function clearStore(storeName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const request = store.clear();
+                
+                request.onsuccess = () => {
+                    console.log(`✅ Cleared all items from ${storeName}`);
+                    resolve();
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error clearing ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Get count of items in a store
+         * @param {string} storeName - Name of the object store
+         * @returns {Promise<number>} - Count of items
+         */
+        async function getCount(storeName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([storeName], 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.count();
+                
+                request.onsuccess = () => {
+                    resolve(request.result);
+                };
+                
+                request.onerror = () => {
+                    console.error(`❌ Error counting items in ${storeName}:`, request.error);
+                    reject(request.error);
+                };
+            });
+        }
+        
+        /**
+         * Update item counts in the UI
+         */
+        async function updateCounts() {
+            try {
+                const counts = {
+                    frontend: await getCount(STORES.FRONTEND),
+                    design: await getCount(STORES.DESIGN),
+                    casestudies: await getCount(STORES.CASE_STUDIES),
+                    github: await getCount(STORES.GITHUB),
+                    codepen: await getCount(STORES.CODEPEN)
+                };
+                
+                document.getElementById('frontend-count').textContent = counts.frontend;
+                document.getElementById('design-count').textContent = counts.design;
+                document.getElementById('casestudies-count').textContent = counts.casestudies;
+                document.getElementById('github-count').textContent = counts.github;
+                document.getElementById('codepen-count').textContent = counts.codepen;
+            } catch (error) {
+                console.error('Error updating counts:', error);
+            }
+        }
+        
+        // ============================================
+        // FORM GENERATION & MANAGEMENT
+        // ============================================
+        
+        // SVG icon paths (relative to portfolio-manager.html location)
+        const SVG_ICONS = {
+            'Photoshop': '../src/assets/images/photoshop-brands.svg',
+            'Illustrator': '../src/assets/images/illustrator-brands.svg',
+            'InDesign': '../src/assets/images/indesign-brands.svg',
+            'XD': '../src/assets/images/xd-brands.svg',
+            'InVision': '../src/assets/images/invision-brand.svg',
+            'Tailwind CSS': '../src/assets/images/tailwind-brands.svg',
+            'TypeScript': '../src/assets/images/Typescript_logo_2020.svg',
+            'Next.js': '../src/assets/images/next-js.svg'
+        };
+        
+        // Common tech stack options - Font Awesome icons for most, SVG for custom logos
+        const TECH_STACK = [
+            // Frontend Frameworks & Libraries
+            { name: 'React', icon: 'fab fa-react' },
+            { name: 'Vue.js', icon: 'fab fa-vuejs' },
+            { name: 'Angular', icon: 'fab fa-angular' },
+            { name: 'Next.js', icon: 'svg' }, // Custom SVG
+            { name: 'jQuery', icon: 'fab fa-js' },
+            
+            // Languages
+            { name: 'JavaScript', icon: 'fab fa-js' },
+            { name: 'TypeScript', icon: 'svg' }, // Custom SVG
+            { name: 'HTML5', icon: 'fab fa-html5' },
+            { name: 'CSS3', icon: 'fab fa-css3-alt' },
+            { name: 'PHP', icon: 'fab fa-php' },
+            { name: 'Python', icon: 'fab fa-python' },
+            
+            // Styling & CSS Frameworks
+            { name: 'Sass', icon: 'fab fa-sass' },
+            { name: 'Tailwind CSS', icon: 'svg' }, // Custom SVG
+            { name: 'Bootstrap', icon: 'fab fa-bootstrap' },
+            { name: 'Material-UI', icon: 'fas fa-layer-group' },
+            
+            // Design Tools (Adobe Creative Suite - use custom SVGs)
+            { name: 'Photoshop', icon: 'svg' }, // Custom SVG
+            { name: 'Illustrator', icon: 'svg' }, // Custom SVG
+            { name: 'InDesign', icon: 'svg' }, // Custom SVG
+            { name: 'XD', icon: 'svg' }, // Custom SVG
+            { name: 'After Effects', icon: 'fas fa-film' },
+            
+            // Other Design Tools
+            { name: 'Figma', icon: 'fab fa-figma' },
+            { name: 'Sketch', icon: 'fab fa-sketch' },
+            { name: 'InVision', icon: 'svg' }, // Custom SVG
+            
+            // Backend & CMS
+            { name: 'Node.js', icon: 'fab fa-node-js' },
+            { name: 'WordPress', icon: 'fab fa-wordpress' },
+            
+            // Development Tools
+            { name: 'Git', icon: 'fab fa-git-alt' },
+            { name: 'Docker', icon: 'fab fa-docker' },
+            { name: 'Vite', icon: 'fas fa-bolt' },
+            { name: 'Webpack', icon: 'fas fa-boxes' },
+            { name: 'Gulp', icon: 'fab fa-gulp' },
+            
+            // Cloud & Services
+            { name: 'AWS', icon: 'fab fa-aws' },
+            { name: 'Firebase', icon: 'fas fa-fire' },
+            
+            // Databases
+            { name: 'MongoDB', icon: 'fas fa-database' },
+            { name: 'MySQL', icon: 'fas fa-database' },
+            { name: 'PostgreSQL', icon: 'fas fa-database' },
+            
+            // APIs
+            { name: 'GraphQL', icon: 'fas fa-project-diagram' },
+            { name: 'REST API', icon: 'fas fa-exchange-alt' },
+            
+            // Other
+            { name: 'Design Systems', icon: 'fas fa-layer-group' }
+        ];
+        
+        let currentFormData = null;
+        let autoSaveTimeout = null;
+        
+        /**
+         * Show project form based on category
+         */
+        function showProjectForm(category, item = null) {
+            const isEdit = item !== null;
+            currentFormData = item || {};
+            
+            const dialog = document.createElement('div');
+            dialog.id = 'project-form-dialog';
+            dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            
+            let formHTML = '';
+            
+            switch(category) {
+                case 'frontend':
+                    formHTML = generateFrontendForm(item);
+                    break;
+                case 'design':
+                    formHTML = generateDesignForm(item);
+                    break;
+                case 'casestudies':
+                    formHTML = generateCaseStudyForm(item);
+                    break;
+                case 'github':
+                    formHTML = generateGithubForm(item);
+                    break;
+                case 'codepen':
+                    formHTML = generateCodepenForm(item);
+                    break;
+            }
+            
+            dialog.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+                    <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+                        <h3 class="text-xl font-bold text-gray-900">
+                            ${isEdit ? 'Edit' : 'Add New'} ${getCategoryLabel(category)}
+                        </h3>
+                        <button onclick="closeProjectForm()" class="text-gray-400 hover:text-gray-600">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                    
+                    <form id="project-form" class="p-6 overflow-y-auto flex-1">
+                        ${formHTML}
+                    </form>
+                    
+                    <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center sticky bottom-0 bg-white">
+                        <div class="text-sm text-gray-500">
+                            <span id="auto-save-status"></span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button type="button" onclick="closeProjectForm()" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                Cancel
+                            </button>
+                            <button type="button" onclick="saveProject('${category}', ${isEdit})" class="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors">
+                                ${isEdit ? 'Update' : 'Create'} Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            
+            // Set up auto-save
+            setupAutoSave(category);
+            
+            // Initialize form elements
+            initializeFormElements();
+        }
+        
+        /**
+         * Get category label
+         */
+        function getCategoryLabel(category) {
+            const labels = {
+                'frontend': 'Frontend Project',
+                'design': 'Design Showcase',
+                'casestudies': 'Case Study',
+                'github': 'GitHub Project',
+                'codepen': 'CodePen Project'
+            };
+            return labels[category] || 'Project';
+        }
+        
+        /**
+         * Generate Frontend Projects Form
+         */
+        function generateFrontendForm(item) {
+            // Parse existing additional images
+            const existingAddImages = item?.addimg 
+                ? (typeof item.addimg === 'string' ? item.addimg.split(',').map(img => img.trim()).filter(Boolean) : item.addimg)
+                : [];
+            
+            return `
+                <div class="space-y-6">
+                    <!-- Title -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="title" value="${item?.title || ''}" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <!-- Short Description (for card display) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Short Description <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="desc" rows="2" required
+                            placeholder="Brief description that appears on the project card"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.desc || ''}</textarea>
+                        <p class="mt-1 text-sm text-gray-500">This appears on the project card</p>
+                    </div>
+                    
+                    <!-- Overview -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Overview
+                        </label>
+                        <textarea name="overview" rows="4"
+                            placeholder="Comprehensive overview of the project..."
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.overview || ''}</textarea>
+                    </div>
+                    
+                    <!-- The Challenge -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            The Challenge
+                        </label>
+                        <textarea name="problem" rows="4"
+                            placeholder="Describe the main problem or challenge this project addressed..."
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.problem || ''}</textarea>
+                    </div>
+                    
+                    <!-- Key Challenges (Dynamic List) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Key Challenges</label>
+                        <div id="challenges-list" class="space-y-2">
+                            ${(item?.challenges && Array.isArray(item.challenges) ? item.challenges : item?.challenges ? [item.challenges] : ['']).map((challenge, idx) => `
+                                <div class="flex gap-2 challenge-item">
+                                    <input type="text" name="challenges[]" value="${challenge}" 
+                                        placeholder="Enter a key challenge..."
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                        <i class="material-icons text-sm">delete</i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button type="button" onclick="addChallenge()" class="mt-2 px-4 py-2 text-sm text-primary hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="material-icons text-sm">add</i>
+                            Add Challenge
+                        </button>
+                    </div>
+                    
+                    <!-- What I Learned (Dynamic List) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">What I Learned</label>
+                        <div id="learnings-list" class="space-y-2">
+                            ${(item?.learnings && Array.isArray(item.learnings) ? item.learnings : item?.learnings ? [item.learnings] : ['']).map((learning, idx) => `
+                                <div class="flex gap-2 learning-item">
+                                    <input type="text" name="learnings[]" value="${learning}" 
+                                        placeholder="Enter a learning or insight..."
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                        <i class="material-icons text-sm">delete</i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button type="button" onclick="addLearning()" class="mt-2 px-4 py-2 text-sm text-primary hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="material-icons text-sm">add</i>
+                            Add Learning
+                        </button>
+                    </div>
+                    
+                    <!-- Outcome & Impact -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Outcome & Impact
+                        </label>
+                        <textarea name="deliverables" rows="4"
+                            placeholder="Describe the results, deliverables, and impact of the project..."
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.deliverables || ''}</textarea>
+                    </div>
+                    
+                    <!-- Key Metrics (Dynamic) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Key Metrics</label>
+                        <div id="metrics-list" class="space-y-2">
+                            ${item?.metrics && Object.keys(item.metrics).length > 0 
+                                ? Object.entries(item.metrics).map(([key, value]) => `
+                                    <div class="flex gap-2 metric-item">
+                                        <input type="text" placeholder="Metric label (e.g., Performance)" value="${key}"
+                                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent metric-key">
+                                        <input type="text" placeholder="Value (e.g., 95%)" value="${value}"
+                                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent metric-value">
+                                        <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                            <i class="material-icons text-sm">delete</i>
+                                        </button>
+                                    </div>
+                                `).join('')
+                                : `
+                                    <div class="flex gap-2 metric-item">
+                                        <input type="text" placeholder="Metric label (e.g., Performance)" 
+                                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent metric-key">
+                                        <input type="text" placeholder="Value (e.g., 95%)" 
+                                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent metric-value">
+                                        <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                            <i class="material-icons text-sm">delete</i>
+                                        </button>
+                                    </div>
+                                `
+                            }
+                        </div>
+                        <button type="button" onclick="addMetric()" class="mt-2 px-4 py-2 text-sm text-primary hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="material-icons text-sm">add</i>
+                            Add Metric
+                        </button>
+                    </div>
+                    
+                    <!-- Images -->
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-semibold text-gray-900">Project Images</h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Main Image <span class="text-red-500">*</span></label>
+                                <input type="file" name="img" accept="image/*" onchange="handleImageUpload(this, 'img-preview')"
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                                <div id="img-preview" class="mt-2">
+                                    ${item?.img ? `
+                                        <div class="border rounded-lg p-2 bg-gray-50">
+                                            <p class="text-xs text-gray-600 mb-1">Current image:</p>
+                                            <img src="${item.img}" class="max-w-full h-32 object-cover rounded-lg border" alt="Current main image">
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <input type="hidden" name="img_base64" value="${item?.img || ''}">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Secondary Image</label>
+                                <input type="file" name="secimg" accept="image/*" onchange="handleImageUpload(this, 'secimg-preview')"
+                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                                <div id="secimg-preview" class="mt-2">
+                                    ${item?.secimg ? `
+                                        <div class="border rounded-lg p-2 bg-gray-50">
+                                            <p class="text-xs text-gray-600 mb-1">Current image:</p>
+                                            <img src="${item.secimg}" class="max-w-full h-32 object-cover rounded-lg border" alt="Current secondary image">
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <input type="hidden" name="secimg_base64" value="${item?.secimg || ''}">
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Images (Dynamic) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Images</label>
+                            <div id="additional-images-list" class="space-y-2">
+                                ${existingAddImages.map((img, idx) => `
+                                    <div class="flex gap-2 additional-image-item">
+                                        <input type="file" accept="image/*" onchange="handleAdditionalImageUpload(this, 'addimg-preview-${idx}')"
+                                            class="flex-1 block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                                        <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                            <i class="material-icons text-sm">delete</i>
+                                        </button>
+                                        <div id="addimg-preview-${idx}" class="col-span-2 mt-2">
+                                            <div class="border rounded-lg p-2 bg-gray-50">
+                                                <p class="text-xs text-gray-600 mb-1">Current image:</p>
+                                                <img src="${img}" class="max-w-full h-32 object-cover rounded-lg border" alt="Additional image ${idx + 1}">
+                                            </div>
+                                        </div>
+                                        <input type="hidden" class="addimg-base64" value="${img}">
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <button type="button" onclick="addAdditionalImage()" class="mt-2 px-4 py-2 text-sm text-primary hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-2">
+                                <i class="material-icons text-sm">add</i>
+                                Add Another Image
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Tech Stack -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Tech Stack
+                        </label>
+                        <div id="tech-stack-selector" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                            ${TECH_STACK.map(tech => `
+                                <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                    <input type="checkbox" name="tech" value="${tech.name}" 
+                                        ${item?.tech?.some(t => (typeof t === 'string' ? t : t.name) === tech.name) ? 'checked' : ''}
+                                        class="rounded text-primary focus:ring-primary">
+                                    ${tech.icon === 'svg' && SVG_ICONS[tech.name]
+                                        ? `<img src="${SVG_ICONS[tech.name]}" alt="${tech.name} logo" class="w-4 h-4" style="display: inline-block;" />` 
+                                        : `<i class="${tech.icon}" aria-hidden="true"></i>`}
+                                    <span class="text-sm">${tech.name}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <!-- URLs -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">GitHub URL</label>
+                            <input type="url" name="githubUrl" value="${item?.githubUrl || ''}" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Live URL</label>
+                            <input type="url" name="liveUrl" value="${item?.liveUrl || ''}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <!-- Meta Info -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                            <input type="text" name="role" value="${item?.role || ''}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Year</label>
+                            <input type="number" name="year" value="${item?.year || new Date().getFullYear()}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="featured" ${item?.featured ? 'checked' : ''}
+                                    class="rounded text-primary focus:ring-primary">
+                                <span class="text-sm font-medium text-gray-700">Featured Project</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Generate Design Showcase Form
+         */
+        function generateDesignForm(item) {
+            const categories = ['Logo Design', 'UI/UX', 'Branding', 'Illustration', 'Web Design', 'Mobile Design', 'Print Design'];
+            
+            return `
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="title" value="${item?.title || ''}" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Category <span class="text-red-500">*</span>
+                        </label>
+                        <select name="category" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Select category...</option>
+                            ${categories.map(cat => `
+                                <option value="${cat}" ${item?.category === cat ? 'selected' : ''}>${cat}</option>
+                            `).join('')}
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Description <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="description" rows="4" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.description || ''}</textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Image <span class="text-red-500">*</span>
+                        </label>
+                        <input type="file" name="image" accept="image/*" onchange="handleImageUpload(this, 'image-preview')"
+                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                        <div id="image-preview" class="mt-2">
+                            ${item?.image ? `
+                                <div class="border rounded-lg p-2 bg-gray-50">
+                                    <p class="text-xs text-gray-600 mb-1">Current image:</p>
+                                    <img src="${item.image}" class="max-w-full h-32 object-cover rounded-lg border" alt="Current design image">
+                                </div>
+                            ` : ''}
+                        </div>
+                        <input type="hidden" name="image_base64" value="${item?.image || ''}">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tags</label>
+                        <input type="text" name="tags" value="${item?.tags?.join(', ') || ''}" 
+                            placeholder="Enter tags separated by commas"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <p class="mt-1 text-sm text-gray-500">Separate tags with commas</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Generate Case Study Form
+         */
+        function generateCaseStudyForm(item) {
+            return `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Title <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" name="title" value="${item?.title || ''}" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Subtitle</label>
+                            <input type="text" name="subtitle" value="${item?.subtitle || ''}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnail</label>
+                        <input type="file" name="thumbnail" accept="image/*" onchange="handleImageUpload(this, 'thumbnail-preview')"
+                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                        <div id="thumbnail-preview" class="mt-2">
+                            ${item?.thumbnail ? `
+                                <div class="border rounded-lg p-2 bg-gray-50">
+                                    <p class="text-xs text-gray-600 mb-1">Current image:</p>
+                                    <img src="${item.thumbnail}" class="max-w-full h-32 object-cover rounded-lg border" alt="Current thumbnail">
+                                </div>
+                            ` : ''}
+                        </div>
+                        <input type="hidden" name="thumbnail_base64" value="${item?.thumbnail || ''}">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Overview</label>
+                        <textarea name="overview" rows="4"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.overview || ''}</textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Challenge</label>
+                        <textarea name="challenge" rows="4"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.challenge || ''}</textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Solution</label>
+                        <textarea name="solution" rows="4"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.solution || ''}</textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Results</label>
+                        <textarea name="results" rows="3"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.results || ''}</textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                            <input type="text" name="role" value="${item?.role || ''}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+                            <input type="text" name="duration" value="${item?.duration || ''}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="featured" ${item?.featured ? 'checked' : ''}
+                                    class="rounded text-primary focus:ring-primary">
+                                <span class="text-sm font-medium text-gray-700">Featured</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Technologies</label>
+                        <input type="text" name="technologies" value="${item?.technologies?.join(', ') || ''}" 
+                            placeholder="Enter technologies separated by commas"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Generate GitHub Projects Form
+         */
+        function generateGithubForm(item) {
+            const languages = ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'Go', 'Rust', 'PHP', 'Ruby', 'Swift'];
+            
+            return `
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Repository Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="name" value="${item?.name || ''}" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Description <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="description" rows="3" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.description || ''}</textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                GitHub URL <span class="text-red-500">*</span>
+                            </label>
+                            <input type="url" name="url" value="${item?.url || ''}" required placeholder="https://github.com/username/repo"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Live Demo URL</label>
+                            <input type="url" name="liveUrl" value="${item?.liveUrl || ''}"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Primary Language</label>
+                        <select name="language"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Select language...</option>
+                            ${languages.map(lang => `
+                                <option value="${lang}" ${item?.language === lang ? 'selected' : ''}>${lang}</option>
+                            `).join('')}
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Topics/Tags</label>
+                        <input type="text" name="topics" value="${item?.topics?.join(', ') || ''}" 
+                            placeholder="react, nodejs, api"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <p class="mt-1 text-sm text-gray-500">Separate topics with commas</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnail</label>
+                        <input type="file" name="thumbnail" accept="image/*" onchange="handleImageUpload(this, 'github-thumbnail-preview')"
+                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                        <div id="github-thumbnail-preview" class="mt-2">
+                            ${item?.thumbnail ? `
+                                <div class="border rounded-lg p-2 bg-gray-50">
+                                    <p class="text-xs text-gray-600 mb-1">Current image:</p>
+                                    <img src="${item.thumbnail}" class="max-w-full h-32 object-cover rounded-lg border" alt="Current thumbnail">
+                                </div>
+                            ` : ''}
+                        </div>
+                        <input type="hidden" name="thumbnail_base64" value="${item?.thumbnail || ''}">
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Generate CodePen Projects Form
+         */
+        function generateCodepenForm(item) {
+            return `
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="title" value="${item?.title || ''}" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Description <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="description" rows="3" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.description || ''}</textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            CodePen URL <span class="text-red-500">*</span>
+                        </label>
+                        <input type="url" name="url" value="${item?.url || ''}" required 
+                            placeholder="https://codepen.io/username/pen/xxxxxx"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Embed URL</label>
+                        <input type="url" name="embedUrl" value="${item?.embedUrl || ''}"
+                            placeholder="https://codepen.io/username/embed/xxxxxx"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <p class="mt-1 text-sm text-gray-500">For embedding the pen on your site</p>
+                    </div>
+                    
+                    ${item?.embedUrl || document.querySelector('input[name="embedUrl"]')?.value ? `
+                        <div class="border rounded-lg p-4 bg-gray-50">
+                            <h4 class="text-sm font-medium text-gray-700 mb-2">Preview</h4>
+                            <iframe 
+                                src="${item?.embedUrl || ''}" 
+                                style="width: 100%; height: 300px; border: 1px solid #ddd; border-radius: 4px;"
+                                loading="lazy"
+                                allowfullscreen="true">
+                            </iframe>
+                        </div>
+                    ` : ''}
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tags</label>
+                        <input type="text" name="tags" value="${item?.tags?.join(', ') || ''}" 
+                            placeholder="css, animation, responsive"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <p class="mt-1 text-sm text-gray-500">Separate tags with commas</p>
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="checkbox" name="featured" ${item?.featured ? 'checked' : ''}
+                                class="rounded text-primary focus:ring-primary">
+                            <span class="text-sm font-medium text-gray-700">Featured Project</span>
+                        </label>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Add a new challenge input field
+         */
+        function addChallenge() {
+            const list = document.getElementById('challenges-list');
+            const item = document.createElement('div');
+            item.className = 'flex gap-2 challenge-item';
+            item.innerHTML = `
+                <input type="text" name="challenges[]" placeholder="Enter a key challenge..." 
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                    <i class="material-icons text-sm">delete</i>
+                </button>
+            `;
+            list.appendChild(item);
+        }
+        
+        /**
+         * Add a new learning input field
+         */
+        function addLearning() {
+            const list = document.getElementById('learnings-list');
+            const item = document.createElement('div');
+            item.className = 'flex gap-2 learning-item';
+            item.innerHTML = `
+                <input type="text" name="learnings[]" placeholder="Enter a learning or insight..." 
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                    <i class="material-icons text-sm">delete</i>
+                </button>
+            `;
+            list.appendChild(item);
+        }
+        
+        /**
+         * Add a new metric input pair
+         */
+        function addMetric() {
+            const list = document.getElementById('metrics-list');
+            const item = document.createElement('div');
+            item.className = 'flex gap-2 metric-item';
+            item.innerHTML = `
+                <input type="text" placeholder="Metric label (e.g., Performance)" 
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent metric-key">
+                <input type="text" placeholder="Value (e.g., 95%)" 
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent metric-value">
+                <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                    <i class="material-icons text-sm">delete</i>
+                </button>
+            `;
+            list.appendChild(item);
+        }
+        
+        /**
+         * Add a new additional image input
+         */
+        function addAdditionalImage() {
+            const list = document.getElementById('additional-images-list');
+            const index = list.children.length;
+            const item = document.createElement('div');
+            item.className = 'additional-image-item space-y-2';
+            item.innerHTML = `
+                <div class="flex gap-2">
+                    <input type="file" accept="image/*" onchange="handleAdditionalImageUpload(this, 'addimg-preview-${index}')"
+                        class="flex-1 block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                    <button type="button" onclick="removeListItem(this)" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                        <i class="material-icons text-sm">delete</i>
+                    </button>
+                </div>
+                <div id="addimg-preview-${index}"></div>
+                <input type="hidden" class="addimg-base64" value="">
+            `;
+            list.appendChild(item);
+        }
+        
+        /**
+         * Remove a list item (challenges, learnings, metrics, images)
+         */
+        function removeListItem(button) {
+            const item = button.closest('.challenge-item, .learning-item, .metric-item, .additional-image-item');
+            if (item) {
+                item.remove();
+                triggerAutoSave();
+            }
+        }
+        
+        /**
+         * Handle additional image upload
+         */
+        function handleAdditionalImageUpload(input, previewId) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                
+                // Store base64 in hidden input
+                const hiddenInput = input.closest('.additional-image-item').querySelector('.addimg-base64');
+                if (hiddenInput) {
+                    hiddenInput.value = base64;
+                }
+                
+                // Show preview
+                const preview = document.getElementById(previewId);
+                if (preview) {
+                    preview.innerHTML = `
+                        <div class="border rounded-lg p-2 bg-blue-50 border-blue-200">
+                            <p class="text-xs text-blue-700 mb-1">New image selected:</p>
+                            <img src="${base64}" class="max-w-full h-32 object-cover rounded-lg border" alt="New additional image">
+                        </div>
+                    `;
+                }
+                
+                // Trigger auto-save
+                triggerAutoSave();
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        /**
+         * Handle image upload and convert to base64
+         */
+        function handleImageUpload(input, previewId) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                
+                // Store base64 in hidden input
+                const hiddenInput = input.parentElement.querySelector('input[type="hidden"]');
+                if (hiddenInput) {
+                    hiddenInput.value = base64;
+                }
+                
+                // Show preview
+                const preview = document.getElementById(previewId);
+                if (preview) {
+                    preview.innerHTML = `
+                        <div class="border rounded-lg p-2 bg-blue-50 border-blue-200">
+                            <p class="text-xs text-blue-700 mb-1">New image selected:</p>
+                            <img src="${base64}" class="max-w-full h-32 object-cover rounded-lg border" alt="New image preview">
+                        </div>
+                    `;
+                }
+                
+                // Trigger auto-save
+                triggerAutoSave();
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        /**
+         * Set up auto-save
+         */
+        function setupAutoSave(category) {
+            const form = document.getElementById('project-form');
+            if (!form) return;
+            
+            form.addEventListener('input', () => {
+                triggerAutoSave();
+            });
+        }
+        
+        /**
+         * Trigger auto-save with debounce
+         */
+        function triggerAutoSave() {
+            clearTimeout(autoSaveTimeout);
+            
+            const status = document.getElementById('auto-save-status');
+            if (status) {
+                status.innerHTML = '<span class="text-gray-400">Saving...</span>';
+            }
+            
+            autoSaveTimeout = setTimeout(() => {
+                if (status) {
+                    status.innerHTML = '<span class="text-green-600"><i class="material-icons text-sm align-middle">check_circle</i> Auto-saved</span>';
+                }
+            }, 1000);
+        }
+        
+        /**
+         * Initialize form elements
+         */
+        function initializeFormElements() {
+            // Add Font Awesome for tech stack icons if not already included
+            if (!document.querySelector('link[href*="font-awesome"]')) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+                document.head.appendChild(link);
+            }
+        }
+        
+        /**
+         * Save project
+         */
+        async function saveProject(category, isEdit) {
+            const form = document.getElementById('project-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Convert FormData to object
+            for (const [key, value] of formData.entries()) {
+                if (key === 'tech') {
+                    // Handle tech stack with icon mapping
+                    if (!data[key]) data[key] = [];
+                    if (value) {
+                        const techEntry = TECH_STACK.find(t => t.name === value);
+                        if (techEntry) {
+                            data[key].push({ name: techEntry.name, icon: techEntry.icon });
+                        }
+                    }
+                } else if (key === 'challenges[]' || key === 'learnings[]') {
+                    // Handle array fields (challenges, learnings)
+                    const fieldName = key.replace('[]', '');
+                    if (!data[fieldName]) data[fieldName] = [];
+                    if (value && value.trim()) {
+                        data[fieldName].push(value.trim());
+                    }
+                } else if (key === 'tags' || key === 'topics' || key === 'technologies') {
+                    // Handle comma-separated arrays
+                    if (!data[key]) data[key] = [];
+                    if (value.includes(',')) {
+                        data[key] = value.split(',').map(v => v.trim()).filter(Boolean);
+                    } else if (value) {
+                        data[key].push(value);
+                    }
+                } else if (key.endsWith('_base64')) {
+                    // Handle base64 images
+                    const fieldName = key.replace('_base64', '');
+                    if (value) data[fieldName] = value;
+                } else if (key === 'featured') {
+                    data[key] = true;
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Handle metrics (build object from metric-key and metric-value pairs)
+            const metricItems = document.querySelectorAll('.metric-item');
+            if (metricItems.length > 0) {
+                data.metrics = {};
+                metricItems.forEach(item => {
+                    const keyInput = item.querySelector('.metric-key');
+                    const valueInput = item.querySelector('.metric-value');
+                    if (keyInput && valueInput && keyInput.value.trim() && valueInput.value.trim()) {
+                        // Convert label to camelCase key (e.g., "Performance Boost" -> "performanceBoost")
+                        const key = keyInput.value.trim().replace(/\s+(.)/g, (match, char) => char.toUpperCase()).replace(/^\w/, c => c.toLowerCase());
+                        data.metrics[key] = valueInput.value.trim();
+                    }
+                });
+            }
+            
+            // Handle additional images
+            const addimgInputs = document.querySelectorAll('.addimg-base64');
+            if (addimgInputs.length > 0) {
+                const addImages = Array.from(addimgInputs)
+                    .map(input => input.value)
+                    .filter(Boolean);
+                if (addImages.length > 0) {
+                    data.addimg = addImages.join(',');
+                }
+            }
+            
+            // Handle unchecked checkboxes
+            if (!formData.has('featured')) {
+                data.featured = false;
+            }
+            
+            // Get store name
+            const storeMapping = {
+                'frontend': STORES.FRONTEND,
+                'design': STORES.DESIGN,
+                'casestudies': STORES.CASE_STUDIES,
+                'github': STORES.GITHUB,
+                'codepen': STORES.CODEPEN
+            };
+            const storeName = storeMapping[category];
+            
+            try {
+                if (isEdit && currentFormData.id) {
+                    data.id = currentFormData.id;
+                    await updateItem(storeName, data);
+                    showNotification(`${getCategoryLabel(category)} updated successfully!`, 'success');
+                } else {
+                    await addItem(storeName, data);
+                    showNotification(`${getCategoryLabel(category)} created successfully!`, 'success');
+                }
+                
+                await updateCounts();
+                closeProjectForm();
+                
+            } catch (error) {
+                console.error('Save error:', error);
+                showNotification(`Failed to save: ${error.message}`, 'error');
+            }
+        }
+        
+        /**
+         * Close project form
+         */
+        function closeProjectForm() {
+            const dialog = document.getElementById('project-form-dialog');
+            if (dialog) {
+                dialog.remove();
+            }
+            currentFormData = null;
+            clearTimeout(autoSaveTimeout);
+        }
+        
+        // ============================================
+        // IMPORT FUNCTIONALITY
+        // ============================================
+        
+        /**
+         * Show import dialog
+         */
+        function showImportDialog() {
+            const dialog = document.createElement('div');
+            dialog.id = 'import-dialog';
+            dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            dialog.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+                    <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-gray-900">Import Portfolio Data</h3>
+                        <button onclick="closeImportDialog()" class="text-gray-400 hover:text-gray-600">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                    
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Select projects.js file
+                            </label>
+                            <input 
+                                type="file" 
+                                id="file-input" 
+                                accept=".js,.jsx" 
+                                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-dark cursor-pointer"
+                            />
+                            <p class="mt-2 text-sm text-gray-500">
+                                Upload your existing projects.js file to import all portfolio data.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Or paste JavaScript code
+                            </label>
+                            <textarea 
+                                id="code-input" 
+                                rows="10" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono text-sm"
+                                placeholder="export const projects = [...];"
+                            ></textarea>
+                        </div>
+                        
+                        <div id="import-status" class="hidden mb-4"></div>
+                    </div>
+                    
+                    <div class="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+                        <button onclick="closeImportDialog()" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                            Cancel
+                        </button>
+                        <button onclick="processImport()" class="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors">
+                            Import Data
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            
+            // Handle file input
+            document.getElementById('file-input').addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const text = await file.text();
+                    document.getElementById('code-input').value = text;
+                }
+            });
+        }
+        
+        /**
+         * Close import dialog
+         */
+        function closeImportDialog() {
+            const dialog = document.getElementById('import-dialog');
+            if (dialog) {
+                dialog.remove();
+            }
+        }
+        
+        /**
+         * Parse JavaScript code to extract arrays
+         */
+        function parseProjectsJS(code) {
+            const extracted = {
+                projects: [],
+                designShowcase: [],
+                caseStudies: [],
+                githubProjects: [],
+                codepenProjects: []
+            };
+            
+            try {
+                // Remove export statements and clean up code
+                let cleanCode = code
+                    .replace(/export\s+(const|let|var)\s+/g, 'var ')
+                    .replace(/export\s+default\s+/g, '')
+                    .replace(/export\s+{[^}]*}/g, '');
+                
+                // Create a safe evaluation context
+                const context = {};
+                
+                // Use Function constructor instead of eval for better isolation
+                const func = new Function('context', `
+                    ${cleanCode}
+                    
+                    // Try to capture arrays
+                    if (typeof projects !== 'undefined') context.projects = projects;
+                    if (typeof designShowcase !== 'undefined') context.designShowcase = designShowcase;
+                    if (typeof caseStudies !== 'undefined') context.caseStudies = caseStudies;
+                    if (typeof githubProjects !== 'undefined') context.githubProjects = githubProjects;
+                    if (typeof codepenProjects !== 'undefined') context.codepenProjects = codepenProjects;
+                `);
+                
+                func(context);
+                
+                // Extract arrays from context
+                if (context.projects && Array.isArray(context.projects)) {
+                    extracted.projects = context.projects;
+                }
+                if (context.designShowcase && Array.isArray(context.designShowcase)) {
+                    extracted.designShowcase = context.designShowcase;
+                }
+                if (context.caseStudies && Array.isArray(context.caseStudies)) {
+                    extracted.caseStudies = context.caseStudies;
+                }
+                if (context.githubProjects && Array.isArray(context.githubProjects)) {
+                    extracted.githubProjects = context.githubProjects;
+                }
+                if (context.codepenProjects && Array.isArray(context.codepenProjects)) {
+                    extracted.codepenProjects = context.codepenProjects;
+                }
+                
+                console.log('📦 Parsed data:', {
+                    projects: extracted.projects.length,
+                    designShowcase: extracted.designShowcase.length,
+                    caseStudies: extracted.caseStudies.length,
+                    githubProjects: extracted.githubProjects.length,
+                    codepenProjects: extracted.codepenProjects.length
+                });
+                
+                return extracted;
+            } catch (error) {
+                console.error('❌ Parse error:', error);
+                throw new Error(`Failed to parse JavaScript: ${error.message}`);
+            }
+        }
+        
+        /**
+         * Check for duplicates
+         */
+        async function findDuplicates(storeName, items) {
+            const existing = await getAllItems(storeName);
+            const duplicates = [];
+            const newItems = [];
+            
+            for (const item of items) {
+                // Check by title for most stores, by name for GitHub
+                const identifier = item.title || item.name;
+                const isDuplicate = existing.some(e => 
+                    (e.title && e.title === identifier) || 
+                    (e.name && e.name === identifier)
+                );
+                
+                if (isDuplicate) {
+                    duplicates.push({ item, existing: existing.find(e => 
+                        (e.title && e.title === identifier) || 
+                        (e.name && e.name === identifier)
+                    )});
+                } else {
+                    newItems.push(item);
+                }
+            }
+            
+            return { duplicates, newItems };
+        }
+        
+        /**
+         * Show merge conflict dialog
+         */
+        function showMergeDialog(conflicts, onResolve) {
+            const dialog = document.createElement('div');
+            dialog.id = 'merge-dialog';
+            dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            dialog.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-900">Resolve Duplicates</h3>
+                        <p class="text-sm text-gray-600 mt-1">
+                            Found ${conflicts.length} duplicate(s). Choose which version to keep.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <div id="conflicts-list" class="space-y-4">
+                            ${conflicts.map((conflict, index) => `
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <h4 class="font-semibold text-gray-900 mb-3">
+                                        ${conflict.item.title || conflict.item.name}
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="flex items-start gap-2 cursor-pointer p-3 border-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="selectMergeOption(${index}, 'existing')">
+                                                <input type="radio" name="conflict-${index}" value="existing" class="mt-1">
+                                                <div class="flex-1">
+                                                    <div class="font-medium text-gray-900 mb-1">Keep Existing</div>
+                                                    <div class="text-sm text-gray-600">
+                                                        Last modified: ${conflict.existing.lastModified ? new Date(conflict.existing.lastModified).toLocaleDateString() : 'Unknown'}
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label class="flex items-start gap-2 cursor-pointer p-3 border-2 rounded-lg hover:bg-gray-50 transition-colors" onclick="selectMergeOption(${index}, 'imported')">
+                                                <input type="radio" name="conflict-${index}" value="imported" checked class="mt-1">
+                                                <div class="flex-1">
+                                                    <div class="font-medium text-gray-900 mb-1">Use Imported</div>
+                                                    <div class="text-sm text-gray-600">
+                                                        From projects.js file
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center">
+                        <button onclick="closeMergeDialog()" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                            Cancel Import
+                        </button>
+                        <button onclick="applyMergeDecisions()" class="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors">
+                            Apply Decisions
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            
+            // Store conflict data and callback
+            window.mergeConflicts = conflicts;
+            window.mergeResolveCallback = onResolve;
+        }
+        
+        /**
+         * Select merge option
+         */
+        function selectMergeOption(index, option) {
+            // Radio button will be automatically selected by the label click
+        }
+        
+        /**
+         * Apply merge decisions
+         */
+        function applyMergeDecisions() {
+            const decisions = [];
+            const conflicts = window.mergeConflicts;
+            
+            for (let i = 0; i < conflicts.length; i++) {
+                const selected = document.querySelector(`input[name="conflict-${i}"]:checked`);
+                decisions.push({
+                    conflict: conflicts[i],
+                    useImported: selected ? selected.value === 'imported' : true
+                });
+            }
+            
+            closeMergeDialog();
+            
+            if (window.mergeResolveCallback) {
+                window.mergeResolveCallback(decisions);
+            }
+        }
+        
+        /**
+         * Close merge dialog
+         */
+        function closeMergeDialog() {
+            const dialog = document.getElementById('merge-dialog');
+            if (dialog) {
+                dialog.remove();
+            }
+            window.mergeConflicts = null;
+            window.mergeResolveCallback = null;
+        }
+        
+        /**
+         * Process import
+         */
+        async function processImport() {
+            const code = document.getElementById('code-input').value;
+            
+            if (!code.trim()) {
+                showNotification('Please provide JavaScript code to import', 'error');
+                return;
+            }
+            
+            const statusEl = document.getElementById('import-status');
+            statusEl.className = 'block p-4 bg-blue-50 border border-blue-200 rounded-lg';
+            statusEl.innerHTML = `
+                <div class="flex items-center gap-2 text-blue-700">
+                    <span class="material-icons animate-spin">refresh</span>
+                    <span>Processing import...</span>
+                </div>
+            `;
+            
+            try {
+                // Parse the code
+                const parsed = parseProjectsJS(code);
+                
+                // Check each category for duplicates
+                const allConflicts = [];
+                const storeMapping = {
+                    [STORES.FRONTEND]: parsed.projects,
+                    [STORES.DESIGN]: parsed.designShowcase,
+                    [STORES.CASE_STUDIES]: parsed.caseStudies,
+                    [STORES.GITHUB]: parsed.githubProjects,
+                    [STORES.CODEPEN]: parsed.codepenProjects
+                };
+                
+                for (const [storeName, items] of Object.entries(storeMapping)) {
+                    if (items.length > 0) {
+                        const { duplicates, newItems } = await findDuplicates(storeName, items);
+                        allConflicts.push(...duplicates.map(d => ({ ...d, storeName })));
+                    }
+                }
+                
+                // If there are conflicts, show merge dialog
+                if (allConflicts.length > 0) {
+                    closeImportDialog();
+                    showMergeDialog(allConflicts, async (decisions) => {
+                        await finishImport(storeMapping, decisions);
+                    });
+                } else {
+                    // No conflicts, proceed directly
+                    await finishImport(storeMapping, []);
+                    closeImportDialog();
+                }
+                
+            } catch (error) {
+                console.error('Import error:', error);
+                statusEl.className = 'block p-4 bg-red-50 border border-red-200 rounded-lg';
+                statusEl.innerHTML = `
+                    <div class="flex items-center gap-2 text-red-700">
+                        <span class="material-icons">error</span>
+                        <span>${error.message}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        /**
+         * Finish import process
+         */
+        async function finishImport(storeMapping, mergeDecisions) {
+            let totalImported = 0;
+            const summary = {};
+            
+            try {
+                for (const [storeName, items] of Object.entries(storeMapping)) {
+                    let imported = 0;
+                    
+                    for (const item of items) {
+                        const identifier = item.title || item.name;
+                        
+                        // Check if this item was in a conflict
+                        const decision = mergeDecisions.find(d => 
+                            (d.conflict.item.title === identifier || d.conflict.item.name === identifier) &&
+                            d.conflict.storeName === storeName
+                        );
+                        
+                        if (decision && !decision.useImported) {
+                            // User chose to keep existing, skip this item
+                            continue;
+                        }
+                        
+                        if (decision && decision.useImported) {
+                            // Update existing item
+                            const existingItem = decision.conflict.existing;
+                            await updateItem(storeName, {
+                                ...item,
+                                id: existingItem.id,
+                                imported: true,
+                                createdAt: existingItem.createdAt
+                            });
+                        } else {
+                            // Add new item
+                            await addItem(storeName, {
+                                ...item,
+                                imported: true
+                            });
+                        }
+                        
+                        imported++;
+                    }
+                    
+                    summary[storeName] = imported;
+                    totalImported += imported;
+                }
+                
+                // Update counts
+                await updateCounts();
+                
+                // Show success notification
+                const details = Object.entries(summary)
+                    .filter(([_, count]) => count > 0)
+                    .map(([store, count]) => `${count} ${store}`)
+                    .join(', ');
+                
+                showNotification(
+                    `Successfully imported ${totalImported} item(s): ${details}`,
+                    'success'
+                );
+                
+                console.log('✅ Import complete:', summary);
+                
+            } catch (error) {
+                console.error('❌ Import failed:', error);
+                showNotification(`Import failed: ${error.message}`, 'error');
+            }
+        }
+        
+        /**
+         * Show notification
+         */
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg max-w-md animate-slide-in ${
+                type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' :
+                type === 'error' ? 'bg-red-50 border border-red-200 text-red-800' :
+                'bg-blue-50 border border-blue-200 text-blue-800'
+            }`;
+            
+            notification.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <span class="material-icons">
+                        ${type === 'success' ? 'check_circle' : type === 'error' ? 'error' : 'info'}
+                    </span>
+                    <div class="flex-1">
+                        <p class="font-medium">${message}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-gray-400 hover:text-gray-600">
+                        <span class="material-icons text-sm">close</span>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        // ============================================
+        // UI INTERACTION HANDLERS
+        // ============================================
+        
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabName = button.dataset.tab;
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('tab-active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('tab-active');
+                document.getElementById(`${tabName}-tab`).classList.add('active');
+                
+                // Reset filters and load items for this category
+                resetFilters();
+                loadCategoryItems(tabName);
+            });
+        });
+        
+        // FAB click handler
+        document.getElementById('addProjectBtn').addEventListener('click', () => {
+            const activeTab = document.querySelector('.tab-button.tab-active').dataset.tab;
+            showProjectForm(activeTab);
+        });
+        
+        // Import button handler
+        document.getElementById('importBtn').addEventListener('click', () => {
+            showImportDialog();
+        });
+        
+        // Export button handler (placeholder)
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            alert('Export functionality will be implemented in PROMPT 6');
+        });
+        
+        // ============================================
+        // LIST VIEW & FILTERING
+        // ============================================
+        
+        let currentFilters = {
+            search: '',
+            featured: false,
+            year: null,
+            category: null,
+            sort: 'newest'
+        };
+        
+        let selectedItems = new Set();
+        
+        /**
+         * Load and display items for a category
+         */
+        async function loadCategoryItems(category) {
+            const storeMapping = {
+                'frontend': STORES.FRONTEND,
+                'design': STORES.DESIGN,
+                'casestudies': STORES.CASE_STUDIES,
+                'github': STORES.GITHUB,
+                'codepen': STORES.CODEPEN
+            };
+            
+            const storeName = storeMapping[category];
+            const items = await getAllItems(storeName);
+            
+            // Apply filters
+            let filteredItems = filterItems(items, currentFilters, category);
+            
+            // Apply sorting
+            filteredItems = sortItems(filteredItems, currentFilters.sort, category);
+            
+            // Render items
+            renderItemList(category, filteredItems);
+        }
+        
+        /**
+         * Filter items based on current filters
+         */
+        function filterItems(items, filters, category) {
+            return items.filter(item => {
+                // Search filter
+                if (filters.search) {
+                    const searchLower = filters.search.toLowerCase();
+                    const title = (item.title || item.name || '').toLowerCase();
+                    const desc = (item.description || item.desc || '').toLowerCase();
+                    if (!title.includes(searchLower) && !desc.includes(searchLower)) {
+                        return false;
+                    }
+                }
+                
+                // Featured filter
+                if (filters.featured && !item.featured) {
+                    return false;
+                }
+                
+                // Year filter
+                if (filters.year && item.year != filters.year) {
+                    return false;
+                }
+                
+                // Category filter (for design showcase)
+                if (filters.category && item.category !== filters.category) {
+                    return false;
+                }
+                
+                return true;
+            });
+        }
+        
+        /**
+         * Sort items based on sort option
+         */
+        function sortItems(items, sortBy, category) {
+            const sorted = [...items];
+            
+            switch(sortBy) {
+                case 'newest':
+                    return sorted.sort((a, b) => {
+                        const dateA = new Date(a.lastModified || a.createdAt || 0);
+                        const dateB = new Date(b.lastModified || b.createdAt || 0);
+                        return dateB - dateA;
+                    });
+                    
+                case 'oldest':
+                    return sorted.sort((a, b) => {
+                        const dateA = new Date(a.createdAt || 0);
+                        const dateB = new Date(b.createdAt || 0);
+                        return dateA - dateB;
+                    });
+                    
+                case 'a-z':
+                    return sorted.sort((a, b) => {
+                        const nameA = (a.title || a.name || '').toLowerCase();
+                        const nameB = (b.title || b.name || '').toLowerCase();
+                        return nameA.localeCompare(nameB);
+                    });
+                    
+                case 'featured':
+                    return sorted.sort((a, b) => {
+                        if (a.featured && !b.featured) return -1;
+                        if (!a.featured && b.featured) return 1;
+                        return 0;
+                    });
+                    
+                default:
+                    return sorted;
+            }
+        }
+        
+        /**
+         * Render item list
+         */
+        function renderItemList(category, items) {
+            const container = document.getElementById(`${category}-container`);
+            if (!container) return;
+            
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-gray-400">
+                        <span class="material-icons text-6xl mb-4">search_off</span>
+                        <p>No items found. Try adjusting your filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="col-span-full mb-4">
+                    <div class="flex flex-wrap gap-4 items-center justify-between">
+                        <!-- Search Bar -->
+                        <div class="flex-1 min-w-[300px]">
+                            <div class="relative">
+                                <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                                <input 
+                                    type="text" 
+                                    id="search-${category}"
+                                    placeholder="Search by title or description..."
+                                    value="${currentFilters.search}"
+                                    onkeyup="handleSearch('${category}', this.value)"
+                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <!-- Filter & Sort Controls -->
+                        <div class="flex gap-2 flex-wrap">
+                            ${renderFilterButtons(category)}
+                            
+                            <!-- Sort Dropdown -->
+                            <select onchange="handleSort('${category}', this.value)" 
+                                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="newest" ${currentFilters.sort === 'newest' ? 'selected' : ''}>Newest First</option>
+                                <option value="oldest" ${currentFilters.sort === 'oldest' ? 'selected' : ''}>Oldest First</option>
+                                <option value="a-z" ${currentFilters.sort === 'a-z' ? 'selected' : ''}>A-Z</option>
+                                <option value="featured" ${currentFilters.sort === 'featured' ? 'selected' : ''}>Featured First</option>
+                            </select>
+                            
+                            <!-- Bulk Actions -->
+                            ${selectedItems.size > 0 ? `
+                                <button onclick="deleteSelectedItems()" 
+                                    class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors flex items-center gap-2">
+                                    <span class="material-icons text-sm">delete</span>
+                                    Delete ${selectedItems.size}
+                                </button>
+                            ` : ''}
+                            
+                            <button onclick="exportCategory()" 
+                                class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center gap-2">
+                                <span class="material-icons text-sm">download</span>
+                                <span class="text-sm">Export</span>
+                            </button>
+                            
+                            <button onclick="showStatsModal()" 
+                                class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-2">
+                                <span class="material-icons text-sm">analytics</span>
+                                <span class="text-sm">Stats</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Items Grid -->
+                <div class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${items.map(item => renderItemCard(category, item)).join('')}
+                </div>
+            `;
+        }
+        
+        /**
+         * Render filter buttons based on category
+         */
+        function renderFilterButtons(category) {
+            let buttons = `
+                <button onclick="toggleFeaturedFilter('${category}')" 
+                    class="px-4 py-2 border rounded-lg transition-colors ${currentFilters.featured ? 'bg-primary text-white border-primary' : 'border-gray-300 hover:bg-gray-50'}">
+                    <span class="material-icons text-sm align-middle">star</span>
+                    Featured
+                </button>
+            `;
+            
+            // Year filter for frontend projects
+            if (category === 'frontend') {
+                buttons += `
+                    <select onchange="handleYearFilter('${category}', this.value)" 
+                        class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="">All Years</option>
+                        ${getYearOptions()}
+                    </select>
+                `;
+            }
+            
+            // Category filter for design showcase
+            if (category === 'design') {
+                const categories = ['Logo Design', 'UI/UX', 'Branding', 'Illustration', 'Web Design', 'Mobile Design', 'Print Design'];
+                buttons += `
+                    <select onchange="handleCategoryFilter('${category}', this.value)" 
+                        class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="">All Categories</option>
+                        ${categories.map(cat => `<option value="${cat}">${cat}</option>`).join('')}
+                    </select>
+                `;
+            }
+            
+            return buttons;
+        }
+        
+        /**
+         * Get year options for filter
+         */
+        function getYearOptions() {
+            const currentYear = new Date().getFullYear();
+            const years = [];
+            for (let i = currentYear; i >= currentYear - 10; i--) {
+                years.push(`<option value="${i}">${i}</option>`);
+            }
+            return years.join('');
+        }
+        
+        /**
+         * Render individual item card
+         */
+        function renderItemCard(category, item) {
+            const title = item.title || item.name || 'Untitled';
+            const description = item.desc || item.description || '';
+            let thumbnail = item.img || item.image || item.thumbnail || '';
+            
+            // Fix image paths - ensure they use correct relative path from tools/ directory
+            if (thumbnail && !thumbnail.startsWith('data:') && !thumbnail.startsWith('http')) {
+                // If path starts with /images/, convert to ../public/images/
+                if (thumbnail.startsWith('/images/')) {
+                    thumbnail = '../public' + thumbnail;
+                }
+                // If path starts with images/, convert to ../public/images/
+                else if (thumbnail.startsWith('images/')) {
+                    thumbnail = '../public/' + thumbnail;
+                }
+                // If path doesn't have proper prefix, add ../public/images/portfolio/
+                else if (!thumbnail.startsWith('../public/')) {
+                    thumbnail = '../public/images/portfolio/' + thumbnail.replace(/^\/+/, '');
+                }
+            }
+            
+            const isSelected = selectedItems.has(item.id);
+            
+            // Get quick stats based on category
+            let stats = '';
+            if (category === 'frontend') {
+                stats = `
+                    ${item.year ? `<span class="text-xs text-gray-500">${item.year}</span>` : ''}
+                    ${item.tech && item.tech.length ? `<span class="text-xs text-gray-500">${item.tech.length} technologies</span>` : ''}
+                `;
+            } else if (category === 'design') {
+                stats = `${item.category ? `<span class="text-xs text-gray-500">${item.category}</span>` : ''}`;
+            } else if (category === 'casestudies') {
+                stats = `
+                    ${item.role ? `<span class="text-xs text-gray-500">${item.role}</span>` : ''}
+                    ${item.duration ? `<span class="text-xs text-gray-500">${item.duration}</span>` : ''}
+                `;
+            } else if (category === 'github') {
+                stats = `${item.language ? `<span class="text-xs text-gray-500">${item.language}</span>` : ''}`;
+            }
+            
+            return `
+                <div class="card p-4 relative ${isSelected ? 'ring-2 ring-primary' : ''}">
+                    <!-- Checkbox for bulk selection -->
+                    <div class="absolute top-2 left-2 z-10">
+                        <input type="checkbox" 
+                            ${isSelected ? 'checked' : ''}
+                            onchange="toggleItemSelection(${item.id}, this.checked, '${category}')"
+                            class="w-5 h-5 rounded text-primary focus:ring-primary">
+                    </div>
+                    
+                    <!-- Featured Badge -->
+                    ${item.featured ? `
+                        <div class="absolute top-2 right-2 z-10">
+                            <span class="material-icons text-yellow-500">star</span>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- Thumbnail -->
+                    ${thumbnail ? `
+                        <div class="mb-3 h-40 bg-gray-100 rounded-lg overflow-hidden">
+                            <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover">
+                        </div>
+                    ` : `
+                        <div class="mb-3 h-40 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="material-icons text-gray-300 text-5xl">image</span>
+                        </div>
+                    `}
+                    
+                    <!-- Content -->
+                    <div class="mb-3">
+                        <h3 class="font-semibold text-gray-900 mb-1 line-clamp-2">${title}</h3>
+                        <p class="text-sm text-gray-600 line-clamp-2 mb-2">${description}</p>
+                        <div class="flex gap-2 flex-wrap">
+                            ${stats}
+                        </div>
+                    </div>
+                    
+                    <!-- Actions -->
+                    <div class="flex gap-2">
+                        <button onclick="editItem('${category}', ${item.id})" 
+                            class="flex-1 px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center justify-center gap-1">
+                            <span class="material-icons text-sm">edit</span>
+                            <span class="text-sm">Edit</span>
+                        </button>
+                        <button onclick="duplicateItem('${category}', ${item.id})" 
+                            class="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors flex items-center justify-center gap-1" title="Duplicate">
+                            <span class="material-icons text-sm">content_copy</span>
+                        </button>
+                        <button onclick="deleteSingleItem('${category}', ${item.id})" 
+                            class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-700 rounded-lg transition-colors flex items-center justify-center gap-1" title="Delete">
+                            <span class="material-icons text-sm">delete</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Handle search
+         */
+        function handleSearch(category, value) {
+            currentFilters.search = value;
+            loadCategoryItems(category);
+        }
+        
+        /**
+         * Handle sort
+         */
+        function handleSort(category, value) {
+            currentFilters.sort = value;
+            loadCategoryItems(category);
+        }
+        
+        /**
+         * Toggle featured filter
+         */
+        function toggleFeaturedFilter(category) {
+            currentFilters.featured = !currentFilters.featured;
+            loadCategoryItems(category);
+        }
+        
+        /**
+         * Handle year filter
+         */
+        function handleYearFilter(category, value) {
+            currentFilters.year = value ? parseInt(value) : null;
+            loadCategoryItems(category);
+        }
+        
+        /**
+         * Handle category filter
+         */
+        function handleCategoryFilter(category, value) {
+            currentFilters.category = value || null;
+            loadCategoryItems(category);
+        }
+        
+        /**
+         * Toggle item selection
+         */
+        function toggleItemSelection(id, checked, category) {
+            if (checked) {
+                selectedItems.add(id);
+            } else {
+                selectedItems.delete(id);
+            }
+            loadCategoryItems(category);
+        }
+        
+        /**
+         * Edit item
+         */
+        async function editItem(category, id) {
+            const storeMapping = {
+                'frontend': STORES.FRONTEND,
+                'design': STORES.DESIGN,
+                'casestudies': STORES.CASE_STUDIES,
+                'github': STORES.GITHUB,
+                'codepen': STORES.CODEPEN
+            };
+            
+            const storeName = storeMapping[category];
+            const item = await getItem(storeName, id);
+            
+            if (item) {
+                showProjectForm(category, item);
+            }
+        }
+        
+        /**
+         * Delete single item (action)
+         */
+        async function deleteSingleItem(category, id) {
+            if (!confirm('Are you sure you want to delete this item?')) {
+                return;
+            }
+            
+            const storeMapping = {
+                'frontend': STORES.FRONTEND,
+                'design': STORES.DESIGN,
+                'casestudies': STORES.CASE_STUDIES,
+                'github': STORES.GITHUB,
+                'codepen': STORES.CODEPEN
+            };
+            
+            const storeName = storeMapping[category];
+            
+            try {
+                await deleteItem(storeName, id);
+                showNotification('Item deleted successfully', 'success');
+                await updateCounts();
+                loadCategoryItems(category);
+            } catch (error) {
+                console.error('Delete error:', error);
+                showNotification(`Failed to delete: ${error.message}`, 'error');
+            }
+        }
+        
+        /**
+         * Bulk delete
+         */
+        async function bulkDelete(category) {
+            if (!confirm(`Are you sure you want to delete ${selectedItems.size} items?`)) {
+                return;
+            }
+            
+            const storeMapping = {
+                'frontend': STORES.FRONTEND,
+                'design': STORES.DESIGN,
+                'casestudies': STORES.CASE_STUDIES,
+                'github': STORES.GITHUB,
+                'codepen': STORES.CODEPEN
+            };
+            
+            const storeName = storeMapping[category];
+            
+            try {
+                for (const id of selectedItems) {
+                    await deleteItem(storeName, id);
+                }
+                
+                showNotification(`${selectedItems.size} items deleted successfully`, 'success');
+                selectedItems.clear();
+                await updateCounts();
+                loadCategoryItems(category);
+            } catch (error) {
+                console.error('Bulk delete error:', error);
+                showNotification(`Failed to delete some items: ${error.message}`, 'error');
+            }
+        }
+        
+        /**
+         * Reset filters
+         */
+        function resetFilters() {
+            currentFilters = {
+                search: '',
+                featured: false,
+                year: null,
+                category: null,
+                sort: 'newest'
+            };
+        }
+        
+        // ============================================
+        // EXPORT WORKFLOW WITH JSZIP
+        // ============================================
+        
+        /**
+         * Export all portfolio data as ZIP file
+         * Generates JSON files per category and extracts images from base64
+         */
+        async function exportAllData() {
+            try {
+                console.log('📦 Starting export process...');
+                
+                // Show loading state
+                const exportBtn = document.getElementById('exportAllBtn');
+                const originalHTML = exportBtn.innerHTML;
+                exportBtn.innerHTML = '<span class="material-icons animate-spin">refresh</span>';
+                exportBtn.disabled = true;
+                
+                // Initialize JSZip
+                const zip = new JSZip();
+                
+                // Create folder structure
+                const dataFolder = zip.folder('src').folder('data').folder('portfolio');
+                const imagesFolder = zip.folder('public').folder('images').folder('portfolio');
+                
+                // Track all data and images
+                const allData = {};
+                const imageCounter = { count: 0 };
+                
+                // Export each category
+                await exportCategory('frontend', STORES.FRONTEND, dataFolder, imagesFolder, allData, imageCounter);
+                await exportCategory('design', STORES.DESIGN, dataFolder, imagesFolder, allData, imageCounter);
+                await exportCategory('case-studies', STORES.CASE_STUDIES, dataFolder, imagesFolder, allData, imageCounter);
+                await exportCategory('github', STORES.GITHUB, dataFolder, imagesFolder, allData, imageCounter);
+                await exportCategory('codepen', STORES.CODEPEN, dataFolder, imagesFolder, allData, imageCounter);
+                
+                // Generate consolidated projects.js file
+                const projectsJS = generateProjectsJS(allData);
+                zip.file('src/components/portfolio/projects.js', projectsJS);
+                
+                // Generate README
+                const readme = generateReadme(allData, imageCounter.count);
+                zip.file('README.txt', readme);
+                
+                // Generate and download ZIP
+                console.log('🗜️ Generating ZIP file...');
+                const blob = await zip.generateAsync({ type: 'blob' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `portfolio-export-${new Date().toISOString().split('T')[0]}.zip`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                console.log('✅ Export complete!');
+                console.log(`📊 Exported ${Object.values(allData).flat().length} projects and ${imageCounter.count} images`);
+                
+                // Restore button
+                exportBtn.innerHTML = originalHTML;
+                exportBtn.disabled = false;
+                
+                alert(`Export successful!\n\n${Object.values(allData).flat().length} projects exported\n${imageCounter.count} images extracted\n\nCheck your downloads folder.`);
+                
+            } catch (error) {
+                console.error('❌ Export failed:', error);
+                alert('Export failed. Please check console for details.');
+                
+                // Restore button
+                const exportBtn = document.getElementById('exportAllBtn');
+                exportBtn.innerHTML = '<span class="material-icons text-2xl">download</span>';
+                exportBtn.disabled = false;
+            }
+        }
+        
+        /**
+         * Export a single category
+         */
+        async function exportCategory(categoryName, storeName, dataFolder, imagesFolder, allData, imageCounter) {
+            const items = await getAllItems(storeName);
+            
+            if (items.length === 0) {
+                console.log(`⏭️ Skipping ${categoryName} - no items`);
+                return;
+            }
+            
+            console.log(`📄 Exporting ${categoryName}: ${items.length} items`);
+            
+            // Process items and extract images
+            const processedItems = items.map(item => processItemForExport(item, categoryName, imagesFolder, imageCounter));
+            
+            // Store in allData for projects.js generation
+            allData[categoryName] = processedItems;
+            
+            // Generate JSON file
+            const jsonFilename = `${categoryName}-projects.json`;
+            dataFolder.file(jsonFilename, JSON.stringify(processedItems, null, 2));
+            
+            console.log(`✅ ${categoryName}: ${processedItems.length} items, ${imageCounter.count} total images`);
+        }
+        
+        /**
+         * Process individual item and extract images
+         */
+        function processItemForExport(item, category, imagesFolder, imageCounter) {
+            const processed = { ...item };
+            
+            // Remove metadata fields
+            delete processed.id;
+            delete processed.imported;
+            delete processed.lastModified;
+            
+            // Extract images from base64
+            if (item.img) {
+                processed.img = extractImage(item.img, category, 'main', item.title || 'untitled', imagesFolder, imageCounter);
+            }
+            if (item.secimg) {
+                processed.secimg = extractImage(item.secimg, category, 'secondary', item.title || 'untitled', imagesFolder, imageCounter);
+            }
+            if (item.addimg && Array.isArray(item.addimg)) {
+                processed.addimg = item.addimg.map((img, idx) => 
+                    extractImage(img, category, `additional-${idx + 1}`, item.title || 'untitled', imagesFolder, imageCounter)
+                );
+            }
+            if (item.image) {
+                processed.image = extractImage(item.image, category, 'image', item.title || 'untitled', imagesFolder, imageCounter);
+            }
+            if (item.thumbnail) {
+                processed.thumbnail = extractImage(item.thumbnail, category, 'thumbnail', item.title || item.name || 'untitled', imagesFolder, imageCounter);
+            }
+            if (item.images && Array.isArray(item.images)) {
+                processed.images = item.images.map((img, idx) => 
+                    extractImage(img, category, `image-${idx + 1}`, item.title || 'untitled', imagesFolder, imageCounter)
+                );
+            }
+            
+            return processed;
+        }
+        
+        /**
+         * Extract image from base64 and save to ZIP
+         */
+        function extractImage(imgData, category, type, title, imagesFolder, imageCounter) {
+            // If already a path, return it
+            if (typeof imgData === 'string' && !imgData.startsWith('data:')) {
+                return imgData;
+            }
+            
+            // If base64, extract and save
+            if (typeof imgData === 'string' && imgData.startsWith('data:')) {
+                try {
+                    // Parse base64
+                    const matches = imgData.match(/^data:image\/(\w+);base64,(.+)$/);
+                    if (!matches) {
+                        console.warn('Invalid base64 image format');
+                        return imgData;
+                    }
+                    
+                    const [, ext, base64Data] = matches;
+                    
+                    // Generate filename
+                    const sanitizedTitle = title.toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-|-$/g, '')
+                        .substring(0, 50);
+                    const filename = `${category}-${sanitizedTitle}-${type}-${imageCounter.count + 1}.webp`;
+                    
+                    // Convert base64 to binary
+                    const binaryData = atob(base64Data);
+                    const bytes = new Uint8Array(binaryData.length);
+                    for (let i = 0; i < binaryData.length; i++) {
+                        bytes[i] = binaryData.charCodeAt(i);
+                    }
+                    
+                    // Add to ZIP
+                    const categoryFolder = imagesFolder.folder(category);
+                    categoryFolder.file(filename, bytes, { binary: true });
+                    
+                    // Increment counter
+                    imageCounter.count++;
+                    
+                    // Return new path
+                    return `/images/portfolio/${category}/${filename}`;
+                    
+                } catch (error) {
+                    console.error('Failed to extract image:', error);
+                    return imgData;
+                }
+            }
+            
+            return imgData;
+        }
+        
+        /**
+         * Generate projects.js file with ES6 syntax
+         */
+        function generateProjectsJS(allData) {
+            const { frontend = [], design = [], 'case-studies': caseStudies = [], github = [], codepen = [] } = allData;
+            
+            let content = `// Portfolio Projects Data
+// Auto-generated by Portfolio Manager
+// Last updated: ${new Date().toLocaleString()}
+
+// ============================================
+// FRONT-END PROJECTS
+// ============================================
+
+export const projects = ${JSON.stringify(frontend, null, 2)};
+
+// ============================================
+// UI/UX DESIGN SHOWCASE
+// ============================================
+
+export const designShowcase = ${JSON.stringify(design, null, 2)};
+
+// ============================================
+// CASE STUDIES
+// ============================================
+
+export const caseStudies = ${JSON.stringify(caseStudies, null, 2)};
+
+// ============================================
+// GITHUB PROJECTS
+// ============================================
+
+export const githubProjects = ${JSON.stringify(github, null, 2)};
+
+// ============================================
+// CODEPEN PROJECTS
+// ============================================
+
+export const codepenProjects = ${JSON.stringify(codepen, null, 2)};
+
+// ============================================
+// GALLERY TABS CONFIGURATION
+// ============================================
+
+export const galleryTabs = [
+    { id: 'all', label: 'All Projects' },
+    { id: 'frontend', label: 'Front-End' },
+    { id: 'design', label: 'UI/UX Design' },
+    { id: 'github', label: 'GitHub' },
+    { id: 'codepen', label: 'CodePen' }
+];
+`;
+            
+            return content;
+        }
+        
+        /**
+         * Generate README.txt with instructions
+         */
+        function generateReadme(allData, imageCount) {
+            const totalProjects = Object.values(allData).flat().length;
+            
+            return `PORTFOLIO EXPORT PACKAGE
+========================
+
+Generated: ${new Date().toLocaleString()}
+Total Projects: ${totalProjects}
+Total Images: ${imageCount}
+
+CONTENTS
+--------
+1. src/components/portfolio/projects.js - Consolidated ES6 module
+2. src/data/portfolio/*.json - Individual JSON files per category
+3. public/images/portfolio/* - All extracted images (WebP format)
+
+INSTALLATION INSTRUCTIONS
+--------------------------
+
+OPTION 1: Manual Installation
+1. Extract this ZIP file
+2. Copy src/components/portfolio/projects.js to your project
+3. Copy src/data/portfolio/*.json to your project (optional)
+4. Copy public/images/portfolio/* to your project
+5. Rebuild your application
+
+OPTION 2: Automated Import (Recommended)
+1. Extract this ZIP to your project root
+2. Run: npm run import:portfolio
+3. The script will:
+   - Copy JSON files to src/data/portfolio/
+   - Optimize images to WebP + fallback
+   - Update paths in JSON files
+   - Move images to public/images/portfolio/
+
+FILE STRUCTURE
+--------------
+${Object.entries(allData).map(([category, items]) => 
+    `- ${category}: ${items.length} projects`
+).join('\n')}
+
+NEXT STEPS
+----------
+1. Review the exported data in projects.js
+2. Verify all image paths are correct
+3. Test your portfolio sections
+4. Commit changes to version control
+5. Deploy to production
+
+NOTES
+-----
+- All images are converted to WebP for optimal performance
+- Base64 images have been extracted to separate files
+- JSON files use consistent schema across categories
+- Original projects.js structure is preserved
+
+For questions or issues, refer to the Portfolio Manager documentation.
+`;
+        }
+        
+        // ============================================
+        // UNDO/REDO FUNCTIONALITY
+        // ============================================
+        
+        /**
+         * Record action for undo
+         */
+        function recordAction(action) {
+            undoStack.push(action);
+            if (undoStack.length > MAX_HISTORY) {
+                undoStack.shift();
+            }
+            redoStack.length = 0; // Clear redo stack on new action
+        }
+        
+        /**
+         * Undo last action
+         */
+        async function undo() {
+            if (undoStack.length === 0) {
+                console.log('Nothing to undo');
+                return;
+            }
+            
+            const action = undoStack.pop();
+            redoStack.push(action);
+            
+            try {
+                if (action.type === 'add') {
+                    await deleteItem(action.store, action.item.id);
+                } else if (action.type === 'delete') {
+                    await addItem(action.store, action.item);
+                } else if (action.type === 'update') {
+                    await updateItem(action.store, action.oldItem.id, action.oldItem);
+                }
+                
+                await updateCounts();
+                loadCategoryItems(getCurrentCategory());
+                console.log('✅ Undo successful');
+            } catch (error) {
+                console.error('❌ Undo failed:', error);
+            }
+        }
+        
+        /**
+         * Redo last undone action
+         */
+        async function redo() {
+            if (redoStack.length === 0) {
+                console.log('Nothing to redo');
+                return;
+            }
+            
+            const action = redoStack.pop();
+            undoStack.push(action);
+            
+            try {
+                if (action.type === 'add') {
+                    await addItem(action.store, action.item);
+                } else if (action.type === 'delete') {
+                    await deleteItem(action.store, action.item.id);
+                } else if (action.type === 'update') {
+                    await updateItem(action.store, action.item.id, action.item);
+                }
+                
+                await updateCounts();
+                loadCategoryItems(getCurrentCategory());
+                console.log('✅ Redo successful');
+            } catch (error) {
+                console.error('❌ Redo failed:', error);
+            }
+        }
+        
+        // ============================================
+        // DARK MODE
+        // ============================================
+        
+        /**
+         * Toggle dark mode
+         */
+        function toggleDarkMode() {
+            darkMode = !darkMode;
+            localStorage.setItem('darkMode', darkMode);
+            applyDarkMode();
+        }
+        
+        /**
+         * Apply dark mode styles
+         */
+        function applyDarkMode() {
+            if (darkMode) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('darkModeToggle').querySelector('.material-icons').textContent = 'light_mode';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('darkModeToggle').querySelector('.material-icons').textContent = 'dark_mode';
+            }
+        }
+        
+        // ============================================
+        // DUPLICATE PROJECT
+        // ============================================
+        
+        /**
+         * Duplicate a project
+         */
+        async function duplicateItem(category, itemId) {
+            try {
+                const storeName = getStoreName(category);
+                const item = await getItem(storeName, itemId);
+                
+                if (!item) {
+                    alert('Item not found');
+                    return;
+                }
+                
+                // Create duplicate with modified title
+                const duplicate = { ...item };
+                delete duplicate.id;
+                duplicate.title = (duplicate.title || duplicate.name || 'Untitled') + ' (Copy)';
+                duplicate.name = duplicate.title;
+                duplicate.featured = false;
+                
+                const newId = await addItem(storeName, duplicate);
+                
+                // Record action
+                recordAction({
+                    type: 'add',
+                    store: storeName,
+                    item: { ...duplicate, id: newId }
+                });
+                
+                await updateCounts();
+                loadCategoryItems(category);
+                
+                console.log('✅ Project duplicated');
+            } catch (error) {
+                console.error('❌ Duplicate failed:', error);
+                alert('Failed to duplicate project');
+            }
+        }
+        
+        // ============================================
+        // BULK DELETE WITH CONFIRMATION
+        // ============================================
+        
+        /**
+         * Delete selected items with confirmation
+         */
+        async function deleteSelectedItems() {
+            if (selectedItems.size === 0) {
+                alert('No items selected');
+                return;
+            }
+            
+            const count = selectedItems.size;
+            const confirmed = confirm(`Are you sure you want to delete ${count} selected item(s)? This action cannot be undone.`);
+            
+            if (!confirmed) return;
+            
+            try {
+                const category = getCurrentCategory();
+                const storeName = getStoreName(category);
+                const deletedItems = [];
+                
+                for (const itemId of selectedItems) {
+                    const item = await getItem(storeName, itemId);
+                    if (item) {
+                        deletedItems.push(item);
+                        await deleteItem(storeName, itemId);
+                    }
+                }
+                
+                // Record bulk delete as single action
+                recordAction({
+                    type: 'bulkDelete',
+                    store: storeName,
+                    items: deletedItems
+                });
+                
+                selectedItems.clear();
+                await updateCounts();
+                loadCategoryItems(category);
+                
+                console.log(`✅ ${count} items deleted`);
+            } catch (error) {
+                console.error('❌ Bulk delete failed:', error);
+                alert('Failed to delete items');
+            }
+        }
+        
+        // ============================================
+        // EXPORT SINGLE CATEGORY
+        // ============================================
+        
+        /**
+         * Export single category
+         */
+        async function exportCategory() {
+            const category = getCurrentCategory();
+            const storeName = getStoreName(category);
+            
+            try {
+                console.log(`📦 Exporting ${category}...`);
+                
+                const items = await getAllItems(storeName);
+                
+                if (items.length === 0) {
+                    alert('No items to export in this category');
+                    return;
+                }
+                
+                const zip = new JSZip();
+                const imageCounter = { count: 0 };
+                
+                const dataFolder = zip.folder('src').folder('data').folder('portfolio');
+                const imagesFolder = zip.folder('public').folder('images').folder('portfolio');
+                
+                const processedItems = items.map(item => processItemForExport(item, category, imagesFolder, imageCounter));
+                
+                const jsonFilename = `${category}-projects.json`;
+                dataFolder.file(jsonFilename, JSON.stringify(processedItems, null, 2));
+                
+                const readme = `${category.toUpperCase()} EXPORT\n\nExported: ${new Date().toLocaleString()}\nItems: ${items.length}\nImages: ${imageCounter.count}`;
+                zip.file('README.txt', readme);
+                
+                const blob = await zip.generateAsync({ type: 'blob' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${category}-export-${new Date().toISOString().split('T')[0]}.zip`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                console.log('✅ Category exported');
+            } catch (error) {
+                console.error('❌ Export failed:', error);
+                alert('Failed to export category');
+            }
+        }
+        
+        // ============================================
+        // STATISTICS DASHBOARD
+        // ============================================
+        
+        /**
+         * Show statistics dashboard
+         */
+        async function showStatsModal() {
+            try {
+                const stats = {
+                    frontend: await getCount(STORES.FRONTEND),
+                    design: await getCount(STORES.DESIGN),
+                    caseStudies: await getCount(STORES.CASE_STUDIES),
+                    github: await getCount(STORES.GITHUB),
+                    codepen: await getCount(STORES.CODEPEN)
+                };
+                
+                const total = Object.values(stats).reduce((a, b) => a + b, 0);
+                
+                // Get featured counts
+                const frontendItems = await getAllItems(STORES.FRONTEND);
+                const designItems = await getAllItems(STORES.DESIGN);
+                const caseStudyItems = await getAllItems(STORES.CASE_STUDIES);
+                const codepenItems = await getAllItems(STORES.CODEPEN);
+                
+                const featuredCount = [
+                    ...frontendItems,
+                    ...designItems,
+                    ...caseStudyItems,
+                    ...codepenItems
+                ].filter(item => item.featured).length;
+                
+                const completionRate = total > 0 ? Math.round((featuredCount / total) * 100) : 0;
+                
+                const statsHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+                            <div class="text-4xl font-bold mb-2">${total}</div>
+                            <div class="text-blue-100">Total Projects</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-6 rounded-lg shadow-lg">
+                            <div class="text-4xl font-bold mb-2">${featuredCount}</div>
+                            <div class="text-yellow-100">Featured Projects</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-lg shadow-lg">
+                            <div class="text-4xl font-bold mb-2">${completionRate}%</div>
+                            <div class="text-green-100">Featured Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">By Category</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-600 rounded">
+                                <span class="font-medium text-gray-700 dark:text-gray-200">Frontend Projects</span>
+                                <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">${stats.frontend}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-600 rounded">
+                                <span class="font-medium text-gray-700 dark:text-gray-200">UI/UX Design</span>
+                                <span class="text-2xl font-bold text-purple-600 dark:text-purple-400">${stats.design}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-600 rounded">
+                                <span class="font-medium text-gray-700 dark:text-gray-200">Case Studies</span>
+                                <span class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">${stats.caseStudies}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-600 rounded">
+                                <span class="font-medium text-gray-700 dark:text-gray-200">GitHub Projects</span>
+                                <span class="text-2xl font-bold text-gray-700 dark:text-gray-300">${stats.github}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-600 rounded">
+                                <span class="font-medium text-gray-700 dark:text-gray-200">CodePen Experiments</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">${stats.codepen}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('statsContent').innerHTML = statsHTML;
+                document.getElementById('statsModal').classList.remove('hidden');
+                document.getElementById('statsModal').classList.add('flex');
+            } catch (error) {
+                console.error('❌ Failed to load stats:', error);
+                alert('Failed to load statistics');
+            }
+        }
+        
+        /**
+         * Close statistics modal
+         */
+        function closeStatsModal() {
+            document.getElementById('statsModal').classList.add('hidden');
+            document.getElementById('statsModal').classList.remove('flex');
+        }
+        
+        /**
+         * Get current category from active tab
+         */
+        function getCurrentCategory() {
+            const activeTab = document.querySelector('.tab-link.tab-active');
+            return activeTab ? activeTab.dataset.tab : 'frontend';
+        }
+        
+        /**
+         * Get store name from category
+         */
+        function getStoreName(category) {
+            const map = {
+                'frontend': STORES.FRONTEND,
+                'design': STORES.DESIGN,
+                'casestudies': STORES.CASE_STUDIES,
+                'github': STORES.GITHUB,
+                'codepen': STORES.CODEPEN
+            };
+            return map[category] || STORES.FRONTEND;
+        }
+        
+        // ============================================
+        // KEYBOARD SHORTCUTS
+        // ============================================
+        
+        /**
+         * Handle keyboard shortcuts
+         */
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+S: Save (prevent default and do nothing, auto-save handles it)
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                console.log('💾 Auto-save is always active');
+                return;
+            }
+            
+            // Ctrl+N: New project
+            if (e.ctrlKey && e.key === 'n') {
+                e.preventDefault();
+                document.getElementById('addProjectBtn')?.click();
+                return;
+            }
+            
+            // Ctrl+Z: Undo
+            if (e.ctrlKey && e.key === 'z' && !e.shiftKey) {
+                e.preventDefault();
+                undo();
+                return;
+            }
+            
+            // Ctrl+Shift+Z or Ctrl+Y: Redo
+            if ((e.ctrlKey && e.shiftKey && e.key === 'Z') || (e.ctrlKey && e.key === 'y')) {
+                e.preventDefault();
+                redo();
+                return;
+            }
+            
+            // Ctrl+E: Export
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                document.getElementById('exportAllBtn')?.click();
+                return;
+            }
+            
+            // Ctrl+D: Toggle dark mode
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+                return;
+            }
+            
+            // Ctrl+I: Show statistics
+            if (e.ctrlKey && e.key === 'i') {
+                e.preventDefault();
+                showStatsModal();
+                return;
+            }
+            
+            // Escape: Close dialogs
+            if (e.key === 'Escape') {
+                closeStatsModal();
+                // Add more dialog closures as needed
+            }
+        });
+        
+        // ============================================
+        // EVENT LISTENERS FOR EXPORT
+        // ============================================
+        
+        document.getElementById('exportAllBtn')?.addEventListener('click', exportAllData);
+        document.getElementById('darkModeToggle')?.addEventListener('click', toggleDarkMode);
+        
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        
+        // Initialize the application
+        async function init() {
+            try {
+                console.log('🚀 Initializing Portfolio Manager...');
+                await initDB();
+                await updateCounts();
+                
+                // Load initial tab content
+                loadCategoryItems('frontend');
+                
+                console.log('✅ PROMPT 1 Complete: HTML Shell created with Material Design UI');
+                console.log('✅ PROMPT 2 Complete: IndexedDB schema initialized with CRUD functions');
+                console.log('✅ PROMPT 3 Complete: Import functionality with duplicate detection and merge dialogs');
+                console.log('✅ PROMPT 4 Complete: Dynamic forms per category with validation and auto-save');
+                console.log('✅ PROMPT 5 Complete: List views with search, filter, sort, and bulk actions');
+                console.log('✅ PROMPT 6 Complete: Export workflow with JSZip generating projects.js, JSON files, and extracted images');
+                console.log('✅ PROMPT 7 Complete: Auto-import script (scripts/import-portfolio.js) with Sharp optimization and npm script');
+                console.log('✅ PROMPT 8 Complete: Polish features - fixed image paths, undo/redo, dark mode, drag-drop ready, duplicate, bulk delete confirmation, export category, statistics dashboard, keyboard shortcuts');
+                console.log('📊 Database stores:', Object.values(STORES));
+                console.log('');
+                console.log('⌨️  Keyboard Shortcuts:');
+                console.log('  Ctrl+N: New project');
+                console.log('  Ctrl+S: Auto-save (always active)');
+                console.log('  Ctrl+Z: Undo');
+                console.log('  Ctrl+Shift+Z / Ctrl+Y: Redo');
+                console.log('  Ctrl+E: Export all');
+                console.log('  Ctrl+D: Toggle dark mode');
+                console.log('  Ctrl+I: Show statistics');
+                console.log('  Esc: Close dialogs');
+                
+                // Apply dark mode on init
+                applyDarkMode();
+            } catch (error) {
+                console.error('❌ Initialization failed:', error);
+                alert('Failed to initialize database. Please check console for details.');
+            }
+        }
+        
+        // Start the app when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,9 +1,5 @@
 # Ignore progress.html
 progress.html
-
-# Task management system (local only)
-.tasks/
-
 # Logs
 logs
 *.log
