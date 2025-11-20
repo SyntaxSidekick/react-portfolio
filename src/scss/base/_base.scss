@@ -100,6 +100,18 @@ input[type="submit"] {
   outline-offset: 2px;
 }
 
+// Page-level containers - universal styles
+main {
+  position: relative;
+  overflow-x: hidden;
+  
+  // Prevent flash of unstyled content and improve text rendering
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 :focus:not(:focus-visible) {
   outline: none;
 }

@@ -1,46 +1,23 @@
 import React, { useEffect, useRef } from "react";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import TechIcon from "../TechIcon";
 
 const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
-  const fullscreen = true;
   const lastActiveElement = useRef(null);
 
-  // Focus trap and return focus to trigger
+  // Focus trap and keyboard navigation
   useEffect(() => {
     if (modalOpen) {
       lastActiveElement.current = document.activeElement;
       setTimeout(() => {
-        const modalElement = document.querySelector('.modal.show');
-        if (modalElement) {
-          const focusable = modalElement.querySelector(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
-          if (focusable) focusable.focus();
-        }
+        const closeButton = document.querySelector('.portfolio-modal .btn-close');
+        if (closeButton) closeButton.focus();
       }, 100);
+
       const handleKeyDown = (e) => {
-        if (e.key === "Escape") {
-          closeModal();
-        }
-        if (e.key === "Tab") {
-          const modalElement = document.querySelector('.modal.show');
-          if (modalElement) {
-            const focusableEls = modalElement.querySelectorAll(
-              'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-            const first = focusableEls[0];
-            const last = focusableEls[focusableEls.length - 1];
-            if (!e.shiftKey && document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            } else if (e.shiftKey && document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
-            }
-          }
-        }
+        if (e.key === "Escape") closeModal();
       };
+
       document.addEventListener("keydown", handleKeyDown);
       return () => {
         document.removeEventListener("keydown", handleKeyDown);
@@ -49,104 +26,276 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
     }
   }, [modalOpen, closeModal]);
 
+  if (!modalProject) return null;
+
   return (
     <Modal
       show={modalOpen}
-      fullscreen={fullscreen}
       onHide={closeModal}
       centered
-      size="lg"
+      size="xl"
       aria-labelledby="portfolio-modal-title"
       aria-modal="true"
-      role="dialog"
+      className="portfolio-modal"
+      backdrop="static"
     >
-      <Modal.Header closeButton>
-        <Modal.Title as="h2" id="portfolio-modal-title">
-          {modalProject?.title}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {modalProject && (
-          <div className="project-wrapper">
-            {/* First row: main image + description */}
-            <div className="project-row">
-              <div className="main-project-img">
-                <img
-                  src={modalProject.img?.startsWith("http") ? modalProject.img : `${modalProject.img}`}
-                  alt={modalProject.title}
-                  loading="lazy"
-                  style={{ width: "100%", borderRadius: 8, marginBottom: 0 }}
-                />
-              </div>
-              <div className="project-description">
-                <h2>Overview</h2>
-                {modalProject.desc
-                  .split(/\n\s*\n/)
-                  .map((para, idx) => <p key={idx}>{para}</p>)}
-              </div>
-            </div>
-            {/* Second row: deliverables + secondary image */}
-            {(modalProject.deliverables || modalProject.secimg) && (
-              <div className="project-row">
-                <div className="project-deliverables">
-                  <h3>Outcome & Deliverables</h3>
-                  {modalProject.deliverables && modalProject.deliverables.split(/\n\s*\n/).map((para, idx) => <p key={idx}>{para}</p>)}
-                </div>
-                <div className="secondary-project-img">
-                  {modalProject.secimg && (
-                    <img
-                      src={modalProject.secimg.startsWith("http") ? modalProject.secimg : `${modalProject.secimg}`}
-                      alt={modalProject.title + " secondary"}
-                      loading="lazy"
-                      style={{ width: "100%", borderRadius: 8, marginBottom: 0 }}
-                    />
+      <Modal.Body className="p-0">
+        <div className="modal-wrapper">
+          
+          {/* Close Button */}
+          <button 
+            className="modal-close-btn"
+            onClick={closeModal}
+            aria-label="Close project details"
+          >
+            <i className="fas fa-times"></i>
+          </button>
+
+          {/* Hero Image */}
+          <div className="modal-hero">
+            <img
+              src={modalProject.img}
+              alt={modalProject.title}
+              className="hero-image"
+            />
+          </div>
+
+          {/* Content Container */}
+          <div className="modal-content-wrapper">
+            
+            {/* Header Section */}
+            <div className="modal-header-section">
+              <div className="title-group">
+                <h1 className="project-title">{modalProject.title}</h1>
+                <div className="project-meta">
+                  {modalProject.role && (
+                    <span className="meta-item">
+                      <i className="fas fa-user-tie"></i>
+                      {modalProject.role}
+                    </span>
                   )}
                 </div>
               </div>
-            )}
-            {(() => {
-              if (
-                typeof modalProject.addimg === "string" &&
-                modalProject.addimg.trim().length > 0
-              ) {
-                return (
-                  <div className="additional-project-img">
-                    {modalProject.addimg.split(",").map((img, idx) => {
-                      const trimmed = typeof img === "string" ? img.trim() : "";
-                      if (!trimmed) return null;
-                      return (
-                        <img
-                          key={idx}
-                          src={trimmed.startsWith("http") ? trimmed : `${trimmed}`}
-                          alt={modalProject.title + " additional " + (idx + 1)}
-                          loading="lazy"
-                        />
-                      );
-                    })}
-                  </div>
-                );
-              }
-              return null;
-            })()}
-            {/* Third row: tech-used */}
-            <div className="tech-used">
-              <strong>Technologies Used:</strong>
-              <ul className="project-tech-list">
-                {(modalProject.tech || []).map((t, i) => (
-                  <li key={i}>
-                    <i className={t.icon}></i> {t.name}
-                  </li>
-                ))}
-              </ul>
+
+              {/* Action Buttons */}
+              {(modalProject.liveUrl || modalProject.githubUrl) && (
+                <div className="action-buttons">
+                  {modalProject.liveUrl && (
+                    <a 
+                      href={modalProject.liveUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn-action btn-primary"
+                    >
+                      <i className="fas fa-external-link-alt"></i>
+                      Live Demo
+                    </a>
+                  )}
+                  {modalProject.githubUrl && (
+                    <a 
+                      href={modalProject.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn-action btn-secondary"
+                    >
+                      <i className="fab fa-github"></i>
+                      View Code
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
+
+            {/* Two Column Layout */}
+            <div className="modal-grid">
+              
+              {/* Main Content Column */}
+              <div className="main-column">
+                
+                {/* Overview Card */}
+                <div className="content-card">
+                  <h2 className="card-title">
+                    <i className="fas fa-info-circle"></i>
+                    Overview
+                  </h2>
+                  <div className="card-content">
+                    {modalProject.desc && modalProject.desc.split('\n\n').map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Problem Statement Card */}
+                {modalProject.problem && (
+                  <div className="content-card">
+                    <h2 className="card-title">
+                      <i className="fas fa-lightbulb"></i>
+                      The Challenge
+                    </h2>
+                    <div className="card-content">
+                      {modalProject.problem.split('\n\n').map((para, idx) => (
+                        <p key={idx}>{para}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Key Challenges Card */}
+                {modalProject.challenges && (
+                  <div className="content-card">
+                    <h2 className="card-title">
+                      <i className="fas fa-tasks"></i>
+                      Key Challenges
+                    </h2>
+                    <div className="card-content">
+                      <ul className="challenge-list">
+                        {(Array.isArray(modalProject.challenges) 
+                          ? modalProject.challenges 
+                          : modalProject.challenges.split('\n\n')
+                        ).map((challenge, idx) => (
+                          <li key={idx}>{challenge}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
+                {/* What I Learned Card */}
+                {modalProject.learnings && (
+                  <div className="content-card">
+                    <h2 className="card-title">
+                      <i className="fas fa-graduation-cap"></i>
+                      What I Learned
+                    </h2>
+                    <div className="card-content">
+                      <ul className="learning-list">
+                        {(Array.isArray(modalProject.learnings) 
+                          ? modalProject.learnings 
+                          : modalProject.learnings.split('\n\n')
+                        ).map((learning, idx) => (
+                          <li key={idx}>{learning}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
+                {/* Outcome Card */}
+                {modalProject.deliverables && (
+                  <div className="content-card">
+                    <h2 className="card-title">
+                      <i className="fas fa-trophy"></i>
+                      Outcome & Impact
+                    </h2>
+                    <div className="card-content">
+                      {modalProject.deliverables.split('\n\n').map((para, idx) => (
+                        <p key={idx}>{para}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+              </div>
+
+              {/* Sidebar Column */}
+              <div className="sidebar-column">
+                
+                {/* Tech Stack Card */}
+                {modalProject.tech && modalProject.tech.length > 0 && (
+                  <div className="content-card sticky-card">
+                    <h2 className="card-title">
+                      <i className="fas fa-code"></i>
+                      Tech Stack
+                    </h2>
+                    <div className="card-content">
+                      <div className="tech-stack-grid">
+                        {modalProject.tech.map((tech, idx) => (
+                          <div key={idx} className="tech-item">
+                            <TechIcon name={tech.name} icon={tech.icon} />
+                            <span>{tech.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Metrics Card */}
+                {modalProject.metrics && Object.keys(modalProject.metrics).length > 0 && (
+                  <div className="content-card">
+                    <h2 className="card-title">
+                      <i className="fas fa-chart-line"></i>
+                      Key Metrics
+                    </h2>
+                    <div className="card-content">
+                      <div className="metrics-list">
+                        {Object.entries(modalProject.metrics).map(([key, value]) => (
+                          <div key={key} className="metric-item">
+                            <span className="metric-value">{value}</span>
+                            <span className="metric-label">
+                              {key.replace(/([A-Z])/g, ' $1').trim()}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+
+            </div>
+
+            {/* Media Gallery (Full Width) */}
+            {(modalProject.secimg || modalProject.addimg || modalProject.videos) && (
+              <div className="content-card media-card">
+                <h2 className="card-title">
+                  <i className="fas fa-images"></i>
+                  Project Gallery
+                </h2>
+                <div className="card-content">
+                  <div className="media-gallery">
+                    
+                    {/* Videos */}
+                    {modalProject.videos && modalProject.videos.length > 0 && (
+                      modalProject.videos.map((video, idx) => (
+                        <div key={`video-${idx}`} className="media-item">
+                          <video controls preload="metadata">
+                            <source src={video} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      ))
+                    )}
+
+                    {/* Secondary Image */}
+                    {modalProject.secimg && (
+                      <div className="media-item">
+                        <img src={modalProject.secimg} alt={`${modalProject.title} - Additional view`} />
+                      </div>
+                    )}
+
+                    {/* Additional Images */}
+                    {modalProject.addimg && typeof modalProject.addimg === "string" && (
+                      modalProject.addimg.split(",").map((img, idx) => {
+                        const trimmed = img.trim();
+                        if (!trimmed) return null;
+                        return (
+                          <div key={`img-${idx}`} className="media-item">
+                            <img src={trimmed} alt={`${modalProject.title} - Screenshot ${idx + 1}`} />
+                          </div>
+                        );
+                      })
+                    )}
+
+                  </div>
+                </div>
+              </div>
+            )}
+
           </div>
-        )}
+        </div>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={closeModal}>
-          Close
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 };

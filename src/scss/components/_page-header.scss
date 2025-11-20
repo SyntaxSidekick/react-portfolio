@@ -8,9 +8,51 @@
 @use '../abstracts/mixins' as *;
 
 .page-header {
+  position: relative;
   text-align: center;
   margin-bottom: $gap-xl;
-  padding-top: $gap-lg;
+  padding: $padding-xxxl 0;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: linear-gradient(135deg, 
+    rgba($primary, 0.04) 0%, 
+    rgba($brand-primary-light, 0.06) 50%, 
+    rgba($brand-accent, 0.04) 100%
+  );
+  border-bottom: 1px solid $color-border-light;
+  overflow: hidden;
+
+  // Subtle animated gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba($primary, 0.03) 50%,
+      transparent 70%
+    );
+    animation: pageHeaderShimmer 15s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pageHeaderShimmer {
+    0%, 100% {
+      transform: translate(-25%, -25%) rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translate(0%, 0%) rotate(180deg);
+      opacity: 1;
+    }
+  }
 
   .page-title {
     font-size: $font-size-4xl;
@@ -19,6 +61,8 @@
     margin: 0 0 $space-sm 0;
     letter-spacing: $letter-spacing-tight;
     line-height: $line-height-tight;
+    position: relative;
+    z-index: 1;
     
     @media (max-width: $bp-md) {
       font-size: $font-size-3xl;
@@ -36,6 +80,11 @@
     margin: 0;
     letter-spacing: $letter-spacing-wide;
     text-align: center;
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

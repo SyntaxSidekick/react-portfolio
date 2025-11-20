@@ -10,7 +10,9 @@
     "build:staging": "npm run styles && cross-env BUILD_OUT_DIR=staging vite build",
     "images:optimize": "node tools/optimize-images.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "todo:sync": "node scripts/sync-todo.js",
+    "todo:open": "start .tasks/todo-manager.html"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",

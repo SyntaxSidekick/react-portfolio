@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SocialLinks } from "./common";
 
 const Footer = () => (
   <footer id="footer" className="site-footer" role="contentinfo">
@@ -11,12 +12,7 @@ const Footer = () => (
         </Link>
       </div>
       <div className="footer-contact">
-        <div className="socials">
-          <a href="https://www.linkedin.com/in/riad-kilani/" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile"><i className="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-          <a href="https://github.com/f1ss1on" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile"><i className="fa-brands fa-github" aria-hidden="true"></i></a>
-          <a href="https://x.com/f1ss1on" target="_blank" rel="noopener noreferrer" aria-label="Follow me on X (Twitter)"><i className="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-          <a href="https://codepen.io/f1ss1on" target="_blank" rel="noopener noreferrer" aria-label="View my CodePen projects"><i className="fa-brands fa-codepen" aria-hidden="true"></i></a>
-        </div>
+        <SocialLinks variant="footer" />
       </div>      
     </div>
     <div className="copyright">© {new Date().getFullYear()} Riad Kilani. All rights reserved.</div>

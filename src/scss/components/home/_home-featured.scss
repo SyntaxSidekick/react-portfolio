@@ -1,0 +1,130 @@
+/**
+ * Featured Work Section
+ * 
+ * Purpose: Showcase featured projects on the home page
+ * Features: Project cards with metrics, tech badges, responsive grid, CTA button
+ * Note: Project card styles are in components/_project-card.scss (shared with portfolio)
+ */
+
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+
+// Featured Work Section - Layout only (card styles in _project-card.scss)
+.featured-work {
+  padding: 80px 0;
+  background: linear-gradient(180deg, $color-bg-primary 0%, $background-light 100%);
+  position: relative;
+  overflow: hidden;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .featured-work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+
+  .featured-work-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .portfolio-cta-button {
+    @include cta-button;
+  }
+}
+
+// Responsive Design
+@media (max-width: $bp-lg) {
+  .featured-work {
+    padding: 60px 0;
+
+    .container {
+      padding: 0 30px;
+    }
+
+    .featured-work-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .project-card {
+      .project-card-content {
+        padding: 24px;
+      }
+
+      .project-title {
+        @include font-size-lg;
+      }
+
+      .project-metrics {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 14px;
+
+        .metric-item {
+          padding: 6px;
+
+          .metric-value {
+            font-size: $font-size-sm;
+          }
+
+          .metric-label {
+            font-size: $font-size-xs;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $bp-md) {
+  .featured-work {
+    padding: 50px 0;
+
+    .container {
+      padding: 0 20px;
+    }
+
+    .featured-work-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .featured-work {
+    padding: 40px 0;
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .featured-work-grid {
+      gap: 20px;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .featured-work {
+    .project-card {
+      animation: none;
+
+      &:hover {
+        transform: none;
+
+        .project-card-image img {
+          transform: none;
+        }
+      }
+    }
+  }
+}

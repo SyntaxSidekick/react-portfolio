@@ -158,39 +158,8 @@
 
         i {
           font-size: 1rem;
-          // Technology brand colors from design tokens
-          &.fa-react { color: $tech-react; }
-          &.fa-js { color: $tech-javascript; }
-          &.fa-html5 { color: $tech-html5; }
-          &.fa-css3-alt { color: $tech-css3; }
-          &.fa-sass { color: $tech-sass; }
-          &.fa-bootstrap { color: $tech-bootstrap; }
-          &.fa-node-js { color: $tech-node; }
-          &.fa-wordpress { color: $tech-wordpress; }
-          &.fa-figma { color: $tech-figma; }
-          &.fa-git-alt { color: $tech-git; }
-          &.fa-gulp { color: $tech-gulp; }
-          &.fa-vuejs { color: $tech-vue; }
-          &.fa-php { color: $tech-php; }
-          &.fa-drupal { color: $tech-drupal; }
-          &.fa-photoshop { color: $tech-photoshop; }
-          &.fa-illustrator { color: $tech-illustrator; }
-          &.fa-indesign { color: $tech-indesign; }
-          &.fa-sketch { color: $tech-sketch; }
-          &.fa-github { color: $tech-github; }
-          &.fa-gitlab { color: $tech-gitlab; }
-          &.fa-npm { color: $tech-npm; }
-          &.fa-yarn { color: $tech-yarn; }
-          &.fa-docker { color: $tech-docker; }
-          &.fa-aws { color: $tech-aws; }
-          &.fa-google { color: $tech-google; }
-          &.fa-microsoft { color: $tech-microsoft; }
-          &.fa-apple { color: $color-text-black; }
-          &.fa-android { color: $tech-android; }
-          &.fa-python { color: $tech-python; }
-          &.fa-java { color: $tech-java; }
-          &.fa-angular { color: $tech-angular; }
-          &.fa-laravel { color: $tech-laravel; }
+          // Technology brand colors
+          @include brand-icon-colors-direct;
         }
       }
     }

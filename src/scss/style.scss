@@ -41,6 +41,7 @@
 // ============================================================
 // PAGE COMPONENTS
 // ============================================================
+@use 'components/project-card';  // Shared project card (home & portfolio)
 @use 'components/home/home';
 @use 'components/portfolio/portfolio';
 @use 'components/bio/bio';

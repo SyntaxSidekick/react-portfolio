@@ -105,7 +105,7 @@ const Blog = ({ setPageTitle }) => {
 
   if (loading || error || !post) {
     return (
-      <main className='blog-single-page'>
+      <main className='blog-post-page'>
         <article className='blog-post'>
           <h1>
             <Skeleton width='60%' height={32} />

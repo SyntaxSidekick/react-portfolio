@@ -1,0 +1,195 @@
+/**
+ * Partial: _home-about.scss
+ * Purpose: About section styles for the home page
+ * Features: About layout, animated background, profile image, CTA buttons, stats grid
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+@use "../../abstracts/mixins-effects" as *;
+
+// About Section - Modern & Clean
+.about {
+  padding: 80px 0;
+  background: linear-gradient(180deg, $color-bg-primary 0%, $background-light 100%);
+  position: relative;
+  overflow: hidden;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  // Condensed About Section Styles
+  .about-content-condensed {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-tech-preview {
+    margin-bottom: 48px;
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .tech-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+      margin: 0 auto;
+
+      @media (max-width: $bp-md) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      @media (max-width: $bp-sm) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .tech-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 16px;
+      background: $text-white;
+      border-radius: $radius-lg;
+      border: 2px solid $color-border-light;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+
+      i {
+        font-size: $font-size-4xl;
+        color: var(--tech-color);
+        transition: transform 0.3s ease;
+
+        @media (max-width: $bp-md) {
+          font-size: $font-size-3xl;
+        }
+
+        @media (max-width: $bp-sm) {
+          font-size: $font-size-3xl;
+        }
+      }
+
+      .tech-name {
+        @include font-size-sm;
+        font-weight: 600;
+        color: $text-dark;
+        font-family: $font-alt;
+        letter-spacing: 0.3px;
+        margin-bottom: 8px;
+
+        @media (max-width: $bp-sm) {
+          font-size: $font-size-xs;
+        }
+      }
+
+      .tech-proficiency-bar {
+        width: 100%;
+        height: 4px;
+        background: $overlay-light;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        .tech-proficiency-fill {
+          height: 100%;
+          width: 0;
+          background: var(--tech-color);
+          border-radius: 2px;
+          transition: width 0.6s ease-in-out;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 30%;
+            background: linear-gradient(90deg, transparent, $overlay-white-medium);
+          }
+        }
+      }
+
+      &:hover {
+        border-color: var(--tech-color);
+        @include shadow-md($overlay-light);
+        background: $overlay-white-heavy;
+
+        i {
+          transform: scale(1.1);
+        }
+
+        .tech-proficiency-bar {
+          opacity: 1;
+        }
+
+        .tech-proficiency-fill {
+          width: calc(var(--proficiency) * 1%);
+        }
+      }
+
+      &:focus-visible {
+        outline: 3px solid var(--tech-color);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  .about-cta {
+    margin-top: 48px;
+
+    .bio-cta-button {
+      @include cta-button;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: $bp-md) {
+  .about {
+    .about-tech-preview {
+      .tech-icons-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .about {
+    padding: 40px 0;
+
+    .container {
+      padding: 0 15px;
+    }
+
+    .about-tech-preview {
+      .tech-icons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+  }
+}

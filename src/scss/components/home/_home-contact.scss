@@ -1,0 +1,424 @@
+/**
+ * Contact Section
+ * 
+ * Purpose: Contact form and information on the home page
+ * Features: Contact info cards, form wrapper, decorative gradients, dark mode support
+ */
+
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+
+// Contact Section - Modern Design
+.contact-section {
+  padding: 100px 0 120px;
+  background: linear-gradient(180deg, $color-bg-primary 0%, $background-light 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Decorative gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at top center,
+      $brand-primary-50 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: 100px;
+    animation: fadeInLeft 0.6s ease-out 0.2s backwards;
+
+    .contact-info-card {
+      @include card;
+      position: relative;
+      padding: 28px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+
+      // Animated gradient border on hover
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px;
+        padding: 2px;
+        background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: -1;
+      }
+
+      &:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 8px 24px $brand-primary-100, 0 16px 48px $brand-primary-200;
+        border-color: transparent;
+
+        &::before {
+          opacity: 1;
+        }
+
+        .info-icon {
+          background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+          color: $text-white;
+          transform: scale(1.1) rotate(5deg);
+          box-shadow: 0 4px 16px $brand-primary-300;
+        }
+
+        .contact-link {
+          color: $primary;
+          transform: translateX(4px);
+        }
+      }
+
+      .info-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, $brand-primary-50 0%, $brand-primary-100 100%);
+        color: $primary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px $brand-primary-100;
+
+        i {
+          @include font-size-lg;
+        }
+      }
+
+      h3 {
+        font-family: $font-heading;
+        font-size: $font-size-base;
+        color: $text-dark;
+        margin: 0 0 6px 0;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      p {
+        @include font-size-sm;
+        color: $text-muted;
+        margin: 0 0 16px 0;
+        line-height: 1.6;
+      }
+
+      .contact-link {
+        @include font-size-sm;
+        color: $text-dark;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        word-break: break-word;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+
+        &::after {
+          content: '→';
+          font-size: $font-size-base;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          color: $primary;
+
+          &::after {
+            transform: translateX(4px);
+          }
+        }
+
+        &:focus-visible {
+          outline: 3px solid $brand-primary-300;
+          outline-offset: 4px;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+
+  .contact-form-wrapper {
+    background: $color-bg-primary;
+    border-radius: $radius-xl;
+    padding: $padding-xxl;
+    box-shadow: $shadow-md;
+    border: 1px solid $color-border-light;
+    animation: fadeInRight 0.6s ease-out 0.2s backwards;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      box-shadow: $shadow-lg;
+      border-color: $brand-primary-200;
+    }
+
+    // Subtle decorative gradient
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(
+        circle at top right,
+        $brand-primary-50 0%,
+        transparent 70%
+      );
+      border-radius: $radius-xl;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .form-title {
+      font-family: $font-alt;
+      font-size: $font-size-xl;
+      color: $color-text-primary;
+      margin: 0 0 $gap-lg 0;
+      font-weight: $weight-semibold;
+      letter-spacing: 0.5px;
+      position: relative;
+      padding-bottom: $gap;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, $primary 0%, $brand-primary-light 100%);
+        border-radius: $radius-sm;
+      }
+    }
+
+    .contact-form {
+      position: relative;
+      z-index: 1;
+
+      .form-group {
+        margin-bottom: $gap-lg;
+
+        label {
+          display: block;
+          font-family: $font-alt;
+          font-size: $font-size-base;
+          font-weight: $weight-semibold;
+          color: $color-text-primary;
+          margin-bottom: $space-sm;
+          letter-spacing: 0.3px;
+
+          .required {
+            color: $primary;
+            margin-left: 2px;
+          }
+        }
+
+        .form-control {
+          width: 100%;
+          padding: $padding-md $padding-lg;
+          font-family: $font-body;
+          font-size: $font-size-base;
+          color: $color-text-primary;
+          background: $color-bg-primary;
+          border: 2px solid $color-border-light;
+          border-radius: $radius-lg;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          outline: none;
+
+          &::placeholder {
+            color: $color-text-muted;
+            opacity: 0.7;
+          }
+
+          &:hover {
+            border-color: $brand-primary-200;
+          }
+
+          &:focus {
+            border-color: $primary;
+            box-shadow: 0 0 0 4px $brand-primary-100;
+            background: $color-bg-primary;
+          }
+
+          &:disabled {
+            background: $gray-100;
+            cursor: not-allowed;
+            opacity: 0.6;
+          }
+        }
+
+        textarea.form-control {
+          resize: vertical;
+          min-height: 140px;
+          line-height: 1.6;
+        }
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: $padding-lg $padding-xl;
+        font-size: $font-size-base;
+        font-weight: $weight-semibold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-md;
+        margin-top: $gap-xl;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        i {
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-lg;
+
+          i {
+            transform: translateX(4px);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+        }
+      }
+
+      iframe {
+        border-radius: $radius-lg;
+        display: block;
+        border: 1px solid $color-border-light;
+        box-shadow: $shadow-sm;
+        transition: all 0.3s ease;
+        background: $color-bg-primary;
+
+        &:hover {
+          box-shadow: $shadow-base;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design - Contact Section
+@media (max-width: $bp-lg) {
+  .contact-section {
+    padding: 60px 0 80px;
+
+    .container {
+      padding: 0 30px;
+    }
+
+    .contact-header {
+      margin-bottom: 48px;
+
+      h2 {
+        @include font-size-xl;
+      }
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .contact-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .contact-info-card {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 250px;
+      }
+    }
+
+    .contact-form-wrapper {
+      padding: 28px;
+    }
+  }
+}
+
+@media (max-width: $bp-md) {
+  .contact-section {
+    padding: 50px 0 60px;
+
+    .container {
+      padding: 0 20px;
+    }
+
+    .contact-header {
+      margin-bottom: 40px;
+
+      h2 {
+        @include font-size-lg;
+      }
+
+      .contact-intro {
+        @include font-size-sm;
+      }
+    }
+
+    .contact-grid {
+      gap: 24px;
+    }
+
+    .contact-info {
+      flex-direction: column;
+
+      .contact-info-card {
+        flex: 1 1 100%;
+      }
+    }
+
+    .contact-form-wrapper {
+      padding: 24px;
+
+      .form-title {
+        @include font-size-md;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

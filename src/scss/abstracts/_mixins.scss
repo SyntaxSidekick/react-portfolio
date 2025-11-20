@@ -8,6 +8,7 @@
  */
 @use "sass:math";
 @use '_variables' as *;
+@use '_mixins-effects' as *;
 
 // ============================================================
 // TYPOGRAPHY MIXINS
@@ -185,6 +186,129 @@
 // COMPONENT MIXINS
 // ============================================================
 
+// ============================================================
+// CARD SYSTEM MIXINS
+// ============================================================
+
+// Base Card - Standard card structure
+@mixin card($variant: 'default') {
+  background: $color-bg-primary;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  @if $variant == 'default' {
+    border: 1px solid $color-border-light;
+    box-shadow: $shadow-sm;
+  } @else if $variant == 'elevated' {
+    border: none;
+    box-shadow: $shadow-md;
+  } @else if $variant == 'flat' {
+    border: 1px solid $color-border-light;
+    box-shadow: none;
+  } @else if $variant == 'outline' {
+    background: transparent;
+    border: 2px solid $color-border-medium;
+    box-shadow: none;
+  } @else if $variant == 'glass' {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: $shadow-sm;
+  }
+}
+
+// Card Interactive - Adds hover effects
+@mixin card-interactive($lift: -4px) {
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY($lift);
+    box-shadow: $shadow-lg;
+    border-color: $primary;
+  }
+  
+  &:active {
+    transform: translateY(calc($lift / 2));
+    box-shadow: $shadow-md;
+  }
+}
+
+// Card Header - Consistent card header
+@mixin card-header {
+  padding: $padding-lg $padding-xl;
+  border-bottom: 1px solid $color-border-light;
+  
+  h3, h4 {
+    margin: 0;
+    font-weight: $weight-semibold;
+    color: $color-text-primary;
+  }
+}
+
+// Card Body - Consistent card body
+@mixin card-body($padding: $padding-xl) {
+  padding: $padding;
+  @include flex-column;
+  gap: $gap;
+  flex: 1;
+}
+
+// Card Footer - Consistent card footer
+@mixin card-footer {
+  padding: $padding-lg $padding-xl;
+  border-top: 1px solid $color-border-light;
+  background: $color-bg-secondary;
+}
+
+// Card Image - Image container for cards
+@mixin card-image($aspect-ratio: math.div(16, 9), $hover-scale: 1.05) {
+  position: relative;
+  width: 100%;
+  aspect-ratio: $aspect-ratio;
+  overflow: hidden;
+  background: $gray-100;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  
+  @if $hover-scale != 1 {
+    &:hover img {
+      transform: scale($hover-scale);
+    }
+  }
+}
+
+// Flex Center - Centers content both horizontally and vertically
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Inline Flex Center - Inline-flex with centered content
+@mixin inline-flex-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flex Align Center - Centers items vertically, horizontal alignment flexible
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+// Flex Justify Center - Centers items horizontally, vertical alignment flexible
+@mixin flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
 // Card Shadow
 @mixin card-shadow {
   box-shadow: $shadow-base;
@@ -206,6 +330,171 @@
     box-shadow: $shadow-lg;
     transform: translateY(-2px);
   }
+}
+
+// Card Base - Common card styling
+@mixin card-base {
+  background: $color-bg-primary;
+  border-radius: $radius-xl;
+  border: 1px solid $color-border-light;
+  box-shadow: $shadow-sm;
+  transition: all 0.3s ease;
+}
+
+// Card Hover Effect - Consistent hover across all cards
+@mixin card-hover-effect($lift: -4px) {
+  &:hover {
+    transform: translateY($lift);
+    box-shadow: $shadow-lg;
+    border-color: $primary;
+  }
+}
+
+// Image Container - Consistent image wrapper
+@mixin image-container($aspect-ratio: math.div(16, 9)) {
+  position: relative;
+  width: 100%;
+  aspect-ratio: $aspect-ratio;
+  overflow: hidden;
+  background: $gray-100;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+// Tag/Badge Style - Reusable tags
+@mixin tag-style($bg-opacity: 0.1, $border-opacity: 0.2) {
+  padding: $padding-xs $padding-md;
+  background: rgba($primary, $bg-opacity);
+  border: 1px solid rgba($primary, $border-opacity);
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  color: $primary;
+  font-weight: $weight-medium;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba($primary, $bg-opacity + 0.05);
+    border-color: rgba($primary, $border-opacity + 0.2);
+  }
+}
+
+// Section Header - Consistent section headers
+@mixin section-header {
+  max-width: 900px;
+  margin: 0 auto $gap-lg;
+  text-align: center;
+
+  h2 {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    color: $primary;
+    margin: 0 0 $gap;
+    font-weight: $weight-normal;
+    letter-spacing: $letter-spacing-wide;
+
+    @media (max-width: $bp-md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  p {
+    font-size: $font-size-md;
+    color: $text-dark;
+    line-height: $line-height-relaxed;
+    margin: 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Flex Between - Common flex layout
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Flex Gap - Flex with gap
+@mixin flex-gap($gap-size: $gap) {
+  display: flex;
+  gap: $gap-size;
+}
+
+// Grid Auto Fit - Responsive grid
+@mixin grid-auto-fit($min-width: 300px, $gap-size: $gap-lg) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+  gap: $gap-size;
+}
+
+// Button with Icon - Common button pattern
+@mixin btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  
+  i {
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover i {
+    transform: translateX(4px);
+  }
+}
+
+// Smooth Transition - Standard transition
+@mixin smooth-transition($properties: all, $duration: 0.3s, $easing: ease) {
+  transition: $properties $duration $easing;
+}
+
+// Material Design 3 Elevation
+@mixin elevation($level: 1) {
+  @if $level == 0 {
+    box-shadow: none;
+  } @else if $level == 1 {
+    box-shadow: $shadow-sm;
+  } @else if $level == 2 {
+    box-shadow: $shadow-md;
+  } @else if $level == 3 {
+    box-shadow: $shadow-lg;
+  } @else if $level == 4 {
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Gradient Background
+@mixin gradient-bg($deg: 135deg, $color1: $primary, $color2: $brand-primary-light) {
+  background: linear-gradient($deg, $color1 0%, $color2 100%);
+}
+
+// Overlay Badge/Category
+@mixin overlay-badge($position: top-right) {
+  position: absolute;
+  
+  @if $position == top-right {
+    top: $space-lg;
+    right: $space-lg;
+  } @else if $position == top-left {
+    top: $space-lg;
+    left: $space-lg;
+  }
+  
+  padding: $padding-xs $padding-md;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 // Button Base (use .btn component instead)
@@ -275,6 +564,217 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+// ============================================================
+// BRAND ICON COLORS
+// ============================================================
+
+// Apply brand-specific colors to Font Awesome icons
+// Usage: @include brand-icon-colors;
+// Applies colors to child <i> elements based on FA class
+@mixin brand-icon-colors {
+  // Frontend Technologies
+  &:has(.fa-react) i { color: $tech-react; }
+  &:has(.fa-js) i { color: $tech-javascript; }
+  &:has(.fa-html5) i { color: $tech-html5; }
+  &:has(.fa-css3-alt) i { color: $tech-css3; }
+  &:has(.fa-sass) i { color: $tech-sass; }
+  &:has(.fa-bootstrap) i { color: $tech-bootstrap; }
+  &:has(.fa-vuejs) i { color: $tech-vue; }
+  &:has(.fa-angular) i { color: $tech-angular; }
+  
+  // Backend Technologies
+  &:has(.fa-node-js) i { color: $tech-node; }
+  &:has(.fa-php) i { color: $tech-php; }
+  &:has(.fa-python) i { color: $tech-python; }
+  &:has(.fa-java) i { color: $tech-java; }
+  &:has(.fa-laravel) i { color: $tech-laravel; }
+  
+  // CMS & Frameworks
+  &:has(.fa-wordpress) i { color: $tech-wordpress; }
+  &:has(.fa-drupal) i { color: $tech-drupal; }
+  
+  // Design Tools
+  &:has(.fa-figma) i { color: $tech-figma; }
+  &:has(.fa-sketch) i { color: $tech-sketch; }
+  &:has(.fa-adobe) i { color: $tech-adobe; }
+  &:has(.fa-photoshop) i { color: $tech-photoshop; }
+  &:has(.fa-illustrator) i { color: $tech-illustrator; }
+  &:has(.fa-indesign) i { color: $tech-indesign; }
+  
+  // Version Control & Development
+  &:has(.fa-git-alt) i { color: $tech-git; }
+  &:has(.fa-github) i { color: $tech-github; }
+  &:has(.fa-gitlab) i { color: $tech-gitlab; }
+  
+  // Build Tools & Package Managers
+  &:has(.fa-gulp) i { color: $tech-gulp; }
+  &:has(.fa-npm) i { color: $tech-npm; }
+  &:has(.fa-yarn) i { color: $tech-yarn; }
+  
+  // Cloud & Infrastructure
+  &:has(.fa-docker) i { color: $tech-docker; }
+  &:has(.fa-aws) i { color: $tech-aws; }
+  
+  // Tech Companies
+  &:has(.fa-google) i { color: $tech-google; }
+  &:has(.fa-microsoft) i { color: $tech-microsoft; }
+  &:has(.fa-apple) i { color: $tech-apple; }
+  &:has(.fa-android) i { color: $tech-android; }
+  
+  // Default color for icons not matched above
+  &:not(:has(
+    .fa-react, .fa-js, .fa-html5, .fa-css3-alt, .fa-sass, .fa-bootstrap, .fa-node-js, 
+    .fa-wordpress, .fa-figma, .fa-git-alt, .fa-gulp, .fa-vuejs, .fa-php, .fa-drupal, 
+    .fa-adobe, .fa-photoshop, .fa-illustrator, .fa-indesign, .fa-sketch, .fa-github, 
+    .fa-gitlab, .fa-npm, .fa-yarn, .fa-docker, .fa-aws, .fa-google, .fa-microsoft, 
+    .fa-apple, .fa-android, .fa-python, .fa-java, .fa-angular, .fa-laravel
+  )) i {
+    color: $primary;
+  }
+}
+
+// Brand icon colors - Direct variant (for when <i> has the class directly)
+// Usage: Apply to <i> element selector: i { @include brand-icon-colors-direct; }
+@mixin brand-icon-colors-direct {
+  // Frontend Technologies
+  &.fa-react { color: $tech-react; }
+  &.fa-js { color: $tech-javascript; }
+  &.fa-html5 { color: $tech-html5; }
+  &.fa-css3-alt { color: $tech-css3; }
+  &.fa-sass { color: $tech-sass; }
+  &.fa-bootstrap { color: $tech-bootstrap; }
+  &.fa-vuejs { color: $tech-vue; }
+  &.fa-angular { color: $tech-angular; }
+  
+  // Backend Technologies
+  &.fa-node-js { color: $tech-node; }
+  &.fa-php { color: $tech-php; }
+  &.fa-python { color: $tech-python; }
+  &.fa-java { color: $tech-java; }
+  &.fa-laravel { color: $tech-laravel; }
+  
+  // CMS & Frameworks
+  &.fa-wordpress { color: $tech-wordpress; }
+  &.fa-drupal { color: $tech-drupal; }
+  
+  // Design Tools
+  &.fa-figma { color: $tech-figma; }
+  &.fa-sketch { color: $tech-sketch; }
+  &.fa-adobe { color: $tech-adobe; }
+  &.fa-photoshop { color: $tech-photoshop; }
+  &.fa-illustrator { color: $tech-illustrator; }
+  &.fa-indesign { color: $tech-indesign; }
+  
+  // Version Control & Development
+  &.fa-git-alt { color: $tech-git; }
+  &.fa-github { color: $tech-github; }
+  &.fa-gitlab { color: $tech-gitlab; }
+  
+  // Build Tools & Package Managers
+  &.fa-gulp { color: $tech-gulp; }
+  &.fa-npm { color: $tech-npm; }
+  &.fa-yarn { color: $tech-yarn; }
+  
+  // Cloud & Infrastructure
+  &.fa-docker { color: $tech-docker; }
+  &.fa-aws { color: $tech-aws; }
+  
+  // Tech Companies
+  &.fa-google { color: $tech-google; }
+  &.fa-microsoft { color: $tech-microsoft; }
+  &.fa-apple { color: $tech-apple; }
+  &.fa-android { color: $tech-android; }
+}
+
+// CTA Button (used in sections: about, featured, blog)
+@mixin cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 32px;
+  @include gradient-primary();
+  color: $text-white;
+  text-decoration: none;
+  border-radius: 10px;
+  @include shadow-base($brand-primary-300);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: $font-alt;
+  min-width: 280px;
+  max-width: 500px;
+
+  .cta-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    i {
+      font-size: $font-size-lg;
+      flex-shrink: 0;
+    }
+
+    .cta-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 2px;
+
+      strong {
+        font-size: $font-size-base;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      small {
+        font-size: $font-size-sm;
+        opacity: 0.9;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+      }
+    }
+  }
+
+  .cta-arrow {
+    font-size: $font-size-md;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    @include shadow-md($brand-primary-400);
+
+    .cta-arrow {
+      transform: translateX(4px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $brand-primary-500;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: $bp-sm) {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+
+    .cta-content i {
+      font-size: $font-size-md;
+    }
+
+    .cta-arrow {
+      font-size: $font-size-base;
+    }
+  }
 }
 
 // Legacy mixins (to be removed)

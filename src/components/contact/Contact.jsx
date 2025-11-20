@@ -33,7 +33,7 @@ const Contact = () => {
 
   if (loading || error || !page) {
     return (
-      <main className="container contact-section">
+      <main className="container contact-page">
         <h1><Skeleton width="40%" height={32} /></h1>
         <div className="contact-content">
           <SkeletonBlock lines={5} width={["100%","95%","90%","80%","60%"]} height={16} />
@@ -44,7 +44,7 @@ const Contact = () => {
   }
 
   return (
-    <section className="contact-section container" aria-labelledby="contact-title">
+    <section className="contact-page container" aria-labelledby="contact-title">
       <h1 id="contact-title" style={{ display: "none" }} dangerouslySetInnerHTML={{ __html: page.title.rendered }} />
       <div className="contact-content">
         <div className="contact-info" dangerouslySetInnerHTML={{ __html: page.content.rendered }} />

@@ -4,119 +4,711 @@
  * Features: Portfolio grid, card design, gallery tiles, tabbed navigation, technology tags, responsive design.
  * Usage: Import in style.scss for portfolio and gallery components.
  * Dependencies: Uses _variables.scss and _mixins.scss.
- * Last updated: 2025-08-15
+ * Last updated: 2025-11-19
  */
-//@use 'sass:color';
+@use 'sass:math';
 @use '../../abstracts/variables' as *;
 @use '../../abstracts/mixins' as *;
-@use '../../abstracts/mixins-effects' as *;
 
-.portfolio {
-  color: $text-dark;
+// ============================================================================
+// PORTFOLIO MAIN SECTION
+// ============================================================================
 
-  .container {
-    //background: linear-gradient(120deg, $background-light 80%, $accent 100%);
-    //padding: $gap-lg $gap;
-    //border-radius: $radius-lg;
-    //box-shadow: 0 4px 24px rgba($primary, 0.09);
-    
-    // Updated projects grid for 2 columns
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: $gap-lg;
-      margin: 0 auto;
-      justify-items: center;
+.portfolio-page {
+  margin: 0 auto;
+
+  // Semantic section styling (matching Bio page)
+  section {
+    margin-bottom: $gap-xl;
+
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .card {
-      background: $text-white;
-      color: $text-dark;
+    header {
+      @include section-header;
+    }
+  }
+}
+
+// ============================================================================
+// FILTER TABS
+// ============================================================================
+
+.portfolio-filters {
+  margin-bottom: $gap-xl;
+  padding: $gap 0;
+  font-family: $font-alt;
+
+  .filter-header {
+    @include flex-center;
+    gap: $space-sm;
+    margin-bottom: $gap;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    font-weight: $weight-semibold;
+
+    i {
+      color: $primary;
+      font-size: $font-size-lg;
+    }
+
+    .filter-label {
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: $space-md;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $space-md;
+    position: relative;
+
+    .filter-tab {
+      background: $color-bg-secondary;
+      border: 2px solid $color-border-light;
       border-radius: $radius-lg;
-      border: 1px solid $color-border-light;
-      overflow: hidden;
-      @include card-shadow;
-      transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s;
+      padding: $padding-md $padding-xl;
+      font-size: $font-size-sm;
+      font-weight: $weight-semibold;
+      color: $color-text-secondary;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
-      flex-direction: column;
-      min-height: 420px;
+      align-items: center;
+      gap: $space-md;
       position: relative;
+      white-space: nowrap;
+      box-shadow: $shadow-sm;
+
+      i {
+        font-size: 1.125rem;
+        transition: color 0.2s ease;
+      }
 
       &:hover {
-        @include shadow-lg($brand-primary-100);
-        border-color: $color-border-medium;
+        color: $primary;
+        background: $color-bg-primary;
+        border-color: $brand-primary-200;
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+
+        i {
+          color: $primary;
+        }
       }
 
-      .card-head {
-        width: 100%;
-        // Remove fixed height, use aspect-ratio for image container
-        .project-img-16x9 {
-          position: relative;
+      &:active {
+        transform: translateY(0);
+        box-shadow: $shadow-sm;
+      }
+
+      &.active {
+        color: $text-white;
+        font-weight: $weight-bold;
+        background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+        border-color: $primary;
+        box-shadow: $shadow-md;
+
+        i {
+          color: $text-white;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-lg;
+        }
+      }
+    }
+
+    // Tablet: Horizontal scroll
+    @media (max-width: $bp-md) {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      justify-content: flex-start;
+      gap: $space-sm;
+      padding: $space-md $space-lg;
+      
+      // Scroll snap for better UX
+      scroll-snap-type: x proximity;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      // Add scroll indicators
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        background: linear-gradient(to right, transparent, $background-light);
+        pointer-events: none;
+      }
+      
+      .filter-tab {
+        padding: $padding-sm $padding-lg;
+        font-size: 0.875rem;
+        gap: $space-sm;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+
+        i {
+          font-size: 1rem;
+        }
+
+        span {
+          display: inline;
+        }
+      }
+    }
+
+    // Mobile: Icon-only compact view
+    @media (max-width: $bp-sm) {
+      gap: $space-xs;
+      padding: $space-sm $space-md;
+      
+      .filter-tab {
+        padding: $padding-sm $padding-md;
+        gap: $space-xs;
+        min-width: auto;
+
+        span {
+          display: none;
+        }
+
+        i {
+          font-size: 1.125rem;
+          margin: 0;
+        }
+
+        &.active span {
+          display: inline;
+        }
+      }
+    }
+
+    // Extra small screens: Stack vertically
+    @media (max-width: 480px) {
+      &.filter-tabs--stacked {
+        flex-direction: column;
+        align-items: stretch;
+        overflow-x: visible;
+        
+        .filter-tab {
+          justify-content: center;
           width: 100%;
-          aspect-ratio: 16 / 9;
-          overflow: hidden;
-          background: $gray-100;
-          border-radius: 8px;
-          cursor: pointer;
           
-          img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            left: 0;
-            top: 0;
-            transition: transform 0.3s;
-            cursor: pointer;
+          span {
+            display: inline;
           }
-          
-          &:hover img {
-            transform: scale(1.07) rotate(-2deg);
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// FRONT-END PROJECTS GRID
+// ============================================================================
+
+.portfolio-projects-section {
+  .projects-grid {
+    @include grid-auto-fit(380px, $gap-lg);
+    margin: 0 auto;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+      gap: $gap;
+    }
+  }
+
+  .project-card {
+    @include card-base;
+    @include card-hover-effect(-8px);
+    @include flex-column;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+
+    .project-image {
+      @include image-container(math.div(16, 9));
+
+      &:hover img {
+        transform: scale(1.07);
+      }
+
+      .project-badge {
+        @include overlay-badge(top-right);
+        @include gradient-bg(135deg, $primary, $brand-primary-light);
+        color: $text-white;
+        @include elevation(2);
+      }
+    }
+
+    .project-content {
+      padding: $padding-xl;
+      flex: 1;
+      @include flex-column;
+      gap: $gap;
+
+      h3 {
+        font-size: $font-size-xl;
+        color: $primary;
+        margin: 0;
+        font-weight: $weight-bold;
+        letter-spacing: 0.3px;
+        line-height: $line-height-tight;
+      }
+
+      p {
+        font-size: $font-size-base;
+        color: $text-dark;
+        line-height: $line-height-relaxed;
+        margin: 0;
+        flex: 1;
+      }
+
+      .project-tech {
+        @include flex-gap($space-sm);
+        flex-wrap: wrap;
+        margin-top: auto;
+
+        .tech-tag {
+          @include tag-style(0.1, 0.2);
+          display: inline-flex;
+          align-items: center;
+          gap: $space-xs;
+          padding: $padding-xs $padding-sm;
+          border-radius: $radius;
+
+          i {
+            font-size: 14px;
+          }
+
+          &.more {
+            background: $color-bg-secondary;
+            color: $text-muted;
+            border-color: $color-border-light;
+          }
+
+          &:hover {
+            transform: translateY(-2px);
           }
         }
       }
 
-      .card-bod {
-        padding: $gap;
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      .btn-primary {
+        @include btn;
+        @include btn-with-icon;
+        @include gradient-bg(135deg, $primary, $brand-primary-light);
+        color: $text-white;
+        border: none;
+        margin-top: $gap-sm;
+        width: 100%;
+        justify-content: center;
+        font-weight: $weight-semibold;
+
+        &:hover {
+          transform: translateY(-2px);
+          @include elevation(3);
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// CASE STUDIES SECTION
+// ============================================================================
+
+.portfolio-case-studies-section {
+  .case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: $gap-xl;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+    }
+
+    .case-study-card {
+      @include card('elevated');
+      @include card-interactive(-8px);
+      @include flex-column;
+
+      .case-study-image {
+        @include card-image(math.div(16, 9), 1.05);
+
+        .case-study-category {
+          position: absolute;
+          top: $space-lg;
+          left: $space-lg;
+          padding: $padding-xs $padding-md;
+          background: rgba($primary, 0.95);
+          color: $text-white;
+          border-radius: $radius-full;
+          font-size: 0.75rem;
+          font-weight: $weight-bold;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          backdrop-filter: blur(4px);
+        }
+      }
+
+      .case-study-content {
+        @include card-body;
+
+        .case-study-meta {
+          display: flex;
+          gap: $gap;
+          font-size: $font-size-sm;
+          color: $color-text-muted;
+          font-weight: $weight-medium;
+
+          .year, .duration {
+            display: flex;
+            align-items: center;
+            gap: $space-xs;
+
+            &::before {
+              content: '•';
+              color: $primary;
+            }
+
+            &:first-child::before {
+              display: none;
+            }
+          }
+        }
 
         h3 {
-          @include font-size-xl;
-          margin: 10px 0 8px 0;
-          font-family: DM Sans, sans-serif;
-          color: $primary-dark;
-          font-weight: 700;
-          letter-spacing: 0.5px;
-          cursor: pointer;
-          transition: color 0.3s ease, transform 0.2s ease;
-          
-          &:hover {
-            color: $primary;
-            transform: translateY(-1px);
+          font-size: $font-size-xl;
+          color: $color-text-primary;
+          margin: 0;
+          line-height: 1.3;
+          font-weight: $weight-semibold;
+        }
+
+        .subtitle {
+          font-size: $font-size-sm;
+          color: $primary;
+          font-weight: $weight-semibold;
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        .summary {
+          font-size: $font-size-base;
+          color: $color-text-secondary;
+          line-height: 1.7;
+          margin: 0;
+          flex: 1;
+        }
+
+        .case-study-tags {
+          @include flex-gap($space-sm);
+          flex-wrap: wrap;
+          margin-top: $gap-sm;
+
+          .tag {
+            @include tag-style(0.08, 0.2);
           }
         }
 
-        p {
-          @include font-size-md;
-          margin-bottom: $gap;
-          color: $text-muted;
+        .btn-primary {
+          @include btn;
+          @include btn-with-icon;
+          @include gradient-bg(135deg, $primary, $brand-primary-light);
+          color: $text-white;
+          border: none;
+          margin-top: $gap;
+          width: 100%;
+          justify-content: center;
+          font-weight: $weight-semibold;
+          padding: $padding-md $padding-xl;
+
+          &:hover {
+            transform: translateY(-2px);
+            @include elevation(3);
+          }
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// UI/UX & DESIGN SECTION - Material Design 3
+// ============================================================================
+
+.portfolio-design-section {
+  .design-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap-lg;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .design-card {
+    @include card-base;
+    @include card-hover-effect(-4px);
+    @include flex-column;
+    overflow: hidden;
+
+    .design-image {
+      @include image-container(math.div(4, 3));
+      background: linear-gradient(135deg, $gray-100 0%, $gray-200 100%);
+
+      .design-category {
+        @include overlay-badge(top-right);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: $padding-xs $padding-md;
+        border-radius: $radius-full;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        color: $primary;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba($primary, 0.2);
+      }
+    }
+
+    .design-content {
+      padding: $padding-xl;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      flex: 1;
+
+      h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: $color-text-primary;
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      p {
+        font-size: 0.9375rem;
+        color: $color-text-secondary;
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+      }
+
+      .design-tags {
+        @include flex-gap($space-sm);
+        flex-wrap: wrap;
+
+        .tag {
+          @include tag-style(0.08, 0.2);
+        }
+      }
+
+      .btn-link {
+        @include inline-flex-center;
+        gap: $gap-sm;
+        padding: $padding-md $padding-lg;
+        background: $color-bg-secondary;
+        border: 1px solid $color-border-medium;
+        border-radius: $radius;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $color-text-primary;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-top: $gap-sm;
+
+        i {
+          font-size: 0.875rem;
+          transition: transform 0.3s ease;
+          color: $primary;
         }
 
-        .card-links {
-          margin-top: auto;
-          display: flex;
-          gap: 12px;
-          a {
-            @include btn;
-            font-size: $font-size-sm;
-            padding: 8px 16px;
+        &:hover {
+          background: $primary;
+          color: $text-white;
+          border-color: $primary;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba($primary, 0.3);
+
+          i {
+            color: $text-white;
+            transform: translateX(4px);
+          }
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// GITHUB PROJECTS SECTION
+// ============================================================================
+
+.portfolio-github-section {
+  .github-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-lg;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .github-card {
+    @include card-base;
+    @include card-hover-effect(-4px);
+    @include flex-column;
+    overflow: hidden;
+
+    .github-thumbnail {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: linear-gradient(135deg, $gray-100 0%, $gray-200 100%);
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    .github-content {
+      padding: $padding-xl;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      flex: 1;
+    }
+
+    .github-header {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+
+      i {
+        font-size: $font-size-xl;
+        color: #181717;
+      }
+
+      h3 {
+        font-size: $font-size-lg;
+        color: $color-text-primary;
+        margin: 0;
+        font-weight: $weight-bold;
+      }
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-secondary;
+      line-height: $line-height-relaxed;
+      flex: 1;
+      margin: 0;
+    }
+
+    .github-tech {
+      @include flex-gap($space-sm);
+      flex-wrap: wrap;
+
+      .tech-pill {
+        @include tag-style(0.08, 0.2);
+      }
+    }
+
+    .github-actions {
+      display: flex;
+      gap: $gap-sm;
+      margin-top: $gap-sm;
+      padding-top: $gap;
+      border-top: 1px solid $color-border-light;
+
+      @media (max-width: $bp-sm) {
+        flex-direction: column;
+      }
+
+      a {
+        @include btn;
+        flex: 1;
+        @include inline-flex-center;
+        gap: $space-sm;
+        font-weight: $weight-semibold;
+        font-size: 0.875rem;
+        padding: $padding-md $padding-lg;
+        border-radius: $radius;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        i {
+          font-size: 1rem;
+          transition: transform 0.3s ease;
+        }
+
+        &.btn-primary {
+          background: $primary;
+          color: $text-white;
+          border: 1px solid $primary;
+
+          &:hover {
+            background: $brand-primary-dark;
+            border-color: $brand-primary-dark;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary, 0.3);
+
             i {
-              margin-right: 6px;
-              font-size: $font-size-base;
-              vertical-align: middle;
+              transform: translateX(2px);
+            }
+          }
+        }
+
+        &.btn-secondary {
+          background: $color-bg-secondary;
+          color: $color-text-primary;
+          border: 1px solid $color-border-medium;
+
+          i {
+            color: #181717;
+          }
+
+          &:hover {
+            background: #181717;
+            color: $text-white;
+            border-color: #181717;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+            i {
+              color: $text-white;
+              transform: scale(1.1);
             }
           }
         }
@@ -125,348 +717,1053 @@
   }
 }
 
-.tech-used {
-  .fa-illustrator,
-  .fa-photoshop,
-  .fa-aftereffects,
-  .fa-indesign,
-  .fa-tailwind {
-    &::before {
-      background-size: contain;
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
+// ============================================================================
+// CODEPEN EXPERIMENTS SECTION
+// ============================================================================
+
+.portfolio-codepen-section {
+  .codepen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: $gap-lg;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
     }
-  }
-  .fa-illustrator {
-    &::before {
-      background-image: url("../assets/images/illustrator-brands.svg");
-    }
-  }
-  .fa-photoshop {
-    &::before {
-      background-image: url("../assets/images/photoshop-brands.svg");
-    }
-  }
-  .fa-aftereffects {
-    &::before {
-      background-image: url("../assets/images/aftereffects-brands.svg");
-    }
-  }
-  .fa-indesign {
-    &::before {
-      background-image: url("../assets/images/indesign-brands.svg");
-    }
-  }
-  .fa-tailwind {
-    &::before {
-      background-image: url("../assets/images/tailwind-brands.svg");
-    }
-  }
-}
-// Responsive styles
-@media (max-width: $bp-md) {
-  .portfolio .container {
-    padding: 24px 10px;
-    .projects-grid {
-      gap: 24px;
+
+    @media (max-width: $bp-sm) {
       grid-template-columns: 1fr;
     }
- 
-    .card-bod h3 { @include font-size-lg; }
-    .card-bod p { @include font-size-sm; }
   }
-}
 
-@media (max-width: $bp-sm) {
-  .portfolio .container {
-    padding: 12px 4px;
-    .projects-grid {
-      gap: 12px;
-    }
+  .codepen-card {
+    @include card-base;
+    @include card-hover-effect(-4px);
+    @include flex-column;
+    overflow: hidden;
 
-    .card-bod h3 { @include font-size-md; }
-    .card-bod p { @include font-size-xs; }
-    .card-links a { font-size: $font-size-xs; padding: 6px 10px; }
-  }
-}
-
-// Gallery and lightbox styles
-.portfolio-gallery {
-  margin-bottom: 60px; // Add spacing between galleries
-  
-  &:last-of-type {
-    margin-bottom: 0; // Remove margin from last gallery
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 32px;
-    color: $primary;
-    font-family: $font-heading;
-    font-size: 2rem;
-  }
-  
-  .gallery-grid-tiles {
-    &.dragging {
-      cursor: grabbing;
-      user-select: none;
-    }
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    
-    .gallery-tile {
+    .codepen-embed {
       width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: $radius-lg;
-      @include shadow-base($brand-primary-100);
-      cursor: pointer;
-      @include transition-smooth((transform, box-shadow), 0.3s);
-      
-      &:hover {
-        transform: translateY(-8px) scale(1.02);
-        @include shadow-lg($brand-accent-100);
-      }
-    }
-  }
-}
-
-// Tabbed Gallery Styles
-section.portfolio-gallery-tabs.container {
-  margin-bottom: 60px;
-}
-.portfolio-gallery-tabs {
-  
-  .gallery-tabs-header {
-    text-align: center;
-    margin-bottom: 40px;
-    
-    h2 {
-      color: $primary;
-      font-family: $font-heading;
-      font-size: 2rem;
-      margin-bottom: 24px;
-    }
-  }
-  
-  .gallery-tabs-nav {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-    
-    .gallery-tab-btn {
-      @include btn;
-      cursor: pointer;
-      
-      i {
-        font-size: 1.1rem;
-        transition: transform 0.3s ease;
-        margin-right: 10px;
-      }
-      
-      &:hover {
-        transform: translateY(-2px);
-        
-        i {
-          transform: scale(1.1);
-        }
-      }
-      
-      &.active {
-        background: $secondary-blue;
-        color: $text-white;
-        box-shadow: 0 4px 16px $brand-primary-300;
-        
-        i {
-          transform: scale(1.1);
-        }
-      }
-    }
-  }
-  
-  .gallery-tabs-content {
-    .gallery-tab-panel {
-      display: none;
+      background: #1e1f26;
       position: relative;
-      &.active {
+
+      iframe {
         display: block;
+        border: none;
       }
-      button.gallery-nav-arrow.prev,
-      button.gallery-nav-arrow.next {
-          position: absolute;
-          top: 35%;
-          z-index: 1000;
-          border-radius: 50%;
-          padding: 20px;
-          border: solid 4px white;
-          @include card-shadow;
+    }
+
+    .codepen-content {
+      padding: $padding-xl;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      flex: 1;
+    }
+
+    h3 {
+      font-size: $font-size-lg;
+      color: $color-text-primary;
+      margin: 0;
+      font-weight: $weight-bold;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-secondary;
+      line-height: $line-height-relaxed;
+      flex: 1;
+      margin: 0;
+    }
+
+    .codepen-tags {
+      @include flex-gap($space-sm);
+      flex-wrap: wrap;
+
+      .tag {
+        @include tag-style(0.08, 0.2);
       }
-      button.gallery-nav-arrow.prev {
-          left: 0;
+    }
+
+    .btn-secondary {
+      @include btn;
+      background: $color-bg-secondary;
+      color: $color-text-primary;
+      border: 1px solid $color-border-medium;
+      @include inline-flex-center;
+      gap: $space-sm;
+      font-weight: $weight-semibold;
+      margin-top: $gap-sm;
+      padding: $padding-md $padding-lg;
+      transition: all 0.3s ease;
+
+      i {
+        color: #1e1f26;
+        transition: all 0.3s ease;
       }
-      button.gallery-nav-arrow.next {
-          right: 0;
-      }
-      @media (max-width: 768px) {
-        button.gallery-nav-arrow.prev,
-        button.gallery-nav-arrow.next {
-          display: none;
+
+      &:hover {
+        background: #1e1f26;
+        color: $text-white;
+        border-color: #1e1f26;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        i {
+          color: $text-white;
+          transform: scale(1.1);
         }
       }
-      .gallery-grid-tiles {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        white-space: nowrap;
-        gap: 16px;
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding: 0 8px 8px 0;
-        scrollbar-width: thin;
-        scrollbar-color: $primary $gray-100;
+    }
+  }
+}
 
-        .gallery-tile {
-          width: 235px;
-          height: 220px;
-          flex: 0 0 auto;
-          aspect-ratio: 4/3;
-          object-fit: cover;
-          border-radius: $radius-lg;
-          box-shadow: 0 4px 16px $brand-primary-100;
-          cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          margin-right: 8px;
+// ============================================================================
+// CALL TO ACTION SECTION
+// ============================================================================
+
+.portfolio-cta-section {
+  margin-top: $gap-xl * 2;
+
+  .cta-card {
+    background: linear-gradient(135deg, $color-bg-primary 0%, $color-bg-secondary 100%);
+    border-radius: $radius-xl;
+    padding: $gap-xl * 2;
+    text-align: center;
+    border: 1px solid $color-border-light;
+    box-shadow: $shadow-lg;
+
+    h2 {
+      font-family: $font-heading;
+      font-size: $font-size-3xl;
+      color: $primary;
+      margin: 0 0 $gap;
+      font-weight: $weight-normal;
+
+      @media (max-width: $bp-md) {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-dark;
+      line-height: $line-height-relaxed;
+      margin: 0 0 $gap-xl;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media (max-width: $bp-md) {
+        font-size: $font-size-base;
+      }
+    }
+
+    .cta-links {
+      display: flex;
+      justify-content: center;
+      gap: $gap;
+      flex-wrap: wrap;
+
+      a {
+        @include btn;
+        @include inline-flex-center;
+        gap: $space-sm;
+        font-weight: $weight-semibold;
+        transition: all 0.3s ease;
+
+        i {
+          font-size: $font-size-lg;
+        }
+
+        &.btn-primary {
+          background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+          color: $text-white;
+          border: none;
 
           &:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 36px $brand-accent-100;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: $shadow-lg;
+          }
+        }
+
+        &.btn-secondary {
+          background: $color-bg-primary;
+          color: $primary;
+          border: 1px solid $color-border-light;
+
+          &:hover {
+            background: $color-bg-secondary;
+            border-color: $primary;
+            transform: translateY(-2px);
+          }
+        }
+      }
+
+      @media (max-width: $bp-sm) {
+        flex-direction: column;
+        width: 100%;
+
+        a {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// PORTFOLIO MODAL - Material Design 3
+// ============================================================================
+
+.portfolio-modal {
+  .modal-dialog {
+    max-width: 1200px;
+    margin: $gap-xl auto;
+
+    @media (max-width: $bp-lg) {
+      max-width: 95%;
+      margin: $gap auto;
+    }
+  }
+
+  .modal-content {
+    border: none;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 
+                0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal-wrapper {
+    background: $color-bg-primary;
+    position: relative;
+  }
+
+  // Close Button
+  .modal-close-btn {
+    position: absolute;
+    top: $gap;
+    right: $gap;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: $shadow-md;
+
+    i {
+      font-size: 1.25rem;
+      color: $color-text-primary;
+    }
+
+    &:hover {
+      background: $color-bg-primary;
+      transform: scale(1.1);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  // Hero Image
+  .modal-hero {
+    width: 100%;
+    overflow: hidden;
+    background: $gray-100;
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 500px;
+    }
+  }
+
+  // Content Wrapper
+  .modal-content-wrapper {
+    padding: $gap-xl;
+
+    @media (max-width: $bp-md) {
+      padding: $gap;
+    }
+  }
+
+  // Header Section
+  .modal-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $gap;
+    margin-bottom: $gap-xl;
+    padding-bottom: $gap;
+    border-bottom: 1px solid $color-border-light;
+
+    @media (max-width: $bp-md) {
+      flex-direction: column;
+    }
+
+    .title-group {
+      flex: 1;
+
+      .project-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: $color-text-primary;
+        margin: 0 0 $gap-sm 0;
+        line-height: 1.2;
+
+        @media (max-width: $bp-md) {
+          font-size: 2rem;
+        }
+      }
+
+      .project-meta {
+        display: flex;
+        gap: $gap;
+        flex-wrap: wrap;
+
+        .meta-item {
+          @include inline-flex-center;
+          gap: $gap-sm;
+          padding: $padding-xs $padding-md;
+          background: $color-bg-secondary;
+          border-radius: $radius-lg;
+          font-size: 0.875rem;
+          color: $color-text-secondary;
+
+          i {
+            color: $primary;
           }
         }
       }
     }
-  }
-}
 
-// Responsive styles for gallery
-@media (max-width: 1024px) {
-  .portfolio-gallery .gallery-grid-tiles,
-  .portfolio-gallery-tabs .gallery-tab-panel .gallery-grid-tiles {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 0 16px;
-  }
-  
-  .portfolio-gallery-tabs .gallery-tabs-nav .gallery-tab-btn {
-    min-width: 120px;
-    padding: 10px 16px;
-    font-size: 0.9rem;
-  }
-}
+    .action-buttons {
+      display: flex;
+      gap: $gap-sm;
+      flex-shrink: 0;
 
-@media (max-width: 768px) {
-  .portfolio-gallery .gallery-grid-tiles,
-  .portfolio-gallery-tabs .gallery-tab-panel .gallery-grid-tiles {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 0 16px;
+      @media (max-width: $bp-md) {
+        width: 100%;
+      }
+
+      .btn-action {
+        @include inline-flex-center;
+        gap: $gap-sm;
+        padding: $padding-md $padding-xl;
+        border-radius: $radius-lg;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        i {
+          font-size: 1.125rem;
+        }
+
+        &.btn-primary {
+          background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+          color: $text-white;
+          box-shadow: $shadow-sm;
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: $shadow-md;
+          }
+        }
+
+        &.btn-secondary {
+          background: $color-bg-secondary;
+          color: $color-text-primary;
+          border: 1px solid $color-border-light;
+
+          &:hover {
+            background: $color-bg-primary;
+            border-color: $primary;
+            color: $primary;
+          }
+        }
+
+        @media (max-width: $bp-md) {
+          flex: 1;
+          justify-content: center;
+        }
+      }
+    }
   }
-  
-  .portfolio-gallery-tabs .gallery-tabs-nav {
-    gap: 6px;
-    
-    .gallery-tab-btn {
-      min-width: 100px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      
+
+  // Two Column Grid
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: $gap-lg;
+    margin-bottom: $gap-lg;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Content Cards
+  .content-card {
+    @include card;
+    padding: $padding-xl;
+    margin-bottom: $gap;
+
+    &:hover {
+      box-shadow: $shadow-sm;
+      border-color: $color-border-medium;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin: 0 0 $gap 0;
+
       i {
+        font-size: 1.25rem;
+        color: $primary;
+      }
+    }
+
+    .card-content {
+      color: $color-text-secondary;
+      line-height: 1.7;
+
+      p {
+        margin-bottom: $gap;
         font-size: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // Sticky Sidebar Card
+  .sticky-card {
+    position: sticky;
+    top: $gap;
+    align-self: start;
+
+    @media (max-width: $bp-lg) {
+      position: static;
+    }
+  }
+
+  // Tech Stack Grid
+  .tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-sm;
+
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+      padding: $padding-sm $padding-md;
+      background: $color-bg-secondary;
+      border-radius: $radius;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+
+      i {
+        font-size: 1.5rem;
+      }
+
+      .tech-svg-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      // Brand-specific icon colors
+      @include brand-icon-colors;
+
+      span {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $color-text-primary;
+      }
+
+      &:hover {
+        border-color: currentColor;
+        transform: translateX(4px);
+        
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  // Metrics List
+  .metrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      padding: $padding-md;
+      background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+      border-radius: $radius-lg;
+      text-align: center;
+      color: $text-white;
+
+      .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: $gap-sm;
+      }
+
+      .metric-label {
+        font-size: 0.875rem;
+        opacity: 0.95;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  // Challenge and Learning Lists
+  .challenge-list,
+  .learning-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      gap: $gap-sm;
+      margin-bottom: $gap;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: $color-text-secondary;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::marker {
+        content: "";
+      }
+
+      &::before {
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: $primary;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  // Media Gallery (Full Width)
+  .media-card {
+    grid-column: 1 / -1;
+    margin-top: $gap-lg;
+  }
+
+  .media-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $gap;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+
+    .media-item {
+      border-radius: $radius-lg;
+      overflow: hidden;
+      background: $gray-100;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-md;
+      }
+
+      img,
+      video {
+        width: 100%;
+        height: auto;
+        display: block;
       }
     }
   }
 }
-.project-img-16x9 {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: $gray-100;
-  border-radius: 8px;
-  cursor: pointer;
-}
-@media (max-width: 480px) {
-  .portfolio-gallery .gallery-grid-tiles,
-  .portfolio-gallery-tabs .gallery-tab-panel .gallery-grid-tiles {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 0 12px;
-  }
-  
-  .portfolio-gallery-tabs .gallery-tabs-nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    
-    .gallery-tab-btn {
-      min-width: 200px;
-      padding: 12px 16px;
-      font-size: 0.9rem;
+
+// Dark Mode
+html.dark-mode {
+  .portfolio-modal {
+    .modal-wrapper {
+      background: $dark-bg;
+    }
+
+    .modal-close-btn {
+      background: rgba(42, 42, 42, 0.95);
+
+      i {
+        color: $text-light;
+      }
+
+      &:hover {
+        background: $dark-bg-secondary;
+      }
+    }
+
+    .modal-header-section {
+      border-bottom-color: $dark-border;
+
+      .project-title {
+        color: $brand-primary-light;
+      }
+
+      .meta-item {
+        background: $dark-bg-secondary;
+        color: $text-light;
+      }
+
+      .btn-action {
+        &.btn-secondary {
+          background: $dark-bg-secondary;
+          color: $text-light;
+          border-color: $dark-border;
+
+          &:hover {
+            border-color: $brand-primary-light;
+            color: $brand-primary-light;
+          }
+        }
+      }
+    }
+
+    .content-card {
+      background: $dark-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        border-color: $brand-primary-light;
+      }
+
+      .card-title {
+        color: $brand-primary-light;
+
+        i {
+          color: $brand-primary-light;
+        }
+      }
+
+      .card-content {
+        color: $text-light;
+
+        p {
+          color: $text-light;
+        }
+      }
+    }
+
+    .tech-stack-grid .tech-item {
+      background: $dark-bg-secondary;
+      color: $text-light;
+
+      span {
+        color: $text-light;
+      }
+
+      &:hover {
+        border-color: currentColor;
+      }
+    }
+
+    .challenge-list li,
+    .learning-list li {
+      color: $text-light;
+
+      &::before {
+        color: $brand-primary-light;
+      }
+    }
+
+    .media-gallery .media-item {
+      background: $dark-bg-secondary;
     }
   }
 }
-.proj-disc {
-  padding: 24px;
-  text-align: center;
-  p {
-    margin: 0;
+
+// ============================================================================
+// DARK MODE - Portfolio Section Only
+// ============================================================================
+
+html.dark-mode {
+  .portfolio-section {
+    .filter-tab {
+      background: $dark-bg;
+      border-color: $overlay-white-light;
+      color: $text-light;
+
+      &:hover {
+        border-color: $brand-primary-light;
+        color: $brand-primary-light;
+      }
+
+      &.active {
+        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        color: $dark-bg;
+      }
+    }
+
+    .project-card,
+    .github-card,
+    .codepen-card {
+      background: $dark-bg;
+      border-color: $overlay-white-light;
+
+      &:hover {
+        border-color: $brand-primary-light;
+      }
+
+      h3 {
+        color: $brand-primary-light;
+      }
+
+      p {
+        color: $text-light;
+      }
+
+      .tech-tag,
+      .tech-pill {
+        background: rgba($brand-primary-light, 0.15);
+        color: $brand-primary-light;
+        border-color: rgba($brand-primary-light, 0.3);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        color: $dark-bg;
+      }
+
+      .btn-secondary {
+        background: $overlay-white-light;
+        color: $brand-primary-light;
+        border-color: $overlay-white-light;
+
+        &:hover {
+          background: $brand-primary-light;
+          color: $dark-bg;
+        }
+      }
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, $dark-bg 0%, $overlay-white-light 100%);
+      border-color: $overlay-white-light;
+
+      h2 {
+        color: $brand-primary-light;
+      }
+
+      p {
+        color: $text-light;
+      }
+    }
+  }
+
+  // Portfolio Modal Dark Mode
+  .portfolio-modal {
+    .modal-content {
+      background: $dark-bg;
+    }
+
+    .portfolio-modal-header {
+      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+    }
+
+    .portfolio-modal-body {
+      background: rgba($dark-bg, 0.5);
+
+      &::-webkit-scrollbar-track {
+        background: $dark-bg;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $overlay-white-light;
+
+        &:hover {
+          background: $brand-primary-light;
+        }
+      }
+    }
+
+    .modal-section {
+      background: $dark-bg;
+      border: 1px solid $overlay-white-light;
+
+      .section-header {
+        border-bottom-color: $overlay-white-light;
+
+        .section-icon {
+          color: $brand-primary-light;
+        }
+
+        h2 {
+          color: $brand-primary-light;
+        }
+      }
+
+      .section-content {
+        color: $text-light;
+
+        p {
+          color: $text-light;
+        }
+      }
+    }
+
+    .tool-card {
+      background: linear-gradient(135deg, rgba($brand-primary-light, 0.1) 0%, $dark-bg 100%);
+      border-color: $overlay-white-light;
+
+      &:hover {
+        border-color: $brand-primary-light;
+      }
+
+      i {
+        color: $brand-primary-light;
+      }
+
+      span {
+        color: $text-light;
+      }
+    }
+
+    .challenges-list,
+    .learnings-list {
+      li {
+        color: $text-light;
+
+        &::before {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        }
+      }
+    }
+
+    .metric-card {
+      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+    }
+
+    .portfolio-modal-footer {
+      background: $dark-bg;
+      border-top-color: $overlay-white-light;
+
+      .btn-secondary {
+        background: $overlay-white-light;
+        color: $brand-primary-light;
+        border-color: $overlay-white-light;
+
+        &:hover {
+          background: $brand-primary-light;
+          color: $dark-bg;
+          border-color: $brand-primary-light;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// ANIMATIONS
+// ============================================================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+// ============================================================================
+// DESIGN SHOWCASE MODAL
+// ============================================================================
+
+.design-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  @include flex-center;
+  z-index: 9999;
+  padding: $gap-lg;
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
+}
+
+.design-modal {
+  background: $color-bg-primary;
+  border-radius: $radius-xl;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.3s ease;
+
+  @media (max-width: $bp-md) {
+    max-width: 95%;
+    max-height: 95vh;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: $gap-lg;
+    right: $gap-lg;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: $color-bg-primary;
+    border: 1px solid $color-border-light;
     color: $color-text-primary;
+    cursor: pointer;
+    @include flex-center;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: $shadow-md;
+
+    &:hover {
+      background: $primary;
+      color: $text-white;
+      border-color: $primary;
+      transform: scale(1.1);
+    }
   }
-}
-.modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: $font-size-xl;
-  color: $color-text-primary;
-  cursor: pointer;
-  transition: color 0.2s;
-  
-  &:hover {
-    color: $primary;
+
+  .design-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-xl;
+
+    @media (min-width: $bp-md) {
+      flex-direction: row;
+    }
   }
-}
-// Responsive thumbnail count label for gallery
-.gallery-thumb-count {
-  margin: 0 0 8px 0;
-  font-size: 14px;
-  color: $brand-primary-light;
-  font-weight: 500;
-  .thumb-count-desktop { display: inline; }
-  .thumb-count-tablet, .thumb-count-mobile { display: none; }
-}
-@media (max-width: 1024px) {
-  .gallery-thumb-count {
-    .thumb-count-desktop { display: none; }
-    .thumb-count-tablet { display: inline; }
-    .thumb-count-mobile { display: none; }
+
+  .design-modal-image {
+    flex: 1.5;
+    background: $gray-100;
+    border-radius: $radius-xl $radius-xl 0 0;
+    overflow: hidden;
+    @include flex-center;
+    max-height: 70vh;
+
+    @media (min-width: $bp-md) {
+      border-radius: $radius-xl 0 0 $radius-xl;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+      display: block;
+    }
   }
-}
-@media (max-width: 600px) {
-  .gallery-thumb-count {
-    .thumb-count-desktop { display: none; }
-    .thumb-count-tablet { display: none; }
-    .thumb-count-mobile { display: inline; }
+
+  .design-modal-info {
+    flex: 1;
+    padding: $padding-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    .design-category-badge {
+      display: inline-block;
+      padding: $padding-xs $padding-md;
+      background: rgba($primary, 0.1);
+      border: 1px solid rgba($primary, 0.2);
+      border-radius: $radius-full;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: $primary;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: fit-content;
+    }
+
+    h2 {
+      font-size: $font-size-2xl;
+      color: $color-text-primary;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .design-description {
+      font-size: $font-size-base;
+      color: $color-text-secondary;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .ux-breakdown {
+      margin-top: $gap-lg;
+      padding-top: $gap-lg;
+      border-top: 1px solid $color-border-light;
+
+      h3 {
+        font-size: $font-size-lg;
+        color: $color-text-primary;
+        margin: 0 0 $gap 0;
+      }
+
+      .breakdown-content {
+        font-size: $font-size-base;
+        color: $color-text-secondary;
+        line-height: 1.7;
+
+        p {
+          margin: 0 0 $gap-sm 0;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        ul, ol {
+          margin: $gap-sm 0;
+          padding-left: $gap-lg;
+
+          li {
+            margin-bottom: $space-sm;
+            line-height: 1.6;
+          }
+        }
+      }
+    }
   }
 }

@@ -20,4 +20,8 @@ export { default as Contact } from './contact/Contact';
 export { default as Home } from './home/Home';
 
 // Shared components
-export { default as PageHeader } from './PageHeader';
+export { default as Header } from "./Header";
+export { default as Footer } from "./Footer";
+export { default as Loader } from "./Loader";
+export { default as PageHeader } from "./PageHeader";
+export { default as TechIcon } from "./TechIcon";

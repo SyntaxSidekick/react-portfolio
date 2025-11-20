@@ -1,317 +1,193 @@
 import React, { useState, useEffect, useRef } from "react";
-
-// Helper: map original public image path to optimized outputs
-// '/images/portfolio/.../name.ext' -> '/images/portfolio-optimized/.../name-<size>.(webp|jpg)'
-function getOptimizedPaths(originalPath, size = 1200) {
-  if (!originalPath || typeof originalPath !== 'string') {
-    return { webp: originalPath, jpeg: originalPath };
-  }
-  // Normalize and split
-  const prefix = '/images/portfolio/';
-  const optPrefix = '/images/portfolio-optimized/';
-  if (!originalPath.startsWith(prefix)) {
-    return { webp: originalPath, jpeg: originalPath };
-  }
-  const rest = originalPath.slice(prefix.length); // e.g., 'mobile/file.png'
-  const dot = rest.lastIndexOf('.');
-  const base = dot > 0 ? rest.slice(0, dot) : rest;
-  const sized = `${base}-${size}`;
-  // Choose fallback extension to match optimizer outputs: PNG for original PNGs (alpha), else JPEG
-  const origExt = originalPath.toLowerCase().endsWith('.png') ? 'png' : 'jpg';
-  return {
-    webp: `${optPrefix}${sized}.webp`,
-    jpeg: `${optPrefix}${sized}.${origExt}`,
-  };
-}
-
-// LightboxWithTouch: adds touch swipe support for lightbox navigation
-function LightboxWithTouch({ images, index, setIndex, onClose, onPrev, onNext }) {
-  const imgRef = useRef(null);
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    let startX = null;
-    let endX = null;
-    const onTouchStart = (e) => {
-      if (e.touches.length === 1) {
-        startX = e.touches[0].clientX;
-      }
-    };
-    const onTouchMove = (e) => {
-      if (e.touches.length === 1) {
-        endX = e.touches[0].clientX;
-      }
-    };
-    const onTouchEnd = () => {
-      if (startX !== null && endX !== null) {
-        const diff = endX - startX;
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            onPrev();
-          } else {
-            onNext();
-          }
-        }
-      }
-      startX = null;
-      endX = null;
-    };
-    img.addEventListener('touchstart', onTouchStart);
-    img.addEventListener('touchmove', onTouchMove);
-    img.addEventListener('touchend', onTouchEnd);
-    return () => {
-      img.removeEventListener('touchstart', onTouchStart);
-      img.removeEventListener('touchmove', onTouchMove);
-      img.removeEventListener('touchend', onTouchEnd);
-    };
-  }, [onPrev, onNext]);
-  // Compute optimized sources for the current image (use larger size for lightbox)
-  const current = images[index];
-  const sources = getOptimizedPaths(current, 1600);
-  return (
-    <div className="modal lightbox active" id="gallery-lightbox" tabIndex={-1} style={{ display: 'block' }} role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
-      <div className="lightbox-content">
-        <span className="lightbox-close" onClick={onClose}>&times;</span>
-        <button className="lightbox-nav lightbox-prev" aria-label="Previous image" onClick={onPrev}>
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <button className="lightbox-nav lightbox-next" aria-label="Next image" onClick={onNext}>
-          <i className="fas fa-chevron-right"></i>
-        </button>
-        <picture>
-          <source type="image/webp" srcSet={sources.webp} />
-          <img
-            className="lightbox-img"
-            src={sources.jpeg}
-            alt=""
-            ref={imgRef}
-          />
-        </picture>
-        <div className="lightbox-info">
-          <div className="lightbox-title">{current ? current.split('/').pop() : ''}</div>
-          <div className="lightbox-counter">{index + 1} / {images.length}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-import { projects, galleryTabs } from "./projects";
+import { PageHeader } from "../";
+import DynamicTitle from "../../DynamicTitle";
+import { projects, designShowcase, githubProjects, codepenProjects, caseStudies } from "./projects";
 import PortfolioModal from "./PortfolioModal";
+import { Modal } from "../common";
+import {
+  FilterTabs,
+  FrontEndProjectsSection,
+  DesignShowcaseSection,
+  GitHubProjectsSection,
+  CodePenSection,
+  CaseStudiesSection,
+  CTASection,
+} from "./sections";
 
-function truncateDescription(desc, maxLength = 120) {
-  return desc.length > maxLength ? desc.substring(0, maxLength) + "..." : desc;
-}
+// Filter categories
+const FILTERS = [
+  { key: "all", label: "All", icon: "fas fa-th" },
+  { key: "frontend", label: "Front-End Projects", icon: "fas fa-code" },
+  { key: "design", label: "UI/UX & Design", icon: "fas fa-paint-brush" },
+  { key: "case-studies", label: "Case Studies", icon: "fas fa-book-open" },
+  { key: "github", label: "GitHub", icon: "fab fa-github" },
+  { key: "codepen", label: "CodePen", icon: "fab fa-codepen" },
+];
 
 const Portfolio = () => {
-  const [activeTab, setActiveTab] = useState(galleryTabs[0].key);
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [selectedProject, setSelectedProject] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalProject, setModalProject] = useState(null);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxImages, setLightboxImages] = useState([]);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [selectedDesign, setSelectedDesign] = useState(null);
+  const [designModalOpen, setDesignModalOpen] = useState(false);
+  const projectRefs = useRef([]);
 
-  const handleTabClick = (key) => setActiveTab(key);
-  const openModal = (project) => {
-    setModalProject(project);
+  // Open project modal
+  const openProjectModal = (project) => {
+    setSelectedProject(project);
     setModalOpen(true);
-    document.body.style.overflow = 'hidden';
   };
-  const closeModal = () => {
-    setModalOpen(false);
-    setModalProject(null);
-    document.body.style.overflow = '';
-  };
-  const openLightbox = (images, index) => {
-    setLightboxImages(images);
-    setLightboxIndex(index);
-    setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-    setLightboxImages([]);
-    setLightboxIndex(0);
-    document.body.style.overflow = '';
-  };
-  const nextLightbox = React.useCallback(
-    () => setLightboxIndex((prev) => (prev + 1) % lightboxImages.length),
-    [lightboxImages.length]
-  );
-  const prevLightbox = React.useCallback(
-    () => setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length),
-    [lightboxImages.length]
-  );
 
+  // Close project modal
+  const closeProjectModal = () => {
+    setModalOpen(false);
+    setSelectedProject(null);
+  };
+
+  // Open design modal
+  const openDesignModal = (design) => {
+    setSelectedDesign(design);
+    setDesignModalOpen(true);
+  };
+
+  // Close design modal
+  const closeDesignModal = () => {
+    setDesignModalOpen(false);
+    setSelectedDesign(null);
+  };
+  
+  // Handle case study click
+  const handleCaseStudyClick = (study) => {
+    openProjectModal({
+      title: study.title,
+      img: study.thumbnail,
+      desc: study.summary,
+      fullDesc: study.summary,
+      problem: study.challenge.content,
+      role: study.role.position,
+      year: study.year,
+      tech: study.tech,
+      approach: study.approach,
+      results: study.results,
+      conclusion: study.conclusion,
+      deliverables: study.results.map(r => `${r.title}\n${r.description}`).join('\n\n')
+    });
+  };
+
+  // Intersection observer for scroll animations
   useEffect(() => {
-    if (!lightboxOpen) return;
-    const handleKey = (e) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') prevLightbox();
-      if (e.key === 'ArrowRight') nextLightbox();
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [lightboxOpen, lightboxImages.length, nextLightbox, prevLightbox]);
+    const elements = projectRefs.current.filter(Boolean);
+    
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "50px" }
+      );
+      
+      elements.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+        observer.observe(el);
+      });
+      
+      return () => observer.disconnect();
+    }
+  }, []);
 
   return (
-    <>
-      <section className="portfolio" id="portfolio" aria-labelledby="portfolio-title" role="region">
-        <div className="container">
-          <div className="page-header">
-            <h2 id="page-title">Featured Work</h2>
-            <p>Elevating projects one pixel at a time.</p>
-          </div>
-          <div className="projects-grid">
-            {projects.map((project, idx) => (
-              <article className="card" key={idx}>
-                <figure className="card-head">
-                  <div className="project-img-16x9">
-                    <img
-                      src={`${project.img}`}
-                      alt={project.title}
-                      loading="lazy"
-                      onClick={() => openModal(project)}
-                      style={{ cursor: 'pointer' }}
-                    />
+    <main className="portfolio-page container" id="main-content" aria-labelledby="page-title">
+      <DynamicTitle />
+      <PageHeader 
+        title="Selected Work" 
+        subtitle="A curated collection of front-end engineering, UI/UX design, and code experiments."
+      />
+
+      <FilterTabs 
+        filters={FILTERS}
+        activeFilter={activeFilter}
+        onFilterChange={setActiveFilter}
+      />
+
+      <FrontEndProjectsSection
+        projects={projects}
+        projectRefs={projectRefs}
+        onProjectClick={openProjectModal}
+        show={activeFilter === "all" || activeFilter === "frontend"}
+      />
+
+      <DesignShowcaseSection
+        designShowcase={designShowcase}
+        onDesignClick={openDesignModal}
+        show={activeFilter === "all" || activeFilter === "design"}
+      />
+
+      <GitHubProjectsSection
+        githubProjects={githubProjects}
+        show={activeFilter === "all" || activeFilter === "github"}
+      />
+
+      <CodePenSection
+        codepenProjects={codepenProjects}
+        show={activeFilter === "all" || activeFilter === "codepen"}
+      />
+
+      <CaseStudiesSection
+        caseStudies={caseStudies}
+        onCaseStudyClick={handleCaseStudyClick}
+        show={activeFilter === "all" || activeFilter === "case-studies"}
+      />
+
+      <CTASection />
+      
+      <PortfolioModal 
+        modalOpen={modalOpen}
+        modalProject={selectedProject}
+        closeModal={closeProjectModal}
+      />
+
+      <Modal
+        isOpen={designModalOpen}
+        onClose={closeDesignModal}
+        size="xl"
+        className="design-modal-overlay"
+      >
+        {selectedDesign && (
+          <div className="design-modal-content">
+            <div className="design-modal-image">
+              <img 
+                src={selectedDesign.image} 
+                alt={selectedDesign.title}
+              />
+            </div>
+            
+            <div className="design-modal-info">
+              <span className="design-category-badge">{selectedDesign.category}</span>
+              <h2>{selectedDesign.title}</h2>
+              <p className="design-description">{selectedDesign.description}</p>
+              
+              {selectedDesign.breakdown && (
+                <div className="ux-breakdown">
+                  <h3>UX Breakdown</h3>
+                  <div className="breakdown-content">
+                    {selectedDesign.breakdown}
                   </div>
-                </figure>
-                <div className="card-bod">
-                  <h3 style={{ cursor: 'pointer' }} onClick={() => openModal(project)}>{project.title}</h3>
-                  <p>{truncateDescription(project.desc)}</p>
-                  <button className="btn view-more-btn" onClick={() => openModal(project)}>
-                    View Project
-                  </button>
                 </div>
-              </article>
-            ))}
+              )}
+            </div>
           </div>
-          <div className="proj-disc">
-            <p>
-              Due to confidentiality agreements, only select projects are shown here.
-              If you'd like to learn more about my full portfolio—including custom
-              applications and advanced design systems—please reach out for a private
-              discussion.
-            </p>
-          </div>
-        </div>
-      </section>
-      {lightboxOpen && lightboxImages.length > 0 && (
-        <LightboxWithTouch
-          images={lightboxImages}
-          index={lightboxIndex}
-          setIndex={setLightboxIndex}
-          onClose={closeLightbox}
-          onPrev={prevLightbox}
-          onNext={nextLightbox}
-        />
-      )}
-      <PortfolioModal modalOpen={modalOpen} modalProject={modalProject} closeModal={closeModal} />
-      <section className="portfolio-gallery-tabs container">
-        <div className="gallery-tabs-header">
-          <h2>Design Gallery</h2>
-          <nav className="gallery-tabs-nav" role="tablist">
-            {galleryTabs.map(tab => (
-              <button
-                key={tab.key}
-                className={`gallery-tab-btn${activeTab === tab.key ? ' active' : ''}`}
-                data-tab={tab.key}
-                role="tab"
-                aria-selected={activeTab === tab.key}
-                aria-controls={`${tab.key}-panel`}
-                onClick={() => handleTabClick(tab.key)}
-              >
-                <i className={tab.icon}></i>
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-        <div className="gallery-tabs-content">
-          {(() => {
-            const activeTabObj = galleryTabs.find(tab => tab.key === activeTab);
-            const gridRef = React.useRef(null);
-            // Only enable touch scroll for mobile
-            React.useEffect(() => {
-              const el = gridRef.current;
-              if (!el) return;
-              if (window.matchMedia('(pointer: coarse)').matches) {
-                // Touch scroll for mobile
-                let isDown = false;
-                let startX;
-                let scrollLeft;
-                const onTouchStart = (e) => {
-                  isDown = true;
-                  startX = e.touches[0].pageX - el.offsetLeft;
-                  scrollLeft = el.scrollLeft;
-                };
-                const onTouchEnd = () => { isDown = false; };
-                const onTouchMove = (e) => {
-                  if (!isDown) return;
-                  const x = e.touches[0].pageX - el.offsetLeft;
-                  const walk = (x - startX) * 1.5;
-                  el.scrollLeft = scrollLeft - walk;
-                };
-                el.addEventListener('touchstart', onTouchStart);
-                el.addEventListener('touchend', onTouchEnd);
-                el.addEventListener('touchmove', onTouchMove);
-                return () => {
-                  el.removeEventListener('touchstart', onTouchStart);
-                  el.removeEventListener('touchend', onTouchEnd);
-                  el.removeEventListener('touchmove', onTouchMove);
-                };
-              }
-            }, []);
-
-            // Desktop nav arrows
-            const scrollBy = (amount) => {
-              if (gridRef.current) {
-                gridRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-              }
-            };
-
-            return (
-              <div
-                key={activeTabObj.key}
-                className="gallery-tab-panel active"
-                id={`${activeTabObj.key}-panel`}
-                data-gallery={activeTabObj.key}
-                role="tabpanel"
-                aria-labelledby={activeTabObj.key}
-              >
-                <div className="gallery-grid-nav desktop-only">
-                  <button className="gallery-nav-arrow prev" aria-label="Scroll left" onClick={() => scrollBy(-300)}>
-                    <i className="fas fa-chevron-left"></i>
-                  </button>
-                  <button className="gallery-nav-arrow next" aria-label="Scroll right" onClick={() => scrollBy(300)}>
-                    <i className="fas fa-chevron-right"></i>
-                  </button>
-                </div>
-                <div
-                  className="gallery-grid-tiles"
-                  ref={gridRef}
-                >
-                  {activeTabObj.images.map((img, idx) => {
-                    const src = getOptimizedPaths(img, 1200);
-                    return (
-                      <picture key={idx} onClick={() => openLightbox(activeTabObj.images, idx)} style={{ cursor: 'pointer' }}>
-                        <source type="image/webp" srcSet={src.webp} />
-                        <img
-                          src={src.jpeg}
-                          alt={`${activeTabObj.label} ${idx + 1}`}
-                          className="gallery-tile"
-                          loading="lazy"
-                        />
-                      </picture>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-      </section>
-    </>
+        )}
+      </Modal>
+      
+    </main>
   );
 };
 
