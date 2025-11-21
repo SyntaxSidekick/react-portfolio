@@ -1,0 +1,86 @@
+// Central technology & brand color map (canonical source)
+@use './_variables' as *;
+@use 'sass:map'; // enable map.merge usage
+
+$tech-colors: (
+  // Core web technologies
+  "html5": $tech-html5,
+  "css3": $tech-css3,
+  "css": $tech-css3, // alias
+  "javascript": $tech-javascript,
+  "typescript": $tech-typescript,
+  "react": $tech-react,
+  "vue": $tech-vue,
+  "vuejs": $tech-vue, // alias
+  "angular": $tech-angular,
+  "node": $tech-node,
+  "node-js": $tech-node, // alias
+  "php": $tech-php,
+  "python": $tech-python,
+  "java": $tech-java,
+  "dart": $tech-dart,
+  "rust": $tech-rust,
+
+  // Styling & UI frameworks
+  "sass": $tech-sass,
+  "tailwind": $tech-tailwind,
+  "bootstrap": $tech-bootstrap,
+  "less": $tech-less,
+  "webpack": $tech-webpack,
+  "gulp": $tech-gulp,
+
+  // Platforms & CMS
+  "wordpress": $tech-wordpress,
+  "wordpress-simple": $tech-wordpress,
+  "drupal": $tech-drupal,
+  "laravel": $tech-laravel,
+  "eleventy": $tech-eleventy,
+  "nextjs": $tech-nextjs,
+
+  // Dev tooling & package managers
+  "git": $tech-git,
+  "github": $tech-github,
+  "gitlab": $tech-gitlab,
+  "npm": $tech-npm,
+  "yarn": $tech-yarn,
+  "docker": $tech-docker,
+  "jenkins": $tech-jenkins,
+  "jira": $tech-jira,
+  "confluence": $tech-confluence,
+  "bitbucket": $tech-bitbucket,
+  "sourcetree": $tech-sourcetree,
+  "openai": $tech-openai,
+
+  // Design & creative tools
+  "figma": $tech-figma,
+  "sketch": $tech-sketch,
+  "illustrator": $tech-illustrator,
+  "photoshop": $tech-photoshop,
+  "indesign": $tech-indesign,
+  "xd": $tech-xd,
+  "invision": $tech-invision,
+
+  // Additional developer ecosystems & communities
+  "codepen": $tech-codepen,
+  "markdown": $tech-markdown,
+  "golang": $tech-golang,
+  "hackerrank": $tech-hackerrank,
+  "hashnode": $tech-hashnode,
+  "linux": $tech-linux,
+  "jquery": $tech-jquery
+);
+
+// Extended mapping additions (2025-11-21)
+$tech-colors: map.merge($tech-colors, (
+  "magento": $tech-magento,
+  "aws": $tech-aws,
+  "azure": $tech-azure,
+  "webpack": $tech-webpack,
+  "hotjar": $tech-hotjar,
+  "design-systems": $tech-design-systems,
+  "google-analytics": $tech-google-analytics,
+  "gtm": $tech-gtm,
+  "a-b-testing": $tech-ab-testing,
+  "seo": $tech-seo,
+  "responsive-design": $tech-responsive-design
+));

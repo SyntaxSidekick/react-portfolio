@@ -10,9 +10,9 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
         <p>Design systems, mobile interfaces, and high-fidelity prototypes demonstrating user-centered thinking and visual craft.</p>
       </header>
       <div className="section-content">
-        <div className="design-grid">
-          {designShowcase.map((item, index) => (
-            <article key={item.createdAt || `design-${index}`} className="design-card">
+      <div className="design-grid">
+        {designShowcase.map((item, index) => (
+          <article key={`design-${index}-${item.title.replace(/\s+/g, '-').toLowerCase()}`} className="design-card">
               <div 
                 className="design-image" 
                 onClick={() => onDesignClick(item)}

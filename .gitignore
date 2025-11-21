@@ -32,14 +32,25 @@ dist-ssr
 tools/project-form.html
 
 # Project migration notes (not for git)
-VITE-SSG-MIGRATION-TODO.md
+docs/VITE-SSG-MIGRATION-TODO.md
 
 # Staging build output
 staging
 
 # SCSS optimization action plan (local only)
-scss-action-plan-2025-09-20.txt
+docs/scss-action-plan-2025-09-20.txt
 
 # Public images (treat as generated/local assets)
 public/images/*
 !public/images/.gitkeep
+
+# --- Mail system artifacts (do not commit) ---
+storage/logs/
+backend/vendor/PHPMailer/
+config/email-secrets.php
+config/email-secrets.local.php
+*.mailtest.json
+*.maildebug.txt
+
+# Keep loader tracked explicitly
+!backend/mailer/PHPMailerLoader.php

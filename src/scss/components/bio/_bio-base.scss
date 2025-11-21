@@ -1,0 +1,107 @@
+// Base layout and about section for bio
+@use "sass:color";
+@use "sass:math";
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+
+.bio-page {
+  margin: 0 auto;
+
+  section {
+    margin-bottom: $gap-xl;
+    &:last-child { margin-bottom: 0; }
+    header {
+      max-width: 900px;
+      margin: 0 auto $gap-lg;
+      text-align: center;
+      h2 {
+        font-family: $font-heading;
+        font-size: $font-size-2xl;
+        color: $primary;
+        margin: 0 0 $gap;
+        font-weight: $weight-normal;
+        letter-spacing: $letter-spacing-wide;
+        @media (max-width: $bp-md) { font-size: $font-size-xl; }
+      }
+      p {
+        font-size: $font-size-md;
+        color: $text-dark;
+        line-height: $line-height-relaxed;
+        margin: 0;
+        max-width: 800px;
+        margin-left: auto; margin-right: auto;
+      }
+    }
+  }
+
+  .visually-hidden { @include visually-hidden; }
+
+  .bio-content {
+    display: flex; flex-wrap: wrap; gap: $gap-lg;
+    align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .bio-about {
+    max-width: 1200px; margin: 0 auto $gap-xl;
+    .bio-about-card {
+      padding: $gap-xl; background: $overlay-white-heavy; backdrop-filter: blur(20px);
+      border-radius: $radius-xl; border: 1px solid $overlay-white-light; box-shadow: $shadow-lg;
+      position: relative; overflow: visible; margin-top: 20px;
+      &::before { content: ""; position: absolute; inset: 0; border-radius: $radius-xl;
+        background: linear-gradient(135deg, $brand-primary-50 0%, transparent 50%, $brand-accent-50 100%); pointer-events: none; z-index: 0; }
+      > * { position: relative; z-index: 1; }
+      .section-badge {
+        position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+        padding: $space-xs $space-lg; background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+        color: $text-white; font-family: $font-alt; font-size: $font-size-sm; font-weight: $weight-semibold;
+        text-transform: uppercase; letter-spacing: $letter-spacing-wide; border-radius: $radius-full; box-shadow: $shadow-md; white-space: nowrap; z-index: 2;
+      }
+      .bio-about-content { display: grid; grid-template-columns: auto 1fr; gap: $gap-xl; align-items: start;
+        @media (min-width: $bp-md) { align-items: center; }
+      }
+    }
+    .bio-image { position: relative; flex-shrink: 0; align-self: center;
+      img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid $color-bg-primary;
+        background: $color-bg-primary; box-shadow: $shadow-md; transition: transform .3s ease, box-shadow .3s ease; display: block;
+        &:hover { transform: scale(1.05); box-shadow: $shadow-xl; }
+      }
+    }
+    .text-wrap { flex: 1; min-width: 0; align-self: center;
+      p { font-size: $font-size-md; color: $text-dark; line-height: $line-height-relaxed; margin: 0 0 $gap;
+        &:last-child { margin-bottom: 0; }
+        span { font-weight: $weight-bold; color: $primary; font-size: 1.1em; }
+      }
+    }
+    @media (max-width: $bp-md) {
+      .bio-about-card { padding: $gap;
+        .bio-about-content { grid-template-columns: 1fr; justify-items: center; text-align: center;
+          .bio-image img { width: 160px; height: 160px; }
+        }
+      }
+    }
+  }
+
+  .section-header { max-width: 900px; margin: $gap-xl auto $gap-lg; text-align: center;
+    h3 { font-family: $font-heading; font-size: $font-size-2xl; color: $primary; margin: 0 0 $gap; font-weight: $weight-normal; letter-spacing: $letter-spacing-wide;
+      @media (max-width: $bp-md) { font-size: $font-size-xl; }
+    }
+    p { font-size: $font-size-md; color: $text-dark; line-height: $line-height-relaxed; margin: 0; max-width: 800px; margin-left: auto; margin-right: auto; }
+  }
+}
+
+html.dark-mode .bio-page {
+  .bio-about {
+    .bio-about-card { background: $overlay-medium; border-color: $overlay-white-light;
+      &::before { background: linear-gradient(135deg, $brand-primary-100 0%, transparent 50%, $brand-accent-100 100%); }
+      .section-badge { background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%); }
+      .bio-image img { border-color: $dark-bg; background: $dark-bg; }
+      .text-wrap p { color: $text-light; span { color: $brand-primary-light; } }
+    }
+  }
+  section header { h2 { color: $brand-primary-light; } p { color: $text-light; } }
+}
+
+.btn { display: inline-block; margin-right: 10px; margin-top: 8px; @include btn; font-size: 14px;
+  i { margin-right: 6px; font-size: 16px; vertical-align: middle; }
+}

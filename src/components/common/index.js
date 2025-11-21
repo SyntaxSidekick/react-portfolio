@@ -8,3 +8,4 @@ export { default as AnimatedCard } from './AnimatedCard';
 export { default as StatItem } from './StatItem';
 export { default as ContactInfoCard } from './ContactInfoCard';
 export { default as ProjectCard } from './ProjectCard';
+export { default as IconBase } from './IconBase';

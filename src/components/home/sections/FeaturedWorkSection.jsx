@@ -38,7 +38,7 @@ const FeaturedWorkSection = ({ projects, onProjectClick }) => {
             title="View Full Portfolio"
             subtitle="Explore all projects and case studies"
             ariaLabel="View my complete portfolio and project case studies"
-            className="portfolio-cta-button"
+            variant="portfolio"
           />
         </div>
       </div>

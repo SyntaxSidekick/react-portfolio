@@ -40,33 +40,33 @@
   padding: $gap 0;
   font-family: $font-alt;
 
-  .filter-header {
-    @include flex-center;
-    gap: $space-sm;
-    margin-bottom: $gap;
-    font-size: $font-size-sm;
-    color: $color-text-secondary;
-    font-weight: $weight-semibold;
+  .card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: $color-bg-primary;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-base;
+    border: 1px solid $color-border-light;
+  }
 
-    i {
-      color: $primary;
-      font-size: $font-size-lg;
-    }
-
-    .filter-label {
-      letter-spacing: 0.5px;
-    }
+  .card-body {
+    padding: $padding-lg;
   }
 
   .filter-tabs {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: $space-md;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: $space-md;
     position: relative;
+
+    .filter-icon {
+      color: $primary;
+      font-size: $font-size-xl;
+      margin-right: $space-sm;
+      flex-shrink: 0;
+    }
 
     .filter-tab {
       background: $color-bg-secondary;
@@ -1203,8 +1203,8 @@
         object-fit: contain;
       }
 
-      // Brand-specific icon colors
-      @include brand-icon-colors;
+      // Brand-specific icon colors (using parent :has detection)
+      @include brand-icon-colors-parent;
 
       span {
         font-size: 0.875rem;

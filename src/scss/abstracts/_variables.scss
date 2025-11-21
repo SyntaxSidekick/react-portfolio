@@ -153,15 +153,42 @@ $tech-java: #ED8B00;
 $tech-angular: #DD0031;
 $tech-laravel: #FF2D20;
 $tech-webpack: #8DD6F9;
-$tech-magento: #EE672F;
+$tech-magento: #E45E34; // Updated per latest brand spec
 $tech-jquery: #0769AD;
-$tech-azure: #0089D6;
+$tech-azure: #104581; // Updated per request
 $tech-adobe: #FF0000;
-$tech-hotjar: #F04D4E;
+$tech-hotjar: #FF3C00; // Updated per request
 $tech-tailwind: #06B6D4;
 $tech-nextjs: #000000;
 $tech-typescript: #3178C6;
 $tech-xd: #FF61F6;
+
+// Extended technology brand colors (added to eliminate hard-coded hex values in icon maps)
+$tech-dart: #0175C2;
+$tech-rust: #000000; // Original usage kept (alternative brand color: #DEA584)
+$tech-less: #1D365D;
+$tech-eleventy: #000000;
+$tech-jenkins: #D24939;
+$tech-jira: #0052CC;
+$tech-confluence: #172B4D;
+$tech-bitbucket: #0052CC;
+$tech-sourcetree: #0052CC; // Atlassian ecosystem consistency
+$tech-openai: #412991;
+$tech-invision: #FF3366;
+$tech-codepen: #000000;
+$tech-markdown: #000000;
+$tech-golang: #00ADD8;
+$tech-hackerrank: #2EC866;
+$tech-hashnode: #2962FF;
+$tech-linux: #FCC624;
+
+// Newly added category & analytics/tool colors
+$tech-design-systems: #967BB6;
+$tech-google-analytics: #A50E0E;
+$tech-gtm: #0D652D;
+$tech-ab-testing: #4285F4;
+$tech-seo: #FBBC04;
+$tech-responsive-design: #E37400;
 
 // ============================================================
 // SHADOW TOKENS

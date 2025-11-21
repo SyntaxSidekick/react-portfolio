@@ -1,0 +1,23 @@
+// Technology & brand icon coloring utilities
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Canonical map now sourced from abstracts/_tech-colors.scss
+@use '../abstracts/tech-colors' as *;
+
+.tech-icon { width: 24px; height: 24px; display: inline-block; vertical-align: middle; transition: transform .25s ease, color .25s ease; fill: currentColor; }
+.tech-icon:hover { transform: scale(1.15); }
+
+// Generate color classes
+@each $name, $color in $tech-colors {
+  .tech-icon--#{$name} { color: $color; }
+  // Outline variant utility (optional future use)
+  .tech-icon--#{$name}.outline { color: $color; stroke: $color; }
+}
+
+// Dark mode tweaks (if needed to adjust contrast)
+html.dark-mode {
+  @each $name, $color in $tech-colors {
+    .tech-icon--#{$name} { color: $color; }
+  }
+}

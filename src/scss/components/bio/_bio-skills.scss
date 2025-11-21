@@ -1,0 +1,185 @@
+// Bio skills grid
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+@use "../../abstracts/tech-colors" as *;
+
+.bio-page {
+  .bio-skills-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap-lg;
+    margin: 0 0 $gap-xl;
+    .skills-group {
+      @include card("flat");
+      @include card-interactive(-4px);
+      padding: $padding-xl;
+      position: relative;
+      overflow: hidden;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          $primary 0%,
+          $brand-primary-light 50%,
+          $brand-accent 100%
+        );
+      }
+      h3 {
+        color: $primary;
+        font-size: $font-size-lg;
+        font-weight: $weight-semibold;
+        font-family: $font-alt;
+        margin: 0 0 $space-lg;
+        letter-spacing: $letter-spacing-normal;
+        padding-top: $space-xs;
+      }
+      .bio-skills {
+        @include flex-column;
+        gap: $space-sm;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+          @include card("outline");
+          @include card-interactive(-4px);
+          display: flex;
+          align-items: center;
+          gap: $space-sm;
+          padding: $padding-sm $padding-md;
+          font-size: $font-size-base;
+          font-weight: $weight-medium;
+          position: relative;
+          overflow: hidden;
+          // Base color fallback (will be overridden per skill by generated classes)
+          color: $primary;
+          transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+          i,
+          .skill-svg-icon {
+            width: 24px;
+            height: 20px;
+            transition: transform 0.2s ease;
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: $brand-primary;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+          }
+          &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba($brand-primary, 0.2);
+            border-color: $brand-primary;
+          }
+          &:hover::before {
+            transform: scaleX(1);
+          }
+          &:hover i,
+          &:hover .skill-svg-icon {
+            transform: scale(1.2);
+          }
+          &:focus { border-color: $brand-primary; box-shadow: 0 8px 24px rgba($brand-primary, 0.3); }
+          &:focus-visible { border-color: $brand-primary; box-shadow: 0 8px 24px rgba($brand-primary, 0.35); }
+        }
+      }
+    }
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+html.dark-mode .bio-page {
+  .bio-skills-wrapper {
+    .skills-group {
+      background: $dark-bg;
+      border-color: $overlay-white-light;
+      &::before {
+        background: linear-gradient(
+          90deg,
+          $brand-primary-light 0%,
+          $primary 50%,
+          $brand-accent-light 100%
+        );
+      }
+      h3 {
+        color: $brand-primary-light;
+      }
+      .bio-skills li {
+        background: linear-gradient(
+          135deg,
+          $overlay-white-light 0%,
+          $brand-primary-100 100%
+        );
+        color: $text-light;
+        &:hover {
+          background: linear-gradient(
+            135deg,
+            $brand-primary-200 0%,
+            $brand-accent-200 100%
+          );
+          border-left-color: $brand-primary-light;
+          transform: translateY(-8px);
+          box-shadow: 0 8px 24px rgba($brand-primary-light, 0.3);
+          border-color: $brand-primary-light;
+        }
+        &::before {
+          background: $brand-primary-light;
+        }
+        &:hover::before {
+          transform: scaleX(1);
+        }
+        i {
+          color: $brand-primary-light;
+        }
+        &:hover i {
+          color: $brand-accent-light;
+        }
+        &:focus { border-color: $brand-primary-light; box-shadow: 0 8px 24px rgba($brand-primary-light, 0.4); }
+        &:focus-visible { border-color: $brand-primary-light; box-shadow: 0 8px 24px rgba($brand-primary-light, 0.45); }
+      }
+    }
+  }
+}
+
+// Per-skill brand color mappings
+@each $name, $color in $tech-colors {
+  .bio-page .bio-skills-wrapper .bio-skills li.skill-#{$name} {
+    color: $color;
+    &::before { background: $color; }
+    &:hover { border-color: $color; box-shadow: 0 8px 24px rgba($color, 0.2); }
+    &:focus, &:focus-visible { border-color: $color; box-shadow: 0 8px 24px rgba($color, 0.3); }
+  }
+  html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-#{$name} {
+    &::before { background: $color; }
+    &:hover { border-color: $color; box-shadow: 0 8px 24px rgba($color, 0.3); }
+    &:focus, &:focus-visible { border-color: $color; box-shadow: 0 8px 24px rgba($color, 0.4); }
+  }
+}
+
+// Adobe Creative Cloud special gradient treatment (multi-color brand)
+.bio-page .bio-skills-wrapper .bio-skills li.skill-adobe {
+  // Gradient for top bar and optional text/icon if desired via background-clip
+  &::before { background: linear-gradient(135deg, #ff0000 0%, #ff8c00 15%, #ffff00 30%, #008000 50%, #0000ff 70%, #4b0082 85%, #ee82ee 100%); }
+  // Use first stop (red) for border & shadow emphasis
+  &:hover { border-color: #ff0000; box-shadow: 0 8px 24px rgba(#ff0000, 0.25); }
+  &:focus, &:focus-visible { border-color: #ff0000; box-shadow: 0 8px 24px rgba(#ff0000, 0.35); }
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-adobe {
+  &::before { background: linear-gradient(135deg, #ff0000 0%, #ff8c00 15%, #ffff00 30%, #008000 50%, #0000ff 70%, #4b0082 85%, #ee82ee 100%); }
+  &:hover { border-color: #ff8c00; box-shadow: 0 8px 24px rgba(#ff8c00, 0.3); }
+  &:focus, &:focus-visible { border-color: #ff8c00; box-shadow: 0 8px 24px rgba(#ff8c00, 0.4); }
+}

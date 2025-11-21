@@ -1,122 +1,258 @@
-import React, { useState, useCallback } from "react";
+import React, { useReducer, useCallback, useRef, useEffect } from "react";
 import { PageHeader } from "../";
+import SocialLinks from "./SocialLinks";
+import ContactForm from "./ContactForm";
 
-const SOCIAL_LINKS = [
-  {
-    href: "https://www.linkedin.com/in/riad-kilani",
-    className: "linkedin",
-    icon: "fab fa-linkedin",
-    label: "Connect with Riad Kilani on LinkedIn",
-    name: "LinkedIn"
-  },
-  {
-    href: "https://github.com/SyntaxSidekick",
-    className: "github",
-    icon: "fab fa-github",
-    label: "View Riad Kilani's code on GitHub",
-    title: "View Riad Kilani's open source projects and code on GitHub",
-    name: "GitHub"
-  },
-  {
-    href: "https://codepen.io/SyntaxSidekick",
-    className: "codepen",
-    icon: "fab fa-codepen",
-    label: "See Riad Kilani's experiments on CodePen",
-    title: "Explore Riad Kilani's front-end experiments and demos on CodePen",
-    name: "CodePen"
-  },
-  {
-    href: "https://x.com/syntaxsidekick",
-    className: "twitter",
-    icon: "fab fa-x-twitter",
-    label: "Follow Riad Kilani on X (formerly Twitter)",
-    title: "Follow Riad Kilani on X for web development insights and updates",
-    name: "X (Twitter)"
+// ============================================================================
+// CONSTANTS
+// ============================================================================
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// ============================================================================
+// REDUCER
+// ============================================================================
+
+const INITIAL_STATE = {
+  formData: { name: '', email: '', message: '', website: '' },
+  focused: { name: false, email: false, message: false },
+  touched: { name: false, email: false, message: false },
+  errors: { name: '', email: '', message: '' },
+  isSubmitting: false,
+  submitStatus: ''
+};
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case 'UPDATE_FIELD':
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          [action.field]: action.value
+        }
+      };
+    
+    case 'FOCUS_FIELD':
+      return {
+        ...state,
+        focused: {
+          ...state.focused,
+          [action.field]: true
+        }
+      };
+    
+    case 'BLUR_FIELD':
+      return {
+        ...state,
+        touched: {
+          ...state.touched,
+          [action.field]: true
+        },
+        focused: {
+          ...state.focused,
+          [action.field]: !!state.formData[action.field]
+        }
+      };
+    
+    case 'SET_ERROR':
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [action.field]: action.error
+        }
+      };
+    
+    case 'SET_ALL_TOUCHED':
+      return {
+        ...state,
+        touched: { name: true, email: true, message: true }
+      };
+    
+    case 'SET_SUBMITTING':
+      return {
+        ...state,
+        isSubmitting: action.isSubmitting,
+        submitStatus: action.status || state.submitStatus
+      };
+    
+    case 'SET_SUBMIT_STATUS':
+      return {
+        ...state,
+        submitStatus: action.status
+      };
+    
+    case 'RESET':
+      return INITIAL_STATE;
+    
+    default:
+      return state;
   }
-];
-
-const INITIAL_FORM_STATE = {
-  name: '',
-  email: '',
-  message: ''
 };
 
-const INITIAL_FIELD_STATE = {
-  name: false,
-  email: false,
-  message: false
+
+// ============================================================================
+// VALIDATION
+// ============================================================================
+
+const validateField = (name, value) => {
+  switch (name) {
+    case 'name':
+      if (!value.trim()) return 'Name is required';
+      if (value.trim().length < 2) return 'Name must be at least 2 characters';
+      return '';
+    
+    case 'email':
+      if (!value.trim()) return 'Email is required';
+      if (!EMAIL_REGEX.test(value)) return 'Please enter a valid email address';
+      return '';
+    
+    case 'message':
+      if (!value.trim()) return 'Message is required';
+      if (value.trim().length < 10) return 'Message must be at least 10 characters';
+      return '';
+    
+    default:
+      return '';
+  }
 };
+
+// ============================================================================
+// API INTEGRATION
+// ============================================================================
+
+const sendMessage = async (data) => {
+  const resp = await fetch('/contact/send.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  const json = await resp.json();
+  if (!resp.ok || !json.success) {
+    const errorMsg = json.error || 'Unknown error';
+    throw new Error(errorMsg);
+  }
+  return json;
+};
+
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
 
 const Contact = () => {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
-  const [focused, setFocused] = useState(INITIAL_FIELD_STATE);
-  const [touched, setTouched] = useState(INITIAL_FIELD_STATE);
-  const [formStatus, setFormStatus] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
+  const [csrf, setCsrf] = React.useState('');
+  const [captchaQuestion, setCaptchaQuestion] = React.useState('');
+  const [captchaAnswer, setCaptchaAnswer] = React.useState('');
+    // Fetch CSRF + captcha on mount
+    useEffect(() => {
+      let active = true;
+      fetch('/api/csrf.php')
+        .then(r => r.json())
+        .then(d => { if (active) { setCsrf(d.csrf); setCaptchaQuestion(d.captchaQuestion); } })
+        .catch(() => {});
+      return () => { active = false; };
+    }, []);
+  const statusRef = useRef(null);
+  const lastSubmitTime = useRef(0);
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  }, []);
+    dispatch({ type: 'UPDATE_FIELD', field: name, value });
+    
+    // Real-time validation
+    if (state.touched[name]) {
+      const error = validateField(name, value);
+      dispatch({ type: 'SET_ERROR', field: name, error });
+    }
+  }, [state.touched]);
 
   const handleFocus = useCallback((field) => {
-    setFocused(prev => ({
-      ...prev,
-      [field]: true
-    }));
+    dispatch({ type: 'FOCUS_FIELD', field });
   }, []);
 
   const handleBlur = useCallback((field) => {
-    setTouched(prev => ({
-      ...prev,
-      [field]: true
-    }));
+    dispatch({ type: 'BLUR_FIELD', field });
     
-    setFocused(prev => ({
-      ...prev,
-      [field]: !!formData[field]
-    }));
-  }, [formData]);
+    // Validate on blur
+    const error = validateField(field, state.formData[field]);
+    dispatch({ type: 'SET_ERROR', field, error });
+  }, [state.formData]);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     
-    // Mark all fields as touched
-    setTouched({
-      name: true,
-      email: true,
-      message: true
-    });
-
-    // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus('Please fill in all required fields.');
+    // Rate limiting (3 seconds between submissions)
+    const now = Date.now();
+    if (now - lastSubmitTime.current < 3000) {
+      dispatch({ type: 'SET_SUBMIT_STATUS', status: 'Please wait before submitting again.' });
       return;
     }
-
-    setIsSubmitting(true);
-    setFormStatus('Sending message...');
     
-    // Form submission logic here
-    console.log('Form submitted:', formData);
+    // Honeypot check
+    if (state.formData.website) {
+      dispatch({ type: 'SET_SUBMIT_STATUS', status: 'Message sent successfully!' });
+      setTimeout(() => dispatch({ type: 'RESET' }), 2000);
+      return;
+    }
     
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus('Message sent successfully!');
-      setIsSubmitting(false);
+    // Mark all fields as touched
+    dispatch({ type: 'SET_ALL_TOUCHED' });
+    
+    // Validate all fields
+    const errors = {
+      name: validateField('name', state.formData.name),
+      email: validateField('email', state.formData.email),
+      message: validateField('message', state.formData.message)
+    };
+    
+    // Set all errors
+    Object.keys(errors).forEach(field => {
+      dispatch({ type: 'SET_ERROR', field, error: errors[field] });
+    });
+    
+    // Check if any errors exist
+    if (Object.values(errors).some(error => error)) {
+      dispatch({ type: 'SET_SUBMIT_STATUS', status: 'Please fix the errors before submitting.' });
+      return;
+    }
+    
+    dispatch({ type: 'SET_SUBMITTING', isSubmitting: true, status: 'Sending message...' });
+    lastSubmitTime.current = now;
+    
+    try {
+      await sendMessage({
+        name: state.formData.name,
+        email: state.formData.email,
+        message: state.formData.message,
+        website: state.formData.website, // honeypot
+        csrf,
+        captchaAnswer,
+        source: 'contact'
+      });
       
-      // Reset form after success
+      dispatch({ type: 'SET_SUBMITTING', isSubmitting: false, status: 'Message sent successfully!' });
+      
+      // Focus on success message for screen readers
       setTimeout(() => {
-        setFormData(INITIAL_FORM_STATE);
-        setFocused(INITIAL_FIELD_STATE);
-        setTouched(INITIAL_FIELD_STATE);
-        setFormStatus('');
+        if (statusRef.current) {
+          statusRef.current.focus();
+        }
+      }, 100);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        dispatch({ type: 'RESET' });
       }, 3000);
-    }, 1000);
-  }, [formData]);
+    } catch (error) {
+      dispatch({ 
+        type: 'SET_SUBMITTING', 
+        isSubmitting: false, 
+        status: 'Oh Noes! Yous Broke It! Try Snail Mail Next Time' 
+      });
+    }
+  }, [state.formData]);
 
   return (
     <main className="contact-page" aria-labelledby="contact-title">
@@ -127,114 +263,19 @@ const Contact = () => {
       
       <div className="contact-container">
         <div className="contact-grid">
-          {/* Social Links - Stacked */}
-          <nav className="social-links" aria-label="Social media links">
-            {SOCIAL_LINKS.map((link) => (
-              <a 
-                key={link.className}
-                href={link.href} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={`social-link ${link.className}`}
-                aria-label={link.label}
-                title={link.label}
-              >
-                <i className={link.icon} aria-hidden="true"></i>
-                <span>{link.name}</span>
-              </a>
-            ))}
-          </nav>
-
-          {/* Contact Form */}
-          <section className="contact-form-wrapper" aria-labelledby="form-heading">
-            <h2 id="form-heading">Please fill out the form</h2>
-            {formStatus && (
-              <div 
-                className="form-status" 
-                role="status" 
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                {formStatus}
-              </div>
-            )}
-            <form 
-              className="contact-form" 
-              onSubmit={handleSubmit}
-              aria-labelledby="form-heading"
-              noValidate
-            >
-              <div className={`form-field ${focused.name || formData.name ? 'focused' : ''} ${touched.name ? 'touched' : ''}`}>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus('name')}
-                  onBlur={() => handleBlur('name')}
-                  required
-                  aria-required="true"
-                  aria-describedby="name-help"
-                  autoComplete="name"
-                  disabled={isSubmitting}
-                />
-                <span id="name-help" className="visually-hidden">Enter your full name</span>
-              </div>
-
-              <div className={`form-field ${focused.email || formData.email ? 'focused' : ''} ${touched.email ? 'touched' : ''}`}>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus('email')}
-                  onBlur={() => handleBlur('email')}
-                  required
-                  aria-required="true"
-                  aria-describedby="email-help"
-                  autoComplete="email"
-                  disabled={isSubmitting}
-                />
-                <span id="email-help" className="visually-hidden">Enter a valid email address</span>
-              </div>
-
-              <div className={`form-field ${focused.message || formData.message ? 'focused' : ''} ${touched.message ? 'touched' : ''}`}>
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus('message')}
-                  onBlur={() => handleBlur('message')}
-                  required
-                  aria-required="true"
-                  aria-describedby="message-help"
-                  disabled={isSubmitting}
-                ></textarea>
-                <span id="message-help" className="visually-hidden">Enter your message, minimum 10 characters</span>
-              </div>
-
-              <button 
-                type="submit" 
-                className="submit-btn"
-                aria-label="Send message to Riad Kilani"
-                disabled={isSubmitting}
-                aria-busy={isSubmitting}
-              >
-                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
-                <svg className="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </form>
-          </section>
+          <SocialLinks />
+          
+          <ContactForm 
+            state={state}
+            statusRef={statusRef}
+            handleChange={handleChange}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+            handleSubmit={handleSubmit}
+            captchaQuestion={captchaQuestion}
+            setCaptchaAnswer={setCaptchaAnswer}
+            isSubmitting={state.isSubmitting}
+          />
         </div>
       </div>
     </main>

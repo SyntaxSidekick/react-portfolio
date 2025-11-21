@@ -1,0 +1,32 @@
+// Bio connect section
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+
+.bio-page {
+  .bio-connect { max-width: 1200px; margin: $gap-xl auto 0; text-align: center;
+    h3 { font-family: $font-heading; @include font-size-xxl; color: $primary; margin-bottom: $gap-lg; font-weight: $weight-semibold; letter-spacing: $letter-spacing-tight; }
+    .social-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: $gap-lg; margin: 0 auto;
+      .social-link { @include card('flat'); @include card-interactive(-8px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: $space-sm; padding: $padding-xl; text-decoration: none; position: relative; overflow: hidden;
+        &::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: currentColor; transform: scaleX(0); transition: transform .3s ease; }
+        i { font-size: 40px; transition: transform .3s ease; }
+        span { font-family: $font-alt; font-size: $font-size-base; font-weight: $weight-semibold; color: $text-dark; transition: color .3s ease; }
+        &:hover::before { transform: scaleX(1); }
+        &:focus { outline: 3px solid currentColor; outline-offset: 4px; transform: translateY(-8px); box-shadow: $shadow-hover-md; }
+        &:focus:not(:focus-visible) { outline: none; }
+        &:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+        &.linkedin { color: #0A66C2; }
+        &.github { color: #181717; }
+        &.codepen { color: #000000; }
+        &.twitter { color: #000000; }
+      }
+      @media (max-width: $bp-md) { grid-template-columns: repeat(2, 1fr); }
+      @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+    }
+  }
+}
+
+html.dark-mode .bio-page { .bio-connect { h3 { color: $brand-primary-light; }
+  .social-links .social-link { background: $dark-bg; border-color: $overlay-white-light; span { color: $text-light; }
+    &.github, &.codepen, &.twitter { color: #FFFFFF; }
+  }
+} }

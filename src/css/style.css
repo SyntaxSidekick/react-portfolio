@@ -28,6 +28,12 @@
     transform: rotate(360deg);
   }
 }
+/*
+ * Partial: _brand-icons.scss
+ * Purpose: Centralize brand/technology icon color logic.
+ * Features: Map-driven generation of parent and direct icon color mixins.
+ * Usage: @use "_brand-icons" as *; then @include brand-icon-colors-parent; or @include brand-icon-colors-direct on <i>.
+ */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -1185,6 +1191,788 @@ li {
   font-family: "dmsans", sans-serif;
 }
 
+.tech-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.25s ease, color 0.25s ease;
+  fill: currentColor;
+}
+
+.tech-icon:hover {
+  transform: scale(1.15);
+}
+
+.tech-icon--html5 {
+  color: #E34F26;
+}
+
+.tech-icon--html5.outline {
+  color: #E34F26;
+  stroke: #E34F26;
+}
+
+.tech-icon--css3 {
+  color: #1572B6;
+}
+
+.tech-icon--css3.outline {
+  color: #1572B6;
+  stroke: #1572B6;
+}
+
+.tech-icon--css {
+  color: #1572B6;
+}
+
+.tech-icon--css.outline {
+  color: #1572B6;
+  stroke: #1572B6;
+}
+
+.tech-icon--javascript {
+  color: #F7DF1E;
+}
+
+.tech-icon--javascript.outline {
+  color: #F7DF1E;
+  stroke: #F7DF1E;
+}
+
+.tech-icon--typescript {
+  color: #3178C6;
+}
+
+.tech-icon--typescript.outline {
+  color: #3178C6;
+  stroke: #3178C6;
+}
+
+.tech-icon--react {
+  color: #61DAFB;
+}
+
+.tech-icon--react.outline {
+  color: #61DAFB;
+  stroke: #61DAFB;
+}
+
+.tech-icon--vue {
+  color: #4FC08D;
+}
+
+.tech-icon--vue.outline {
+  color: #4FC08D;
+  stroke: #4FC08D;
+}
+
+.tech-icon--vuejs {
+  color: #4FC08D;
+}
+
+.tech-icon--vuejs.outline {
+  color: #4FC08D;
+  stroke: #4FC08D;
+}
+
+.tech-icon--angular {
+  color: #DD0031;
+}
+
+.tech-icon--angular.outline {
+  color: #DD0031;
+  stroke: #DD0031;
+}
+
+.tech-icon--node {
+  color: #339933;
+}
+
+.tech-icon--node.outline {
+  color: #339933;
+  stroke: #339933;
+}
+
+.tech-icon--node-js {
+  color: #339933;
+}
+
+.tech-icon--node-js.outline {
+  color: #339933;
+  stroke: #339933;
+}
+
+.tech-icon--php {
+  color: #777BB4;
+}
+
+.tech-icon--php.outline {
+  color: #777BB4;
+  stroke: #777BB4;
+}
+
+.tech-icon--python {
+  color: #3776AB;
+}
+
+.tech-icon--python.outline {
+  color: #3776AB;
+  stroke: #3776AB;
+}
+
+.tech-icon--java {
+  color: #ED8B00;
+}
+
+.tech-icon--java.outline {
+  color: #ED8B00;
+  stroke: #ED8B00;
+}
+
+.tech-icon--dart {
+  color: #0175C2;
+}
+
+.tech-icon--dart.outline {
+  color: #0175C2;
+  stroke: #0175C2;
+}
+
+.tech-icon--rust {
+  color: #000000;
+}
+
+.tech-icon--rust.outline {
+  color: #000000;
+  stroke: #000000;
+}
+
+.tech-icon--sass {
+  color: #CC6699;
+}
+
+.tech-icon--sass.outline {
+  color: #CC6699;
+  stroke: #CC6699;
+}
+
+.tech-icon--tailwind {
+  color: #06B6D4;
+}
+
+.tech-icon--tailwind.outline {
+  color: #06B6D4;
+  stroke: #06B6D4;
+}
+
+.tech-icon--bootstrap {
+  color: #7952B3;
+}
+
+.tech-icon--bootstrap.outline {
+  color: #7952B3;
+  stroke: #7952B3;
+}
+
+.tech-icon--less {
+  color: #1D365D;
+}
+
+.tech-icon--less.outline {
+  color: #1D365D;
+  stroke: #1D365D;
+}
+
+.tech-icon--webpack {
+  color: #8DD6F9;
+}
+
+.tech-icon--webpack.outline {
+  color: #8DD6F9;
+  stroke: #8DD6F9;
+}
+
+.tech-icon--gulp {
+  color: #CF4647;
+}
+
+.tech-icon--gulp.outline {
+  color: #CF4647;
+  stroke: #CF4647;
+}
+
+.tech-icon--wordpress {
+  color: #21759B;
+}
+
+.tech-icon--wordpress.outline {
+  color: #21759B;
+  stroke: #21759B;
+}
+
+.tech-icon--wordpress-simple {
+  color: #21759B;
+}
+
+.tech-icon--wordpress-simple.outline {
+  color: #21759B;
+  stroke: #21759B;
+}
+
+.tech-icon--drupal {
+  color: #0678BE;
+}
+
+.tech-icon--drupal.outline {
+  color: #0678BE;
+  stroke: #0678BE;
+}
+
+.tech-icon--laravel {
+  color: #FF2D20;
+}
+
+.tech-icon--laravel.outline {
+  color: #FF2D20;
+  stroke: #FF2D20;
+}
+
+.tech-icon--eleventy {
+  color: #000000;
+}
+
+.tech-icon--eleventy.outline {
+  color: #000000;
+  stroke: #000000;
+}
+
+.tech-icon--nextjs {
+  color: #000000;
+}
+
+.tech-icon--nextjs.outline {
+  color: #000000;
+  stroke: #000000;
+}
+
+.tech-icon--git {
+  color: #F05032;
+}
+
+.tech-icon--git.outline {
+  color: #F05032;
+  stroke: #F05032;
+}
+
+.tech-icon--github {
+  color: #181717;
+}
+
+.tech-icon--github.outline {
+  color: #181717;
+  stroke: #181717;
+}
+
+.tech-icon--gitlab {
+  color: #FC6D26;
+}
+
+.tech-icon--gitlab.outline {
+  color: #FC6D26;
+  stroke: #FC6D26;
+}
+
+.tech-icon--npm {
+  color: #CB3837;
+}
+
+.tech-icon--npm.outline {
+  color: #CB3837;
+  stroke: #CB3837;
+}
+
+.tech-icon--yarn {
+  color: #2C8EBB;
+}
+
+.tech-icon--yarn.outline {
+  color: #2C8EBB;
+  stroke: #2C8EBB;
+}
+
+.tech-icon--docker {
+  color: #2496ED;
+}
+
+.tech-icon--docker.outline {
+  color: #2496ED;
+  stroke: #2496ED;
+}
+
+.tech-icon--jenkins {
+  color: #D24939;
+}
+
+.tech-icon--jenkins.outline {
+  color: #D24939;
+  stroke: #D24939;
+}
+
+.tech-icon--jira {
+  color: #0052CC;
+}
+
+.tech-icon--jira.outline {
+  color: #0052CC;
+  stroke: #0052CC;
+}
+
+.tech-icon--confluence {
+  color: #172B4D;
+}
+
+.tech-icon--confluence.outline {
+  color: #172B4D;
+  stroke: #172B4D;
+}
+
+.tech-icon--bitbucket {
+  color: #0052CC;
+}
+
+.tech-icon--bitbucket.outline {
+  color: #0052CC;
+  stroke: #0052CC;
+}
+
+.tech-icon--sourcetree {
+  color: #0052CC;
+}
+
+.tech-icon--sourcetree.outline {
+  color: #0052CC;
+  stroke: #0052CC;
+}
+
+.tech-icon--openai {
+  color: #412991;
+}
+
+.tech-icon--openai.outline {
+  color: #412991;
+  stroke: #412991;
+}
+
+.tech-icon--figma {
+  color: #F24E1E;
+}
+
+.tech-icon--figma.outline {
+  color: #F24E1E;
+  stroke: #F24E1E;
+}
+
+.tech-icon--sketch {
+  color: #F7B500;
+}
+
+.tech-icon--sketch.outline {
+  color: #F7B500;
+  stroke: #F7B500;
+}
+
+.tech-icon--illustrator {
+  color: #FF9A00;
+}
+
+.tech-icon--illustrator.outline {
+  color: #FF9A00;
+  stroke: #FF9A00;
+}
+
+.tech-icon--photoshop {
+  color: #31A8FF;
+}
+
+.tech-icon--photoshop.outline {
+  color: #31A8FF;
+  stroke: #31A8FF;
+}
+
+.tech-icon--indesign {
+  color: #FF3366;
+}
+
+.tech-icon--indesign.outline {
+  color: #FF3366;
+  stroke: #FF3366;
+}
+
+.tech-icon--xd {
+  color: #FF61F6;
+}
+
+.tech-icon--xd.outline {
+  color: #FF61F6;
+  stroke: #FF61F6;
+}
+
+.tech-icon--invision {
+  color: #FF3366;
+}
+
+.tech-icon--invision.outline {
+  color: #FF3366;
+  stroke: #FF3366;
+}
+
+.tech-icon--codepen {
+  color: #000000;
+}
+
+.tech-icon--codepen.outline {
+  color: #000000;
+  stroke: #000000;
+}
+
+.tech-icon--markdown {
+  color: #000000;
+}
+
+.tech-icon--markdown.outline {
+  color: #000000;
+  stroke: #000000;
+}
+
+.tech-icon--golang {
+  color: #00ADD8;
+}
+
+.tech-icon--golang.outline {
+  color: #00ADD8;
+  stroke: #00ADD8;
+}
+
+.tech-icon--hackerrank {
+  color: #2EC866;
+}
+
+.tech-icon--hackerrank.outline {
+  color: #2EC866;
+  stroke: #2EC866;
+}
+
+.tech-icon--hashnode {
+  color: #2962FF;
+}
+
+.tech-icon--hashnode.outline {
+  color: #2962FF;
+  stroke: #2962FF;
+}
+
+.tech-icon--linux {
+  color: #FCC624;
+}
+
+.tech-icon--linux.outline {
+  color: #FCC624;
+  stroke: #FCC624;
+}
+
+.tech-icon--jquery {
+  color: #0769AD;
+}
+
+.tech-icon--jquery.outline {
+  color: #0769AD;
+  stroke: #0769AD;
+}
+
+.tech-icon--magento {
+  color: #E45E34;
+}
+
+.tech-icon--magento.outline {
+  color: #E45E34;
+  stroke: #E45E34;
+}
+
+.tech-icon--aws {
+  color: #FF9900;
+}
+
+.tech-icon--aws.outline {
+  color: #FF9900;
+  stroke: #FF9900;
+}
+
+.tech-icon--azure {
+  color: #104581;
+}
+
+.tech-icon--azure.outline {
+  color: #104581;
+  stroke: #104581;
+}
+
+.tech-icon--hotjar {
+  color: #FF3C00;
+}
+
+.tech-icon--hotjar.outline {
+  color: #FF3C00;
+  stroke: #FF3C00;
+}
+
+.tech-icon--design-systems {
+  color: #967BB6;
+}
+
+.tech-icon--design-systems.outline {
+  color: #967BB6;
+  stroke: #967BB6;
+}
+
+.tech-icon--google-analytics {
+  color: #A50E0E;
+}
+
+.tech-icon--google-analytics.outline {
+  color: #A50E0E;
+  stroke: #A50E0E;
+}
+
+.tech-icon--gtm {
+  color: #0D652D;
+}
+
+.tech-icon--gtm.outline {
+  color: #0D652D;
+  stroke: #0D652D;
+}
+
+.tech-icon--a-b-testing {
+  color: #4285F4;
+}
+
+.tech-icon--a-b-testing.outline {
+  color: #4285F4;
+  stroke: #4285F4;
+}
+
+.tech-icon--seo {
+  color: #FBBC04;
+}
+
+.tech-icon--seo.outline {
+  color: #FBBC04;
+  stroke: #FBBC04;
+}
+
+.tech-icon--responsive-design {
+  color: #E37400;
+}
+
+.tech-icon--responsive-design.outline {
+  color: #E37400;
+  stroke: #E37400;
+}
+
+html.dark-mode .tech-icon--html5 {
+  color: #E34F26;
+}
+html.dark-mode .tech-icon--css3 {
+  color: #1572B6;
+}
+html.dark-mode .tech-icon--css {
+  color: #1572B6;
+}
+html.dark-mode .tech-icon--javascript {
+  color: #F7DF1E;
+}
+html.dark-mode .tech-icon--typescript {
+  color: #3178C6;
+}
+html.dark-mode .tech-icon--react {
+  color: #61DAFB;
+}
+html.dark-mode .tech-icon--vue {
+  color: #4FC08D;
+}
+html.dark-mode .tech-icon--vuejs {
+  color: #4FC08D;
+}
+html.dark-mode .tech-icon--angular {
+  color: #DD0031;
+}
+html.dark-mode .tech-icon--node {
+  color: #339933;
+}
+html.dark-mode .tech-icon--node-js {
+  color: #339933;
+}
+html.dark-mode .tech-icon--php {
+  color: #777BB4;
+}
+html.dark-mode .tech-icon--python {
+  color: #3776AB;
+}
+html.dark-mode .tech-icon--java {
+  color: #ED8B00;
+}
+html.dark-mode .tech-icon--dart {
+  color: #0175C2;
+}
+html.dark-mode .tech-icon--rust {
+  color: #000000;
+}
+html.dark-mode .tech-icon--sass {
+  color: #CC6699;
+}
+html.dark-mode .tech-icon--tailwind {
+  color: #06B6D4;
+}
+html.dark-mode .tech-icon--bootstrap {
+  color: #7952B3;
+}
+html.dark-mode .tech-icon--less {
+  color: #1D365D;
+}
+html.dark-mode .tech-icon--webpack {
+  color: #8DD6F9;
+}
+html.dark-mode .tech-icon--gulp {
+  color: #CF4647;
+}
+html.dark-mode .tech-icon--wordpress {
+  color: #21759B;
+}
+html.dark-mode .tech-icon--wordpress-simple {
+  color: #21759B;
+}
+html.dark-mode .tech-icon--drupal {
+  color: #0678BE;
+}
+html.dark-mode .tech-icon--laravel {
+  color: #FF2D20;
+}
+html.dark-mode .tech-icon--eleventy {
+  color: #000000;
+}
+html.dark-mode .tech-icon--nextjs {
+  color: #000000;
+}
+html.dark-mode .tech-icon--git {
+  color: #F05032;
+}
+html.dark-mode .tech-icon--github {
+  color: #181717;
+}
+html.dark-mode .tech-icon--gitlab {
+  color: #FC6D26;
+}
+html.dark-mode .tech-icon--npm {
+  color: #CB3837;
+}
+html.dark-mode .tech-icon--yarn {
+  color: #2C8EBB;
+}
+html.dark-mode .tech-icon--docker {
+  color: #2496ED;
+}
+html.dark-mode .tech-icon--jenkins {
+  color: #D24939;
+}
+html.dark-mode .tech-icon--jira {
+  color: #0052CC;
+}
+html.dark-mode .tech-icon--confluence {
+  color: #172B4D;
+}
+html.dark-mode .tech-icon--bitbucket {
+  color: #0052CC;
+}
+html.dark-mode .tech-icon--sourcetree {
+  color: #0052CC;
+}
+html.dark-mode .tech-icon--openai {
+  color: #412991;
+}
+html.dark-mode .tech-icon--figma {
+  color: #F24E1E;
+}
+html.dark-mode .tech-icon--sketch {
+  color: #F7B500;
+}
+html.dark-mode .tech-icon--illustrator {
+  color: #FF9A00;
+}
+html.dark-mode .tech-icon--photoshop {
+  color: #31A8FF;
+}
+html.dark-mode .tech-icon--indesign {
+  color: #FF3366;
+}
+html.dark-mode .tech-icon--xd {
+  color: #FF61F6;
+}
+html.dark-mode .tech-icon--invision {
+  color: #FF3366;
+}
+html.dark-mode .tech-icon--codepen {
+  color: #000000;
+}
+html.dark-mode .tech-icon--markdown {
+  color: #000000;
+}
+html.dark-mode .tech-icon--golang {
+  color: #00ADD8;
+}
+html.dark-mode .tech-icon--hackerrank {
+  color: #2EC866;
+}
+html.dark-mode .tech-icon--hashnode {
+  color: #2962FF;
+}
+html.dark-mode .tech-icon--linux {
+  color: #FCC624;
+}
+html.dark-mode .tech-icon--jquery {
+  color: #0769AD;
+}
+html.dark-mode .tech-icon--magento {
+  color: #E45E34;
+}
+html.dark-mode .tech-icon--aws {
+  color: #FF9900;
+}
+html.dark-mode .tech-icon--azure {
+  color: #104581;
+}
+html.dark-mode .tech-icon--hotjar {
+  color: #FF3C00;
+}
+html.dark-mode .tech-icon--design-systems {
+  color: #967BB6;
+}
+html.dark-mode .tech-icon--google-analytics {
+  color: #A50E0E;
+}
+html.dark-mode .tech-icon--gtm {
+  color: #0D652D;
+}
+html.dark-mode .tech-icon--a-b-testing {
+  color: #4285F4;
+}
+html.dark-mode .tech-icon--seo {
+  color: #FBBC04;
+}
+html.dark-mode .tech-icon--responsive-design {
+  color: #E37400;
+}
+
 .page-header {
   position: relative;
   text-align: center;
@@ -1268,6 +2056,161 @@ html.dark-mode .page-header h2.page-subtitle {
     padding-top: 20px;
   }
 }
+.portfolio-cta-button,
+.blog-cta-button,
+.bio-cta-button,
+.codepen-cta-button,
+.github-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: "dmsans", sans-serif;
+  min-width: 280px;
+  max-width: 500px;
+}
+.portfolio-cta-button .cta-content,
+.blog-cta-button .cta-content,
+.bio-cta-button .cta-content,
+.codepen-cta-button .cta-content,
+.github-cta-button .cta-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.portfolio-cta-button .cta-content i,
+.blog-cta-button .cta-content i,
+.bio-cta-button .cta-content i,
+.codepen-cta-button .cta-content i,
+.github-cta-button .cta-content i {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.portfolio-cta-button .cta-content .cta-text,
+.blog-cta-button .cta-content .cta-text,
+.bio-cta-button .cta-content .cta-text,
+.codepen-cta-button .cta-content .cta-text,
+.github-cta-button .cta-content .cta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2px;
+}
+.portfolio-cta-button .cta-content .cta-text strong,
+.blog-cta-button .cta-content .cta-text strong,
+.bio-cta-button .cta-content .cta-text strong,
+.codepen-cta-button .cta-content .cta-text strong,
+.github-cta-button .cta-content .cta-text strong {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.portfolio-cta-button .cta-content .cta-text small,
+.blog-cta-button .cta-content .cta-text small,
+.bio-cta-button .cta-content .cta-text small,
+.codepen-cta-button .cta-content .cta-text small,
+.github-cta-button .cta-content .cta-text small {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+.portfolio-cta-button .cta-arrow,
+.blog-cta-button .cta-arrow,
+.bio-cta-button .cta-arrow,
+.codepen-cta-button .cta-arrow,
+.github-cta-button .cta-arrow {
+  font-size: 1.125rem;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.portfolio-cta-button:hover,
+.blog-cta-button:hover,
+.bio-cta-button:hover,
+.codepen-cta-button:hover,
+.github-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
+}
+.portfolio-cta-button:hover .cta-arrow,
+.blog-cta-button:hover .cta-arrow,
+.bio-cta-button:hover .cta-arrow,
+.codepen-cta-button:hover .cta-arrow,
+.github-cta-button:hover .cta-arrow {
+  transform: translateX(4px);
+}
+.portfolio-cta-button:active,
+.blog-cta-button:active,
+.bio-cta-button:active,
+.codepen-cta-button:active,
+.github-cta-button:active {
+  transform: translateY(0);
+}
+.portfolio-cta-button:focus-visible,
+.blog-cta-button:focus-visible,
+.bio-cta-button:focus-visible,
+.codepen-cta-button:focus-visible,
+.github-cta-button:focus-visible {
+  outline: 3px solid rgba(0, 115, 170, 0.5);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .portfolio-cta-button,
+  .blog-cta-button,
+  .bio-cta-button,
+  .codepen-cta-button,
+  .github-cta-button {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+  }
+  .portfolio-cta-button .cta-content i,
+  .blog-cta-button .cta-content i,
+  .bio-cta-button .cta-content i,
+  .codepen-cta-button .cta-content i,
+  .github-cta-button .cta-content i {
+    font-size: 1.125rem;
+  }
+  .portfolio-cta-button .cta-arrow,
+  .blog-cta-button .cta-arrow,
+  .bio-cta-button .cta-arrow,
+  .codepen-cta-button .cta-arrow,
+  .github-cta-button .cta-arrow {
+    font-size: 1rem;
+  }
+}
+
+.cta-row,
+.portfolio-cta-row,
+.featured-work-cta,
+.blog-cta,
+.about-cta,
+.codepen-cta-row {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 48px;
+}
+
+@media (max-width: 600px) {
+  .cta-row,
+  .portfolio-cta-row,
+  .featured-work-cta,
+  .blog-cta,
+  .about-cta,
+  .codepen-cta-row {
+    margin-top: 40px;
+  }
+}
 /*!
  * Partial: _base.scss
  * Purpose: Base styles for HTML, body, layout containers, header, and footer.
@@ -1277,7 +2220,7 @@ html.dark-mode .page-header h2.page-subtitle {
  * Last updated: 2025-09-11
  */
 html {
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -1288,13 +2231,12 @@ html {
 }
 
 body {
-  background: #f4f3f4 !important;
+  background: #f4f3f4;
   margin: 0;
   color: #333333;
-  margin: 0;
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 body::before {
   content: "";
@@ -1312,22 +2254,6 @@ body .container {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-}
-@media (max-width: 900px) {
-  body .container {
-    max-width: 100vw;
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-@media (max-width: 600px) {
-  body .container {
-    max-width: 100vw;
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-body .container {
   padding: clamp(12px, 4vw, 40px);
   box-sizing: border-box;
 }
@@ -1374,6 +2300,28 @@ input[type=submit]:hover {
   background: #005177;
 }
 
+.skip-link:focus, .lightbox-prev:focus,
+.lightbox-next:focus,
+.lightbox-close:focus, .gallery-tab-btn:focus,
+.gallery-tab-btn:focus-visible, .btn:focus,
+.btn:focus-visible, .card:focus,
+.card:focus-visible,
+.gallery-tile:focus,
+.gallery-tile:focus-visible,
+.clickable-card:focus,
+.clickable-card:focus-visible, button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible,
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible, :focus-visible {
+  outline: 3px solid #2c94da;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
+}
+
 :focus {
   outline: 2.5px solid #2c94da;
   outline-offset: 2px;
@@ -1393,23 +2341,7 @@ main * {
 }
 
 :focus-visible {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
   transition: outline 0.2s, box-shadow 0.2s;
-}
-
-button:focus,
-button:focus-visible,
-a:focus,
-a:focus-visible,
-input:focus,
-input:focus-visible,
-textarea:focus,
-textarea:focus-visible {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
 }
 
 .card:focus,
@@ -1418,37 +2350,7 @@ textarea:focus-visible {
 .gallery-tile:focus-visible,
 .clickable-card:focus,
 .clickable-card:focus-visible {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
   z-index: 2;
-}
-
-.btn:focus,
-.btn:focus-visible {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
-}
-
-.gallery-tab-btn:focus,
-.gallery-tab-btn:focus-visible {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
-}
-
-.lightbox-prev:focus,
-.lightbox-next:focus,
-.lightbox-close:focus {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(44, 148, 218, 0.18);
-}
-
-.skip-link:focus {
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
 }
 
 *:focus {
@@ -1515,41 +2417,34 @@ figure {
   position: absolute;
   left: -999px;
   top: 0;
-  width: auto;
   min-width: 160px;
-  height: auto;
-  overflow: hidden;
   z-index: 10000;
   background: #2c94da;
   color: #ffffff;
-  padding: 12px 28px;
+  padding: 12px 32px;
   border-radius: 0 0 8px 8px;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   letter-spacing: 0.03em;
   box-shadow: 0 4px 16px rgba(44, 148, 218, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
   border: none;
   opacity: 0.95;
   transition: left 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
-  outline: none;
 }
 
 .skip-link:focus {
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
   opacity: 1;
   background: #ffffff;
   color: #2c94da;
   box-shadow: 0 8px 32px rgba(44, 148, 218, 0.25), 0 2px 8px rgba(0, 0, 0, 0.12);
-  outline: 3px solid #2c94da;
-  outline-offset: 2px;
 }
 
 @media (max-width: 600px) {
   .skip-link:focus {
     font-size: 1rem;
-    padding: 10px 12px;
+    padding: 8px 12px;
     min-width: 120px;
   }
 }
@@ -1581,6 +2476,12 @@ figure {
  * Dependencies: Uses variables and mixins from abstracts.
  * Last updated: 2025-09-11
  */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
 .site-header {
   background: #333333;
   position: relative;
@@ -1601,12 +2502,16 @@ figure {
   display: block;
   width: min(50vw, 400px);
   height: min(15vw, 77px);
-  background: image-set(url(../assets/images/riad-kilani-logo.webp) type("image/webp"), url(../assets/images/riad-kilani-logo.png) type("image/png")) no-repeat center center;
-  background: -webkit-image-set(url(../assets/images/riad-kilani-logo.webp) 1x, url(../assets/images/riad-kilani-logo.png) 1x) no-repeat center center;
-  background-size: contain;
+  position: relative;
   overflow: hidden;
-  text-indent: -1000px;
   transition: width 0.2s, height 0.2s;
+}
+.site-header .container .site-branding a img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .site-header .container nav ul {
   list-style: none;
@@ -1619,18 +2524,17 @@ figure {
   color: #ffffff;
   text-decoration: none;
   font-size: 1rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
   padding: 12px 20px;
   border-radius: 4px;
   position: relative;
   overflow: visible;
-  background: none !important;
-  box-shadow: none !important;
-  transition: color 0.18s, font-size 0.2s;
+  background: none;
+  box-shadow: none;
+  transition: color 0.18s ease;
 }
 .site-header .container nav ul a::after {
   content: "";
-  display: block;
   position: absolute;
   left: 20px;
   right: 20px;
@@ -1650,18 +2554,10 @@ figure {
 .site-header .container nav ul a:hover, .site-header .container nav ul a:focus-visible {
   color: #2c94da;
   outline: none;
-  background: none !important;
-  box-shadow: none !important;
 }
 .site-header .container nav ul a.active {
   color: #2c94da;
   font-weight: 700;
-  background: none !important;
-  box-shadow: none !important;
-}
-
-.site-header {
-  position: relative;
 }
 .site-header .active ul li a {
   color: #ffffff;
@@ -1716,7 +2612,6 @@ figure {
 }
 .site-header .dark-mode-toggle .toggle-track {
   position: relative;
-  display: block;
   width: 100%;
   height: 100%;
   background: #6c757d;
@@ -1731,11 +2626,11 @@ figure {
   height: 28px;
   background: #ffffff;
   border-radius: 50%;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-header .dark-mode-toggle .toggle-thumb i {
   font-size: 14px;
@@ -1759,6 +2654,18 @@ figure {
 }
 .site-header .dark-mode-toggle[aria-checked=true]:hover .toggle-track {
   background: rgba(0, 115, 170, 0.5);
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 @keyframes fadeIn {
@@ -2057,7 +2964,7 @@ html.dark-mode a:hover {
  */
 .site-footer {
   color: #595959;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #0f3460 100%);
   padding: 40px 0;
   box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.15), 0 -4px 20px rgba(142, 36, 170, 0.1);
   overflow: hidden;
@@ -2071,11 +2978,8 @@ html.dark-mode a:hover {
 .site-footer::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(142, 36, 170, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(75, 85, 205, 0.05) 0%, transparent 50%);
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(142, 36, 170, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(44, 148, 218, 0.05) 0%, transparent 50%);
   pointer-events: none;
 }
 .site-footer .container {
@@ -2097,12 +3001,11 @@ html.dark-mode a:hover {
   display: block;
   width: 220px;
   height: 48px;
-  background: image-set(url(../assets/images/riad-kilani-logo.webp) type("image/webp"), url(../assets/images/riad-kilani-logo.png) type("image/png")) no-repeat center center;
-  background: -webkit-image-set(url(../assets/images/riad-kilani-logo.webp) 1x, url(../assets/images/riad-kilani-logo.png) 1x) no-repeat center center;
-  background-size: contain;
+  background: image-set(url(../assets/images/riad-kilani-logo.webp) type("image/webp"), url(../assets/images/riad-kilani-logo.png) type("image/png")) center/contain no-repeat;
+  background: -webkit-image-set(url(../assets/images/riad-kilani-logo.webp) 1x, url(../assets/images/riad-kilani-logo.png) 1x) center/contain no-repeat;
   overflow: hidden;
   text-indent: -1000px;
-  filter: drop-shadow(0 3px 12px rgba(171, 175, 178, 0.2));
+  filter: drop-shadow(0 3px 12px rgba(142, 36, 170, 0.2));
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -2126,8 +3029,8 @@ html.dark-mode a:hover {
 .site-footer .site-branding p {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.4);
-  margin-top: 8px;
-  letter-spacing: 0.8px;
+  margin-top: 12px;
+  letter-spacing: 0.05em;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -2151,7 +3054,7 @@ html.dark-mode a:hover {
   color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
   padding: 8px 16px;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.1);
@@ -2164,10 +3067,8 @@ html.dark-mode a:hover {
 .site-footer nav ul a::before {
   content: "";
   position: absolute;
-  top: 0;
+  inset: 0;
   left: -100%;
-  width: 100%;
-  height: 100%;
   background: linear-gradient(90deg, transparent, rgba(142, 36, 170, 0.3), transparent);
   transition: left 0.5s ease;
 }
@@ -2215,9 +3116,9 @@ html.dark-mode a:hover {
   color: #ffffff;
   margin-bottom: 16px;
   font-size: 1.125rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
   text-transform: uppercase;
-  background: linear-gradient(45deg, #8e24aa, #ba68c8);
+  background: linear-gradient(45deg, #8e24aa, #ab47bc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2246,7 +3147,7 @@ html.dark-mode a:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, #8e24aa, #ba68c8);
+  background: linear-gradient(45deg, #8e24aa, #ab47bc);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -2254,7 +3155,7 @@ html.dark-mode a:hover {
   content: "";
   position: absolute;
   inset: 2px;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
   border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -2273,10 +3174,10 @@ html.dark-mode a:hover {
 .site-footer .footer-bottom {
   width: 100%;
   text-align: center;
-  margin-top: 32px;
+  margin-top: 24px;
   font-size: 0.875rem;
   color: #595959;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
   opacity: 0.8;
 }
 
@@ -2289,94 +3190,94 @@ html.dark-mode a:hover {
 }
 
 @media (max-width: 900px) {
-  footer .container {
+  .site-footer .container {
     flex-direction: column;
     align-items: center;
     gap: 40px;
     padding: 0 20px;
   }
-  footer .container .site-branding {
+  .site-footer .container .site-branding {
     margin-bottom: 12px;
     text-align: center;
   }
-  footer .container .site-branding a {
+  .site-footer .container .site-branding a {
     width: 180px;
     height: 38px;
   }
-  footer .container nav {
+  .site-footer .container nav {
     width: 100%;
     justify-content: center;
   }
-  footer .container nav ul {
+  .site-footer .container nav ul {
     flex-direction: row;
     justify-content: center;
     gap: 12px;
     align-items: center;
     flex-wrap: wrap;
   }
-  footer .container nav ul a {
+  .site-footer .container nav ul a {
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
-  footer .container .footer-contact {
+  .site-footer .container .footer-contact {
     width: 100%;
     text-align: center;
     margin-top: 12px;
   }
-  footer .container .footer-contact .socials {
+  .site-footer .container .footer-contact .socials {
     justify-content: center;
     gap: 12px;
   }
-  footer .container .footer-contact .socials a {
+  .site-footer .container .footer-contact .socials a {
     width: 40px;
     height: 40px;
     font-size: 18px;
   }
 }
 @media (max-width: 600px) {
-  footer {
+  .site-footer {
     padding: 18px 2px;
   }
-  footer .container {
+  .site-footer .container {
     padding: 0 20px;
     gap: 0 !important;
     align-items: center !important;
   }
-  footer .container .site-branding a {
+  .site-footer .container .site-branding a {
     height: 45px;
     width: 280px;
     margin-bottom: 0;
   }
-  footer .container nav ul {
+  .site-footer .container nav ul {
     gap: 8px;
     font-size: 12px;
   }
-  footer .container nav ul a {
+  .site-footer .container nav ul a {
     padding: 4px 8px;
     font-size: 12px;
   }
-  footer .container .footer-contact {
+  .site-footer .container .footer-contact {
     font-size: 13px;
     margin-top: 0;
   }
-  footer .container .footer-contact .footer-title {
+  .site-footer .container .footer-contact .footer-title {
     font-size: 16px;
   }
-  footer .container .footer-contact p {
+  .site-footer .container .footer-contact p {
     font-size: 13px;
   }
-  footer .container .footer-contact p i {
+  .site-footer .container .footer-contact p i {
     font-size: 16px;
   }
-  footer .container .footer-contact .socials {
+  .site-footer .container .footer-contact .socials {
     gap: 10px;
   }
-  footer .container .footer-contact .socials a {
+  .site-footer .container .footer-contact .socials a {
     font-size: 16px;
     width: 36px;
     height: 36px;
   }
-  footer .footer-bottom {
+  .site-footer .footer-bottom {
     font-size: 11px;
     margin-top: 18px;
   }
@@ -2709,29 +3610,35 @@ html.dark-mode a:hover {
 .project-wrapper .tech-used .project-tech-list li i {
   font-size: 1rem;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-react {
-  color: #61DAFB;
-}
-.project-wrapper .tech-used .project-tech-list li i.fa-js {
-  color: #F7DF1E;
-}
 .project-wrapper .tech-used .project-tech-list li i.fa-html5 {
   color: #E34F26;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-css3-alt {
+.project-wrapper .tech-used .project-tech-list li i.fa-css3 {
   color: #1572B6;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-sass {
-  color: #CC6699;
+.project-wrapper .tech-used .project-tech-list li i.fa-css {
+  color: #1572B6;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-bootstrap {
-  color: #7952B3;
+.project-wrapper .tech-used .project-tech-list li i.fa-javascript {
+  color: #F7DF1E;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-typescript {
+  color: #3178C6;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-react {
+  color: #61DAFB;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-vue {
+  color: #4FC08D;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-vuejs {
   color: #4FC08D;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-angular {
   color: #DD0031;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-node {
+  color: #339933;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-node-js {
   color: #339933;
@@ -2745,34 +3652,49 @@ html.dark-mode a:hover {
 .project-wrapper .tech-used .project-tech-list li i.fa-java {
   color: #ED8B00;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-laravel {
-  color: #FF2D20;
+.project-wrapper .tech-used .project-tech-list li i.fa-dart {
+  color: #0175C2;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-rust {
+  color: #000000;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-sass {
+  color: #CC6699;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-tailwind {
+  color: #06B6D4;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-bootstrap {
+  color: #7952B3;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-less {
+  color: #1D365D;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-webpack {
+  color: #8DD6F9;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-gulp {
+  color: #CF4647;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-wordpress {
+  color: #21759B;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-wordpress-simple {
   color: #21759B;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-drupal {
   color: #0678BE;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-figma {
-  color: #F24E1E;
+.project-wrapper .tech-used .project-tech-list li i.fa-laravel {
+  color: #FF2D20;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-sketch {
-  color: #F7B500;
+.project-wrapper .tech-used .project-tech-list li i.fa-eleventy {
+  color: #000000;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-adobe {
-  color: #FF0000;
+.project-wrapper .tech-used .project-tech-list li i.fa-nextjs {
+  color: #000000;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-photoshop {
-  color: #31A8FF;
-}
-.project-wrapper .tech-used .project-tech-list li i.fa-illustrator {
-  color: #FF9A00;
-}
-.project-wrapper .tech-used .project-tech-list li i.fa-indesign {
-  color: #FF3366;
-}
-.project-wrapper .tech-used .project-tech-list li i.fa-git-alt {
+.project-wrapper .tech-used .project-tech-list li i.fa-git {
   color: #F05032;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-github {
@@ -2780,9 +3702,6 @@ html.dark-mode a:hover {
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-gitlab {
   color: #FC6D26;
-}
-.project-wrapper .tech-used .project-tech-list li i.fa-gulp {
-  color: #CF4647;
 }
 .project-wrapper .tech-used .project-tech-list li i.fa-npm {
   color: #CB3837;
@@ -2793,20 +3712,101 @@ html.dark-mode a:hover {
 .project-wrapper .tech-used .project-tech-list li i.fa-docker {
   color: #2496ED;
 }
+.project-wrapper .tech-used .project-tech-list li i.fa-jenkins {
+  color: #D24939;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-jira {
+  color: #0052CC;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-confluence {
+  color: #172B4D;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-bitbucket {
+  color: #0052CC;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-sourcetree {
+  color: #0052CC;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-openai {
+  color: #412991;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-figma {
+  color: #F24E1E;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-sketch {
+  color: #F7B500;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-illustrator {
+  color: #FF9A00;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-photoshop {
+  color: #31A8FF;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-indesign {
+  color: #FF3366;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-xd {
+  color: #FF61F6;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-invision {
+  color: #FF3366;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-codepen {
+  color: #000000;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-markdown {
+  color: #000000;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-golang {
+  color: #00ADD8;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-hackerrank {
+  color: #2EC866;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-hashnode {
+  color: #2962FF;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-linux {
+  color: #FCC624;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-jquery {
+  color: #0769AD;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-magento {
+  color: #E45E34;
+}
 .project-wrapper .tech-used .project-tech-list li i.fa-aws {
   color: #FF9900;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-google {
+.project-wrapper .tech-used .project-tech-list li i.fa-azure {
+  color: #104581;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-hotjar {
+  color: #FF3C00;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-design-systems {
+  color: #967BB6;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-google-analytics {
+  color: #A50E0E;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-gtm {
+  color: #0D652D;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-a-b-testing {
   color: #4285F4;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-microsoft {
-  color: #00A1F1;
+.project-wrapper .tech-used .project-tech-list li i.fa-seo {
+  color: #FBBC04;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-apple {
-  color: #000000;
+.project-wrapper .tech-used .project-tech-list li i.fa-responsive-design {
+  color: #E37400;
 }
-.project-wrapper .tech-used .project-tech-list li i.fa-android {
-  color: #3DDC84;
+.project-wrapper .tech-used .project-tech-list li i.fa-css3-alt {
+  color: #1572B6;
+}
+.project-wrapper .tech-used .project-tech-list li i.fa-git-alt {
+  color: #F05032;
 }
 
 /**
@@ -5163,32 +6163,30 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   padding: 20px 0;
   font-family: "dmsans", sans-serif;
 }
-.portfolio-filters .filter-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  font-size: 0.875rem;
-  color: #595959;
-  font-weight: 600;
+.portfolio-filters .card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e3e3e3;
 }
-.portfolio-filters .filter-header i {
-  color: #0073aa;
-  font-size: 1.25rem;
-}
-.portfolio-filters .filter-header .filter-label {
-  letter-spacing: 0.5px;
+.portfolio-filters .card-body {
+  padding: 16px;
 }
 .portfolio-filters .filter-tabs {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px;
   position: relative;
+}
+.portfolio-filters .filter-tabs .filter-icon {
+  color: #0073aa;
+  font-size: 1.5rem;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 .portfolio-filters .filter-tabs .filter-tab {
   background: #f4f3f4;
@@ -6448,29 +7446,35 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   height: 24px;
   object-fit: contain;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-react) i {
-  color: #61DAFB;
-}
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-js) i {
-  color: #F7DF1E;
-}
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-html5) i {
   color: #E34F26;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-css3-alt) i {
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-css3) i {
   color: #1572B6;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-sass) i {
-  color: #CC6699;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-css) i {
+  color: #1572B6;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-bootstrap) i {
-  color: #7952B3;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-javascript) i {
+  color: #F7DF1E;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-typescript) i {
+  color: #3178C6;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-react) i {
+  color: #61DAFB;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-vue) i {
+  color: #4FC08D;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-vuejs) i {
   color: #4FC08D;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-angular) i {
   color: #DD0031;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-node) i {
+  color: #339933;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-node-js) i {
   color: #339933;
@@ -6484,34 +7488,49 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-java) i {
   color: #ED8B00;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-laravel) i {
-  color: #FF2D20;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-dart) i {
+  color: #0175C2;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-rust) i {
+  color: #000000;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-sass) i {
+  color: #CC6699;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-tailwind) i {
+  color: #06B6D4;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-bootstrap) i {
+  color: #7952B3;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-less) i {
+  color: #1D365D;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-webpack) i {
+  color: #8DD6F9;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-gulp) i {
+  color: #CF4647;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-wordpress) i {
+  color: #21759B;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-wordpress-simple) i {
   color: #21759B;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-drupal) i {
   color: #0678BE;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-figma) i {
-  color: #F24E1E;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-laravel) i {
+  color: #FF2D20;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-sketch) i {
-  color: #F7B500;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-eleventy) i {
+  color: #000000;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-adobe) i {
-  color: #FF0000;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-nextjs) i {
+  color: #000000;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-photoshop) i {
-  color: #31A8FF;
-}
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-illustrator) i {
-  color: #FF9A00;
-}
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-indesign) i {
-  color: #FF3366;
-}
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-git-alt) i {
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-git) i {
   color: #F05032;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-github) i {
@@ -6519,9 +7538,6 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-gitlab) i {
   color: #FC6D26;
-}
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-gulp) i {
-  color: #CF4647;
 }
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-npm) i {
   color: #CB3837;
@@ -6532,27 +7548,101 @@ html.dark-mode .about-cta .bio-cta-button:hover {
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-docker) i {
   color: #2496ED;
 }
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-jenkins) i {
+  color: #D24939;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-jira) i {
+  color: #0052CC;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-confluence) i {
+  color: #172B4D;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-bitbucket) i {
+  color: #0052CC;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-sourcetree) i {
+  color: #0052CC;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-openai) i {
+  color: #412991;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-figma) i {
+  color: #F24E1E;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-sketch) i {
+  color: #F7B500;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-illustrator) i {
+  color: #FF9A00;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-photoshop) i {
+  color: #31A8FF;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-indesign) i {
+  color: #FF3366;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-xd) i {
+  color: #FF61F6;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-invision) i {
+  color: #FF3366;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-codepen) i {
+  color: #000000;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-markdown) i {
+  color: #000000;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-golang) i {
+  color: #00ADD8;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-hackerrank) i {
+  color: #2EC866;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-hashnode) i {
+  color: #2962FF;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-linux) i {
+  color: #FCC624;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-jquery) i {
+  color: #0769AD;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-magento) i {
+  color: #E45E34;
+}
 .portfolio-modal .tech-stack-grid .tech-item:has(.fa-aws) i {
   color: #FF9900;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-google) i {
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-azure) i {
+  color: #104581;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-hotjar) i {
+  color: #FF3C00;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-design-systems) i {
+  color: #967BB6;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-google-analytics) i {
+  color: #A50E0E;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-gtm) i {
+  color: #0D652D;
+}
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-a-b-testing) i {
   color: #4285F4;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-microsoft) i {
-  color: #00A1F1;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-seo) i {
+  color: #FBBC04;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-apple) i {
-  color: #000000;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-responsive-design) i {
+  color: #E37400;
 }
-.portfolio-modal .tech-stack-grid .tech-item:has(.fa-android) i {
-  color: #3DDC84;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-css3-alt) i {
+  color: #1572B6;
 }
-.portfolio-modal .tech-stack-grid .tech-item:not(:has(.fa-react, .fa-js, .fa-html5, .fa-css3-alt, .fa-sass, .fa-bootstrap, .fa-node-js,
-.fa-wordpress, .fa-figma, .fa-git-alt, .fa-gulp, .fa-vuejs, .fa-php, .fa-drupal,
-.fa-adobe, .fa-photoshop, .fa-illustrator, .fa-indesign, .fa-sketch, .fa-github,
-.fa-gitlab, .fa-npm, .fa-yarn, .fa-docker, .fa-aws, .fa-google, .fa-microsoft,
-.fa-apple, .fa-android, .fa-python, .fa-java, .fa-angular, .fa-laravel)) i {
-  color: #0073aa;
+.portfolio-modal .tech-stack-grid .tech-item:has(.fa-git-alt) i {
+  color: #F05032;
 }
 .portfolio-modal .tech-stack-grid .tech-item span {
   font-size: 0.875rem;
@@ -7120,10 +8210,10 @@ html.dark-mode .portfolio-modal .portfolio-modal-footer .btn-secondary:hover {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: 12px;
   background: linear-gradient(135deg, rgba(0, 115, 170, 0.05) 0%, transparent 50%, rgba(142, 36, 170, 0.05) 100%);
   pointer-events: none;
   z-index: 0;
-  border-radius: 12px;
 }
 .bio-page .bio-about .bio-about-card > * {
   position: relative;
@@ -7211,32 +8301,6 @@ html.dark-mode .portfolio-modal .portfolio-modal-footer .btn-secondary:hover {
     height: 160px;
   }
 }
-html.dark-mode .bio-page .bio-about .bio-about-card {
-  background: rgba(0, 0, 0, 0.8);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-html.dark-mode .bio-page .bio-about .bio-about-card::before {
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, transparent 50%, rgba(142, 36, 170, 0.1) 100%);
-}
-html.dark-mode .bio-page .bio-about .bio-about-card .section-badge {
-  background: linear-gradient(135deg, #2c94da 0%, #0073aa 100%);
-}
-html.dark-mode .bio-page .bio-about .bio-about-card .bio-image img {
-  border-color: #1a1a1a;
-  background: #1a1a1a;
-}
-html.dark-mode .bio-page .bio-about .bio-about-card .text-wrap p {
-  color: #f4f3f4;
-}
-html.dark-mode .bio-page .bio-about .bio-about-card .text-wrap p span {
-  color: #2c94da;
-}
-html.dark-mode .bio-page section header h2 {
-  color: #2c94da;
-}
-html.dark-mode .bio-page section header p {
-  color: #f4f3f4;
-}
 .bio-page .section-header {
   max-width: 900px;
   margin: 60px auto 40px;
@@ -7264,6 +8328,61 @@ html.dark-mode .bio-page section header p {
   margin-left: auto;
   margin-right: auto;
 }
+
+html.dark-mode .bio-page .bio-about .bio-about-card {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+html.dark-mode .bio-page .bio-about .bio-about-card::before {
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.1) 0%, transparent 50%, rgba(142, 36, 170, 0.1) 100%);
+}
+html.dark-mode .bio-page .bio-about .bio-about-card .section-badge {
+  background: linear-gradient(135deg, #2c94da 0%, #0073aa 100%);
+}
+html.dark-mode .bio-page .bio-about .bio-about-card .bio-image img {
+  border-color: #1a1a1a;
+  background: #1a1a1a;
+}
+html.dark-mode .bio-page .bio-about .bio-about-card .text-wrap p {
+  color: #f4f3f4;
+}
+html.dark-mode .bio-page .bio-about .bio-about-card .text-wrap p span {
+  color: #2c94da;
+}
+html.dark-mode .bio-page section header h2 {
+  color: #2c94da;
+}
+html.dark-mode .bio-page section header p {
+  color: #f4f3f4;
+}
+
+.btn {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 8px;
+  background-color: #0073aa;
+  border-radius: 4px;
+  color: #ffffff;
+  border: solid 1px #005177;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 12px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background: #005177;
+}
+.btn {
+  font-size: 14px;
+}
+.btn i {
+  margin-right: 6px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
 .bio-page .bio-process {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7274,13 +8393,26 @@ html.dark-mode .bio-page section header p {
   counter-reset: process-step;
 }
 .bio-page .bio-process li {
-  position: relative;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+  cursor: pointer;
+}
+.bio-page .bio-process li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
+  border-color: #0073aa;
+}
+.bio-page .bio-process li:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+}
+.bio-page .bio-process li {
+  position: relative;
   padding: 20px;
-  border: 1px solid #e3e3e3;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   counter-increment: process-step;
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
@@ -7307,11 +8439,6 @@ html.dark-mode .bio-page section header p {
 .bio-page .bio-process li:nth-child(6) {
   animation-delay: 0.6s;
 }
-.bio-page .bio-process li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
-  border-color: #0073aa;
-}
 .bio-page .bio-process li:hover .process-image {
   transform: scale(1.05);
 }
@@ -7320,22 +8447,20 @@ html.dark-mode .bio-page section header p {
   box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
 }
 .bio-page .bio-process li .process-image {
+  position: relative;
   width: 100%;
-  height: 180px;
-  border-radius: 8px;
+  aspect-ratio: 1.7777777778;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 115, 170, 0.03);
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
+  background: #f4f3f4;
 }
 .bio-page .bio-process li .process-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  transition: transform 0.4s ease;
+}
+.bio-page .bio-process li .process-image {
+  background: rgba(0, 115, 170, 0.03);
 }
 .bio-page .bio-process li::before {
   content: counter(process-step);
@@ -7373,6 +8498,7 @@ html.dark-mode .bio-page section header p {
   font-size: 1rem;
   line-height: 1.75;
 }
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -7391,12 +8517,16 @@ html.dark-mode .bio-page .bio-process li {
 html.dark-mode .bio-page .bio-process li::before {
   background: linear-gradient(135deg, #2c94da 0%, #0073aa 100%);
 }
-html.dark-mode .bio-page .bio-process li strong {
+html.dark-mode .bio-page .bio-process li .process-content strong {
   color: #2c94da;
 }
 html.dark-mode .bio-page .bio-process li:hover {
   border-color: #2c94da;
 }
+html.dark-mode .bio-page .bio-process li .process-image {
+  background: rgba(44, 148, 218, 0.08);
+}
+
 .bio-page .bio-skills-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7405,11 +8535,24 @@ html.dark-mode .bio-page .bio-process li:hover {
 }
 .bio-page .bio-skills-wrapper .skills-group {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e3e3e3;
+  box-shadow: none;
+  cursor: pointer;
+}
+.bio-page .bio-skills-wrapper .skills-group:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
+  border-color: #0073aa;
+}
+.bio-page .bio-skills-wrapper .skills-group:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+}
+.bio-page .bio-skills-wrapper .skills-group {
   padding: 20px;
-  border: 2px solid #e3e3e3;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -7422,17 +8565,12 @@ html.dark-mode .bio-page .bio-process li:hover {
   height: 4px;
   background: linear-gradient(90deg, #0073aa 0%, #2c94da 50%, #8e24aa 100%);
 }
-.bio-page .bio-skills-wrapper .skills-group:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
-  border-color: #0073aa;
-}
 .bio-page .bio-skills-wrapper .skills-group h3 {
   color: #0073aa;
   font-size: 1.25rem;
   font-weight: 600;
   font-family: "dmsans", sans-serif;
-  margin: 0 0 16px 0;
+  margin: 0 0 16px;
   letter-spacing: 0;
   padding-top: 4px;
 }
@@ -7445,18 +8583,41 @@ html.dark-mode .bio-page .bio-process li:hover {
   margin: 0;
 }
 .bio-page .bio-skills-wrapper .skills-group .bio-skills li {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: 2px solid #cccccc;
+  box-shadow: none;
+  cursor: pointer;
+}
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
+  border-color: #0073aa;
+}
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+}
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: #f4f3f4;
-  border-radius: 4px;
   font-size: 1rem;
-  color: #333333;
   font-weight: 500;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  color: #0073aa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li i,
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li .skill-svg-icon {
+  width: 24px;
+  height: 20px;
+  transition: transform 0.2s ease;
 }
 .bio-page .bio-skills-wrapper .skills-group .bio-skills li::before {
   content: "";
@@ -7464,255 +8625,30 @@ html.dark-mode .bio-page .bio-process li:hover {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: currentColor;
+  height: 2px;
+  background: #0073aa;
   transform: scaleX(0);
+  transform-origin: center;
   transition: transform 0.3s ease;
 }
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li i {
-  font-size: 20px;
-  width: 24px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li .skill-svg-icon {
-  width: 24px;
-  height: 20px;
-  object-fit: contain;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
 .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.13);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.2);
+  border-color: #0073aa;
 }
 .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover::before {
   transform: scaleX(1);
 }
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover i {
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover i, .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover .skill-svg-icon {
   transform: scale(1.2);
 }
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover .skill-svg-icon {
-  transform: scale(1.2);
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-html5) .fa-html5 {
-  color: #E34F26;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-html5):hover {
-  color: #E34F26;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-css3-alt) .fa-css3-alt {
-  color: #1572B6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-css3-alt):hover {
-  color: #1572B6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-js) .fa-js {
-  color: #F7DF1E;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-js):hover {
-  color: #F7DF1E;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-code) .fa-code {
-  color: #3178C6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-code):hover {
-  color: #3178C6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.jquery-icon) .jquery-icon {
-  color: #0769AD;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.jquery-icon):hover {
-  color: #0769AD;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-php) .fa-php {
-  color: #777BB4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-php):hover {
-  color: #777BB4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-react) .fa-react {
-  color: #61DAFB;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-react):hover {
-  color: #61DAFB;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-vuejs) .fa-vuejs {
-  color: #4FC08D;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-vuejs):hover {
-  color: #4FC08D;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-angular) .fa-angular {
-  color: #DD0031;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-angular):hover {
-  color: #DD0031;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-bootstrap) .fa-bootstrap {
-  color: #7952B3;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-bootstrap):hover {
-  color: #7952B3;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-node-js) .fa-node-js {
-  color: #339933;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-node-js):hover {
-  color: #339933;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-wind) .fa-wind {
-  color: #06B6D4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-wind):hover {
-  color: #06B6D4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-rocket) .fa-rocket {
-  color: #000000;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-rocket):hover {
-  color: #000000;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-sass) .fa-sass {
-  color: #CC6699;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-sass):hover {
-  color: #CC6699;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-layer-group) .fa-layer-group {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-layer-group):hover {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-git-alt) .fa-git-alt {
-  color: #F05032;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-git-alt):hover {
-  color: #F05032;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-gulp) .fa-gulp {
-  color: #CF4647;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-gulp):hover {
-  color: #CF4647;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-aws) .fa-aws {
-  color: #FF9900;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-aws):hover {
-  color: #FF9900;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-microsoft) .fa-microsoft {
-  color: #0089D6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-microsoft):hover {
-  color: #0089D6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-cube) .fa-cube {
-  color: #8DD6F9;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-cube):hover {
-  color: #8DD6F9;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-wordpress) .fa-wordpress {
-  color: #21759B;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-wordpress):hover {
-  color: #21759B;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-drupal) .fa-drupal {
-  color: #0678BE;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-drupal):hover {
-  color: #0678BE;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-magento) .fa-magento {
-  color: #EE672F;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-magento):hover {
-  color: #EE672F;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-figma) .fa-figma {
-  color: #F24E1E;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-figma):hover {
-  color: #F24E1E;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pen-nib) .fa-pen-nib {
-  color: #FF61F6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pen-nib):hover {
-  color: #FF61F6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pencil-ruler) .fa-pencil-ruler {
-  color: #FF9A00;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-pencil-ruler):hover {
-  color: #FF9A00;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-image) .fa-image {
-  color: #31A8FF;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-image):hover {
-  color: #31A8FF;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-cloud) .fa-cloud {
-  color: #FF0000;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-cloud):hover::before {
-  background: linear-gradient(90deg, #FF0000 0%, #00FF00 33%, #0000FF 66%, #FF0000 100%);
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-google) .fa-google {
-  color: #4285F4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-google):hover {
-  color: #4285F4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-hotjar) .fa-hotjar {
-  color: #F04D4E;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-hotjar):hover {
-  color: #F04D4E;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt=TypeScript]):hover {
-  color: #3178C6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Tailwind CSS"]):hover {
-  color: #06B6D4;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Next.js"]):hover {
-  color: #000000;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Adobe XD"]):hover {
-  color: #FF61F6;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt="Adobe CC"]):hover::before {
-  background: linear-gradient(90deg, #FF0000 0%, #00FF00 33%, #0000FF 66%, #FF0000 100%);
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt=Photoshop]):hover {
-  color: #31A8FF;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.skill-svg-icon[alt=Illustrator]):hover {
-  color: #FF9A00;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-mobile-alt) .fa-mobile-alt {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-mobile-alt):hover {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-vial) .fa-vial {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-vial):hover {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-search) .fa-search {
-  color: #0073aa;
-}
-.bio-page .bio-skills-wrapper .skills-group .bio-skills li:has(.fa-search):hover {
-  color: #0073aa;
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li:focus {
+  border-color: #0073aa;
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.3);
+}
+.bio-page .bio-skills-wrapper .skills-group .bio-skills li:focus-visible {
+  border-color: #0073aa;
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.35);
 }
 @media (max-width: 900px) {
   .bio-page .bio-skills-wrapper {
@@ -7724,6 +8660,1801 @@ html.dark-mode .bio-page .bio-process li:hover {
     grid-template-columns: 1fr;
   }
 }
+
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group::before {
+  background: linear-gradient(90deg, #2c94da 0%, #0073aa 50%, #ab47bc 100%);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group h3 {
+  color: #2c94da;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 115, 170, 0.1) 100%);
+  color: #f4f3f4;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover {
+  background: linear-gradient(135deg, rgba(0, 115, 170, 0.2) 0%, rgba(142, 36, 170, 0.2) 100%);
+  border-left-color: #2c94da;
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(44, 148, 218, 0.3);
+  border-color: #2c94da;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li::before {
+  background: #2c94da;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover::before {
+  transform: scaleX(1);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li i {
+  color: #2c94da;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover i {
+  color: #ab47bc;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:focus {
+  border-color: #2c94da;
+  box-shadow: 0 8px 24px rgba(44, 148, 218, 0.4);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:focus-visible {
+  border-color: #2c94da;
+  box-shadow: 0 8px 24px rgba(44, 148, 218, 0.45);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-html5 {
+  color: #E34F26;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-html5::before {
+  background: #E34F26;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-html5:hover {
+  border-color: #E34F26;
+  box-shadow: 0 8px 24px rgba(227, 79, 38, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-html5:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-html5:focus-visible {
+  border-color: #E34F26;
+  box-shadow: 0 8px 24px rgba(227, 79, 38, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-html5::before {
+  background: #E34F26;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-html5:hover {
+  border-color: #E34F26;
+  box-shadow: 0 8px 24px rgba(227, 79, 38, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-html5:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-html5:focus-visible {
+  border-color: #E34F26;
+  box-shadow: 0 8px 24px rgba(227, 79, 38, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css3 {
+  color: #1572B6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css3::before {
+  background: #1572B6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css3:hover {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css3:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-css3:focus-visible {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css3::before {
+  background: #1572B6;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css3:hover {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css3:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css3:focus-visible {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css {
+  color: #1572B6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css::before {
+  background: #1572B6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css:hover {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-css:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-css:focus-visible {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css::before {
+  background: #1572B6;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css:hover {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-css:focus-visible {
+  border-color: #1572B6;
+  box-shadow: 0 8px 24px rgba(21, 114, 182, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-javascript {
+  color: #F7DF1E;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-javascript::before {
+  background: #F7DF1E;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-javascript:hover {
+  border-color: #F7DF1E;
+  box-shadow: 0 8px 24px rgba(247, 223, 30, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-javascript:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-javascript:focus-visible {
+  border-color: #F7DF1E;
+  box-shadow: 0 8px 24px rgba(247, 223, 30, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-javascript::before {
+  background: #F7DF1E;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-javascript:hover {
+  border-color: #F7DF1E;
+  box-shadow: 0 8px 24px rgba(247, 223, 30, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-javascript:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-javascript:focus-visible {
+  border-color: #F7DF1E;
+  box-shadow: 0 8px 24px rgba(247, 223, 30, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-typescript {
+  color: #3178C6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-typescript::before {
+  background: #3178C6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-typescript:hover {
+  border-color: #3178C6;
+  box-shadow: 0 8px 24px rgba(49, 120, 198, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-typescript:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-typescript:focus-visible {
+  border-color: #3178C6;
+  box-shadow: 0 8px 24px rgba(49, 120, 198, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-typescript::before {
+  background: #3178C6;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-typescript:hover {
+  border-color: #3178C6;
+  box-shadow: 0 8px 24px rgba(49, 120, 198, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-typescript:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-typescript:focus-visible {
+  border-color: #3178C6;
+  box-shadow: 0 8px 24px rgba(49, 120, 198, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-react {
+  color: #61DAFB;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-react::before {
+  background: #61DAFB;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-react:hover {
+  border-color: #61DAFB;
+  box-shadow: 0 8px 24px rgba(97, 218, 251, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-react:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-react:focus-visible {
+  border-color: #61DAFB;
+  box-shadow: 0 8px 24px rgba(97, 218, 251, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-react::before {
+  background: #61DAFB;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-react:hover {
+  border-color: #61DAFB;
+  box-shadow: 0 8px 24px rgba(97, 218, 251, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-react:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-react:focus-visible {
+  border-color: #61DAFB;
+  box-shadow: 0 8px 24px rgba(97, 218, 251, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vue {
+  color: #4FC08D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vue::before {
+  background: #4FC08D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vue:hover {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vue:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-vue:focus-visible {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vue::before {
+  background: #4FC08D;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vue:hover {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vue:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vue:focus-visible {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs {
+  color: #4FC08D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs::before {
+  background: #4FC08D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs:hover {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs:focus-visible {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs::before {
+  background: #4FC08D;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs:hover {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-vuejs:focus-visible {
+  border-color: #4FC08D;
+  box-shadow: 0 8px 24px rgba(79, 192, 141, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-angular {
+  color: #DD0031;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-angular::before {
+  background: #DD0031;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-angular:hover {
+  border-color: #DD0031;
+  box-shadow: 0 8px 24px rgba(221, 0, 49, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-angular:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-angular:focus-visible {
+  border-color: #DD0031;
+  box-shadow: 0 8px 24px rgba(221, 0, 49, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-angular::before {
+  background: #DD0031;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-angular:hover {
+  border-color: #DD0031;
+  box-shadow: 0 8px 24px rgba(221, 0, 49, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-angular:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-angular:focus-visible {
+  border-color: #DD0031;
+  box-shadow: 0 8px 24px rgba(221, 0, 49, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node {
+  color: #339933;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node::before {
+  background: #339933;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node:hover {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-node:focus-visible {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node::before {
+  background: #339933;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node:hover {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node:focus-visible {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node-js {
+  color: #339933;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node-js::before {
+  background: #339933;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node-js:hover {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-node-js:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-node-js:focus-visible {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node-js::before {
+  background: #339933;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node-js:hover {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node-js:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-node-js:focus-visible {
+  border-color: #339933;
+  box-shadow: 0 8px 24px rgba(51, 153, 51, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-php {
+  color: #777BB4;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-php::before {
+  background: #777BB4;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-php:hover {
+  border-color: #777BB4;
+  box-shadow: 0 8px 24px rgba(119, 123, 180, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-php:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-php:focus-visible {
+  border-color: #777BB4;
+  box-shadow: 0 8px 24px rgba(119, 123, 180, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-php::before {
+  background: #777BB4;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-php:hover {
+  border-color: #777BB4;
+  box-shadow: 0 8px 24px rgba(119, 123, 180, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-php:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-php:focus-visible {
+  border-color: #777BB4;
+  box-shadow: 0 8px 24px rgba(119, 123, 180, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-python {
+  color: #3776AB;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-python::before {
+  background: #3776AB;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-python:hover {
+  border-color: #3776AB;
+  box-shadow: 0 8px 24px rgba(55, 118, 171, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-python:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-python:focus-visible {
+  border-color: #3776AB;
+  box-shadow: 0 8px 24px rgba(55, 118, 171, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-python::before {
+  background: #3776AB;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-python:hover {
+  border-color: #3776AB;
+  box-shadow: 0 8px 24px rgba(55, 118, 171, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-python:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-python:focus-visible {
+  border-color: #3776AB;
+  box-shadow: 0 8px 24px rgba(55, 118, 171, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-java {
+  color: #ED8B00;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-java::before {
+  background: #ED8B00;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-java:hover {
+  border-color: #ED8B00;
+  box-shadow: 0 8px 24px rgba(237, 139, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-java:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-java:focus-visible {
+  border-color: #ED8B00;
+  box-shadow: 0 8px 24px rgba(237, 139, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-java::before {
+  background: #ED8B00;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-java:hover {
+  border-color: #ED8B00;
+  box-shadow: 0 8px 24px rgba(237, 139, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-java:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-java:focus-visible {
+  border-color: #ED8B00;
+  box-shadow: 0 8px 24px rgba(237, 139, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-dart {
+  color: #0175C2;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-dart::before {
+  background: #0175C2;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-dart:hover {
+  border-color: #0175C2;
+  box-shadow: 0 8px 24px rgba(1, 117, 194, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-dart:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-dart:focus-visible {
+  border-color: #0175C2;
+  box-shadow: 0 8px 24px rgba(1, 117, 194, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-dart::before {
+  background: #0175C2;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-dart:hover {
+  border-color: #0175C2;
+  box-shadow: 0 8px 24px rgba(1, 117, 194, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-dart:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-dart:focus-visible {
+  border-color: #0175C2;
+  box-shadow: 0 8px 24px rgba(1, 117, 194, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-rust {
+  color: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-rust::before {
+  background: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-rust:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-rust:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-rust:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-rust::before {
+  background: #000000;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-rust:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-rust:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-rust:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sass {
+  color: #CC6699;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sass::before {
+  background: #CC6699;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sass:hover {
+  border-color: #CC6699;
+  box-shadow: 0 8px 24px rgba(204, 102, 153, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sass:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-sass:focus-visible {
+  border-color: #CC6699;
+  box-shadow: 0 8px 24px rgba(204, 102, 153, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sass::before {
+  background: #CC6699;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sass:hover {
+  border-color: #CC6699;
+  box-shadow: 0 8px 24px rgba(204, 102, 153, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sass:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sass:focus-visible {
+  border-color: #CC6699;
+  box-shadow: 0 8px 24px rgba(204, 102, 153, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind {
+  color: #06B6D4;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind::before {
+  background: #06B6D4;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind:hover {
+  border-color: #06B6D4;
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind:focus-visible {
+  border-color: #06B6D4;
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind::before {
+  background: #06B6D4;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind:hover {
+  border-color: #06B6D4;
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-tailwind:focus-visible {
+  border-color: #06B6D4;
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap {
+  color: #7952B3;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap::before {
+  background: #7952B3;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap:hover {
+  border-color: #7952B3;
+  box-shadow: 0 8px 24px rgba(121, 82, 179, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap:focus-visible {
+  border-color: #7952B3;
+  box-shadow: 0 8px 24px rgba(121, 82, 179, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap::before {
+  background: #7952B3;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap:hover {
+  border-color: #7952B3;
+  box-shadow: 0 8px 24px rgba(121, 82, 179, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bootstrap:focus-visible {
+  border-color: #7952B3;
+  box-shadow: 0 8px 24px rgba(121, 82, 179, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-less {
+  color: #1D365D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-less::before {
+  background: #1D365D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-less:hover {
+  border-color: #1D365D;
+  box-shadow: 0 8px 24px rgba(29, 54, 93, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-less:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-less:focus-visible {
+  border-color: #1D365D;
+  box-shadow: 0 8px 24px rgba(29, 54, 93, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-less::before {
+  background: #1D365D;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-less:hover {
+  border-color: #1D365D;
+  box-shadow: 0 8px 24px rgba(29, 54, 93, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-less:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-less:focus-visible {
+  border-color: #1D365D;
+  box-shadow: 0 8px 24px rgba(29, 54, 93, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-webpack {
+  color: #8DD6F9;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-webpack::before {
+  background: #8DD6F9;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-webpack:hover {
+  border-color: #8DD6F9;
+  box-shadow: 0 8px 24px rgba(141, 214, 249, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-webpack:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-webpack:focus-visible {
+  border-color: #8DD6F9;
+  box-shadow: 0 8px 24px rgba(141, 214, 249, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-webpack::before {
+  background: #8DD6F9;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-webpack:hover {
+  border-color: #8DD6F9;
+  box-shadow: 0 8px 24px rgba(141, 214, 249, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-webpack:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-webpack:focus-visible {
+  border-color: #8DD6F9;
+  box-shadow: 0 8px 24px rgba(141, 214, 249, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gulp {
+  color: #CF4647;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gulp::before {
+  background: #CF4647;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gulp:hover {
+  border-color: #CF4647;
+  box-shadow: 0 8px 24px rgba(207, 70, 71, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gulp:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-gulp:focus-visible {
+  border-color: #CF4647;
+  box-shadow: 0 8px 24px rgba(207, 70, 71, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gulp::before {
+  background: #CF4647;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gulp:hover {
+  border-color: #CF4647;
+  box-shadow: 0 8px 24px rgba(207, 70, 71, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gulp:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gulp:focus-visible {
+  border-color: #CF4647;
+  box-shadow: 0 8px 24px rgba(207, 70, 71, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress {
+  color: #21759B;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress::before {
+  background: #21759B;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress:hover {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress:focus-visible {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress::before {
+  background: #21759B;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress:hover {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress:focus-visible {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple {
+  color: #21759B;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple::before {
+  background: #21759B;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple:hover {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple:focus-visible {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple::before {
+  background: #21759B;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple:hover {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-wordpress-simple:focus-visible {
+  border-color: #21759B;
+  box-shadow: 0 8px 24px rgba(33, 117, 155, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-drupal {
+  color: #0678BE;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-drupal::before {
+  background: #0678BE;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-drupal:hover {
+  border-color: #0678BE;
+  box-shadow: 0 8px 24px rgba(6, 120, 190, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-drupal:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-drupal:focus-visible {
+  border-color: #0678BE;
+  box-shadow: 0 8px 24px rgba(6, 120, 190, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-drupal::before {
+  background: #0678BE;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-drupal:hover {
+  border-color: #0678BE;
+  box-shadow: 0 8px 24px rgba(6, 120, 190, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-drupal:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-drupal:focus-visible {
+  border-color: #0678BE;
+  box-shadow: 0 8px 24px rgba(6, 120, 190, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-laravel {
+  color: #FF2D20;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-laravel::before {
+  background: #FF2D20;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-laravel:hover {
+  border-color: #FF2D20;
+  box-shadow: 0 8px 24px rgba(255, 45, 32, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-laravel:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-laravel:focus-visible {
+  border-color: #FF2D20;
+  box-shadow: 0 8px 24px rgba(255, 45, 32, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-laravel::before {
+  background: #FF2D20;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-laravel:hover {
+  border-color: #FF2D20;
+  box-shadow: 0 8px 24px rgba(255, 45, 32, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-laravel:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-laravel:focus-visible {
+  border-color: #FF2D20;
+  box-shadow: 0 8px 24px rgba(255, 45, 32, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy {
+  color: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy::before {
+  background: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy::before {
+  background: #000000;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-eleventy:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs {
+  color: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs::before {
+  background: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs::before {
+  background: #000000;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-nextjs:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-git {
+  color: #F05032;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-git::before {
+  background: #F05032;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-git:hover {
+  border-color: #F05032;
+  box-shadow: 0 8px 24px rgba(240, 80, 50, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-git:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-git:focus-visible {
+  border-color: #F05032;
+  box-shadow: 0 8px 24px rgba(240, 80, 50, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-git::before {
+  background: #F05032;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-git:hover {
+  border-color: #F05032;
+  box-shadow: 0 8px 24px rgba(240, 80, 50, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-git:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-git:focus-visible {
+  border-color: #F05032;
+  box-shadow: 0 8px 24px rgba(240, 80, 50, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-github {
+  color: #181717;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-github::before {
+  background: #181717;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-github:hover {
+  border-color: #181717;
+  box-shadow: 0 8px 24px rgba(24, 23, 23, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-github:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-github:focus-visible {
+  border-color: #181717;
+  box-shadow: 0 8px 24px rgba(24, 23, 23, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-github::before {
+  background: #181717;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-github:hover {
+  border-color: #181717;
+  box-shadow: 0 8px 24px rgba(24, 23, 23, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-github:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-github:focus-visible {
+  border-color: #181717;
+  box-shadow: 0 8px 24px rgba(24, 23, 23, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab {
+  color: #FC6D26;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab::before {
+  background: #FC6D26;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab:hover {
+  border-color: #FC6D26;
+  box-shadow: 0 8px 24px rgba(252, 109, 38, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab:focus-visible {
+  border-color: #FC6D26;
+  box-shadow: 0 8px 24px rgba(252, 109, 38, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab::before {
+  background: #FC6D26;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab:hover {
+  border-color: #FC6D26;
+  box-shadow: 0 8px 24px rgba(252, 109, 38, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gitlab:focus-visible {
+  border-color: #FC6D26;
+  box-shadow: 0 8px 24px rgba(252, 109, 38, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-npm {
+  color: #CB3837;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-npm::before {
+  background: #CB3837;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-npm:hover {
+  border-color: #CB3837;
+  box-shadow: 0 8px 24px rgba(203, 56, 55, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-npm:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-npm:focus-visible {
+  border-color: #CB3837;
+  box-shadow: 0 8px 24px rgba(203, 56, 55, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-npm::before {
+  background: #CB3837;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-npm:hover {
+  border-color: #CB3837;
+  box-shadow: 0 8px 24px rgba(203, 56, 55, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-npm:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-npm:focus-visible {
+  border-color: #CB3837;
+  box-shadow: 0 8px 24px rgba(203, 56, 55, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-yarn {
+  color: #2C8EBB;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-yarn::before {
+  background: #2C8EBB;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-yarn:hover {
+  border-color: #2C8EBB;
+  box-shadow: 0 8px 24px rgba(44, 142, 187, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-yarn:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-yarn:focus-visible {
+  border-color: #2C8EBB;
+  box-shadow: 0 8px 24px rgba(44, 142, 187, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-yarn::before {
+  background: #2C8EBB;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-yarn:hover {
+  border-color: #2C8EBB;
+  box-shadow: 0 8px 24px rgba(44, 142, 187, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-yarn:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-yarn:focus-visible {
+  border-color: #2C8EBB;
+  box-shadow: 0 8px 24px rgba(44, 142, 187, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-docker {
+  color: #2496ED;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-docker::before {
+  background: #2496ED;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-docker:hover {
+  border-color: #2496ED;
+  box-shadow: 0 8px 24px rgba(36, 150, 237, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-docker:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-docker:focus-visible {
+  border-color: #2496ED;
+  box-shadow: 0 8px 24px rgba(36, 150, 237, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-docker::before {
+  background: #2496ED;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-docker:hover {
+  border-color: #2496ED;
+  box-shadow: 0 8px 24px rgba(36, 150, 237, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-docker:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-docker:focus-visible {
+  border-color: #2496ED;
+  box-shadow: 0 8px 24px rgba(36, 150, 237, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins {
+  color: #D24939;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins::before {
+  background: #D24939;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins:hover {
+  border-color: #D24939;
+  box-shadow: 0 8px 24px rgba(210, 73, 57, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins:focus-visible {
+  border-color: #D24939;
+  box-shadow: 0 8px 24px rgba(210, 73, 57, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins::before {
+  background: #D24939;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins:hover {
+  border-color: #D24939;
+  box-shadow: 0 8px 24px rgba(210, 73, 57, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jenkins:focus-visible {
+  border-color: #D24939;
+  box-shadow: 0 8px 24px rgba(210, 73, 57, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jira {
+  color: #0052CC;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jira::before {
+  background: #0052CC;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jira:hover {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jira:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-jira:focus-visible {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jira::before {
+  background: #0052CC;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jira:hover {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jira:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jira:focus-visible {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-confluence {
+  color: #172B4D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-confluence::before {
+  background: #172B4D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-confluence:hover {
+  border-color: #172B4D;
+  box-shadow: 0 8px 24px rgba(23, 43, 77, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-confluence:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-confluence:focus-visible {
+  border-color: #172B4D;
+  box-shadow: 0 8px 24px rgba(23, 43, 77, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-confluence::before {
+  background: #172B4D;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-confluence:hover {
+  border-color: #172B4D;
+  box-shadow: 0 8px 24px rgba(23, 43, 77, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-confluence:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-confluence:focus-visible {
+  border-color: #172B4D;
+  box-shadow: 0 8px 24px rgba(23, 43, 77, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket {
+  color: #0052CC;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket::before {
+  background: #0052CC;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket:hover {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket:focus-visible {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket::before {
+  background: #0052CC;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket:hover {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-bitbucket:focus-visible {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree {
+  color: #0052CC;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree::before {
+  background: #0052CC;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree:hover {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree:focus-visible {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree::before {
+  background: #0052CC;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree:hover {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sourcetree:focus-visible {
+  border-color: #0052CC;
+  box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-openai {
+  color: #412991;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-openai::before {
+  background: #412991;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-openai:hover {
+  border-color: #412991;
+  box-shadow: 0 8px 24px rgba(65, 41, 145, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-openai:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-openai:focus-visible {
+  border-color: #412991;
+  box-shadow: 0 8px 24px rgba(65, 41, 145, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-openai::before {
+  background: #412991;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-openai:hover {
+  border-color: #412991;
+  box-shadow: 0 8px 24px rgba(65, 41, 145, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-openai:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-openai:focus-visible {
+  border-color: #412991;
+  box-shadow: 0 8px 24px rgba(65, 41, 145, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-figma {
+  color: #F24E1E;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-figma::before {
+  background: #F24E1E;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-figma:hover {
+  border-color: #F24E1E;
+  box-shadow: 0 8px 24px rgba(242, 78, 30, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-figma:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-figma:focus-visible {
+  border-color: #F24E1E;
+  box-shadow: 0 8px 24px rgba(242, 78, 30, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-figma::before {
+  background: #F24E1E;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-figma:hover {
+  border-color: #F24E1E;
+  box-shadow: 0 8px 24px rgba(242, 78, 30, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-figma:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-figma:focus-visible {
+  border-color: #F24E1E;
+  box-shadow: 0 8px 24px rgba(242, 78, 30, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sketch {
+  color: #F7B500;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sketch::before {
+  background: #F7B500;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sketch:hover {
+  border-color: #F7B500;
+  box-shadow: 0 8px 24px rgba(247, 181, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-sketch:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-sketch:focus-visible {
+  border-color: #F7B500;
+  box-shadow: 0 8px 24px rgba(247, 181, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sketch::before {
+  background: #F7B500;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sketch:hover {
+  border-color: #F7B500;
+  box-shadow: 0 8px 24px rgba(247, 181, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sketch:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-sketch:focus-visible {
+  border-color: #F7B500;
+  box-shadow: 0 8px 24px rgba(247, 181, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator {
+  color: #FF9A00;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator::before {
+  background: #FF9A00;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator:hover {
+  border-color: #FF9A00;
+  box-shadow: 0 8px 24px rgba(255, 154, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator:focus-visible {
+  border-color: #FF9A00;
+  box-shadow: 0 8px 24px rgba(255, 154, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator::before {
+  background: #FF9A00;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator:hover {
+  border-color: #FF9A00;
+  box-shadow: 0 8px 24px rgba(255, 154, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-illustrator:focus-visible {
+  border-color: #FF9A00;
+  box-shadow: 0 8px 24px rgba(255, 154, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop {
+  color: #31A8FF;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop::before {
+  background: #31A8FF;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop:hover {
+  border-color: #31A8FF;
+  box-shadow: 0 8px 24px rgba(49, 168, 255, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop:focus-visible {
+  border-color: #31A8FF;
+  box-shadow: 0 8px 24px rgba(49, 168, 255, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop::before {
+  background: #31A8FF;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop:hover {
+  border-color: #31A8FF;
+  box-shadow: 0 8px 24px rgba(49, 168, 255, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-photoshop:focus-visible {
+  border-color: #31A8FF;
+  box-shadow: 0 8px 24px rgba(49, 168, 255, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-indesign {
+  color: #FF3366;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-indesign::before {
+  background: #FF3366;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-indesign:hover {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-indesign:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-indesign:focus-visible {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-indesign::before {
+  background: #FF3366;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-indesign:hover {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-indesign:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-indesign:focus-visible {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-xd {
+  color: #FF61F6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-xd::before {
+  background: #FF61F6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-xd:hover {
+  border-color: #FF61F6;
+  box-shadow: 0 8px 24px rgba(255, 97, 246, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-xd:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-xd:focus-visible {
+  border-color: #FF61F6;
+  box-shadow: 0 8px 24px rgba(255, 97, 246, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-xd::before {
+  background: #FF61F6;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-xd:hover {
+  border-color: #FF61F6;
+  box-shadow: 0 8px 24px rgba(255, 97, 246, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-xd:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-xd:focus-visible {
+  border-color: #FF61F6;
+  box-shadow: 0 8px 24px rgba(255, 97, 246, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-invision {
+  color: #FF3366;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-invision::before {
+  background: #FF3366;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-invision:hover {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-invision:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-invision:focus-visible {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-invision::before {
+  background: #FF3366;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-invision:hover {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-invision:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-invision:focus-visible {
+  border-color: #FF3366;
+  box-shadow: 0 8px 24px rgba(255, 51, 102, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-codepen {
+  color: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-codepen::before {
+  background: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-codepen:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-codepen:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-codepen:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-codepen::before {
+  background: #000000;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-codepen:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-codepen:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-codepen:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-markdown {
+  color: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-markdown::before {
+  background: #000000;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-markdown:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-markdown:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-markdown:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-markdown::before {
+  background: #000000;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-markdown:hover {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-markdown:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-markdown:focus-visible {
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-golang {
+  color: #00ADD8;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-golang::before {
+  background: #00ADD8;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-golang:hover {
+  border-color: #00ADD8;
+  box-shadow: 0 8px 24px rgba(0, 173, 216, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-golang:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-golang:focus-visible {
+  border-color: #00ADD8;
+  box-shadow: 0 8px 24px rgba(0, 173, 216, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-golang::before {
+  background: #00ADD8;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-golang:hover {
+  border-color: #00ADD8;
+  box-shadow: 0 8px 24px rgba(0, 173, 216, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-golang:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-golang:focus-visible {
+  border-color: #00ADD8;
+  box-shadow: 0 8px 24px rgba(0, 173, 216, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank {
+  color: #2EC866;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank::before {
+  background: #2EC866;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank:hover {
+  border-color: #2EC866;
+  box-shadow: 0 8px 24px rgba(46, 200, 102, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank:focus-visible {
+  border-color: #2EC866;
+  box-shadow: 0 8px 24px rgba(46, 200, 102, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank::before {
+  background: #2EC866;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank:hover {
+  border-color: #2EC866;
+  box-shadow: 0 8px 24px rgba(46, 200, 102, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hackerrank:focus-visible {
+  border-color: #2EC866;
+  box-shadow: 0 8px 24px rgba(46, 200, 102, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode {
+  color: #2962FF;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode::before {
+  background: #2962FF;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode:hover {
+  border-color: #2962FF;
+  box-shadow: 0 8px 24px rgba(41, 98, 255, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode:focus-visible {
+  border-color: #2962FF;
+  box-shadow: 0 8px 24px rgba(41, 98, 255, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode::before {
+  background: #2962FF;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode:hover {
+  border-color: #2962FF;
+  box-shadow: 0 8px 24px rgba(41, 98, 255, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hashnode:focus-visible {
+  border-color: #2962FF;
+  box-shadow: 0 8px 24px rgba(41, 98, 255, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-linux {
+  color: #FCC624;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-linux::before {
+  background: #FCC624;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-linux:hover {
+  border-color: #FCC624;
+  box-shadow: 0 8px 24px rgba(252, 198, 36, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-linux:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-linux:focus-visible {
+  border-color: #FCC624;
+  box-shadow: 0 8px 24px rgba(252, 198, 36, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-linux::before {
+  background: #FCC624;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-linux:hover {
+  border-color: #FCC624;
+  box-shadow: 0 8px 24px rgba(252, 198, 36, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-linux:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-linux:focus-visible {
+  border-color: #FCC624;
+  box-shadow: 0 8px 24px rgba(252, 198, 36, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jquery {
+  color: #0769AD;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jquery::before {
+  background: #0769AD;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jquery:hover {
+  border-color: #0769AD;
+  box-shadow: 0 8px 24px rgba(7, 105, 173, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-jquery:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-jquery:focus-visible {
+  border-color: #0769AD;
+  box-shadow: 0 8px 24px rgba(7, 105, 173, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jquery::before {
+  background: #0769AD;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jquery:hover {
+  border-color: #0769AD;
+  box-shadow: 0 8px 24px rgba(7, 105, 173, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jquery:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-jquery:focus-visible {
+  border-color: #0769AD;
+  box-shadow: 0 8px 24px rgba(7, 105, 173, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-magento {
+  color: #E45E34;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-magento::before {
+  background: #E45E34;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-magento:hover {
+  border-color: #E45E34;
+  box-shadow: 0 8px 24px rgba(228, 94, 52, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-magento:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-magento:focus-visible {
+  border-color: #E45E34;
+  box-shadow: 0 8px 24px rgba(228, 94, 52, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-magento::before {
+  background: #E45E34;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-magento:hover {
+  border-color: #E45E34;
+  box-shadow: 0 8px 24px rgba(228, 94, 52, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-magento:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-magento:focus-visible {
+  border-color: #E45E34;
+  box-shadow: 0 8px 24px rgba(228, 94, 52, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-aws {
+  color: #FF9900;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-aws::before {
+  background: #FF9900;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-aws:hover {
+  border-color: #FF9900;
+  box-shadow: 0 8px 24px rgba(255, 153, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-aws:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-aws:focus-visible {
+  border-color: #FF9900;
+  box-shadow: 0 8px 24px rgba(255, 153, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-aws::before {
+  background: #FF9900;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-aws:hover {
+  border-color: #FF9900;
+  box-shadow: 0 8px 24px rgba(255, 153, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-aws:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-aws:focus-visible {
+  border-color: #FF9900;
+  box-shadow: 0 8px 24px rgba(255, 153, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-azure {
+  color: #104581;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-azure::before {
+  background: #104581;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-azure:hover {
+  border-color: #104581;
+  box-shadow: 0 8px 24px rgba(16, 69, 129, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-azure:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-azure:focus-visible {
+  border-color: #104581;
+  box-shadow: 0 8px 24px rgba(16, 69, 129, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-azure::before {
+  background: #104581;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-azure:hover {
+  border-color: #104581;
+  box-shadow: 0 8px 24px rgba(16, 69, 129, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-azure:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-azure:focus-visible {
+  border-color: #104581;
+  box-shadow: 0 8px 24px rgba(16, 69, 129, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar {
+  color: #FF3C00;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar::before {
+  background: #FF3C00;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar:hover {
+  border-color: #FF3C00;
+  box-shadow: 0 8px 24px rgba(255, 60, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar:focus-visible {
+  border-color: #FF3C00;
+  box-shadow: 0 8px 24px rgba(255, 60, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar::before {
+  background: #FF3C00;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar:hover {
+  border-color: #FF3C00;
+  box-shadow: 0 8px 24px rgba(255, 60, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-hotjar:focus-visible {
+  border-color: #FF3C00;
+  box-shadow: 0 8px 24px rgba(255, 60, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems {
+  color: #967BB6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems::before {
+  background: #967BB6;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems:hover {
+  border-color: #967BB6;
+  box-shadow: 0 8px 24px rgba(150, 123, 182, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems:focus-visible {
+  border-color: #967BB6;
+  box-shadow: 0 8px 24px rgba(150, 123, 182, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems::before {
+  background: #967BB6;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems:hover {
+  border-color: #967BB6;
+  box-shadow: 0 8px 24px rgba(150, 123, 182, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-design-systems:focus-visible {
+  border-color: #967BB6;
+  box-shadow: 0 8px 24px rgba(150, 123, 182, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics {
+  color: #A50E0E;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics::before {
+  background: #A50E0E;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics:hover {
+  border-color: #A50E0E;
+  box-shadow: 0 8px 24px rgba(165, 14, 14, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics:focus-visible {
+  border-color: #A50E0E;
+  box-shadow: 0 8px 24px rgba(165, 14, 14, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics::before {
+  background: #A50E0E;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics:hover {
+  border-color: #A50E0E;
+  box-shadow: 0 8px 24px rgba(165, 14, 14, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-google-analytics:focus-visible {
+  border-color: #A50E0E;
+  box-shadow: 0 8px 24px rgba(165, 14, 14, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gtm {
+  color: #0D652D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gtm::before {
+  background: #0D652D;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gtm:hover {
+  border-color: #0D652D;
+  box-shadow: 0 8px 24px rgba(13, 101, 45, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-gtm:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-gtm:focus-visible {
+  border-color: #0D652D;
+  box-shadow: 0 8px 24px rgba(13, 101, 45, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gtm::before {
+  background: #0D652D;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gtm:hover {
+  border-color: #0D652D;
+  box-shadow: 0 8px 24px rgba(13, 101, 45, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gtm:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-gtm:focus-visible {
+  border-color: #0D652D;
+  box-shadow: 0 8px 24px rgba(13, 101, 45, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing {
+  color: #4285F4;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing::before {
+  background: #4285F4;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing:hover {
+  border-color: #4285F4;
+  box-shadow: 0 8px 24px rgba(66, 133, 244, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing:focus-visible {
+  border-color: #4285F4;
+  box-shadow: 0 8px 24px rgba(66, 133, 244, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing::before {
+  background: #4285F4;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing:hover {
+  border-color: #4285F4;
+  box-shadow: 0 8px 24px rgba(66, 133, 244, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-a-b-testing:focus-visible {
+  border-color: #4285F4;
+  box-shadow: 0 8px 24px rgba(66, 133, 244, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-seo {
+  color: #FBBC04;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-seo::before {
+  background: #FBBC04;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-seo:hover {
+  border-color: #FBBC04;
+  box-shadow: 0 8px 24px rgba(251, 188, 4, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-seo:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-seo:focus-visible {
+  border-color: #FBBC04;
+  box-shadow: 0 8px 24px rgba(251, 188, 4, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-seo::before {
+  background: #FBBC04;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-seo:hover {
+  border-color: #FBBC04;
+  box-shadow: 0 8px 24px rgba(251, 188, 4, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-seo:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-seo:focus-visible {
+  border-color: #FBBC04;
+  box-shadow: 0 8px 24px rgba(251, 188, 4, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design {
+  color: #E37400;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design::before {
+  background: #E37400;
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design:hover {
+  border-color: #E37400;
+  box-shadow: 0 8px 24px rgba(227, 116, 0, 0.2);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design:focus-visible {
+  border-color: #E37400;
+  box-shadow: 0 8px 24px rgba(227, 116, 0, 0.3);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design::before {
+  background: #E37400;
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design:hover {
+  border-color: #E37400;
+  box-shadow: 0 8px 24px rgba(227, 116, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-responsive-design:focus-visible {
+  border-color: #E37400;
+  box-shadow: 0 8px 24px rgba(227, 116, 0, 0.4);
+}
+
+.bio-page .bio-skills-wrapper .bio-skills li.skill-adobe::before {
+  background: linear-gradient(135deg, #ff0000 0%, #ff8c00 15%, #ffff00 30%, #008000 50%, #0000ff 70%, #4b0082 85%, #ee82ee 100%);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-adobe:hover {
+  border-color: #ff0000;
+  box-shadow: 0 8px 24px rgba(255, 0, 0, 0.25);
+}
+.bio-page .bio-skills-wrapper .bio-skills li.skill-adobe:focus, .bio-page .bio-skills-wrapper .bio-skills li.skill-adobe:focus-visible {
+  border-color: #ff0000;
+  box-shadow: 0 8px 24px rgba(255, 0, 0, 0.35);
+}
+
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-adobe::before {
+  background: linear-gradient(135deg, #ff0000 0%, #ff8c00 15%, #ffff00 30%, #008000 50%, #0000ff 70%, #4b0082 85%, #ee82ee 100%);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-adobe:hover {
+  border-color: #ff8c00;
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.3);
+}
+html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-adobe:focus, html.dark-mode .bio-page .bio-skills-wrapper .bio-skills li.skill-adobe:focus-visible {
+  border-color: #ff8c00;
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.4);
+}
+
 .bio-page .bio-connect {
   max-width: 1200px;
   margin: 60px auto 0;
@@ -7744,17 +10475,31 @@ html.dark-mode .bio-page .bio-process li:hover {
   margin: 0 auto;
 }
 .bio-page .bio-connect .social-links .social-link {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e3e3e3;
+  box-shadow: none;
+  cursor: pointer;
+}
+.bio-page .bio-connect .social-links .social-link:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 115, 170, 0.15);
+  border-color: #0073aa;
+}
+.bio-page .bio-connect .social-links .social-link:active {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 115, 170, 0.12);
+}
+.bio-page .bio-connect .social-links .social-link {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 20px;
-  background: #ffffff;
-  border: 2px solid #e3e3e3;
-  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -7780,19 +10525,8 @@ html.dark-mode .bio-page .bio-process li:hover {
   color: #333333;
   transition: color 0.3s ease;
 }
-.bio-page .bio-connect .social-links .social-link:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 32px rgba(0, 115, 170, 0.13);
-  border-color: currentColor;
-}
 .bio-page .bio-connect .social-links .social-link:hover::before {
   transform: scaleX(1);
-}
-.bio-page .bio-connect .social-links .social-link:hover i {
-  transform: scale(1.15);
-}
-.bio-page .bio-connect .social-links .social-link:hover span {
-  color: currentColor;
 }
 .bio-page .bio-connect .social-links .social-link:focus {
   outline: 3px solid currentColor;
@@ -7829,22 +10563,7 @@ html.dark-mode .bio-page .bio-process li:hover {
     grid-template-columns: 1fr;
   }
 }
-html.dark-mode .bio-page .bio-process li {
-  background: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.1);
-}
-html.dark-mode .bio-page .bio-process li .process-image {
-  background: rgba(44, 148, 218, 0.08);
-}
-html.dark-mode .bio-page .bio-process li:hover {
-  border-color: #2c94da;
-}
-html.dark-mode .bio-page .bio-process li .process-content strong {
-  color: #2c94da;
-}
-html.dark-mode .bio-page .bio-process li::before {
-  background: linear-gradient(135deg, #2c94da 0%, #0073aa 100%);
-}
+
 html.dark-mode .bio-page .bio-connect h3 {
   color: #2c94da;
 }
@@ -7855,78 +10574,8 @@ html.dark-mode .bio-page .bio-connect .social-links .social-link {
 html.dark-mode .bio-page .bio-connect .social-links .social-link span {
   color: #f4f3f4;
 }
-html.dark-mode .bio-page .bio-connect .social-links .social-link.github {
+html.dark-mode .bio-page .bio-connect .social-links .social-link.github, html.dark-mode .bio-page .bio-connect .social-links .social-link.codepen, html.dark-mode .bio-page .bio-connect .social-links .social-link.twitter {
   color: #FFFFFF;
-}
-html.dark-mode .bio-page .bio-connect .social-links .social-link.codepen {
-  color: #FFFFFF;
-}
-html.dark-mode .bio-page .bio-connect .social-links .social-link.twitter {
-  color: #FFFFFF;
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group {
-  background: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.1);
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group::before {
-  background: linear-gradient(90deg, #2c94da 0%, #0073aa 50%, #ab47bc 100%);
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group h3 {
-  color: #2c94da;
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 115, 170, 0.1) 100%);
-  color: #f4f3f4;
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover {
-  background: linear-gradient(135deg, rgba(0, 115, 170, 0.2) 0%, rgba(142, 36, 170, 0.2) 100%);
-  border-left-color: #2c94da;
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li i {
-  color: #2c94da;
-}
-html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover i {
-  color: #ab47bc;
-}
-@media (max-width: 1200px) {
-  .bio-page .bio-skills-wrapper {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
-  }
-}
-@media (max-width: 900px) {
-  .bio-page .bio-skills-wrapper {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: 24px;
-  }
-}
-
-.btn {
-  display: inline-block;
-  margin-right: 10px;
-  margin-top: 8px;
-  background-color: #0073aa;
-  border-radius: 4px;
-  color: #ffffff;
-  border: solid 1px #005177;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 12px 20px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background 0.3s ease;
-}
-.btn:hover {
-  background: #005177;
-}
-.btn {
-  font-size: 14px;
-}
-.btn i {
-  margin-right: 6px;
-  font-size: 16px;
-  vertical-align: middle;
 }
 
 @media (max-width: 900px) {
@@ -7998,6 +10647,19 @@ html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover 
   }
   .bio-section .bio-process li .process-content strong {
     font-size: 0.875rem;
+  }
+}
+@media (max-width: 1200px) {
+  .bio-skills-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .bio-skills-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 24px;
   }
 }
 /*!
@@ -8203,6 +10865,16 @@ html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover 
   margin-bottom: 40px;
   animation: slideInDown 0.3s ease;
 }
+.form-status.success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+  color: #16a34a;
+}
+.form-status.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #dc2626;
+}
 
 .contact-form {
   display: flex;
@@ -8239,6 +10911,26 @@ html.dark-mode .bio-page .bio-skills-wrapper .skills-group .bio-skills li:hover 
   color: #0073aa;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+.contact-form .form-field.error input,
+.contact-form .form-field.error textarea {
+  border-color: #ef4444;
+}
+.contact-form .form-field.error input:focus,
+.contact-form .form-field.error textarea:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+.contact-form .form-field.error label {
+  color: #ef4444;
+}
+.contact-form .form-field .field-error {
+  display: block;
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin-top: 4px;
+  font-weight: 500;
+  animation: slideInDown 0.2s ease;
 }
 .contact-form .form-field input,
 .contact-form .form-field textarea {

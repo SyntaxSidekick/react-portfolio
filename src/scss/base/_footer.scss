@@ -6,17 +6,22 @@
  * Dependencies: Uses variables and mixins from abstracts.
  * Last updated: 2025-09-11
  */
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 // Footer
 .site-footer {
   color: $text-muted;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  padding: 40px 0;
-  box-shadow:
-    0 -12px 40px rgba(0, 0, 0, 0.15),
-    0 -4px 20px rgba(142, 36, 170, 0.1);
+  // Preserve original dark gradient using dark tokens where possible
+  background: linear-gradient(
+    135deg,
+    $dark-bg 0%,
+    $dark-bg-secondary 50%,
+    #0f3460 100%
+  );
+  padding: $padding-huge 0; // 40px 0
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.15),
+    0 -4px 20px rgba($brand-accent, 0.1);
   overflow: hidden;
   position: relative;
   width: 100vw;
@@ -29,13 +34,17 @@
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(142, 36, 170, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(75, 85, 205, 0.05) 0%, transparent 50%);
+    inset: 0;
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba($brand-accent, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 80%,
+        rgba($brand-primary-light, 0.05) 0%,
+        transparent 50%
+      );
     pointer-events: none;
   }
 
@@ -45,7 +54,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 60px;
+    gap: $gap-xl; // 60px
     flex-wrap: wrap;
     position: relative;
     z-index: 1;
@@ -60,26 +69,32 @@
       width: 220px;
       height: 48px;
       background: image-set(
-        url(../assets/images/riad-kilani-logo.webp) type("image/webp"),
-        url(../assets/images/riad-kilani-logo.png) type("image/png")
-      ) no-repeat center center;
+          url(../assets/images/riad-kilani-logo.webp) type("image/webp"),
+          url(../assets/images/riad-kilani-logo.png) type("image/png")
+        )
+        center/contain no-repeat;
       background: -webkit-image-set(
-        url(../assets/images/riad-kilani-logo.webp) 1x,
-        url(../assets/images/riad-kilani-logo.png) 1x
-      ) no-repeat center center;
-      background-size: contain;
+          url(../assets/images/riad-kilani-logo.webp) 1x,
+          url(../assets/images/riad-kilani-logo.png) 1x
+        )
+        center/contain no-repeat;
       overflow: hidden;
-      text-indent: -1000px;      
-      filter: drop-shadow(0 3px 12px rgba($accent, 0.2));
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-indent: -1000px;
+      filter: drop-shadow(0 3px 12px rgba($brand-accent, 0.2));
+      @include smooth-transition(all, 0.3s, cubic-bezier(0.4, 0, 0.2, 1));
       position: relative;
 
       &::after {
         content: "";
         position: absolute;
         inset: -4px;
-        background: linear-gradient(45deg, transparent, rgba(142, 36, 170, 0.2), transparent);
-        border-radius: 8px;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba($brand-accent, 0.2),
+          transparent
+        );
+        border-radius: $radius-lg;
         opacity: 0;
         transition: opacity 0.3s ease;
         z-index: -1;
@@ -88,7 +103,6 @@
       &:hover {
         filter: drop-shadow(0 6px 20px rgba($primary, 0.3));
         transform: translateY(-2px);
-
         &::after {
           opacity: 1;
         }
@@ -98,9 +112,9 @@
     p {
       font-size: $font-size-base;
       color: $overlay-white-medium;
-      margin-top: 8px;
-      letter-spacing: 0.8px;
-      font-weight: 500;
+      margin-top: $space-md; // 12px instead of 8 for scale consistency
+      letter-spacing: 0.05em; // ~0.8px
+      font-weight: $weight-medium;
       text-transform: uppercase;
     }
   }
@@ -117,42 +131,41 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 16px;
+      gap: $space-lg; // 16px
       text-transform: uppercase;
       font-size: $font-size-base;
-
       a {
         color: $overlay-white-medium;
         text-decoration: none;
-        font-weight: 600;
-        letter-spacing: 1px;
-        padding: 8px 16px;
+        font-weight: $weight-semibold;
+        letter-spacing: 0.0625rem; // 1px
+        padding: $padding-sm $padding-lg; // 8px 16px
         border-radius: 6px;
         background: $overlay-white-light;
         backdrop-filter: blur(10px);
         border: 1px solid $overlay-white-light;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        @include smooth-transition(all, 0.3s, cubic-bezier(0.4, 0, 0.2, 1));
         position: relative;
         overflow: hidden;
-
         &::before {
           content: "";
           position: absolute;
-          top: 0;
+          inset: 0;
           left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(142, 36, 170, 0.3), transparent);
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba($brand-accent, 0.3),
+            transparent
+          );
           transition: left 0.5s ease;
         }
-
         &:hover {
           color: $color-text-inverse;
           background: $brand-accent-100;
           border-color: $brand-accent-200;
           transform: translateX(8px);
-          box-shadow: 0 4px 15px rgba(142, 36, 170, 0.2);
-
+          box-shadow: 0 4px 15px rgba($brand-accent, 0.2);
           &::before {
             left: 100%;
           }
@@ -168,11 +181,11 @@
     color: $overlay-white-medium;
 
     p {
-      margin-bottom: 12px;
+      margin-bottom: $space-md; // 12px
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 0;
+      gap: $space-md; // 12px
+      padding: $padding-sm 0; // 8px 0
 
       i {
         font-size: 18px;
@@ -184,8 +197,8 @@
       a {
         color: $overlay-white-heavy;
         text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
+        font-weight: $weight-medium;
+        @include smooth-transition(all, 0.3s);
 
         &:hover {
           color: $brand-accent;
@@ -195,13 +208,13 @@
     }
 
     .footer-title {
-      font-weight: 700;
+      font-weight: $weight-bold;
       color: $color-text-inverse;
-      margin-bottom: 16px;
+      margin-bottom: $space-lg; // 16px
       font-size: $font-size-md;
-      letter-spacing: 1px;
+      letter-spacing: 0.0625rem;
       text-transform: uppercase;
-      background: linear-gradient(45deg, #8e24aa, #ba68c8);
+      background: linear-gradient(45deg, $brand-accent, $brand-accent-light);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -218,12 +231,16 @@
         justify-content: center;
         color: $overlay-white-medium;
         font-size: 20px;
-        background: linear-gradient(135deg, $brand-accent-100, $brand-primary-100);
+        background: linear-gradient(
+          135deg,
+          $brand-accent-100,
+          $brand-primary-100
+        );
         border: 1px solid $overlay-white-light;
         border-radius: 50%;
         width: 44px;
         height: 44px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        @include smooth-transition(all, 0.3s, cubic-bezier(0.4, 0, 0.2, 1));
         position: relative;
         overflow: hidden;
 
@@ -231,7 +248,11 @@
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(45deg, #8e24aa, #ba68c8);
+          background: linear-gradient(
+            45deg,
+            $brand-accent,
+            $brand-accent-light
+          );
           opacity: 0;
           transition: opacity 0.3s ease;
         }
@@ -240,7 +261,7 @@
           content: "";
           position: absolute;
           inset: 2px;
-          background: linear-gradient(135deg, #1a1a2e, #16213e);
+          background: linear-gradient(135deg, $dark-bg, $dark-bg-secondary);
           border-radius: 50%;
           transition: all 0.3s ease;
         }
@@ -254,7 +275,6 @@
           color: $color-text-inverse;
           transform: translateY(-3px) scale(1.1);
           box-shadow: 0 8px 25px $brand-accent-200;
-
           &::before {
             opacity: 1;
           }
@@ -266,10 +286,10 @@
   .footer-bottom {
     width: 100%;
     text-align: center;
-    margin-top: 32px;
+    margin-top: $space-xxl; // 24px (was 32px) for vertical rhythm; adjust if needed
     font-size: $font-size-sm;
     color: $text-muted;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125rem; // 0.5px
     opacity: 0.8;
   }
 }
@@ -283,10 +303,10 @@
 
 // Responsive styles
 @media (max-width: $bp-md) {
-  footer .container {
+  .site-footer .container {
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: $gap-lg; // 40px
     padding: 0 20px;
 
     .site-branding {
@@ -312,7 +332,7 @@
 
         a {
           padding: 6px 12px;
-          font-size: 14px;
+          font-size: $font-size-sm;
         }
       }
     }
@@ -337,7 +357,7 @@
 }
 
 @media (max-width: $bp-sm) {
-  footer {
+  .site-footer {
     padding: 18px 2px;
 
     .container {
@@ -354,7 +374,6 @@
       nav ul {
         gap: 8px;
         font-size: 12px;
-
         a {
           padding: 4px 8px;
           font-size: 12px;

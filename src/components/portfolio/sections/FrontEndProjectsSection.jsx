@@ -13,7 +13,7 @@ const FrontEndProjectsSection = ({ projects, projectRefs, onProjectClick, show }
       <div className="section-content">
         <div className="projects-grid">
           {projects.map((project, idx) => (
-            <div key={idx} ref={(el) => (projectRefs.current[idx] = el)}>
+            <div key={`project-${idx}-${project.title.replace(/\s+/g, '-').toLowerCase()}`} ref={(el) => (projectRefs.current[idx] = el)}>
               <ProjectCard
                 project={project}
                 index={idx}

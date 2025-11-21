@@ -804,6 +804,7 @@ export const codepenProjects = [
     "description": "Creative UI experiment with animations and interactions",
     "url": "https://codepen.io/SyntaxSidekick/pen/myVXvdQ",
     "embedUrl": "https://codepen.io/SyntaxSidekick/embed/myVXvdQ?default-tab=result",
+    "previewVideo": "/assets/previews/interactive-component.mp4",
     "tags": [
       "Animation",
       "Interactive",

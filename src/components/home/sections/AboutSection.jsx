@@ -70,7 +70,7 @@ const AboutSection = ({ years }) => {
               title="Learn More About Me"
               subtitle="View my full bio, process, and complete skillset"
               ariaLabel="View my complete bio, skills, and experience"
-              className="bio-cta-button"
+              variant="bio"
             />
           </motion.div>
         </motion.div>

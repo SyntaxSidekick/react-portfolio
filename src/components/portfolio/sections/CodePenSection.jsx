@@ -12,27 +12,43 @@ const CodePenSection = ({ codepenProjects, show }) => {
       </header>
       <div className="section-content">
         <div className="codepen-grid">
-          {codepenProjects.map((pen) => (
-            <article key={pen.id} className="codepen-card">
+          {codepenProjects.map((pen, index) => (
+            <article key={`codepen-${index}-${pen.title.replace(/\s+/g, '-').toLowerCase()}`} className="codepen-card">
               <div className="codepen-embed">
-                <iframe
-                  height="400"
-                  style={{ width: '100%' }}
-                  scrolling="no"
-                  title={pen.title}
-                  src={pen.embedUrl}
-                  frameBorder="no"
-                  loading="lazy"
-                  allowFullScreen={true}
-                >
-                </iframe>
+                {import.meta.env.VITE_DISABLE_CODEPEN_IFRAMES === 'true' ? (
+                  <div className="codepen-embed-fallback">
+                    <p>{pen.previewVideo ? 'Embed disabled (showing preview only).' : 'Embeds disabled due to strict CSP.'}</p>
+                    <a 
+                      href={pen.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn-secondary"
+                      title={`Open ${pen.title} on CodePen`}
+                    >
+                      Open on CodePen
+                    </a>
+                  </div>
+                ) : (
+                  <iframe
+                    height="400"
+                    style={{ width: '100%' }}
+                    scrolling="no"
+                    title={pen.title}
+                    src={`${pen.embedUrl}${pen.embedUrl.includes('?') ? '&' : '?'}editable=false&default-tab=result`}
+                    frameBorder="0"
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allow="clipboard-write; fullscreen"
+                    sandbox="allow-scripts allow-same-origin allow-popups"
+                  />
+                )}
               </div>
               <div className="codepen-content">
                 <h3>{pen.title}</h3>
                 <p>{pen.description}</p>
                 <div className="codepen-tags">
                   {pen.tags.map((tag, idx) => (
-                    <TechBadge key={idx} name={tag} type="tag" />
+                    <TechBadge key={`codepen-${index}-tag-${idx}`} name={tag} type="tag" />
                   ))}
                 </div>
                 <a 

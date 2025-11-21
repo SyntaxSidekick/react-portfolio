@@ -2,7 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import profileImg from "../../../assets/images/riadkilani-profile.webp";
 import profileImgFallback from "../../../assets/images/riadkilani-profile.png";
-import { StatItem } from "../../common";
+import { StatItem, CTAButton } from "../../common";
 
 const HERO_TITLES = [
   "Senior Front-End Developer",
@@ -93,14 +93,20 @@ const HeroSection = ({ years, titleIndex }) => {
               visible: { opacity: 1, x: 0 }
             }}
           >
-            <a href="#portfolio" className="btn-primary">
-              View My Work
-              <i className="fas fa-arrow-right" aria-hidden="true"></i>
-            </a>
-            <a href="#contact" className="btn-secondary">
-              Let's Talk
-              <i className="fas fa-comments" aria-hidden="true"></i>
-            </a>
+            <CTAButton
+              href="#portfolio"
+              title="View My Work"
+              trailingIcon="fas fa-arrow-right"
+              variant="primary"
+              ariaLabel="View my work section"
+            />
+            <CTAButton
+              href="#contact"
+              title="Let's Talk"
+              trailingIcon="fas fa-comments"
+              variant="secondary"
+              ariaLabel="Open contact section"
+            />
           </motion.div>
 
           {/* Stats Grid */}

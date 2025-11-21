@@ -12,8 +12,8 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
       </header>
       <div className="section-content">
         <div className="case-studies-grid">
-          {caseStudies.map((study) => (
-            <article key={study.id} className="case-study-card">
+          {caseStudies.map((study, i) => (
+            <article key={study.id || `${study.title || 'case-study'}-${i}`} className="case-study-card">
               <div className="case-study-image">
                 <img 
                   src={study.thumbnail} 
@@ -32,7 +32,7 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
                 <p className="summary">{study.summary}</p>
                 <div className="case-study-tags">
                   {study.tags.map((tag, idx) => (
-                    <TechBadge key={idx} name={tag} type="tag" />
+                    <TechBadge key={`${study.id}-tag-${idx}`} name={tag} type="tag" />
                   ))}
                 </div>
                 <button 

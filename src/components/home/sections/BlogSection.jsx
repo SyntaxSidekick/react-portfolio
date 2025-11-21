@@ -83,7 +83,7 @@ const BlogSection = ({ blogPosts }) => {
             title="View All Posts"
             subtitle="Read insights, tutorials, and articles"
             ariaLabel="Read all blog posts and articles"
-            className="blog-cta-button"
+            variant="blog"
           />
         </div>
       </div>

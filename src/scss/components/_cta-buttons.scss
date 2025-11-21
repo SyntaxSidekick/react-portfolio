@@ -1,0 +1,40 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+// Global CTA button variants using shared cta-button mixin for consistency.
+// Extend or override per variant below without duplicating base structure.
+
+.portfolio-cta-button,
+.blog-cta-button,
+.bio-cta-button,
+.codepen-cta-button,
+.github-cta-button {
+  @include cta-button();
+}
+
+// GitHub dark variant overrides (brand specific)
+// GitHub CTA now uses the shared primary gradient; no overrides needed.
+
+// Centering rows for consistent layout across sections
+.cta-row,
+.portfolio-cta-row,
+.featured-work-cta,
+.blog-cta,
+.about-cta,
+.codepen-cta-row {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 48px;
+}
+
+@media (max-width: $bp-sm) {
+  .cta-row,
+  .portfolio-cta-row,
+  .featured-work-cta,
+  .blog-cta,
+  .about-cta,
+  .codepen-cta-row {
+    margin-top: 40px;
+  }
+}

@@ -9,6 +9,7 @@
 @use "sass:math";
 @use '_variables' as *;
 @use '_mixins-effects' as *;
+@forward '_brand-icons';
 
 // ============================================================
 // TYPOGRAPHY MIXINS
@@ -566,127 +567,7 @@
   border: 0;
 }
 
-// ============================================================
-// BRAND ICON COLORS
-// ============================================================
-
-// Apply brand-specific colors to Font Awesome icons
-// Usage: @include brand-icon-colors;
-// Applies colors to child <i> elements based on FA class
-@mixin brand-icon-colors {
-  // Frontend Technologies
-  &:has(.fa-react) i { color: $tech-react; }
-  &:has(.fa-js) i { color: $tech-javascript; }
-  &:has(.fa-html5) i { color: $tech-html5; }
-  &:has(.fa-css3-alt) i { color: $tech-css3; }
-  &:has(.fa-sass) i { color: $tech-sass; }
-  &:has(.fa-bootstrap) i { color: $tech-bootstrap; }
-  &:has(.fa-vuejs) i { color: $tech-vue; }
-  &:has(.fa-angular) i { color: $tech-angular; }
-  
-  // Backend Technologies
-  &:has(.fa-node-js) i { color: $tech-node; }
-  &:has(.fa-php) i { color: $tech-php; }
-  &:has(.fa-python) i { color: $tech-python; }
-  &:has(.fa-java) i { color: $tech-java; }
-  &:has(.fa-laravel) i { color: $tech-laravel; }
-  
-  // CMS & Frameworks
-  &:has(.fa-wordpress) i { color: $tech-wordpress; }
-  &:has(.fa-drupal) i { color: $tech-drupal; }
-  
-  // Design Tools
-  &:has(.fa-figma) i { color: $tech-figma; }
-  &:has(.fa-sketch) i { color: $tech-sketch; }
-  &:has(.fa-adobe) i { color: $tech-adobe; }
-  &:has(.fa-photoshop) i { color: $tech-photoshop; }
-  &:has(.fa-illustrator) i { color: $tech-illustrator; }
-  &:has(.fa-indesign) i { color: $tech-indesign; }
-  
-  // Version Control & Development
-  &:has(.fa-git-alt) i { color: $tech-git; }
-  &:has(.fa-github) i { color: $tech-github; }
-  &:has(.fa-gitlab) i { color: $tech-gitlab; }
-  
-  // Build Tools & Package Managers
-  &:has(.fa-gulp) i { color: $tech-gulp; }
-  &:has(.fa-npm) i { color: $tech-npm; }
-  &:has(.fa-yarn) i { color: $tech-yarn; }
-  
-  // Cloud & Infrastructure
-  &:has(.fa-docker) i { color: $tech-docker; }
-  &:has(.fa-aws) i { color: $tech-aws; }
-  
-  // Tech Companies
-  &:has(.fa-google) i { color: $tech-google; }
-  &:has(.fa-microsoft) i { color: $tech-microsoft; }
-  &:has(.fa-apple) i { color: $tech-apple; }
-  &:has(.fa-android) i { color: $tech-android; }
-  
-  // Default color for icons not matched above
-  &:not(:has(
-    .fa-react, .fa-js, .fa-html5, .fa-css3-alt, .fa-sass, .fa-bootstrap, .fa-node-js, 
-    .fa-wordpress, .fa-figma, .fa-git-alt, .fa-gulp, .fa-vuejs, .fa-php, .fa-drupal, 
-    .fa-adobe, .fa-photoshop, .fa-illustrator, .fa-indesign, .fa-sketch, .fa-github, 
-    .fa-gitlab, .fa-npm, .fa-yarn, .fa-docker, .fa-aws, .fa-google, .fa-microsoft, 
-    .fa-apple, .fa-android, .fa-python, .fa-java, .fa-angular, .fa-laravel
-  )) i {
-    color: $primary;
-  }
-}
-
-// Brand icon colors - Direct variant (for when <i> has the class directly)
-// Usage: Apply to <i> element selector: i { @include brand-icon-colors-direct; }
-@mixin brand-icon-colors-direct {
-  // Frontend Technologies
-  &.fa-react { color: $tech-react; }
-  &.fa-js { color: $tech-javascript; }
-  &.fa-html5 { color: $tech-html5; }
-  &.fa-css3-alt { color: $tech-css3; }
-  &.fa-sass { color: $tech-sass; }
-  &.fa-bootstrap { color: $tech-bootstrap; }
-  &.fa-vuejs { color: $tech-vue; }
-  &.fa-angular { color: $tech-angular; }
-  
-  // Backend Technologies
-  &.fa-node-js { color: $tech-node; }
-  &.fa-php { color: $tech-php; }
-  &.fa-python { color: $tech-python; }
-  &.fa-java { color: $tech-java; }
-  &.fa-laravel { color: $tech-laravel; }
-  
-  // CMS & Frameworks
-  &.fa-wordpress { color: $tech-wordpress; }
-  &.fa-drupal { color: $tech-drupal; }
-  
-  // Design Tools
-  &.fa-figma { color: $tech-figma; }
-  &.fa-sketch { color: $tech-sketch; }
-  &.fa-adobe { color: $tech-adobe; }
-  &.fa-photoshop { color: $tech-photoshop; }
-  &.fa-illustrator { color: $tech-illustrator; }
-  &.fa-indesign { color: $tech-indesign; }
-  
-  // Version Control & Development
-  &.fa-git-alt { color: $tech-git; }
-  &.fa-github { color: $tech-github; }
-  &.fa-gitlab { color: $tech-gitlab; }
-  
-  // Build Tools & Package Managers
-  &.fa-gulp { color: $tech-gulp; }
-  &.fa-npm { color: $tech-npm; }
-  &.fa-yarn { color: $tech-yarn; }
-  
-  // Cloud & Infrastructure
-  &.fa-docker { color: $tech-docker; }
-  &.fa-aws { color: $tech-aws; }
-  
-  // Tech Companies
-  &.fa-google { color: $tech-google; }
-  &.fa-microsoft { color: $tech-microsoft; }
-  &.fa-apple { color: $tech-apple; }
-  &.fa-android { color: $tech-android; }
-}
+// Brand icon color logic is imported at top via @use '_brand-icons'.
 
 // CTA Button (used in sections: about, featured, blog)
 @mixin cta-button {

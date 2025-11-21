@@ -1,0 +1,35 @@
+// Bio responsive adjustments
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+
+@media (max-width: $bp-md) {
+  .bio-section { padding: 24px 10px;
+    .bio-content { flex-direction: column; gap: 24px; }
+    .bio-text { min-width: 0; h2 { @include font-size-lg; } p { @include font-size-sm; }
+      .bio-skills li { font-size: 13px; }
+    }
+    .bio-process { grid-template-columns: repeat(2, 1fr);
+      li { .process-image { height: 160px; }
+        &::before { width: 28px; height: 28px; font-size: .875rem; }
+        .process-content strong { font-size: $font-size-base; }
+      }
+    }
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .bio-section { padding: 12px 4px; .bio-content { gap: 14px; }
+    .bio-text { h2 { @include font-size-md; } p { @include font-size-xs; }
+      .bio-skills { gap: 8px; li { font-size: 11px; padding: 5px 8px; } }
+    }
+    .bio-process { grid-template-columns: 1fr; gap: $gap;
+      li { .process-image { height: 140px; }
+        &::before { width: 24px; height: 24px; font-size: .75rem; }
+        .process-content strong { font-size: $font-size-sm; }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) { .bio-skills-wrapper { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); } }
+@media (max-width: 900px) { .bio-skills-wrapper { grid-template-columns: 1fr; grid-template-rows: none; gap: 24px; } }

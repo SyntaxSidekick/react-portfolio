@@ -1,0 +1,61 @@
+/*
+ * Partial: _brand-icons.scss
+ * Purpose: Centralize brand/technology icon color logic.
+ * Features: Map-driven generation of parent and direct icon color mixins.
+ * Usage: @use "_brand-icons" as *; then @include brand-icon-colors-parent; or @include brand-icon-colors-direct on <i>.
+ */
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use "./_variables" as *;
+@use "./tech-colors" as *; // access canonical $tech-colors without component import to avoid cycles
+
+// Map of Font Awesome / custom icon class => color token
+// Derive Font Awesome mapping from canonical $tech-colors (defined in components/_icons.scss)
+// Provide explicit alias exceptions where FA class differs from tech key.
+$fa-tech-aliases: (
+  css3-alt: css3,
+  vuejs: vue,
+  node-js: node,
+  git-alt: git,
+  nextjs: nextjs,
+  typescript: typescript,
+  xd: xd
+);
+
+// Build dynamic map once for mixin iteration
+$brand-icon-color-map: (); // initialize empty map
+@each $name, $color in $tech-colors {
+  // Base FA key (fa-<name>)
+  $fa-key: fa-#{$name};
+  $brand-icon-color-map: map.set($brand-icon-color-map, $fa-key, $color);
+}
+// Add alias overrides (pointing to existing tech keys)
+@each $fa-alias, $tech-key in $fa-tech-aliases {
+  @if map.has-key($tech-colors, $tech-key) {
+    $brand-icon-color-map: map.set($brand-icon-color-map, fa-#{$fa-alias}, map.get($tech-colors, $tech-key));
+  }
+}
+
+
+// Parent mixin: apply colors based on presence of icon class inside element.
+@mixin brand-icon-colors-parent {
+  @each $class, $color in $brand-icon-color-map {
+    &:has(.#{$class}) i { color: $color; }
+  }
+  // (Optional fallback removed for compatibility; parent without matching icon keeps inherited color.)
+}
+
+// Direct mixin: apply colors when the <i> element itself has the class.
+@mixin brand-icon-colors-direct {
+  @each $class, $color in $brand-icon-color-map {
+    &.#{$class} { color: $color; }
+  }
+}
+
+// Utility mixin: color override on hover (optional usage)
+@mixin brand-icon-hover-recolor($intensity: 0.15) {
+  @each $class, $color in $brand-icon-color-map {
+    &:has(.#{$class}):hover i { filter: drop-shadow(0 0 4px rgba($color, $intensity)); }
+  }
+}

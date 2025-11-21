@@ -3,7 +3,7 @@ import { PageHeader } from "../";
 import DynamicTitle from "../../DynamicTitle";
 import { projects, designShowcase, githubProjects, codepenProjects, caseStudies } from "./projects";
 import PortfolioModal from "./PortfolioModal";
-import { Modal } from "../common";
+import { Modal, CTAButton } from "../common";
 import {
   FilterTabs,
   FrontEndProjectsSection,
@@ -13,6 +13,8 @@ import {
   CaseStudiesSection,
   CTASection,
 } from "./sections";
+import CodepenExperiments from "./CodepenExperiments";
+import "../../css/codepen.css";
 
 // Filter categories
 const FILTERS = [
@@ -103,6 +105,28 @@ const Portfolio = () => {
     }
   }, []);
 
+  // Build CodePen experiments data from existing codepenProjects list
+  const codepenExperiments = (codepenProjects || []).map((p, idx) => {
+    const match = (p.url || '').match(/\/pen\/([^\/?#]+)/i);
+    const id = match ? match[1] : `pen-${idx + 1}`;
+    const rawTitle = p.title || `Pen ${idx + 1}`;
+    // Slug for asset lookup: letters/numbers hyphen separated
+    const fileSlug = rawTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    // Assume user will place video named after pen title in public/assets/previews
+    const assumedVideoPath = `/assets/previews/${fileSlug}.mp4`;
+    // For now we optimistically use the video path; fallback placeholder if title missing
+    const preview = rawTitle ? assumedVideoPath : '/assets/previews/placeholder.svg';
+    const type = preview.endsWith('.mp4') ? 'video' : 'gif';
+    return {
+      id,
+      title: rawTitle,
+      description: p.description || 'CodePen experiment',
+      preview,
+      type,
+      url: p.url,
+    };
+  });
+
   return (
     <main className="portfolio-page container" id="main-content" aria-labelledby="page-title">
       <DynamicTitle />
@@ -135,10 +159,23 @@ const Portfolio = () => {
         show={activeFilter === "all" || activeFilter === "github"}
       />
 
-      <CodePenSection
-        codepenProjects={codepenProjects}
-        show={activeFilter === "all" || activeFilter === "codepen"}
-      />
+      {(activeFilter === "all" || activeFilter === "github") && (
+        <div className="portfolio-cta-row">
+          <CTAButton
+            href="https://github.com/f1ss1on"
+            icon="fab fa-github"
+            title="View GitHub Projects"
+            subtitle="Browse repositories & source code"
+            ariaLabel="View all GitHub repositories and source code"
+            variant="github"
+          />
+        </div>
+      )}
+
+      {/* Hide old iframe CodePenSection; show new experiments only */}
+      { (activeFilter === "all" || activeFilter === "codepen") && (
+        <CodepenExperiments experiments={codepenExperiments} />
+      ) }
 
       <CaseStudiesSection
         caseStudies={caseStudies}

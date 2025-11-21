@@ -1,6 +1,7 @@
 const { defineConfig } = require('vite');
 const react = require('@vitejs/plugin-react');
 const { viteStaticCopy } = require('vite-plugin-static-copy');
+const svgr = require('vite-plugin-svgr').default;
 const criticalCssPlugin = require('./vite-plugin-critical-css.cjs');
 
 // https://vite.dev/config/
@@ -19,6 +20,7 @@ module.exports = defineConfig({
   },
   plugins: [
     react(),
+    svgr(),
     criticalCssPlugin(),
     viteStaticCopy({
       targets: [

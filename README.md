@@ -12,6 +12,7 @@ Modern, responsive portfolio and project gallery for Riad Kilani, built with Rea
 - **FontAwesome Icons**: Rich iconography for tech stacks and UI
 - **Image Gallery Tabs**: Organized project, mockup, and design galleries
 - **SCSS Architecture**: Modular, maintainable, and fully nested styles
+- **Centralized Documentation**: All technical guides, audits, and setup instructions moved to `./docs`
 
 ## Demo
 
@@ -44,6 +45,21 @@ Visit [http://localhost:5173](http://localhost:5173) to view the app.
 npm run build
 ```
 Output will be in the `dist/` folder.
+
+## Documentation
+
+Extended guides (deployment, mail setup, performance, modularization, UI kit, SCSS audits, mixin systems, contact architecture) are available inside the `docs/` directory. Key entry points:
+
+- `docs/MAIL-SETUP.md` – SMTP configuration & security
+- `docs/MAIL-TODO.md` – Operational checklist & verification steps
+- `docs/PERFORMANCE-OPTIMIZATIONS.md` – Lighthouse & Core Web Vitals work
+- `docs/MODULARIZATION-SUMMARY.md` – Component/sections refactor overview
+- `docs/CARD-MIXIN-GUIDE.md` – Reusable card style system
+- `docs/SCSS-AUDIT-REPORT.md` – Style architecture audit
+- `docs/UI-KIT-IMPLEMENTATION.md` – UI kit integration notes
+- `docs/CONTACT-REFACTOR-SUMMARY.md` / `docs/CONTACT-MODULAR-ARCHITECTURE.md` – Secure contact form + backend
+
+Legacy or archival materials live under `docs/archives/`.
 
 ### Linting
 

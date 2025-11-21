@@ -11,8 +11,8 @@ const GitHubProjectsSection = ({ githubProjects, show }) => {
       className="github"
     >
       <div className="github-grid">
-        {githubProjects.map((repo) => (
-          <article key={repo.id} className="github-card">
+        {githubProjects.map((repo, index) => (
+          <article key={`github-${index}-${repo.name.replace(/\s+/g, '-').toLowerCase()}`} className="github-card">
             {repo.thumbnail && (
               <div className="github-thumbnail">
                 <img src={repo.thumbnail} alt={`${repo.name} preview`} loading="lazy" />
@@ -26,7 +26,7 @@ const GitHubProjectsSection = ({ githubProjects, show }) => {
               <p>{repo.description}</p>
               <div className="github-tech">
                 {repo.topics.map((topic, idx) => (
-                  <span key={idx} className="tech-pill">{topic}</span>
+                  <span key={`github-${index}-topic-${idx}`} className="tech-pill">{topic}</span>
                 ))}
               </div>
               <div className="github-actions">

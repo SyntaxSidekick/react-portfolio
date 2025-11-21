@@ -1,0 +1,33 @@
+// Bio process steps
+@use "sass:math";
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
+
+.bio-page {
+  .bio-process {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: $gap-lg; margin: 0 0 $gap-xl; padding: 0; list-style: none; counter-reset: process-step;
+    li {
+      @include card('elevated'); @include card-interactive(-4px);
+      position: relative; padding: $padding-xl; counter-increment: process-step; opacity: 0;
+      animation: fadeInUp .6s ease forwards; display: flex; flex-direction: column; align-items: flex-start; gap: $gap;
+      @for $i from 1 through 6 { &:nth-child(#{$i}) { animation-delay: #{$i * 0.1}s; } }
+      &:hover .process-image { transform: scale(1.05); }
+      &:hover::before { transform: scale(1.1); box-shadow: $shadow-lg; }
+      .process-image { @include card-image(math.div(16, 9), 1); background: rgba($primary, .03); }
+      &::before { content: counter(process-step); position: absolute; top: $space-lg; left: $space-lg; width: 36px; height: 36px;
+        background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%); color: $text-white; border-radius: 50%; @include flex-center;
+        font-family: $font-heading; font-size: $font-size-base; font-weight: $weight-bold; box-shadow: $shadow-md; z-index: 2; transition: transform .3s ease, box-shadow .3s ease; }
+      .process-content { flex: 1; strong { display: block; color: $primary; font-size: $font-size-lg; font-weight: $weight-semibold; margin-bottom: $space-sm; font-family: $font-alt; } }
+      color: $text-dark; font-size: $font-size-base; line-height: $line-height-relaxed;
+    }
+  }
+}
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+html.dark-mode .bio-page { .bio-process li { background: $dark-bg; border-color: $overlay-white-light; color: $text-light;
+  &::before { background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%); }
+  .process-content strong { color: $brand-primary-light; }
+  &:hover { border-color: $brand-primary-light; }
+  .process-image { background: rgba($brand-primary-light, .08); }
+} }
