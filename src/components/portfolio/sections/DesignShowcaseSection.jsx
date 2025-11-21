@@ -11,8 +11,8 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
       </header>
       <div className="section-content">
         <div className="design-grid">
-          {designShowcase.map((item) => (
-            <article key={item.id} className="design-card">
+          {designShowcase.map((item, index) => (
+            <article key={item.createdAt || `design-${index}`} className="design-card">
               <div 
                 className="design-image" 
                 onClick={() => onDesignClick(item)}

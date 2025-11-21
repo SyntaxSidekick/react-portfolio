@@ -1,253 +1,413 @@
-/*!
+﻿/*!
  * Partial: _contact.scss
- * Purpose: Styles for the contact section, including contact info, form, and messages.
- * Features: Contact layout, form controls, message states, responsive design.
- * Usage: Import in style.scss for contact page or contact components.
- * Dependencies: Uses _variables.scss and _mixins.scss.
- * Last updated: 2025-09-11
+ * Purpose: Premium Apple-like contact page with minimal modern aesthetic
+ * Features: Floating labels, glass-morphism, micro-interactions, WCAG compliant
+ * Usage: Import in style.scss for contact page
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-20
  */
 @use '../../abstracts/variables' as *;
 @use '../../abstracts/mixins' as *;
 
-// OLD STYLES - Moved to home/_home.scss
-/*.contact-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: $gap-lg $gap;
-  //background: $background-light;
-  //border-radius: $radius-lg;
-  //box-shadow: 0 4px 24px rgba($primary, 0.09);
+// ============================================================================
+// CONTACT PAGE
+// ============================================================================
 
-  h1 {
-    @include font-size-xxl;
-    color: $primary;
-    text-align: center;
-    margin-bottom: $gap;
-    font-family: $font-heading;
-    font-weight: 700;
-    letter-spacing: 1px;
-    i {
-      margin-right: 10px;
-      color: $accent;
-      filter: drop-shadow(0 2px 4px rgba($primary, 0.13));
-    }
+.contact-page {
+  min-height: 100vh;
+  padding-bottom: $space-massive;
+
+  .contact-container {
+    @include container;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .contact-content {
-    display: flex;
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: $gap-xl;
+    align-items: start;
+    margin-top: $gap-xl;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+      gap: $gap-lg;
+    }
+
+    @media (max-width: $bp-md) {
+      gap: $gap;
+      margin-top: $gap;
+    }
+  }
+}
+
+// ============================================================================
+// SOCIAL LINKS
+// ============================================================================
+
+.social-links {
+  @include flex-column;
+  gap: $gap-lg;
+  position: sticky;
+  top: 100px;
+
+  @media (max-width: $bp-md) {
+    position: static;
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: $gap-lg;
-    align-items: flex-start;
-    justify-content: center;
   }
 
-  .contact-message {
-    padding: 12px 16px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    font-weight: 500;
-    width: 100%;
-
-    &.success {
-      background-color: $color-success-light;
-      color: $color-success-dark;
-      border: 1px solid $color-success;
-    }
-
-    &.error {
-      background-color: $color-error-light;
-      color: $color-error-dark;
-      border: 1px solid $color-error;
-    }
-
-    &.info {
-      background-color: $color-info-light;
-      color: $color-info-dark;
-      border: 1px solid $color-info;
-    }
-  }
-
-  .contact-info {
-    flex: 1 1 320px;
-    min-width: 220px;
-    h2 {
-      @include font-size-xl;
-      color: $primary-dark;
-      margin-bottom: 12px;
-      font-family: $font-heading;
-      font-weight: 600;
-    }
-    p {
-      @include font-size-md;
-      color: $text-dark;
-      margin-bottom: 18px;
-      line-height: 1.7;
-    }
-    .contact-highlight {
-      display: inline-block;
-      background: $progress-bg;
-      color: $primary;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: $radius;
-      margin-top: 8px;
-      i {
-        margin-right: 6px;
-      }
-    }
-    .contact-social {
-      margin-top: 18px;
-      display: flex;
-      gap: 12px;
-      .btn {
-        @include btn;
-        font-size: $font-size-sm;
-        white-space: nowrap;
-        i {
-          margin-right: 6px;
-          font-size: $font-size-base;
-          vertical-align: middle;
-        }
-      }
-    }
-  }
-
-  .contact-form {
-    flex: 1 1 340px;
-    min-width: 260px;
-    background: $text-white;
-    border-radius: $radius-lg;
-    box-shadow: 0 2px 12px rgba($primary, 0.07);
-    padding: 28px 22px;
-    display: flex;
+  @media (max-width: $bp-sm) {
     flex-direction: column;
-    gap: 18px;
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      label {
-        font-weight: 600;
-        color: $primary-dark;
-        font-size: $font-size-base;
-        width: 100%;
-        i {
-          margin-right: 6px;
-          color: $accent;
-        }
-      }
-      input, textarea {
-        padding: 12px;
-        border-radius: $radius;
-        border: 1px solid $border;
-        width: 100%;
-        @include font-size-md;
-        font-family: inherit;
-        background-color: $background-light;
-        transition: border-color 0.2s;
-        &:focus {
-          border-color: $primary;
-          outline: none;
-        }
-      }
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-    }
-
-    .send-btn {
-      @include btn;
-      width: 100%;
-      cursor: pointer;
-      transition: background 0.3s;
-      i {
-        margin-right: 6px;
-      }
-      &:hover {
-        background: linear-gradient(90deg, $primary-dark 60%, $accent 100%);
-      }
-    }
   }
 }
-*/
 
-// Responsive styles - OLD (Commented out, moved to home/_home.scss)
-/*
-@media (max-width: $bp-md) {
-  .contact-section {
-    padding: 24px 10px;
-    overflow-x: hidden;
-    .contact-content {
-      flex-direction: column;
-      gap: 24px;
-    }
-    .contact-info {
-      min-width: 0;
-      flex-basis: 100%;
-      width: 100%;
-      h2 { @include font-size-lg; }
-      p { @include font-size-sm; }
-    }
-    .contact-form {
-      padding: 18px 8px;
-      flex: 1 1 100%;
-      min-width: 0;
-      width: 100%;
-    }
+.social-link {
+  @include card('flat');
+  @include flex-column;
+  @include flex-center;
+  position: relative;
+  gap: $gap-md;
+  padding: $padding-xl;
+  text-decoration: none;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
-}
-*/@media (max-width: $bp-sm) {
-  .contact-section {
-    padding: 12px 4px;
-    .contact-social {
-      display: block !important;
-      .btn {
-        display: block;
-        width: 100% !important;
-      }
-    }
-    .contact-content {
-      gap: 14px;
-    }
-    .contact-info {
-      min-width: 0;
-      flex-basis: 100%;
-      width: 100%;
-      h2 { @include font-size-md; }
-      p { @include font-size-xs; }
-    }
-    .contact-form {
-      padding: 10px;
-      flex: 1 1 100%;
-      min-width: 0;
-      width: 100%;
-    }
+
+  i {
+    font-size: 2.5rem;
+    transition: transform 0.3s ease;
   }
-}
-.contact-social {
-  margin-top: 18px;
-  display: flex;
-  gap: 12px;
-  .btn {
-    @include btn;
+
+  span {
     font-size: $font-size-sm;
-    white-space: nowrap !important;
+    font-weight: $weight-semibold;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-hover-md;
+    border-color: currentColor;
+
+    &::before {
+      transform: scaleX(1);
+    }
+
     i {
-      margin-right: 6px;
+      transform: scale(1.15);
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  // Brand colors
+  &.linkedin { color: #0A66C2; &:hover { background: rgba(10, 102, 194, 0.05); } }
+  &.github { color: #181717; &:hover { background: rgba(24, 23, 23, 0.05); } }
+  &.codepen { color: #000; &:hover { background: rgba(0, 0, 0, 0.05); } }
+  &.twitter { color: #000; &:hover { background: rgba(0, 0, 0, 0.05); } }
+}
+
+// ============================================================================
+// CONTACT FORM
+// ============================================================================
+
+.contact-form-wrapper {
+  @include card('glass');
+  padding: $gap-xl;
+
+  @media (max-width: $bp-md) {
+    padding: $gap;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: $space-lg;
+  }
+
+  h2 {
+    @include heading-main;
+    font-size: $font-size-xl;
+    color: $color-text-primary;
+    margin: 0 0 $gap-lg;
+    text-align: center;
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.form-status {
+  padding: $padding-md $padding-lg;
+  background: $brand-primary-100;
+  border-left: 4px solid $primary;
+  border-radius: $radius-lg;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  font-weight: $weight-medium;
+  margin-bottom: $gap-lg;
+  animation: slideInDown 0.3s ease;
+}
+
+.contact-form {
+  @include flex-column;
+  gap: $gap-lg;
+
+  @media (max-width: $bp-sm) {
+    gap: $gap;
+  }
+
+  .form-field {
+    position: relative;
+
+    label {
+      position: absolute;
+      left: $padding-lg;
+      top: 50%;
+      transform: translateY(-50%);
       font-size: $font-size-base;
-      vertical-align: middle;
+      font-weight: $weight-medium;
+      color: $color-text-muted;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(to bottom, transparent 50%, $color-bg-primary 50%);
+      padding: 0 $space-xs;
+      z-index: 1;
+    }
+
+    &.focused,
+    &:focus-within {
+      label {
+        top: 0;
+        left: $padding-md;
+        font-size: $font-size-xs;
+        font-weight: $weight-semibold;
+        color: $primary;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: $padding-lg calc($padding-lg + 4px) $padding-lg $padding-lg;
+      border: 2px solid $color-border-light;
+      border-radius: $radius-lg;
+      font: $font-size-base $font-body;
+      color: $color-text-primary;
+      background: $color-bg-primary;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      appearance: none;
+
+      &:hover {
+        border-color: $color-border-medium;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 
+          0 0 0 4px $brand-primary-100,
+          0 2px 8px rgba(0, 115, 170, 0.1);
+      }
+
+      &:focus-visible {
+        outline: 3px solid $primary;
+        outline-offset: 2px;
+      }
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    &.touched {
+      input:invalid,
+      textarea:invalid {
+        border-color: #dc3545;
+      }
+
+      input:valid:not(:placeholder-shown),
+      textarea:valid:not(:placeholder-shown) {
+        border-color: #28a745;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      padding-top: calc($padding-lg + 8px);
+      line-height: $line-height-relaxed;
+    }
+
+    &:has(textarea) {
+      label {
+        top: $padding-lg;
+        transform: none;
+      }
+
+      &.focused label,
+      &:focus-within label {
+        top: 0;
+      }
+    }
+  }
+
+  .submit-btn {
+    @include btn;
+    @include inline-flex-center;
+    gap: $space-sm;
+    padding: $padding-lg $padding-xxxl;
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: $bp-sm) {
+      width: 100%;
+      padding: $padding-md $padding-xl;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .icon {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 4px 12px rgba(0, 115, 170, 0.3),
+        0 12px 24px rgba(0, 115, 170, 0.15);
+
+      &::before {
+        opacity: 1;
+      }
+
+      .icon {
+        transform: translateX(4px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 3px solid $primary;
+      outline-offset: 4px;
+      box-shadow: 
+        0 0 0 4px rgba(255, 255, 255, 0.9),
+        0 0 0 7px $primary,
+        0 4px 12px rgba(0, 115, 170, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      
+      &:hover {
+        transform: none;
+      }
     }
   }
 }
-.blog-contact .wpcf7 {
-    max-width: 100%;
-} 
-.wpcf7 .hidden,
-.wpcf7-hidden,
-.hidden-field,
-.hidden-fields-container,
-[type="hidden"] {
-  display: none !important;
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+.dark-mode {
+  .social-link {
+    background: rgba(42, 42, 42, 0.8);
+    border-color: $dark-border;
+
+    &.linkedin { color: #0A66C2; &:hover { background: rgba(10, 102, 194, 0.1); } }
+    &.github,
+    &.codepen,
+    &.twitter { 
+      color: #fff; 
+      &:hover { background: rgba(255, 255, 255, 0.1); } 
+    }
+  }
+
+  .contact-form-wrapper {
+    background: rgba(42, 42, 42, 0.6);
+    border-color: rgba(0, 115, 170, 0.2);
+  }
+
+  .contact-form .form-field {
+    label {
+      color: $dark-text-muted;
+      background: linear-gradient(to bottom, transparent 50%, $dark-bg-secondary 50%);
+    }
+
+    &.focused label,
+    &:focus-within label {
+      color: $brand-primary-light;
+    }
+
+    input,
+    textarea {
+      background: rgba(26, 26, 26, 0.8);
+      border-color: $dark-border;
+      color: $dark-text;
+
+      &:hover {
+        border-color: rgba(0, 115, 170, 0.3);
+      }
+
+      &:focus {
+        border-color: $brand-primary-light;
+        box-shadow: 
+          0 0 0 4px rgba(0, 115, 170, 0.2),
+          0 2px 8px rgba(0, 115, 170, 0.15);
+      }
+    }
+  }
+}
+
+// ============================================================================
+// ANIMATIONS
+// ============================================================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

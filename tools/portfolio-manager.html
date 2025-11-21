@@ -15,6 +15,10 @@
     <!-- JSZip for export functionality -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     
+    <!-- Quill Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
     <!-- Custom Tailwind Config -->
     <script>
         tailwind.config = {
@@ -46,11 +50,19 @@
             border-bottom-color: #1976d2;
         }
         
-        .fab {           
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
+            z-index: 50;
         }
         
         .fab:hover {
@@ -79,6 +91,61 @@
         
         .card:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Quill Editor Styles */
+        .ql-container {
+            min-height: 150px;
+            font-size: 14px;
+        }
+        
+        .ql-editor {
+            min-height: 150px;
+        }
+        
+        .rich-text-field {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .rich-text-field .ql-toolbar {
+            background: #f9fafb;
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .rich-text-field .ql-container {
+            border: none;
+        }
+        
+        /* AI Suggestion Styles */
+        .ai-suggest-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .ai-suggest-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .ai-loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .ai-suggestion-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 3px solid #667eea;
         }
         
         @keyframes slide-in {
@@ -604,65 +671,45 @@
         
         // Common tech stack options - Font Awesome icons for most, SVG for custom logos
         const TECH_STACK = [
-            // Frontend Frameworks & Libraries
-            { name: 'React', icon: 'fab fa-react' },
-            { name: 'Vue.js', icon: 'fab fa-vuejs' },
-            { name: 'Angular', icon: 'fab fa-angular' },
-            { name: 'Next.js', icon: 'svg' }, // Custom SVG
-            { name: 'jQuery', icon: 'fab fa-js' },
-            
-            // Languages
-            { name: 'JavaScript', icon: 'fab fa-js' },
-            { name: 'TypeScript', icon: 'svg' }, // Custom SVG
-            { name: 'HTML5', icon: 'fab fa-html5' },
-            { name: 'CSS3', icon: 'fab fa-css3-alt' },
-            { name: 'PHP', icon: 'fab fa-php' },
-            { name: 'Python', icon: 'fab fa-python' },
-            
-            // Styling & CSS Frameworks
-            { name: 'Sass', icon: 'fab fa-sass' },
-            { name: 'Tailwind CSS', icon: 'svg' }, // Custom SVG
-            { name: 'Bootstrap', icon: 'fab fa-bootstrap' },
-            { name: 'Material-UI', icon: 'fas fa-layer-group' },
-            
-            // Design Tools (Adobe Creative Suite - use custom SVGs)
-            { name: 'Photoshop', icon: 'svg' }, // Custom SVG
-            { name: 'Illustrator', icon: 'svg' }, // Custom SVG
-            { name: 'InDesign', icon: 'svg' }, // Custom SVG
-            { name: 'XD', icon: 'svg' }, // Custom SVG
             { name: 'After Effects', icon: 'fas fa-film' },
-            
-            // Other Design Tools
-            { name: 'Figma', icon: 'fab fa-figma' },
-            { name: 'Sketch', icon: 'fab fa-sketch' },
-            { name: 'InVision', icon: 'svg' }, // Custom SVG
-            
-            // Backend & CMS
-            { name: 'Node.js', icon: 'fab fa-node-js' },
-            { name: 'WordPress', icon: 'fab fa-wordpress' },
-            
-            // Development Tools
-            { name: 'Git', icon: 'fab fa-git-alt' },
-            { name: 'Docker', icon: 'fab fa-docker' },
-            { name: 'Vite', icon: 'fas fa-bolt' },
-            { name: 'Webpack', icon: 'fas fa-boxes' },
-            { name: 'Gulp', icon: 'fab fa-gulp' },
-            
-            // Cloud & Services
+            { name: 'Angular', icon: 'fab fa-angular' },
             { name: 'AWS', icon: 'fab fa-aws' },
+            { name: 'Bootstrap', icon: 'fab fa-bootstrap' },
+            { name: 'CSS3', icon: 'fab fa-css3-alt' },
+            { name: 'Design Systems', icon: 'fas fa-layer-group' },
+            { name: 'Docker', icon: 'fab fa-docker' },
+            { name: 'Drupal', icon: 'fab fa-drupal' },
+            { name: 'Figma', icon: 'fab fa-figma' },
             { name: 'Firebase', icon: 'fas fa-fire' },
-            
-            // Databases
+            { name: 'Git', icon: 'fab fa-git-alt' },
+            { name: 'GraphQL', icon: 'fas fa-project-diagram' },
+            { name: 'Gulp', icon: 'fab fa-gulp' },
+            { name: 'HTML5', icon: 'fab fa-html5' },
+            { name: 'Illustrator', icon: 'svg' },
+            { name: 'InDesign', icon: 'svg' },
+            { name: 'InVision', icon: 'svg' },
+            { name: 'JavaScript', icon: 'fab fa-js' },
+            { name: 'jQuery', icon: 'fab fa-js' },
+            { name: 'Material-UI', icon: 'fas fa-layer-group' },
             { name: 'MongoDB', icon: 'fas fa-database' },
             { name: 'MySQL', icon: 'fas fa-database' },
+            { name: 'Next.js', icon: 'svg' },
+            { name: 'Node.js', icon: 'fab fa-node-js' },
+            { name: 'PHP', icon: 'fab fa-php' },
+            { name: 'Photoshop', icon: 'svg' },
             { name: 'PostgreSQL', icon: 'fas fa-database' },
-            
-            // APIs
-            { name: 'GraphQL', icon: 'fas fa-project-diagram' },
+            { name: 'Python', icon: 'fab fa-python' },
+            { name: 'React', icon: 'fab fa-react' },
             { name: 'REST API', icon: 'fas fa-exchange-alt' },
-            
-            // Other
-            { name: 'Design Systems', icon: 'fas fa-layer-group' }
+            { name: 'Sass', icon: 'fab fa-sass' },
+            { name: 'Sketch', icon: 'fab fa-sketch' },
+            { name: 'Tailwind CSS', icon: 'svg' },
+            { name: 'TypeScript', icon: 'svg' },
+            { name: 'Vite', icon: 'fas fa-bolt' },
+            { name: 'Vue.js', icon: 'fab fa-vuejs' },
+            { name: 'Webpack', icon: 'fas fa-boxes' },
+            { name: 'WordPress', icon: 'fab fa-wordpress' },
+            { name: 'XD', icon: 'svg' }
         ];
         
         let currentFormData = null;
@@ -673,7 +720,14 @@
          */
         function showProjectForm(category, item = null) {
             const isEdit = item !== null;
-            currentFormData = item || {};
+            
+            // Normalize frontend projects when editing to ensure all fields exist
+            let normalizedItem = item;
+            if (item && category === 'frontend') {
+                normalizedItem = normalizeFrontendProject(item);
+            }
+            
+            currentFormData = normalizedItem || {};
             
             const dialog = document.createElement('div');
             dialog.id = 'project-form-dialog';
@@ -683,19 +737,19 @@
             
             switch(category) {
                 case 'frontend':
-                    formHTML = generateFrontendForm(item);
+                    formHTML = generateFrontendForm(normalizedItem);
                     break;
                 case 'design':
-                    formHTML = generateDesignForm(item);
+                    formHTML = generateDesignForm(normalizedItem);
                     break;
                 case 'casestudies':
-                    formHTML = generateCaseStudyForm(item);
+                    formHTML = generateCaseStudyForm(normalizedItem);
                     break;
                 case 'github':
-                    formHTML = generateGithubForm(item);
+                    formHTML = generateGithubForm(normalizedItem);
                     break;
                 case 'codepen':
-                    formHTML = generateCodepenForm(item);
+                    formHTML = generateCodepenForm(normalizedItem);
                     break;
             }
             
@@ -786,20 +840,34 @@
                     
                     <!-- Overview -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Overview
-                        </label>
-                        <textarea name="overview" rows="4"
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Overview
+                            </label>
+                            <button type="button" onclick="generateAISuggestion('overview')" 
+                                data-ai-field="overview"
+                                class="ai-suggest-btn px-3 py-1 text-xs rounded-lg transition-all flex items-center gap-1">
+                                <i class="material-icons text-sm">auto_awesome</i> AI Suggest
+                            </button>
+                        </div>
+                        <textarea name="overview" rows="4" data-rich-text="true"
                             placeholder="Comprehensive overview of the project..."
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.overview || ''}</textarea>
                     </div>
                     
                     <!-- The Challenge -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            The Challenge
-                        </label>
-                        <textarea name="problem" rows="4"
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                The Challenge
+                            </label>
+                            <button type="button" onclick="generateAISuggestion('problem')" 
+                                data-ai-field="problem"
+                                class="ai-suggest-btn px-3 py-1 text-xs rounded-lg transition-all flex items-center gap-1">
+                                <i class="material-icons text-sm">auto_awesome</i> AI Suggest
+                            </button>
+                        </div>
+                        <textarea name="problem" rows="4" data-rich-text="true"
                             placeholder="Describe the main problem or challenge this project addressed..."
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.problem || ''}</textarea>
                     </div>
@@ -848,10 +916,17 @@
                     
                     <!-- Outcome & Impact -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Outcome & Impact
-                        </label>
-                        <textarea name="deliverables" rows="4"
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Outcome & Impact
+                            </label>
+                            <button type="button" onclick="generateAISuggestion('deliverables')" 
+                                data-ai-field="deliverables"
+                                class="ai-suggest-btn px-3 py-1 text-xs rounded-lg transition-all flex items-center gap-1">
+                                <i class="material-icons text-sm">auto_awesome</i> AI Suggest
+                            </button>
+                        </div>
+                        <textarea name="deliverables" rows="4" data-rich-text="true"
                             placeholder="Describe the results, deliverables, and impact of the project..."
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">${item?.deliverables || ''}</textarea>
                     </div>
@@ -1508,6 +1583,340 @@
                 link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
                 document.head.appendChild(link);
             }
+            
+            // Initialize Quill rich text editors
+            initializeRichTextEditors();
+        }
+        
+        /**
+         * Initialize Quill rich text editors for textareas
+         */
+        function initializeRichTextEditors() {
+            const richTextFields = document.querySelectorAll('[data-rich-text]');
+            
+            richTextFields.forEach(field => {
+                const fieldName = field.getAttribute('name');
+                const existingValue = field.value;
+                
+                // Create editor container
+                const editorContainer = document.createElement('div');
+                editorContainer.className = 'rich-text-field';
+                editorContainer.id = `editor-${fieldName}`;
+                
+                // Replace textarea with editor
+                field.style.display = 'none';
+                field.parentNode.insertBefore(editorContainer, field.nextSibling);
+                
+                // Initialize Quill
+                const quill = new Quill(`#editor-${fieldName}`, {
+                    theme: 'snow',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            ['link'],
+                            ['clean']
+                        ]
+                    },
+                    placeholder: field.getAttribute('placeholder') || 'Enter text...'
+                });
+                
+                // Set existing value if any
+                if (existingValue) {
+                    quill.root.innerHTML = existingValue;
+                }
+                
+                // Update hidden textarea on change
+                quill.on('text-change', () => {
+                    field.value = quill.root.innerHTML;
+                    triggerAutoSave();
+                });
+                
+                // Store quill instance for later access
+                field.quillInstance = quill;
+            });
+        }
+        
+        /**
+         * Generate AI suggestion for a field
+         */
+        async function generateAISuggestion(fieldName, context = {}) {
+            const button = document.querySelector(`[data-ai-field="${fieldName}"]`);
+            if (!button) return;
+            
+            // Show loading state
+            button.disabled = true;
+            button.innerHTML = '<i class="material-icons text-sm animate-spin">autorenew</i> Generating...';
+            
+            try {
+                // Simulate AI generation (replace with actual AI API call)
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                let suggestion = '';
+                
+                switch(fieldName) {
+                    case 'overview':
+                        suggestion = generateOverviewSuggestion(context);
+                        break;
+                    case 'problem':
+                        suggestion = generateProblemSuggestion(context);
+                        break;
+                    case 'deliverables':
+                        suggestion = generateOutcomeSuggestion(context);
+                        break;
+                    default:
+                        suggestion = 'AI-generated content placeholder';
+                }
+                
+                // Show suggestion in modal
+                showAISuggestionModal(fieldName, suggestion);
+                
+            } catch (error) {
+                console.error('AI generation error:', error);
+                showNotification('Failed to generate AI suggestion', 'error');
+            } finally {
+                // Reset button
+                button.disabled = false;
+                button.innerHTML = '<i class="material-icons text-sm">auto_awesome</i> AI Suggest';
+            }
+        }
+        
+        /**
+         * Generate overview suggestion based on context
+         */
+        function generateOverviewSuggestion(context) {
+            const title = document.querySelector('[name="title"]')?.value || 'This project';
+            const desc = document.querySelector('[name="desc"]')?.value || '';
+            const tech = Array.from(document.querySelectorAll('[name="tech"]:checked'))
+                .map(cb => cb.value);
+            
+            // Generate varied intros
+            const intros = [
+                `${title} represents a comprehensive solution designed to`,
+                `${title} is an innovative application that`,
+                `As a full-featured platform, ${title}`,
+                `${title} delivers a powerful experience through`,
+                `Built from the ground up, ${title}`
+            ];
+            const intro = intros[Math.floor(Math.random() * intros.length)];
+            
+            // Technology context
+            let techContext = '';
+            if (tech.length > 0) {
+                const frontend = tech.filter(t => ['React', 'Vue.js', 'Angular', 'Next.js'].includes(t));
+                const styling = tech.filter(t => ['Tailwind CSS', 'Sass', 'Bootstrap', 'CSS3'].includes(t));
+                const backend = tech.filter(t => ['Node.js', 'PHP', 'Python', 'WordPress', 'Drupal'].includes(t));
+                
+                if (frontend.length > 0) {
+                    techContext += ` The application leverages ${frontend.join(' and ')} for a dynamic, component-based architecture that ensures maintainability and scalability.`;
+                }
+                if (styling.length > 0) {
+                    techContext += ` ${styling.join(' and ')} provide${styling.length === 1 ? 's' : ''} a modern, responsive design system that adapts seamlessly across all device sizes.`;
+                }
+                if (backend.length > 0) {
+                    techContext += ` The backend infrastructure is powered by ${backend.join(' and ')}, enabling robust data management and server-side processing.`;
+                }
+                if (techContext === '' && tech.length > 0) {
+                    techContext = ` Built with ${tech.slice(0, 4).join(', ')}${tech.length > 4 ? ', and more' : ''}, the project combines cutting-edge technologies to deliver exceptional performance and user experience.`;
+                }
+            }
+            
+            // Feature highlights
+            const features = [
+                'intuitive user interface',
+                'responsive design',
+                'optimized performance',
+                'accessibility compliance',
+                'real-time interactions',
+                'data visualization',
+                'seamless navigation',
+                'progressive enhancement'
+            ];
+            const selectedFeatures = features.sort(() => 0.5 - Math.random()).slice(0, 3).join(', ');
+            
+            const description = desc ? ` ${desc}` : ` solve complex user needs through technology.`;
+            
+            return `${intro}${description}${techContext} Key features include ${selectedFeatures}, all working together to create an engaging and efficient solution. This project showcases modern development best practices, clean code architecture, and a user-centered design approach that prioritizes both functionality and aesthetics.`;
+        }
+        
+        /**
+         * Generate problem/challenge suggestion
+         */
+        function generateProblemSuggestion(context) {
+            const title = document.querySelector('[name="title"]')?.value || 'this project';
+            const tech = Array.from(document.querySelectorAll('[name="tech"]:checked'))
+                .map(cb => cb.value);
+            
+            // Generate varied problem statements
+            const problemTypes = [
+                {
+                    intro: `The primary challenge in developing ${title} was`,
+                    problems: [
+                        'balancing feature richness with simplicity and usability',
+                        'creating a cohesive experience across multiple user personas',
+                        'optimizing performance while maintaining visual appeal',
+                        'ensuring scalability without over-engineering the solution'
+                    ]
+                },
+                {
+                    intro: `Traditional solutions in this space often struggle with`,
+                    problems: [
+                        'outdated user interfaces that fail to meet modern expectations',
+                        'poor mobile responsiveness and cross-device compatibility',
+                        'slow load times and inefficient resource management',
+                        'limited accessibility and inclusive design considerations'
+                    ]
+                },
+                {
+                    intro: `The project faced several technical hurdles, including`,
+                    problems: [
+                        'integrating multiple third-party services while maintaining performance',
+                        'implementing complex state management across the application',
+                        'ensuring data security and user privacy compliance',
+                        'creating a flexible architecture that could adapt to changing requirements'
+                    ]
+                }
+            ];
+            
+            const selected = problemTypes[Math.floor(Math.random() * problemTypes.length)];
+            const selectedProblems = selected.problems.sort(() => 0.5 - Math.random()).slice(0, 2);
+            
+            let techChallenges = '';
+            if (tech.includes('React') || tech.includes('Vue.js') || tech.includes('Angular')) {
+                techChallenges += ' Managing component lifecycle and state synchronization across the application required careful architectural planning.';
+            }
+            if (tech.includes('Node.js') || tech.includes('PHP') || tech.includes('Python')) {
+                techChallenges += ' Backend optimization and efficient API design were crucial for maintaining fast response times.';
+            }
+            if (tech.includes('Tailwind CSS') || tech.includes('Sass') || tech.includes('CSS3')) {
+                techChallenges += ' Creating a consistent design system while allowing for customization required thoughtful CSS architecture.';
+            }
+            
+            return `${selected.intro} ${selectedProblems[0]}${selectedProblems[1] ? `, as well as ${selectedProblems[1]}` : ''}.${techChallenges} Additionally, the project needed to meet tight deadlines while maintaining high code quality and comprehensive testing coverage. These challenges required innovative problem-solving and close collaboration between design and development teams.`;
+        }
+        
+        /**
+         * Generate outcome suggestion
+         */
+        function generateOutcomeSuggestion(context) {
+            const title = document.querySelector('[name="title"]')?.value || 'The project';
+            const tech = Array.from(document.querySelectorAll('[name="tech"]:checked'))
+                .map(cb => cb.value);
+            
+            // Generate varied outcomes
+            const successMetrics = [
+                'improved user engagement by creating an intuitive, enjoyable experience',
+                'reduced bounce rates through faster load times and better performance',
+                'increased accessibility score to meet WCAG 2.1 AA standards',
+                'enhanced mobile conversion rates with responsive design',
+                'streamlined user workflows resulting in time savings',
+                'achieved 95+ Lighthouse performance scores',
+                'reduced maintenance overhead through clean, modular code'
+            ];
+            
+            const selectedMetrics = successMetrics.sort(() => 0.5 - Math.random()).slice(0, 3);
+            
+            let technicalDeliverables = '';
+            if (tech.length > 0) {
+                technicalDeliverables = ` The technical implementation includes a production-ready codebase built with ${tech.slice(0, 3).join(', ')}${tech.length > 3 ? ', and additional technologies' : ''}, comprehensive documentation for future development, and a robust testing suite ensuring reliability.`;
+            } else {
+                technicalDeliverables = ' The technical implementation includes a production-ready codebase, comprehensive documentation, and robust testing coverage.';
+            }
+            
+            const impactStatements = [
+                'The solution has exceeded initial expectations and positioned the project for future growth.',
+                'User feedback has been overwhelmingly positive, validating the design decisions and technical approach.',
+                'The modular architecture allows for easy iteration and feature additions based on user needs.',
+                'The project serves as a template for future development, showcasing best practices and patterns.'
+            ];
+            const impact = impactStatements[Math.floor(Math.random() * impactStatements.length)];
+            
+            return `${title} successfully delivered a comprehensive solution that ${selectedMetrics[0]}, ${selectedMetrics[1]}, and ${selectedMetrics[2]}.${technicalDeliverables} Key deliverables include a fully responsive web application, component library, API documentation, and deployment pipelines for continuous integration. ${impact} The project demonstrates the value of user-centered design combined with technical excellence, creating a foundation for long-term success.`;
+        }
+        
+        /**
+         * Show AI suggestion modal
+         */
+        function showAISuggestionModal(fieldName, suggestion) {
+            const modal = document.createElement('div');
+            modal.id = 'ai-suggestion-modal';
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4';
+            modal.style.zIndex = '60'; // Higher than form modal (z-50)
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col">
+                    <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-gradient-to-r from-purple-50 to-blue-50">
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            <i class="material-icons text-purple-600">auto_awesome</i>
+                            AI Suggestion
+                        </h3>
+                        <button onclick="closeAISuggestionModal()" class="text-gray-400 hover:text-gray-600">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                    
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <div class="ai-suggestion-card p-4 rounded-lg mb-4">
+                            <p class="text-sm text-gray-700 leading-relaxed">${suggestion}</p>
+                        </div>
+                        
+                        <div class="text-xs text-gray-500 mb-4">
+                            <i class="material-icons text-xs align-middle">info</i>
+                            You can edit this suggestion before accepting it.
+                        </div>
+                        
+                        <textarea id="ai-suggestion-edit" rows="6" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">${suggestion}</textarea>
+                    </div>
+                    
+                    <div class="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+                        <button onclick="closeAISuggestionModal()" 
+                            class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                            Cancel
+                        </button>
+                        <button onclick="acceptAISuggestion('${fieldName}')" 
+                            class="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg transition-colors">
+                            Accept Suggestion
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        /**
+         * Close AI suggestion modal
+         */
+        function closeAISuggestionModal() {
+            const modal = document.getElementById('ai-suggestion-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        /**
+         * Accept AI suggestion and apply to field
+         */
+        function acceptAISuggestion(fieldName) {
+            const editedText = document.getElementById('ai-suggestion-edit')?.value;
+            if (!editedText) return;
+            
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            if (field) {
+                // Check if field has Quill instance
+                if (field.quillInstance) {
+                    field.quillInstance.root.innerHTML = editedText;
+                    field.value = editedText;
+                } else {
+                    field.value = editedText;
+                }
+                
+                triggerAutoSave();
+                showNotification('AI suggestion applied successfully!', 'success');
+            }
+            
+            // Close only the AI suggestion modal, not the form modal
+            closeAISuggestionModal();
         }
         
         /**
@@ -1515,6 +1924,15 @@
          */
         async function saveProject(category, isEdit) {
             const form = document.getElementById('project-form');
+            
+            // Sync all Quill editors before validation
+            const richTextFields = document.querySelectorAll('[data-rich-text]');
+            richTextFields.forEach(field => {
+                if (field.quillInstance) {
+                    field.value = field.quillInstance.root.innerHTML;
+                }
+            });
+            
             if (!form.checkValidity()) {
                 form.reportValidity();
                 return;
@@ -1752,10 +2170,12 @@
                 
                 func(context);
                 
-                // Extract arrays from context
+                // Extract and normalize frontend projects
                 if (context.projects && Array.isArray(context.projects)) {
-                    extracted.projects = context.projects;
+                    extracted.projects = context.projects.map(project => normalizeFrontendProject(project));
                 }
+                
+                // Extract other arrays from context (no normalization needed yet)
                 if (context.designShowcase && Array.isArray(context.designShowcase)) {
                     extracted.designShowcase = context.designShowcase;
                 }
@@ -1782,6 +2202,122 @@
                 console.error('❌ Parse error:', error);
                 throw new Error(`Failed to parse JavaScript: ${error.message}`);
             }
+        }
+        
+        /**
+         * Normalize frontend project to ensure all required fields are present
+         */
+        function normalizeFrontendProject(project) {
+            const normalized = { ...project };
+            
+            // Ensure title exists
+            if (!normalized.title) {
+                normalized.title = 'Untitled Project';
+            }
+            
+            // Ensure short description (desc) exists - this displays on project card
+            if (!normalized.desc) {
+                normalized.desc = normalized.description || normalized.overview || 'No description provided';
+            }
+            
+            // Ensure overview exists
+            if (!normalized.overview) {
+                normalized.overview = normalized.description || normalized.desc || '';
+            }
+            
+            // Ensure problem/challenge exists
+            if (!normalized.problem) {
+                normalized.problem = '';
+            }
+            
+            // Ensure challenges array exists
+            if (!normalized.challenges) {
+                normalized.challenges = [];
+            } else if (typeof normalized.challenges === 'string') {
+                // Convert string to array if needed
+                normalized.challenges = normalized.challenges.split('\n').filter(c => c.trim());
+            }
+            
+            // Ensure learnings array exists
+            if (!normalized.learnings) {
+                normalized.learnings = [];
+            } else if (typeof normalized.learnings === 'string') {
+                // Convert string to array if needed
+                normalized.learnings = normalized.learnings.split('\n').filter(l => l.trim());
+            }
+            
+            // Ensure deliverables/outcome exists
+            if (!normalized.deliverables) {
+                normalized.deliverables = '';
+            }
+            
+            // Ensure metrics exists as object
+            if (!normalized.metrics) {
+                normalized.metrics = {};
+            }
+            
+            // Normalize image paths to use public/images/portfolio
+            if (normalized.img && !normalized.img.startsWith('data:') && !normalized.img.startsWith('http')) {
+                normalized.img = normalizeImagePath(normalized.img);
+            }
+            if (normalized.secimg && !normalized.secimg.startsWith('data:') && !normalized.secimg.startsWith('http')) {
+                normalized.secimg = normalizeImagePath(normalized.secimg);
+            }
+            if (normalized.addimg) {
+                if (typeof normalized.addimg === 'string') {
+                    // Split comma-separated string and normalize each path
+                    normalized.addimg = normalized.addimg.split(',')
+                        .map(img => img.trim())
+                        .filter(Boolean)
+                        .map(img => !img.startsWith('data:') && !img.startsWith('http') ? normalizeImagePath(img) : img)
+                        .join(',');
+                } else if (Array.isArray(normalized.addimg)) {
+                    // Normalize array of paths
+                    normalized.addimg = normalized.addimg
+                        .filter(Boolean)
+                        .map(img => !img.startsWith('data:') && !img.startsWith('http') ? normalizeImagePath(img) : img)
+                        .join(',');
+                }
+            }
+            
+            // Ensure tech stack exists and has proper format
+            if (!normalized.tech) {
+                normalized.tech = [];
+            } else if (Array.isArray(normalized.tech)) {
+                // Ensure each tech item has name and icon properties
+                normalized.tech = normalized.tech.map(tech => {
+                    if (typeof tech === 'string') {
+                        // Convert string to object with icon lookup
+                        const techEntry = TECH_STACK.find(t => t.name === tech);
+                        return techEntry ? { name: tech, icon: techEntry.icon } : { name: tech, icon: 'fas fa-code' };
+                    }
+                    // Already an object, ensure it has icon
+                    if (!tech.icon) {
+                        const techEntry = TECH_STACK.find(t => t.name === tech.name);
+                        tech.icon = techEntry ? techEntry.icon : 'fas fa-code';
+                    }
+                    return tech;
+                });
+            }
+            
+            return normalized;
+        }
+        
+        /**
+         * Normalize image path to use ../public/images/portfolio (for React app)
+         */
+        function normalizeImagePath(path) {
+            // Remove leading slashes, public/, and ../ prefixes
+            const cleanPath = path.replace(/^\/+/, '').replace(/^\.\.\//, '').replace(/^public\//, '');
+            
+            // If path already includes images/portfolio, add ../public/ prefix
+            if (cleanPath.startsWith('images/portfolio/')) {
+                return `../public/${cleanPath}`;
+            }
+            
+            // If it's just a filename or relative path, add full portfolio path
+            const filename = cleanPath.split('/').pop();
+            return `../public/images/portfolio/${filename}`;
         }
         
         /**
@@ -2014,11 +2550,17 @@
                             continue;
                         }
                         
+                        // Apply normalization for frontend projects before saving
+                        let normalizedItem = item;
+                        if (storeName === STORES.FRONTEND) {
+                            normalizedItem = normalizeFrontendProject(item);
+                        }
+                        
                         if (decision && decision.useImported) {
                             // Update existing item
                             const existingItem = decision.conflict.existing;
                             await updateItem(storeName, {
-                                ...item,
+                                ...normalizedItem,
                                 id: existingItem.id,
                                 imported: true,
                                 createdAt: existingItem.createdAt
@@ -2026,7 +2568,7 @@
                         } else {
                             // Add new item
                             await addItem(storeName, {
-                                ...item,
+                                ...normalizedItem,
                                 imported: true
                             });
                         }
@@ -2132,9 +2674,9 @@
             showImportDialog();
         });
         
-        // Export button handler (placeholder)
+        // Export button handler
         document.getElementById('exportBtn').addEventListener('click', () => {
-            alert('Export functionality will be implemented in PROMPT 6');
+            exportAllData();
         });
         
         // ============================================
@@ -2306,7 +2848,7 @@
                                 </button>
                             ` : ''}
                             
-                            <button onclick="exportCategory()" 
+                            <button onclick="exportCurrentCategory()" 
                                 class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center gap-2">
                                 <span class="material-icons text-sm">download</span>
                                 <span class="text-sm">Export</span>
@@ -2637,6 +3179,7 @@
         async function exportAllData() {
             try {
                 console.log('📦 Starting export process...');
+                console.log('📊 Checking database connection...', db ? 'Connected' : 'NOT CONNECTED');
                 
                 // Show loading state
                 const exportBtn = document.getElementById('exportAllBtn');
@@ -2656,11 +3199,15 @@
                 const imageCounter = { count: 0 };
                 
                 // Export each category
+                console.log('📂 Starting category exports...');
                 await exportCategory('frontend', STORES.FRONTEND, dataFolder, imagesFolder, allData, imageCounter);
                 await exportCategory('design', STORES.DESIGN, dataFolder, imagesFolder, allData, imageCounter);
                 await exportCategory('case-studies', STORES.CASE_STUDIES, dataFolder, imagesFolder, allData, imageCounter);
                 await exportCategory('github', STORES.GITHUB, dataFolder, imagesFolder, allData, imageCounter);
                 await exportCategory('codepen', STORES.CODEPEN, dataFolder, imagesFolder, allData, imageCounter);
+                
+                console.log('📋 All data collected:', allData);
+                console.log('🖼️ Total images:', imageCounter.count);
                 
                 // Generate consolidated projects.js file
                 const projectsJS = generateProjectsJS(allData);
@@ -3137,7 +3684,7 @@ For questions or issues, refer to the Portfolio Manager documentation.
         /**
          * Export single category
          */
-        async function exportCategory() {
+        async function exportCurrentCategory() {
             const category = getCurrentCategory();
             const storeName = getStoreName(category);
             
