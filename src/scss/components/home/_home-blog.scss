@@ -51,10 +51,6 @@
         img {
           transform: scale(1.1);
         }
-
-        .blog-card-overlay {
-          opacity: 1;
-        }
       }
 
       .blog-title {
@@ -329,3 +325,93 @@
 }
 
 // Note: Loading skeleton styles are defined globally in base/_skeleton.scss
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+html.dark-mode {
+  .blog-section {
+    background: linear-gradient(180deg, $dark-bg 0%, $dark-bg-secondary 100%);
+
+    .blog-loading {
+      color: $dark-text-muted;
+    }
+
+    .blog-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+        border-color: $brand-primary-light;
+      }
+
+      .blog-card-image {
+        background: linear-gradient(135deg, rgba($brand-primary-light, 0.2) 0%, rgba($brand-primary-light, 0.1) 100%);
+
+        .blog-card-overlay {
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+        }
+      }
+
+      .blog-card-content {
+        .blog-date {
+          color: $brand-primary-light;
+        }
+
+        .blog-title {
+          color: $dark-text;
+        }
+
+        &:hover .blog-title {
+          color: $brand-primary-light;
+        }
+
+        .blog-excerpt {
+          color: $dark-text-muted;
+        }
+
+        .blog-read-more {
+          color: $brand-primary-light;
+        }
+      }
+    }
+
+    .blog-compact-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        border-color: $brand-primary-light;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      .blog-compact-image {
+        background: rgba($dark-border, 0.3);
+      }
+
+      .blog-compact-date {
+        color: $dark-text-muted;
+      }
+
+      .blog-compact-title {
+        color: $dark-text;
+      }
+
+      .blog-compact-read-more {
+        color: $brand-primary-light;
+      }
+    }
+
+    .blog-cta-button {
+      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+      box-shadow: 0 4px 16px rgba($brand-primary-light, 0.2);
+
+      &:hover {
+        box-shadow: 0 8px 24px rgba($brand-primary-light, 0.3);
+      }
+    }
+  }
+}

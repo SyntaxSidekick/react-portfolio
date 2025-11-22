@@ -17,6 +17,10 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
                 className="design-image" 
                 onClick={() => onDesignClick(item)}
                 style={{ cursor: 'pointer' }}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onDesignClick(item); } }}
+                aria-label={`View ${item.title} design details`}
               >
                 <img 
                   src={item.image} 
@@ -31,6 +35,7 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
                 <button 
                   className="btn-link"
                   onClick={() => onDesignClick(item)}
+                  aria-label={`View ${item.title} UX breakdown`}
                 >
                   View UX Breakdown
                   <i className="fas fa-arrow-right" aria-hidden="true"></i>

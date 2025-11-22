@@ -1,7 +1,7 @@
 /**
  * Partial: _dark-mode.scss
  * Purpose: Dark mode theme styles
- * Features: Dark color scheme, transitions
+ * Features: Dark color scheme, optimized transitions
  * Usage: Import in style.scss
  * Dependencies: Uses _variables.scss
  * Last updated: 2025-11
@@ -9,10 +9,27 @@
 @use "../abstracts/variables" as *;
 @use "sass:color";
 
-// Smooth transitions for dark mode
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+// ============================================================================
+// OPTIMIZED TRANSITIONS (Applied selectively)
+// ============================================================================
+
+// Only transition colors on interactive elements to avoid performance issues
+a,
+button,
+input,
+textarea,
+select,
+.card,
+.btn {
+  transition: 
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
+
+// ============================================================================
+// DARK MODE THEME
+// ============================================================================
 
 html.dark-mode {
   // Base colors

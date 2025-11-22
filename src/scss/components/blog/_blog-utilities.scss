@@ -1,0 +1,16 @@
+@use '../../abstracts/variables' as *;
+
+// Blog-specific utility classes
+.skeleton-mb-lg {
+  margin-bottom: 18px;
+}
+
+.blog-error-message {
+  color: $color-error;
+  text-align: center;
+  margin-top: 32px;
+  padding: 16px;
+  background: rgba($color-error, 0.1);
+  border-radius: $radius-lg;
+  font-weight: $weight-semibold;
+}

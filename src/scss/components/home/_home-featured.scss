@@ -128,3 +128,16 @@
     }
   }
 }
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+html.dark-mode {
+  .featured-work {
+    background: linear-gradient(180deg, $dark-bg 0%, $dark-bg-secondary 100%);
+
+    // Project cards are styled in _project-card.scss with dark mode support
+    // This section only handles layout-specific dark mode needs
+  }
+}

@@ -73,7 +73,7 @@
       border: 2px solid $color-border-light;
       border-radius: $radius-lg;
       padding: $padding-md $padding-xl;
-      font-size: $font-size-sm;
+      font-size: $font-size-xs;
       font-weight: $weight-semibold;
       color: $color-text-secondary;
       cursor: pointer;
@@ -1325,6 +1325,355 @@
 
 // Dark Mode
 html.dark-mode {
+  .portfolio-page {
+    background: $dark-bg;
+    color: $dark-text;
+  }
+
+  // Filter Tabs
+  .portfolio-filters {
+    .card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .filter-tabs {
+      .filter-icon {
+        color: $brand-primary-light;
+      }
+
+      .filter-tab {
+        background: $dark-bg;
+        border-color: $dark-border;
+        color: $dark-text;
+
+        &:hover {
+          color: $brand-primary-light;
+          background: rgba($brand-primary-light, 0.1);
+          border-color: $brand-primary-light;
+        }
+
+        &.active {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+          color: $dark-bg;
+          border-color: $brand-primary-light;
+
+          i {
+            color: $dark-bg;
+          }
+        }
+      }
+    }
+  }
+
+  // Project Cards
+  .portfolio-projects-section {
+    .project-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        border-color: $brand-primary-light;
+      }
+
+      .project-content {
+        h3 {
+          color: $brand-primary-light;
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .tech-tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        color: $dark-bg;
+
+        &:hover {
+          box-shadow: 0 8px 24px rgba($brand-primary-light, 0.3);
+        }
+      }
+    }
+  }
+
+  // Design Showcase
+  .portfolio-design-section {
+    .design-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .design-content {
+        h3 {
+          color: $dark-text;
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .design-tags .tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+
+        .btn-link {
+          background: $dark-bg-secondary;
+          border-color: $dark-border;
+          color: $dark-text;
+
+          i {
+            color: $brand-primary-light;
+          }
+
+          &:hover {
+            background: $brand-primary-light;
+            color: $dark-bg;
+            border-color: $brand-primary-light;
+
+            i {
+              color: $dark-bg;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // GitHub Cards
+  .portfolio-github-section {
+    .github-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .github-thumbnail {
+        background: $dark-bg-secondary;
+      }
+
+      .github-content {
+        h3 {
+          color: $dark-text;
+
+          i {
+            color: $brand-primary-light;
+          }
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .github-stats {
+          color: $dark-text-muted;
+
+          i {
+            color: $brand-primary-light;
+          }
+        }
+
+        .github-tech .tech-pill {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+
+        .github-link {
+          color: $brand-primary-light;
+
+          &:hover {
+            color: $primary-dark;
+          }
+        }
+      }
+    }
+  }
+
+  // CodePen Cards
+  .portfolio-codepen-section {
+    .codepen-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .codepen-embed {
+        background: #1e1f26;
+      }
+
+      .codepen-content {
+        h3 {
+          color: $dark-text;
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .codepen-tags .tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+      }
+
+      .btn-secondary {
+        background: $dark-bg-secondary;
+        color: $dark-text;
+        border-color: $dark-border;
+
+        i {
+          color: $brand-primary-light;
+        }
+
+        &:hover {
+          background: #1e1f26;
+          color: $text-white;
+          border-color: #1e1f26;
+
+          i {
+            color: $text-white;
+          }
+        }
+      }
+    }
+  }
+
+  // Case Study Cards
+  .portfolio-case-studies-section {
+    .case-study-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .case-study-content {
+        .case-study-meta {
+          color: $dark-text-muted;
+
+          .year::before,
+          .duration::before {
+            color: $brand-primary-light;
+          }
+        }
+
+        h3 {
+          color: $dark-text;
+        }
+
+        .subtitle {
+          color: $brand-primary-light;
+        }
+
+        .summary {
+          color: $dark-text-muted;
+        }
+
+        .case-study-tags .tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+
+        .btn-primary {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+          color: $dark-bg;
+        }
+      }
+    }
+  }
+
+  // CTA Section
+  .portfolio-cta-section {
+    .cta-card {
+      background: linear-gradient(135deg, $dark-bg 0%, $dark-bg-secondary 100%);
+      border-color: $dark-border;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+      h2 {
+        color: $brand-primary-light;
+      }
+
+      p {
+        color: $dark-text-muted;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        color: $dark-bg;
+      }
+
+      .btn-secondary {
+        background: $dark-bg-secondary;
+        color: $dark-text;
+        border-color: $dark-border;
+
+        &:hover {
+          background: rgba($brand-primary-light, 0.15);
+          border-color: $brand-primary-light;
+          color: $brand-primary-light;
+        }
+      }
+    }
+  }
+  
+  // GitHub CTA Row
+  .portfolio-cta-row {
+    .portfolio-cta-button,
+    .github-cta-button {
+      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+      color: $dark-bg;
+      box-shadow: 0 4px 16px rgba($brand-primary-light, 0.3);
+      
+      .cta-content {
+        .cta-text {
+          strong,
+          small {
+            color: $dark-bg;
+          }
+        }
+      }
+      
+      .cta-arrow {
+        color: $dark-bg;
+      }
+      
+      &:hover {
+        box-shadow: 0 8px 24px rgba($brand-primary-light, 0.4);
+        
+        .cta-arrow {
+          color: $dark-bg;
+        }
+      }
+    }
+  }
+
+  // Portfolio Modal
   .portfolio-modal {
     .modal-wrapper {
       background: $dark-bg;
@@ -1342,6 +1691,10 @@ html.dark-mode {
       }
     }
 
+    .modal-hero {
+      background: $dark-bg-secondary;
+    }
+
     .modal-header-section {
       border-bottom-color: $dark-border;
 
@@ -1355,6 +1708,11 @@ html.dark-mode {
       }
 
       .btn-action {
+        &.btn-primary {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+          color: $dark-bg;
+        }
+
         &.btn-secondary {
           background: $dark-bg-secondary;
           color: $text-light;
@@ -1369,7 +1727,7 @@ html.dark-mode {
     }
 
     .content-card {
-      background: $dark-bg;
+      background: $dark-bg-secondary;
       border-color: $dark-border;
 
       &:hover {
@@ -1390,12 +1748,17 @@ html.dark-mode {
         p {
           color: $text-light;
         }
+
+        ul li {
+          color: $text-light;
+        }
       }
     }
 
     .tech-stack-grid .tech-item {
-      background: $dark-bg-secondary;
+      background: $dark-bg;
       color: $text-light;
+      border-color: $dark-border;
 
       span {
         color: $text-light;
@@ -1417,184 +1780,96 @@ html.dark-mode {
 
     .media-gallery .media-item {
       background: $dark-bg-secondary;
+      border-color: $dark-border;
     }
   }
-}
 
-// ============================================================================
-// DARK MODE - Portfolio Section Only
-// ============================================================================
+  // Design Modal
+  .design-modal-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
 
-html.dark-mode {
-  .portfolio-section {
-    .filter-tab {
-      background: $dark-bg;
-      border-color: $overlay-white-light;
-      color: $text-light;
+  .design-modal-content {
+    background: $dark-card-bg;
 
-      &:hover {
-        border-color: $brand-primary-light;
-        color: $brand-primary-light;
-      }
+    .design-modal-info {
+      background: $dark-card-bg;
 
-      &.active {
-        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+      .design-category-badge {
+        background: $brand-primary-light;
         color: $dark-bg;
       }
-    }
-
-    .project-card,
-    .github-card,
-    .codepen-card {
-      background: $dark-bg;
-      border-color: $overlay-white-light;
-
-      &:hover {
-        border-color: $brand-primary-light;
-      }
-
-      h3 {
-        color: $brand-primary-light;
-      }
-
-      p {
-        color: $text-light;
-      }
-
-      .tech-tag,
-      .tech-pill {
-        background: rgba($brand-primary-light, 0.15);
-        color: $brand-primary-light;
-        border-color: rgba($brand-primary-light, 0.3);
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
-        color: $dark-bg;
-      }
-
-      .btn-secondary {
-        background: $overlay-white-light;
-        color: $brand-primary-light;
-        border-color: $overlay-white-light;
-
-        &:hover {
-          background: $brand-primary-light;
-          color: $dark-bg;
-        }
-      }
-    }
-
-    .cta-card {
-      background: linear-gradient(135deg, $dark-bg 0%, $overlay-white-light 100%);
-      border-color: $overlay-white-light;
 
       h2 {
-        color: $brand-primary-light;
+        color: $dark-text;
       }
 
-      p {
-        color: $text-light;
+      .design-description {
+        color: $dark-text-muted;
+      }
+
+      .ux-breakdown {
+        h3 {
+          color: $brand-primary-light;
+        }
+
+        .breakdown-content {
+          color: $dark-text-muted;
+        }
       }
     }
   }
 
-  // Portfolio Modal Dark Mode
-  .portfolio-modal {
-    .modal-content {
-      background: $dark-bg;
-    }
+  // CodePen Experiments Component
+  .codepen-experiments {
+    background: $dark-bg;
 
-    .portfolio-modal-header {
-      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
-    }
-
-    .portfolio-modal-body {
-      background: rgba($dark-bg, 0.5);
-
-      &::-webkit-scrollbar-track {
-        background: $dark-bg;
+    .section-header {
+      h2 {
+        color: $dark-text;
       }
 
-      &::-webkit-scrollbar-thumb {
-        background: $overlay-white-light;
-
-        &:hover {
-          background: $brand-primary-light;
-        }
+      p {
+        color: $dark-text-muted;
       }
     }
 
-    .modal-section {
-      background: $dark-bg;
-      border: 1px solid $overlay-white-light;
-
-      .section-header {
-        border-bottom-color: $overlay-white-light;
-
-        .section-icon {
-          color: $brand-primary-light;
-        }
-
-        h2 {
-          color: $brand-primary-light;
-        }
-      }
-
-      .section-content {
-        color: $text-light;
-
-        p {
-          color: $text-light;
-        }
-      }
-    }
-
-    .tool-card {
-      background: linear-gradient(135deg, rgba($brand-primary-light, 0.1) 0%, $dark-bg 100%);
-      border-color: $overlay-white-light;
+    .codepen-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
 
       &:hover {
         border-color: $brand-primary-light;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       }
 
-      i {
-        color: $brand-primary-light;
+      .card-media {
+        background: $dark-bg-secondary;
       }
 
-      span {
-        color: $text-light;
-      }
-    }
-
-    .challenges-list,
-    .learnings-list {
-      li {
-        color: $text-light;
-
-        &::before {
-          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+      .card-body {
+        .card-title {
+          color: $dark-text;
         }
-      }
-    }
 
-    .metric-card {
-      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
-    }
+        .card-desc {
+          color: $dark-text-muted;
+        }
 
-    .portfolio-modal-footer {
-      background: $dark-bg;
-      border-top-color: $overlay-white-light;
+        .card-footer {
+          border-top-color: $dark-border;
 
-      .btn-secondary {
-        background: $overlay-white-light;
-        color: $brand-primary-light;
-        border-color: $overlay-white-light;
+          a {
+            color: $brand-primary-light;
 
-        &:hover {
-          background: $brand-primary-light;
-          color: $dark-bg;
-          border-color: $brand-primary-light;
+            i {
+              color: $brand-primary-light;
+            }
+
+            &:hover {
+              color: $primary-dark;
+            }
+          }
         }
       }
     }
@@ -1615,6 +1890,7 @@ html.dark-mode {
     transform: translateY(0);
   }
 }
+
 // ============================================================================
 // DESIGN SHOWCASE MODAL
 // ============================================================================

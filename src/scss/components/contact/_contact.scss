@@ -390,6 +390,28 @@
   .contact-form-wrapper {
     background: rgba(42, 42, 42, 0.6);
     border-color: rgba(0, 115, 170, 0.2);
+    
+    h2 {
+      color: $dark-text;
+    }
+  }
+  
+  .form-status {
+    background: rgba(0, 115, 170, 0.15);
+    border-color: $brand-primary-light;
+    color: $dark-text;
+    
+    &.success {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: #22c55e;
+      color: #4ade80;
+    }
+
+    &.error {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+      color: #f87171;
+    }
   }
 
   .contact-form .form-field {
@@ -407,7 +429,13 @@
     textarea {
       background: rgba(26, 26, 26, 0.8);
       border-color: $dark-border;
-      color: $dark-text;
+      color: $dark-text; // This is #e0e0e0 for good contrast
+      
+      // Ensure placeholder text is visible
+      &::placeholder {
+        color: $dark-text-muted;
+        opacity: 1;
+      }
 
       &:hover {
         border-color: rgba(0, 115, 170, 0.3);
@@ -418,6 +446,25 @@
         box-shadow: 
           0 0 0 4px rgba(0, 115, 170, 0.2),
           0 2px 8px rgba(0, 115, 170, 0.15);
+        color: $dark-text; // Ensure text stays visible on focus
+      }
+      
+      // Ensure autofill text is visible in dark mode
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-text-fill-color: $dark-text;
+        -webkit-box-shadow: 0 0 0 1000px rgba(26, 26, 26, 0.8) inset;
+        box-shadow: 0 0 0 1000px rgba(26, 26, 26, 0.8) inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    }
+    
+    // Error state text visibility
+    &.error {
+      input,
+      textarea {
+        color: $dark-text;
       }
     }
   }

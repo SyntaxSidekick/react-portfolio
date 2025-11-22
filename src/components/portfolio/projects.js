@@ -27,8 +27,8 @@ export const projects = [
       "Design systems are living documents—version control and update protocols are as important as initial creation"
     ],
     "deliverables": "<p>Delivered production-ready, brand-consistent mobile apps that cut rework by 30%, accelerated app delivery, and enhanced user engagement across platforms.</p><p><br></p><p><strong>Key Deliverables- </strong>Cross-Platform UX/UI Design, Style Guides &amp; Design Systems, Interactive Prototypes in Adobe XD/Photoshop/InDesign/Illustrator, User Research &amp; A/B Testing, Accessibility &amp; Usability Improvements</p><p><br></p>",
-    "img": "../public/images/portfolio/projects/vistana-1.png",
-    "secimg": "../public/images/portfolio/projects/vistana-2.png",
+    "img": "/images/portfolio/projects/vistana-1.png",
+    "secimg": "/images/portfolio/projects/vistana-2.png",
     "tech": [
       {
         "name": "Design Systems",
@@ -64,7 +64,7 @@ export const projects = [
       "reworkReduction": "30% decrease",
       "acceleratedDelivery": "Projects completed 25% faster"
     },
-    "addimg": "../public/images/portfolio/projects/vistana-3.png,../public/images/portfolio/projects/vistana-4.png"
+    "addimg": "/images/portfolio/projects/vistana-3.png,/images/portfolio/projects/vistana-4.png"
   },
   {
     "title": "Virtued Online - Virtual Tutoring Platform",
@@ -87,8 +87,8 @@ export const projects = [
       "Technical leadership means making hard decisions quickly and standing behind them with execution"
     ],
     "deliverables": "<p>Delivered a production-ready, modular tutoring platform 6 months early, improving usability, scalability, and development efficiency for future feature expansions.\n\n<strong>Key Deliverables</strong>: Project Managment and Documentation, UI/UX Design/ Development, Prototyping, User stories and flows, HTML/CSS/JS templating, ReactJS Front-End Development &amp; Modular Components, Dashboard, Calendar, Scheduling &amp; Payment Systems</p>",
-    "img": "../public/images/portfolio/projects/virtued-1.png",
-    "secimg": "../public/images/portfolio/projects/virtued-2.png",
+    "img": "/images/portfolio/projects/virtued-1.png",
+    "secimg": "/images/portfolio/projects/virtued-2.png",
     "tech": [
       {
         "name": "Bootstrap",
@@ -165,8 +165,8 @@ export const projects = [
       "Scalable UI Architecture: Built modular, maintainable front-end systems for complex booking features."
     ],
     "deliverables": "<p>Delivered a high-performance, responsive travel booking site with improved user engagement, faster design-to-development handoffs, and scalable architecture supporting future feature expansion.</p><p><br></p><p><strong>Key Deliverables- </strong>UX Architecture &amp; UI Implementation, VueJS Front-End Development, Responsive Design &amp; Accessibility, Compliance, Booking &amp; Package Listing Systems, Workflow Optimization with Jira/Confluence, Analytics &amp; A/B Testing Integration</p><p><br></p>",
-    "img": "../public/images/portfolio/projects/time2visit-1.png",
-    "secimg": "../public/images/portfolio/projects/time2visit-2.png",
+    "img": "/images/portfolio/projects/time2visit-1.png",
+    "secimg": "/images/portfolio/projects/time2visit-2.png",
     "tech": [
       {
         "name": "Bootstrap",
@@ -239,8 +239,8 @@ export const projects = [
       "Modular Development Practices: Developed scalable, reusable components that accelerate future feature deployment."
     ],
     "deliverables": "<p>The project delivered a robust, scalable <strong>telehealth platform</strong> that exceeded initial requirements. Key deliverables include <strong>UX architecture, UI implementation, front-end development, full-stack integration, responsive web application, comprehensive documentation, and a maintainable, modular codebase</strong>. By integrating with Epic, the platform enables <strong>providers and patients to connect virtually</strong> and leverages AI to enhance patient care. The solution has improved user engagement and satisfaction, while its modular architecture has significantly reduced development time for future iterations.</p>",
-    "img": "../public/images/portfolio/projects/andor.png",
-    "secimg": "../public/images/portfolio/projects/andor-2.png",
+    "img": "/images/portfolio/projects/andor.png",
+    "secimg": "/images/portfolio/projects/andor-2.png",
     "tech": [
       {
         "name": "CSS3",
@@ -314,8 +314,8 @@ export const projects = [
       "Problem-Solving Under Complexity: Developed strategies to navigate a full CMS overhaul while maintaining performance, usability, and code quality."
     ],
     "deliverables": "<p>Saveur became the flagship site for all subsequent brand migrations to the latest version of Drupal. I led the complete front-end redevelopment, designing a modular SCSS system that evolved into a scalable front-end framework—still in use today. This framework enabled rapid deployment, consistent UI implementation, and standardized design execution across brands, significantly reducing development time for future projects.</p><p><br></p><p><strong>Key Deliverables:</strong> UI Development, Front-end Architecture, Drupal Theming &amp; Template Integration, Performance Optimization, Responsive Design, Accessibility Compliance</p>",
-    "img": "../public/images/portfolio/projects/saveur.png",
-    "secimg": "../public/images/portfolio/projects/saveur-1.png",
+    "img": "/images/portfolio/projects/saveur.png",
+    "secimg": "/images/portfolio/projects/saveur-1.png",
     "tech": [
       {
         "name": "CSS3",
@@ -372,8 +372,8 @@ export const projects = [
       "Brand-Specific Adaptation: Learned to balance framework standardization with brand-specific UX and design needs."
     ],
     "deliverables": "<p>Popular Science successfully launched as a fully responsive, performant editorial site with a consistent, modular front-end design. The migration confirmed the <strong>effectiveness of the reusable framework</strong>, reducing development time significantly while maintaining quality across multiple content types.</p><p><strong>Key Deliverables-  </strong>UX Architecture &amp; UI Implementation, Front-End Development &amp; Theming, CMS Integration &amp; Template, Development, Performance Optimization, Responsive Design &amp; Accessibility Compliance, Multimedia &amp; Interactive Feature Integration</p><p><br></p>",
-    "img": "../public/images/portfolio/projects/popsci.png",
-    "secimg": "../public/images/portfolio/projects/popsci-1.png",
+    "img": "/images/portfolio/projects/popsci.png",
+    "secimg": "/images/portfolio/projects/popsci-1.png",
     "tech": [
       {
         "name": "CSS3",
@@ -891,3 +891,4 @@ export const galleryTabs = [
     { id: 'github', label: 'GitHub' },
     { id: 'codepen', label: 'CodePen' }
 ];
+

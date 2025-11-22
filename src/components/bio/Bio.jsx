@@ -99,17 +99,19 @@ const Bio = () => {
   }, []);
 
     return (
-    <main className="bio-page container" id="main-content" aria-labelledby="page-title">
+    <main className="bio-page" id="main-content" aria-labelledby="page-title">
       <DynamicTitle />
       <PageHeader 
         title="About Riad Kilani" 
         subtitle="Senior Front-End Engineer | React Specialist | UX & Interface Architecture"
       />
       
+      <div className="container">
       <ProfessionalOverview profileImg={profileImg} years={years} />
       <ProcessSection processRefs={processRefs} bioContentRef={bioContentRef} />
       <SkillsSection skillsRefs={skillsRefs} />
       <ConnectSection />
+      </div>
       
     </main>
   );

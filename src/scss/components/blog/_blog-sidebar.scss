@@ -242,3 +242,144 @@
         font-weight: 700;
       }
 }
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+html.dark-mode {
+  .blog-sidebar {
+    background: transparent;
+  }
+
+  .widget {
+    background: $dark-card-bg;
+    border-color: $dark-border;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    .widgetTitle,
+    .widget-title {
+      color: $dark-text;
+
+      &::after {
+        background: linear-gradient(90deg, $brand-primary-light, rgba($brand-primary-light, 0.3), transparent);
+      }
+
+      &::before {
+        background: linear-gradient(90deg, rgba($brand-primary-light, 0.5), rgba($brand-primary-light, 0.2), transparent);
+      }
+    }
+
+    ul {
+      li {
+        border-bottom-color: $dark-border;
+
+        a {
+          color: $dark-text-muted;
+
+          &:hover {
+            color: $brand-primary-light;
+          }
+        }
+      }
+    }
+
+    input[type="text"] {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text;
+
+      &:focus {
+        border-color: $brand-primary-light;
+        background: rgba($dark-bg, 0.8);
+      }
+
+      &::placeholder {
+        color: $dark-text-muted;
+      }
+    }
+
+    a {
+      color: $brand-primary-light;
+
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+
+    p {
+      color: $dark-text-muted;
+    }
+  }
+
+  .wp-block-tag-cloud,
+  .tagcloud {
+    a {
+      background: rgba($dark-border, 0.3);
+      color: $dark-text;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($brand-primary-light, 0.15);
+        color: $brand-primary-light;
+        border-color: $brand-primary-light;
+      }
+
+      &::after {
+        color: $brand-primary-light;
+        background: rgba($brand-primary-light, 0.15);
+      }
+    }
+  }
+
+  .tag-cloud {
+    a {
+      background: rgba($dark-border, 0.3);
+      color: $dark-text;
+
+      &:hover {
+        background: $brand-primary-light;
+        color: $dark-bg;
+      }
+    }
+  }
+
+  .footer-widgets {
+    background: $dark-bg-secondary;
+    color: $dark-text;
+
+    .widget {
+      background: transparent;
+
+      .widget-title {
+        color: $dark-text;
+      }
+
+      ul li a {
+        color: $dark-text-muted;
+
+        &:hover {
+          color: $brand-primary-light;
+        }
+      }
+
+      .wp-block-tag-cloud a,
+      .tagcloud a {
+        background: rgba($dark-border, 0.3);
+        color: $dark-text;
+        border-color: $dark-border;
+
+        &:hover {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: $brand-primary-light;
+        }
+
+        &::after {
+          color: $brand-primary-light;
+          background: rgba($brand-primary-light, 0.15);
+        }
+      }
+    }
+  }
+}

@@ -359,6 +359,28 @@ pre:hover .copy-button {
     padding-left: 50px;
   }
 }
+// Copy code button styles (extracted from inline JS)
+.copy-code-btn {
+  margin: 8px 0 0;
+  float: right;
+  font-size: 0.8em;
+  padding: 2px 10px;
+  border-radius: 4px;
+  border: none;
+  background: rgb(238, 238, 238);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: rgb(220, 220, 220);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $brand-primary;
+    outline-offset: 2px;
+  }
+}
+
 @media (max-width: 480px) {
   pre {
     margin: 20px 0;
@@ -434,4 +456,48 @@ pre:hover .copy-button {
 .copy-code-btn {
   color: $text;
   padding: 4px 8px !important;
+}
+
+// ============================================================================
+// DARK MODE (Code blocks are already dark, just ensure consistency)
+// ============================================================================
+
+html.dark-mode {
+  pre,
+  code {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-color: #3c3c3c;
+  }
+
+  .post-content p code {
+    background: #252526;
+    color: #d4d4d4;
+    border-color: #3c3c3c;
+  }
+
+  .copy-code-btn {
+    background: #252526;
+    color: #d4d4d4;
+    border: 1px solid #3c3c3c;
+
+    &:hover {
+      background: #3c3c3c;
+      color: #d4d4d4;
+    }
+  }
+
+  .code-language {
+    color: #6a9955;
+  }
+
+  .copy-button {
+    background: #252526;
+    border-color: #3c3c3c;
+    color: #d4d4d4;
+
+    &:hover {
+      background: #3c3c3c;
+    }
+  }
 }

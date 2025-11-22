@@ -128,13 +128,14 @@ const Portfolio = () => {
   });
 
   return (
-    <main className="portfolio-page container" id="main-content" aria-labelledby="page-title">
+    <main className="portfolio-page" id="main-content" aria-labelledby="page-title">
       <DynamicTitle />
       <PageHeader 
         title="Selected Work" 
         subtitle="A curated collection of front-end engineering, UI/UX design, and code experiments."
       />
 
+      <div className="container">
       <FilterTabs 
         filters={FILTERS}
         activeFilter={activeFilter}
@@ -184,6 +185,7 @@ const Portfolio = () => {
       />
 
       <CTASection />
+      </div>
       
       <PortfolioModal 
         modalOpen={modalOpen}

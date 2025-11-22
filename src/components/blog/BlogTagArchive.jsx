@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Skeleton, SkeletonBlock } from '../Skeleton'
+import { PageHeader } from '../'
 import Sidebar from './Sidebar'
 import BlogNav from './BlogNav'
 
@@ -92,11 +93,12 @@ const BlogTagArchive = () => {
   return (
     <>
       <BlogNav />
-      <main className='container blog-index-page' role="main" aria-label="Blog tag archive content">
-        <div className='page-header'>
-          <h2 id='page-title'>Latest Posts tagged '{tagName}'</h2>
-          <p>Interested in {tagName}? Read more here.</p>
-        </div>
+      <main className='blog-index-page' role="main" aria-label="Blog tag archive content">
+        <PageHeader 
+          title={`Latest Posts tagged '${tagName}'`}
+          subtitle={`Interested in ${tagName}? Read more here.`}
+        />
+        <div className='container'>
         <div className='breadcrumbs'>
           <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; Tag: {tagName}
         </div>
@@ -130,6 +132,7 @@ const BlogTagArchive = () => {
             </ul>
           </section>
           <Sidebar />
+        </div>
         </div>
       </main>
     </>

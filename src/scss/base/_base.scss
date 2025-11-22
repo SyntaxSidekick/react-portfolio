@@ -87,7 +87,6 @@ input[type="submit"] {
 // Page-level containers - universal styles
 main {
   position: relative;
-  overflow-x: hidden;
   
   // Prevent flash of unstyled content and improve text rendering
   * {
@@ -101,6 +100,11 @@ main {
 }
 
 :focus-visible { @extend %focus-ring; transition: outline .2s, box-shadow .2s; }
+
+// Ensure keyboard-navigable role=button elements have focus states
+[role="button"]:focus-visible {
+  @extend %focus-ring;
+}
 
 // Remove outline only if replaced by visible focus style
 button:focus,
@@ -141,30 +145,21 @@ textarea:focus-visible { @extend %focus-ring; }
 .site-wrapper {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
 
   // Optional: Prevent horizontal scroll on mobile
   @media (max-width: 900px) {
     padding: 0;
-    overflow-x: hidden;
   }
 
   @media (max-width: 600px) {
     padding: 0;
-    overflow-x: hidden;
   }
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-@media (max-width: 600px) {
-  #root {
-    padding: 0 1rem;
-  }
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #main-content {

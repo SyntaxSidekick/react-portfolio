@@ -132,11 +132,7 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
                       <i className="fas fa-lightbulb"></i>
                       The Challenge
                     </h2>
-                    <div className="card-content">
-                      {modalProject.problem.split('\n\n').map((para, idx) => (
-                        <p key={idx}>{para}</p>
-                      ))}
-                    </div>
+                    <div className="card-content" dangerouslySetInnerHTML={{ __html: modalProject.problem }} />
                   </div>
                 )}
 
@@ -187,11 +183,7 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
                       <i className="fas fa-trophy"></i>
                       Outcome & Impact
                     </h2>
-                    <div className="card-content">
-                      {modalProject.deliverables.split('\n\n').map((para, idx) => (
-                        <p key={idx}>{para}</p>
-                      ))}
-                    </div>
+                    <div className="card-content" dangerouslySetInnerHTML={{ __html: modalProject.deliverables }} />
                   </div>
                 )}
 

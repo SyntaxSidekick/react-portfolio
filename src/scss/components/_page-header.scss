@@ -9,14 +9,11 @@
 
 .page-header {
   position: relative;
+  width: 100%;
   text-align: center;
-  margin-bottom: $gap-xl;
-  padding: $padding-xxxl 0;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  padding: $padding-xxxl $padding-lg;
+  margin: 0 0 $gap-xl 0;
+  
   background: linear-gradient(135deg, 
     rgba($primary, 0.04) 0%, 
     rgba($brand-primary-light, 0.06) 50%, 
@@ -58,11 +55,13 @@
     font-size: $font-size-4xl;
     font-weight: $weight-normal;
     color: $primary;
-    margin: 0 0 $space-sm 0;
+    margin: 0 auto $space-sm;
     letter-spacing: $letter-spacing-tight;
     line-height: $line-height-tight;
     position: relative;
     z-index: 1;
+    max-width: 1280px;
+    padding: 0 2rem;
     
     @media (max-width: $bp-md) {
       font-size: $font-size-3xl;
@@ -77,14 +76,13 @@
     font-size: $font-size-lg;
     font-weight: $weight-bold;
     color: $text-muted;
-    margin: 0;
+    margin: 0 auto;
     letter-spacing: $letter-spacing-wide;
     text-align: center;
     position: relative;
     z-index: 1;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 1280px;
+    padding: 0 2rem;
   }
 }
 

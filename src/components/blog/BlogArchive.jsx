@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Skeleton, SkeletonBlock } from '../Skeleton'
+import { PageHeader } from '../'
 import Sidebar from './Sidebar'
 import BlogNav from './BlogNav'
 
@@ -88,37 +89,38 @@ const BlogArchive = () => {
   return (
     <>
       <BlogNav activeCategory={category} />
-      <main className='container blog-index-page' role="main" aria-label="Blog archive content">
-        <div className='page-header'>
-          <h2 id='page-title'>Latest Posts in {categoryName}</h2>
-          <p>Intereseted in {categoryName}? Read more here.</p>
-        </div>
-        <div className='breadcrumbs'>
-          <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; Category: {categoryName}
-        </div>
+      <main className='blog-index-page' role="main" aria-labelledby="page-title">
+        <PageHeader 
+          title={`Latest Posts in ${categoryName}`}
+          subtitle={`Interested in ${categoryName}? Read more here.`}
+        />
+        <div className='container'>
+        <nav className='breadcrumbs' aria-label="Breadcrumb">
+          <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; <span aria-current="page">Category: {categoryName}</span>
+        </nav>
         <div className='content-sidebar-wrapper'>
-          <section className='listing-content blog-content' role="region" aria-label="Blog post list">
+          <section className='listing-content blog-content' aria-labelledby="page-title">
             <ul className='blog-index-list'>
               {posts.map(post => (
                 <li key={post.id} className='blog-index-item'>
-                  <article className='blog-snippet'>
-                    <h2>
-                      <Link to={`/blog/${post.slug}`}>{post.title.rendered.replace(/<[^>]+>/g, '')}</Link>
+                  <article className='blog-snippet' aria-labelledby={`post-title-${post.id}`}>
+                    <h2 id={`post-title-${post.id}`}>
+                      <Link to={`/blog/${post.slug}`} aria-label={`Read article: ${post.title.rendered.replace(/<[^>]+>/g, '')}`}>{post.title.rendered.replace(/<[^>]+>/g, '')}</Link>
                     </h2>
                     {post._embedded?.['wp:featuredmedia']?.[0]?.source_url && (
-                      <img
-                        src={post._embedded['wp:featuredmedia'][0].source_url}
-                        alt={post.title.rendered}
-                        style={{
-                          maxWidth: '100%',
-                          borderRadius: 8,
-                          marginBottom: 12,
-                        }}
-                      />
+                      <figure className="blog-archive-image">
+                        <img
+                          src={post._embedded['wp:featuredmedia'][0].source_url}
+                          alt={post._embedded['wp:featuredmedia'][0].alt_text || post.title.rendered.replace(/<[^>]+>/g, '')}
+                          loading="lazy"
+                          width="400"
+                          height="220"
+                        />
+                      </figure>
                     )}
                     <div className='blog-index-excerpt' dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-                    <Link to={`/blog/${post.slug}`} className='read-more-link'>
-                      Read More
+                    <Link to={`/blog/${post.slug}`} className='read-more-link' aria-label={`Read more about ${post.title.rendered.replace(/<[^>]+>/g, '')}`}>
+                      Read More <span aria-hidden="true">→</span>
                     </Link>
                   </article>
                 </li>
@@ -126,6 +128,7 @@ const BlogArchive = () => {
             </ul>
           </section>
           <Sidebar />
+        </div>
         </div>
       </main>
     </>

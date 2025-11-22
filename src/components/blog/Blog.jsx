@@ -91,14 +91,7 @@ const Blog = ({ setPageTitle }) => {
       btn.className = 'copy-code-btn'
       btn.type = 'button'
       btn.textContent = 'Copy'
-      btn.style.margin = '8px 0px 0px'
-      btn.style.float = 'right'
-      btn.style.fontSize = '0.8em'
-      btn.style.padding = '2px 10px'
-      btn.style.borderRadius = '4px'
-      btn.style.border = 'none'
-      btn.style.background = 'rgb(238, 238, 238)'
-      btn.style.cursor = 'pointer'
+      btn.setAttribute('aria-label', 'Copy code to clipboard')
       pre.insertBefore(btn, code)
     })
   }, [post])
@@ -110,10 +103,10 @@ const Blog = ({ setPageTitle }) => {
           <h1>
             <Skeleton width='60%' height={32} />
           </h1>
-          <Skeleton width='100%' height={220} style={{ marginBottom: 18 }} />
+          <Skeleton width='100%' height={220} className="skeleton-mb-lg" />
           <SkeletonBlock lines={6} width={['100%', '95%', '90%', '80%', '70%', '60%']} height={16} />
         </article>
-        {error && <div style={{ color: 'red', textAlign: 'center', marginTop: 32 }}>Error: {error}</div>}
+        {error && <div className="blog-error-message" role="alert">Error: {error}</div>}
       </main>
     )
   }
@@ -121,33 +114,35 @@ const Blog = ({ setPageTitle }) => {
   return (
     <>
       <BlogNav />
-      <main className='blog-post-main blog-post-page' role="main" aria-label="Blog post content">
-        <div className='breadcrumbs'>
-          <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; {post.title.rendered}
-        </div>
+      <main className='blog-post-main blog-post-page' role="main" aria-labelledby="post-title">
+        <div className='container'>
+        <nav className='breadcrumbs' aria-label="Breadcrumb">
+          <Link to='/'>Home</Link> &gt; <Link to='/blog'>Blog</Link> &gt; <span aria-current="page">{post.title.rendered.replace(/<[^>]+>/g, '')}</span>
+        </nav>
         <div className='content-sidebar-wrapper'>
-          <section className='single-content blog-content' role="region" aria-label="Blog post">
-            <article className='blog-full'>
-              <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+          <article className='single-content blog-content'>
+            <div className='blog-full'>
+              <h1 id="post-title" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
               {post._embedded?.['wp:featuredmedia']?.[0]?.source_url && (
-                <img
-                  src={post._embedded['wp:featuredmedia'][0].source_url}
-                  alt={post.title.rendered}
-                  style={{
-                    maxWidth: '100%',
-                    borderRadius: 8,
-                    marginBottom: 24,
-                  }}
-                />
+                <figure className="featured-image">
+                  <img
+                    src={post._embedded['wp:featuredmedia'][0].source_url}
+                    alt={post._embedded['wp:featuredmedia'][0].alt_text || post.title.rendered.replace(/<[^>]+>/g, '')}
+                    width={post._embedded['wp:featuredmedia'][0].media_details?.width}
+                    height={post._embedded['wp:featuredmedia'][0].media_details?.height}
+                    loading="eager"
+                  />
+                </figure>
               )}
               <div
                 className='blog-post-content'
                 ref={contentRef}
                 dangerouslySetInnerHTML={{ __html: post.content.rendered }}
               />
-            </article>
-          </section>
+            </div>
+          </article>
           <Sidebar />
+        </div>
         </div>
       </main>
     </>

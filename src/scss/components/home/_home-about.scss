@@ -193,3 +193,50 @@
     }
   }
 }
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+html.dark-mode {
+  .about {
+    background: linear-gradient(180deg, $dark-bg 0%, $dark-bg-secondary 100%);
+
+    .about-content-condensed {
+      color: $dark-text;
+    }
+
+    .about-tech-preview {
+      .tech-icon-item {
+        background: $dark-card-bg;
+        border-color: $dark-border;
+
+        .tech-name {
+          color: $dark-text;
+        }
+
+        .tech-proficiency-bar {
+          background: rgba($dark-border, 0.5);
+
+          .tech-proficiency-fill::after {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+          }
+        }
+
+        &:hover {
+          background: rgba($dark-card-bg, 0.8);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+
+    .bio-cta-button {
+      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+      box-shadow: 0 4px 16px rgba($brand-primary-light, 0.2);
+
+      &:hover {
+        box-shadow: 0 8px 24px rgba($brand-primary-light, 0.3);
+      }
+    }
+  }
+}

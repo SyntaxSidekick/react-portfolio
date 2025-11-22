@@ -132,46 +132,78 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    width: 64px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     background: transparent;
-    border: none;
+    border: 2px solid $gray-300;
+    border-radius: 50%;
     padding: 0;
     cursor: pointer;
     z-index: 100;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .toggle-track {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background: $gray-600;
-      border-radius: 16px;
-      @include smooth-transition(background, .3s);
+    &:hover {
+      border-color: $brand-primary;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 4px 12px rgba($brand-primary, 0.3);
     }
 
-    .toggle-thumb {
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      width: 28px;
-      height: 28px;
-      background: $text-white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: $shadow-sm;
-      transition: transform .3s cubic-bezier(.4,0,.2,1);
-      i { font-size: 14px; color: $gray-800; transition: transform .3s ease, color .3s ease; }
+    &:focus-visible {
+      outline: 2px solid $brand-primary;
+      outline-offset: 2px;
     }
 
-    &:hover .toggle-track { background: $gray-500; }
-    &:active .toggle-thumb { width: 32px; }
+    .sun-moon {
+      width: 24px;
+      height: 24px;
+      overflow: visible;
+
+      .sun {
+        fill: $gray-600;
+        transform-origin: center;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .sun-beams {
+        stroke: $gray-600;
+        stroke-width: 2px;
+        stroke-linecap: round;
+        transform-origin: center;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    &[aria-checked="false"] {
+      .sun {
+        fill: $gray-400;
+        transform: scale(1.5);
+      }
+
+      .sun-beams {
+        opacity: 0;
+        transform: rotate(-25deg);
+        stroke: $gray-400;
+      }
+    }
 
     &[aria-checked="true"] {
-      .toggle-track { background: $brand-primary-400; }
-      .toggle-thumb { transform: translateX(32px); i { color: $primary; } }
-      &:hover .toggle-track { background: $brand-primary-500; }
+      background: linear-gradient(135deg, $brand-primary-100, $brand-primary-50);
+      border-color: $brand-primary;
+
+      .sun {
+        fill: $primary;
+        transform: scale(1);
+        mask: url(#moon-mask);
+      }
+
+      .sun-beams {
+        opacity: 1;
+        transform: rotate(0deg);
+        stroke: $primary;
+      }
     }
   }
 }
@@ -218,24 +250,12 @@ body.no-scroll {
 
   .site-header .dark-mode-toggle {
     right: 60px;
-    width: 52px;
-    height: 26px;
+    width: 36px;
+    height: 36px;
 
-    .toggle-thumb {
-      width: 22px;
-      height: 22px;
-
-      i {
-        font-size: 12px;
-      }
-    }
-
-    &[aria-checked="true"] .toggle-thumb {
-      transform: translateX(26px);
-    }
-
-    &:active .toggle-thumb {
-      width: 26px;
+    .sun-moon {
+      width: 20px;
+      height: 20px;
     }
   }
 

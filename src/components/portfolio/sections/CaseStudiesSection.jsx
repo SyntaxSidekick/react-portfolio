@@ -38,6 +38,7 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
                 <button 
                   className="btn-primary"
                   onClick={() => onCaseStudyClick(study)}
+                  aria-label={`Read ${study.title} case study`}
                 >
                   Read Case Study
                   <i className="fas fa-arrow-right" aria-hidden="true"></i>
