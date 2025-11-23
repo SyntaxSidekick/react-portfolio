@@ -1,4 +1,3 @@
-import React from "react";
 import IconBase from "./common/IconBase";
 // Core design & dev tool icons
 import PhotoshopIcon from "../assets/icons/photoshop-brands.svg?react";

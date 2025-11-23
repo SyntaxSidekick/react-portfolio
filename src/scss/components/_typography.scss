@@ -132,104 +132,104 @@ h6, .h6 {
 
 // Text colors
 .text-primary {
-  color: $brand-primary !important;
+  color: $brand-primary;
 }
 
 .text-accent {
-  color: $brand-accent !important;
+  color: $brand-accent;
 }
 
 .text-muted {
-  color: $color-text-muted !important;
+  color: $color-text-muted;
 }
 
 .text-secondary {
-  color: $color-text-secondary !important;
+  color: $color-text-secondary;
 }
 
 .text-inverse {
-  color: $color-text-inverse !important;
+  color: $color-text-inverse;
 }
 
 .text-success {
-  color: $color-success !important;
+  color: $color-success;
 }
 
 .text-warning {
-  color: color.adjust($color-warning, $lightness: -20%) !important;
+  color: color.adjust($color-warning, $lightness: -20%);
 }
 
 .text-error {
-  color: $color-error !important;
+  color: $color-error;
 }
 
 .text-info {
-  color: $color-info !important;
+  color: $color-info;
 }
 
 // Font weights
 .text-light {
-  font-weight: $weight-light !important;
+  font-weight: $weight-light;
 }
 
 .text-normal {
-  font-weight: $weight-normal !important;
+  font-weight: $weight-normal;
 }
 
 .text-medium {
-  font-weight: $weight-medium !important;
+  font-weight: $weight-medium;
 }
 
 .text-semibold {
-  font-weight: $weight-semibold !important;
+  font-weight: $weight-semibold;
 }
 
 .text-bold {
-  font-weight: $weight-bold !important;
+  font-weight: $weight-bold;
 }
 
 // Text transforms
 .text-uppercase {
-  text-transform: uppercase !important;
+  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .text-lowercase {
-  text-transform: lowercase !important;
+  text-transform: lowercase;
 }
 
 .text-capitalize {
-  text-transform: capitalize !important;
+  text-transform: capitalize;
 }
 
 // Text alignment
 .text-left {
-  text-align: left !important;
+  text-align: left;
 }
 
 .text-center {
-  text-align: center !important;
+  text-align: center;
 }
 
 .text-right {
-  text-align: right !important;
+  text-align: right;
 }
 
 // Line heights
 .line-height-tight {
-  line-height: $line-height-tight !important;
+  line-height: $line-height-tight;
 }
 
 .line-height-normal {
-  line-height: $line-height-normal !important;
+  line-height: $line-height-normal;
 }
 
 .line-height-relaxed {
-  line-height: $line-height-relaxed !important;
+  line-height: $line-height-relaxed;
 }
 
 .line-height-loose {
-  line-height: $line-height-loose !important;
+  line-height: $line-height-loose;
 }
 
 // ============================================================

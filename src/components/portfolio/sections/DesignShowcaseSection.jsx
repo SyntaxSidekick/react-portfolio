@@ -1,5 +1,3 @@
-import React from "react";
-
 const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
   if (!show) return null;
 

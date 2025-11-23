@@ -42,9 +42,19 @@
 // ============================================================
 // PAGE COMPONENTS
 // ============================================================
+@use 'components/common/social-links';  // Shared social links component
 @use 'components/project-card';  // Shared project card (home & portfolio)
 @use 'components/home/home';
-@use 'components/portfolio/portfolio';
+// Portfolio page components (modular)
+@use 'components/portfolio/portfolio-main';
+@use 'components/portfolio/portfolio-frontend';
+@use 'components/portfolio/portfolio-case-studies';
+@use 'components/portfolio/portfolio-design';
+@use 'components/portfolio/portfolio-github';
+@use 'components/portfolio/portfolio-codepen';
+@use 'components/portfolio/portfolio-cta-modal';
+@use 'components/portfolio/portfolio-design-modal';
+@use 'components/portfolio/portfolio-dark-mode';
 @use 'components/bio/bio';
 @use 'components/contact/contact';
 

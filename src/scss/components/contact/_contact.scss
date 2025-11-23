@@ -44,81 +44,17 @@
 // ============================================================================
 // SOCIAL LINKS
 // ============================================================================
+// Social links card grid styles are now in components/common/_social-links.scss
 
-.social-links {
-  @include flex-column;
-  gap: $gap-lg;
+// Override social links to stack vertically on contact page
+.contact-grid .social-links {
+  grid-template-columns: 1fr;
   position: sticky;
   top: 100px;
 
-  @media (max-width: $bp-md) {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
+  .social-link {
+    width: 250px;
   }
-
-  @media (max-width: $bp-sm) {
-    flex-direction: column;
-  }
-}
-
-.social-link {
-  @include card('flat');
-  @include flex-column;
-  @include flex-center;
-  position: relative;
-  gap: $gap-md;
-  padding: $padding-xl;
-  text-decoration: none;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  i {
-    font-size: 2.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  span {
-    font-size: $font-size-sm;
-    font-weight: $weight-semibold;
-  }
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: $shadow-hover-md;
-    border-color: currentColor;
-
-    &::before {
-      transform: scaleX(1);
-    }
-
-    i {
-      transform: scale(1.15);
-    }
-  }
-
-  &:focus-visible {
-    outline: 3px solid currentColor;
-    outline-offset: 4px;
-  }
-
-  // Brand colors
-  &.linkedin { color: #0A66C2; &:hover { background: rgba(10, 102, 194, 0.05); } }
-  &.github { color: #181717; &:hover { background: rgba(24, 23, 23, 0.05); } }
-  &.codepen { color: #000; &:hover { background: rgba(0, 0, 0, 0.05); } }
-  &.twitter { color: #000; &:hover { background: rgba(0, 0, 0, 0.05); } }
 }
 
 // ============================================================================
@@ -374,18 +310,7 @@
 // ============================================================================
 
 .dark-mode {
-  .social-link {
-    background: rgba(42, 42, 42, 0.8);
-    border-color: $dark-border;
-
-    &.linkedin { color: #0A66C2; &:hover { background: rgba(10, 102, 194, 0.1); } }
-    &.github,
-    &.codepen,
-    &.twitter { 
-      color: #fff; 
-      &:hover { background: rgba(255, 255, 255, 0.1); } 
-    }
-  }
+  // Social links dark mode styles are now in components/common/_social-links.scss
 
   .contact-form-wrapper {
     background: rgba(42, 42, 42, 0.6);

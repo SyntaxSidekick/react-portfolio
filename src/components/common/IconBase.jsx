@@ -1,4 +1,4 @@
-import React from 'react';
+import { isValidElement, cloneElement, Children } from 'react';
 
 /**
  * IconBase
@@ -49,7 +49,7 @@ const IconBase = ({
 
   // Clone child SVG to enforce sizing & accessibility attributes
   let content = children;
-  if (children && React.isValidElement(children)) {
+  if (children && isValidElement(children)) {
     const svgProps = {
       width: pxSize,
       height: pxSize,
@@ -60,12 +60,12 @@ const IconBase = ({
     };
     // Inject <title> for screen readers if label present and element is SVG
     if (!decorative && finalLabel && children.type === 'svg') {
-      content = React.cloneElement(children, svgProps, [
+      content = cloneElement(children, svgProps, [
         <title key="icon-title">{finalLabel}</title>,
-        ...React.Children.toArray(children.props.children)
+        ...Children.toArray(children.props.children)
       ]);
     } else {
-      content = React.cloneElement(children, svgProps);
+      content = cloneElement(children, svgProps);
     }
   }
 

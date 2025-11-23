@@ -1,5 +1,3 @@
-import React from "react";
-
 const FilterTabs = ({ filters, activeFilter, onFilterChange }) => {
   return (
     <section className="portfolio-filters" aria-label="Project category filters">

@@ -1,0 +1,308 @@
+/**
+ * Partial: _portfolio-codepen.scss
+ * Purpose: CodePen experiments section with masonry layout
+ * Features: Masonry grid, preview images/videos, CTA button
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// CODEPEN EXPERIMENTS SECTION (CodepenExperiments.jsx)
+// ============================================================================
+
+.codepen-section {
+  padding: 56px 0;
+
+  .section-head {
+    margin-bottom: 18px;
+  }
+
+  .section-sub {
+    color: #666;
+    margin-bottom: 28px;
+  }
+
+  // Masonry Layout
+  .codepen-grid {
+    column-gap: 20px;
+    column-count: 3;
+
+    @media (max-width: 1100px) {
+      column-count: 2;
+    }
+
+    @media (max-width: 640px) {
+      column-count: 1;
+    }
+  }
+
+  .codepen-card {
+    display: block;
+    break-inside: avoid;
+    margin: 0 0 20px;
+    background: $color-bg-primary;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 18px rgba(20, 20, 30, 0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(20, 20, 30, 0.12);
+    }
+  }
+
+  .card-media {
+    position: relative;
+    width: 100%;
+  }
+
+  .preview-img,
+  .preview-video {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.06));
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .card-title {
+    margin: 0 0 6px;
+    font-size: 1.04rem;
+  }
+
+  .card-desc {
+    margin: 0 0 12px;
+    color: #666;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+
+  // CTA Row
+  .codepen-cta-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  // Portfolio CTA Button (Homepage parity)
+  .portfolio-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: $font-ui;
+    min-width: 280px;
+    max-width: 500px;
+
+    .cta-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      i {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .cta-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+
+        strong {
+          font-size: 1rem;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+        }
+
+        small {
+          font-size: 0.875rem;
+          opacity: 0.9;
+          font-weight: 400;
+          letter-spacing: 0.2px;
+        }
+      }
+    }
+
+    .cta-arrow {
+      font-size: 1.125rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
+
+      .cta-arrow {
+        transform: translateX(4px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba(0, 115, 170, 0.5);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      min-width: auto;
+      width: 100%;
+      max-width: 100%;
+      padding: 14px 24px;
+
+      .cta-content i {
+        font-size: 1.125rem;
+      }
+
+      .cta-arrow {
+        font-size: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+
+      &:hover {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
+
+        .cta-arrow {
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// LEGACY PORTFOLIO CODEPEN SECTION (May not be in use)
+// ============================================================================
+
+.portfolio-codepen-section {
+  .codepen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: $gap-lg;
+    align-items: stretch; // Equal heights per row
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .codepen-card {
+    @include card-base;
+    @include card-hover-effect(-4px);
+    @include flex-column;
+    overflow: hidden;
+    height: 100%; // Fill grid cell height
+
+    .codepen-embed {
+      width: 100%;
+      background: #1e1f26;
+      position: relative;
+
+      iframe {
+        display: block;
+        border: none;
+      }
+    }
+
+    .codepen-content {
+      padding: $padding-xl;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      flex: 1;
+    }
+
+    h3 {
+      font-size: $font-size-lg;
+      color: $color-text-primary;
+      margin: 0;
+      font-weight: $weight-bold;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-secondary;
+      line-height: $line-height-relaxed;
+      flex: 1;
+      margin: 0;
+    }
+
+    .codepen-tags {
+      @include flex-gap($space-sm);
+      flex-wrap: wrap;
+
+      .tag {
+        @include tag-style(0.08, 0.2);
+      }
+    }
+
+    .btn-secondary {
+      @include btn;
+      background: $color-bg-secondary;
+      color: $color-text-primary;
+      border: 1px solid $color-border-medium;
+      @include inline-flex-center;
+      gap: $space-sm;
+      font-weight: $weight-semibold;
+      margin-top: $gap-sm;
+      padding: $padding-md $padding-lg;
+      transition: all 0.3s ease;
+
+      i {
+        color: #1e1f26;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        background: #1e1f26;
+        color: $text-white;
+        border-color: #1e1f26;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        i {
+          color: $text-white;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

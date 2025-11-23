@@ -1,4 +1,3 @@
-import React from "react";
 import { ProjectCard } from "../../common";
 
 const FrontEndProjectsSection = ({ projects, projectRefs, onProjectClick, show }) => {

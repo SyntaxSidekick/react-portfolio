@@ -1,14 +1,12 @@
-import React from "react";
-
 /**
  * Reusable social media links component
- * @param {string} variant - 'footer' | 'cta' | 'inline'
- * @param {boolean} showLabels - Show text labels (default: false)
+ * @param {string} variant - 'footer' | 'cta' | 'connect'
+ * @param {boolean} showLabels - Show text labels (default: false for footer, true for connect)
  * @param {Array} links - Optional custom links array
  */
 const SocialLinks = ({ 
   variant = 'footer', 
-  showLabels = false,
+  showLabels,
   links,
   className = ""
 }) => {
@@ -17,30 +15,42 @@ const SocialLinks = ({
       name: 'LinkedIn',
       url: 'https://linkedin.com/in/riad-kilani',
       icon: 'fab fa-linkedin',
-      label: showLabels ? 'LinkedIn' : 'Visit my LinkedIn profile'
+      label: showLabels ? 'LinkedIn' : 'Visit my LinkedIn profile',
+      brandClass: 'linkedin'
     },
     {
       name: 'GitHub',
       url: 'https://github.com/SyntaxSidekick',
       icon: 'fab fa-github',
-      label: showLabels ? 'GitHub' : 'Visit my GitHub profile'
+      label: showLabels ? 'GitHub' : 'Visit my GitHub profile',
+      brandClass: 'github'
     },
     {
       name: 'CodePen',
       url: 'https://codepen.io/SyntaxSidekick',
       icon: 'fab fa-codepen',
-      label: showLabels ? 'CodePen' : 'View my CodePen projects'
+      label: showLabels ? 'CodePen' : 'View my CodePen projects',
+      brandClass: 'codepen'
     },
     {
       name: 'X',
       url: 'https://x.com/f1ss1on',
       icon: 'fab fa-x-twitter',
-      label: showLabels ? 'X' : 'Follow me on X (Twitter)'
+      label: showLabels ? 'X' : 'Follow me on X (Twitter)',
+      brandClass: 'twitter'
     }
   ];
 
+  // Auto-enable labels for connect variant
+  const displayLabels = showLabels !== undefined ? showLabels : variant === 'connect';
+
   const socialLinks = links || defaultLinks;
-  const containerClass = variant === 'cta' ? 'cta-links' : variant === 'inline' ? 'inline-socials' : 'socials';
+  
+  // Footer uses .socials with direct <a> children (no .social-link class)
+  // Connect/Contact page uses .social-links with .social-link children (card grid)
+  const containerClass = variant === 'footer' ? 'socials' : 
+                         variant === 'cta' ? 'cta-links' : 
+                         'social-links';
 
   if (variant === 'cta') {
     return (
@@ -70,22 +80,45 @@ const SocialLinks = ({
     );
   }
 
+  // Footer variant has no .social-link class on anchors
+  if (variant === 'footer') {
+    return (
+      <div className={`${containerClass} ${className}`}>
+        {socialLinks.map((link) => (
+          <a 
+            key={link.name}
+            href={link.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label={link.label}
+            title={link.name}
+          >
+            <i className={link.icon} aria-hidden="true"></i>
+            {showLabels && <span>{link.name}</span>}
+          </a>
+        ))}
+      </div>
+    );
+  }
+
+  // Connect variant uses card grid with labels, Contact uses same styling
   return (
-    <div className={`${containerClass} ${className}`}>
+    <nav className={`${containerClass} ${className}`} aria-label="Social media profiles">
       {socialLinks.map((link) => (
         <a 
           key={link.name}
           href={link.url} 
           target="_blank" 
           rel="noopener noreferrer" 
+          className={`social-link ${link.brandClass || ''}`}
           aria-label={link.label}
           title={link.name}
         >
           <i className={link.icon} aria-hidden="true"></i>
-          {showLabels && <span>{link.name}</span>}
+          {displayLabels && <span>{link.name}</span>}
         </a>
       ))}
-    </div>
+    </nav>
   );
 };
 

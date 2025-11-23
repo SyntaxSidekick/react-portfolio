@@ -47,6 +47,17 @@
     grid-template-columns: 360px 1fr;
     gap: 40px;
     align-items: start;
+
+    // Override social links to stack vertically on homepage
+    .social-links {
+      grid-template-columns: 1fr;
+      position: sticky;
+      top: 100px;
+
+      .social-link {
+        width: 250px;
+      }
+    }
   }
 
   .contact-info {

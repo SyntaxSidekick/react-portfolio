@@ -1,5 +1,3 @@
-import React from "react";
-
 /**
  * Reusable portfolio section wrapper
  * @param {string} id - Section ID

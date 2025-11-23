@@ -1,6 +1,6 @@
-import React, { useReducer, useCallback, useRef, useEffect } from "react";
+import { useReducer, useCallback, useRef, useEffect, useState } from "react";
 import { PageHeader } from "../";
-import SocialLinks from "./SocialLinks";
+import { SocialLinks } from "../common";
 import ContactForm from "./ContactForm";
 
 // ============================================================================
@@ -142,9 +142,9 @@ const sendMessage = async (data) => {
 
 const Contact = () => {
   const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
-  const [csrf, setCsrf] = React.useState('');
-  const [captchaQuestion, setCaptchaQuestion] = React.useState('');
-  const [captchaAnswer, setCaptchaAnswer] = React.useState('');
+  const [csrf, setCsrf] = useState('');
+  const [captchaQuestion, setCaptchaQuestion] = useState('');
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
     // Fetch CSRF + captcha on mount
     useEffect(() => {
       let active = true;
@@ -263,7 +263,7 @@ const Contact = () => {
       
       <div className="contact-container">
         <div className="contact-grid">
-          <SocialLinks />
+          <SocialLinks variant="connect" />
           
           <ContactForm 
             state={state}

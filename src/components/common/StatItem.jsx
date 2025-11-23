@@ -1,5 +1,3 @@
-import React from "react";
-
 /**
  * Reusable stat item component
  * @param {string} number - Stat number/value

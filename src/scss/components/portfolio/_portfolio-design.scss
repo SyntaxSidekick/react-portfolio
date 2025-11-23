@@ -1,0 +1,127 @@
+/**
+ * Partial: _portfolio-design.scss
+ * Purpose: UI/UX & Design showcase section with Material Design 3
+ * Features: Three-column grid, design cards, category badges
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+@use 'sass:math';
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// UI/UX & DESIGN SECTION - Material Design 3
+// ============================================================================
+
+.portfolio-design-section {
+  .design-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap-lg;
+    align-items: stretch; // Equal heights per row
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .design-card {
+    @include card-base;
+    @include card-hover-effect(-4px);
+    @include flex-column;
+    overflow: hidden;
+    height: 100%; // Fill grid cell height
+
+    .design-image {
+      @include image-container(math.div(4, 3));
+      background: linear-gradient(135deg, $gray-100 0%, $gray-200 100%);
+
+      .design-category {
+        @include overlay-badge(top-right);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: $padding-xs $padding-md;
+        border-radius: $radius-full;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        color: $primary;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba($primary, 0.2);
+      }
+    }
+
+    .design-content {
+      padding: $padding-xl;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      flex: 1;
+
+      h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: $color-text-primary;
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      p {
+        font-size: 0.9375rem;
+        color: $color-text-secondary;
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+      }
+
+      .design-tags {
+        @include flex-gap($space-sm);
+        flex-wrap: wrap;
+
+        .tag {
+          @include tag-style(0.08, 0.2);
+        }
+      }
+
+      .btn-link {
+        @include inline-flex-center;
+        gap: $gap-sm;
+        padding: $padding-md $padding-lg;
+        background: $color-bg-secondary;
+        border: 1px solid $color-border-medium;
+        border-radius: $radius;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $color-text-primary;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-top: $gap-sm;
+
+        i {
+          font-size: 0.875rem;
+          transition: transform 0.3s ease;
+          color: $primary;
+        }
+
+        &:hover {
+          background: $primary;
+          color: $text-white;
+          border-color: $primary;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba($primary, 0.3);
+
+          i {
+            color: $text-white;
+            transform: translateX(4px);
+          }
+        }
+      }
+    }
+  }
+}

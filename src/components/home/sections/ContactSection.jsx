@@ -1,8 +1,6 @@
-import React from "react";
-import { SectionHeader } from "../../common";
+import { SectionHeader, SocialLinks } from "../../common";
 import { useContactForm } from "../../contact/useContactForm";
 import ContactForm from "../../contact/ContactForm";
-import SocialLinks from "../../contact/SocialLinks";
 
 const ContactSection = () => {
   const {
@@ -28,7 +26,7 @@ const ContactSection = () => {
         />
 
         <div className="contact-grid">
-          <SocialLinks />
+          <SocialLinks variant="connect" />
 
           <ContactForm 
             state={state}

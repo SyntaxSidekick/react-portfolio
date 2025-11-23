@@ -1,0 +1,543 @@
+/**
+ * Partial: _portfolio-cta-modal.scss
+ * Purpose: Call-to-action section and portfolio modal (Material Design 3)
+ * Features: CTA card, MUI modal, hero images, tech stack, metrics
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// CALL TO ACTION SECTION
+// ============================================================================
+
+.portfolio-cta-section {
+  margin-top: $gap-xl * 2;
+
+  .cta-card {
+    background: linear-gradient(135deg, $color-bg-primary 0%, $color-bg-secondary 100%);
+    border-radius: $radius-xl;
+    padding: $gap-xl * 2;
+    text-align: center;
+    border: 1px solid $color-border-light;
+    box-shadow: $shadow-lg;
+
+    h2 {
+      font-family: $font-heading;
+      font-size: $font-size-3xl;
+      color: $primary;
+      margin: 0 0 $gap;
+      font-weight: $weight-normal;
+
+      @media (max-width: $bp-md) {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-dark;
+      line-height: $line-height-relaxed;
+      margin: 0 0 $gap-xl;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media (max-width: $bp-md) {
+        font-size: $font-size-base;
+      }
+    }
+
+    .cta-links {
+      display: flex;
+      justify-content: center;
+      gap: $gap;
+      flex-wrap: wrap;
+
+      a {
+        @include btn;
+        @include inline-flex-center;
+        gap: $space-sm;
+        font-weight: $weight-semibold;
+        transition: all 0.3s ease;
+
+        i {
+          font-size: $font-size-lg;
+        }
+
+        &.btn-primary {
+          background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+          color: $text-white;
+          border: none;
+
+          &:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: $shadow-lg;
+          }
+        }
+
+        &.btn-secondary {
+          background: $color-bg-primary;
+          color: $primary;
+          border: 1px solid $color-border-light;
+
+          &:hover {
+            background: $color-bg-secondary;
+            border-color: $primary;
+            transform: translateY(-2px);
+          }
+        }
+      }
+
+      @media (max-width: $bp-sm) {
+        flex-direction: column;
+        width: 100%;
+
+        a {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// PORTFOLIO MODAL - Material Design 3 with MUI
+// ============================================================================
+
+.portfolio-modal {
+  // MUI Modal styles
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .modal-dialog {
+    max-width: 1200px;
+    width: 90%;
+    margin: $gap-xl auto;
+    outline: none;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    @media (max-width: $bp-lg) {
+      max-width: 95%;
+      width: 95%;
+      margin: $gap auto;
+    }
+  }
+
+  .modal-content {
+    background: $color-bg-primary;
+    border: none;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 
+                0 8px 16px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-wrapper {
+    position: relative;
+  }
+
+  // Close Button
+  .modal-close-btn {
+    position: absolute;
+    top: $gap;
+    right: $gap;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: $shadow-md;
+
+    i {
+      font-size: 1.25rem;
+      color: $color-text-primary;
+    }
+
+    &:hover {
+      background: $color-bg-primary;
+      transform: scale(1.1);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  // Hero Image
+  .modal-hero {
+    width: 100%;
+    overflow: hidden;
+    background: $gray-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $gap;
+
+    .hero-image {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      max-height: 600px;
+    }
+  }
+
+  // Content Wrapper
+  .modal-content-wrapper {
+    padding: $gap-xl;
+
+    @media (max-width: $bp-md) {
+      padding: $gap;
+    }
+  }
+
+  // Header Section
+  .modal-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $gap;
+    margin-bottom: $gap-xl;
+    padding-bottom: $gap;
+    border-bottom: 1px solid $color-border-light;
+
+    @media (max-width: $bp-md) {
+      flex-direction: column;
+    }
+
+    .title-group {
+      flex: 1;
+
+      .project-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: $color-text-primary;
+        margin: 0 0 $gap-sm 0;
+        line-height: 1.2;
+
+        @media (max-width: $bp-md) {
+          font-size: 2rem;
+        }
+      }
+
+      .project-meta {
+        display: flex;
+        gap: $gap;
+        flex-wrap: wrap;
+
+        .meta-item {
+          @include inline-flex-center;
+          gap: $gap-sm;
+          padding: $padding-xs $padding-md;
+          background: $color-bg-secondary;
+          border-radius: $radius-lg;
+          font-size: 0.875rem;
+          color: $color-text-secondary;
+
+          i {
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: $gap-sm;
+      flex-shrink: 0;
+
+      @media (max-width: $bp-md) {
+        width: 100%;
+      }
+
+      .btn-action {
+        @include inline-flex-center;
+        gap: $gap-sm;
+        padding: $padding-md $padding-xl;
+        border-radius: $radius-lg;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        i {
+          font-size: 1.125rem;
+        }
+
+        &.btn-primary {
+          background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+          color: $text-white;
+          box-shadow: $shadow-sm;
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: $shadow-md;
+          }
+        }
+
+        &.btn-secondary {
+          background: $color-bg-secondary;
+          color: $color-text-primary;
+          border: 1px solid $color-border-light;
+
+          &:hover {
+            background: $color-bg-primary;
+            border-color: $primary;
+            color: $primary;
+          }
+        }
+
+        @media (max-width: $bp-md) {
+          flex: 1;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  // Two Column Grid
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: $gap-lg;
+    margin-bottom: $gap-lg;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Content Cards
+  .content-card {
+    @include card;
+    padding: $padding-xl;
+    margin-bottom: $gap;
+
+    &:hover {
+      box-shadow: $shadow-sm;
+      border-color: $color-border-medium;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $color-text-primary;
+      margin: 0 0 $gap 0;
+
+      i {
+        font-size: 1.25rem;
+        color: $primary;
+      }
+    }
+
+    .card-content {
+      color: $color-text-secondary;
+      line-height: 1.7;
+
+      p {
+        margin-bottom: $gap;
+        font-size: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // Sticky Sidebar Card
+  .sticky-card {
+    position: sticky;
+    top: $gap;
+    align-self: start;
+
+    @media (max-width: $bp-lg) {
+      position: static;
+    }
+  }
+
+  // Tech Stack Grid
+  .tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-sm;
+
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+      padding: $padding-sm $padding-md;
+      background: $color-bg-secondary;
+      border-radius: $radius;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+
+      i {
+        font-size: 1.5rem;
+      }
+
+      .tech-svg-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      // Brand-specific icon colors (using parent :has detection)
+      @include brand-icon-colors-parent;
+
+      span {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $color-text-primary;
+      }
+
+      &:hover {
+        border-color: currentColor;
+        transform: translateX(4px);
+        
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  // Metrics List
+  .metrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      padding: $padding-md;
+      background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+      border-radius: $radius-lg;
+      text-align: center;
+      color: $text-white;
+
+      .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: $gap-sm;
+      }
+
+      .metric-label {
+        font-size: 0.875rem;
+        opacity: 0.95;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  // Challenge and Learning Lists
+  .challenge-list,
+  .learning-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      gap: $gap-sm;
+      margin-bottom: $gap;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: $color-text-secondary;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::marker {
+        content: "";
+      }
+
+      &::before {
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: $primary;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  // Media Gallery (Full Width)
+  .media-card {
+    grid-column: 1 / -1;
+    margin-top: $gap-lg;
+  }
+
+  .media-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $gap;
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+    }
+
+    .media-item {
+      border-radius: $radius-lg;
+      overflow: hidden;
+      background: $gray-100;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-md;
+      }
+
+      img,
+      video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+}

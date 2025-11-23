@@ -1,0 +1,213 @@
+/**
+ * Partial: _portfolio-main.scss
+ * Purpose: Main portfolio page wrapper and filter tabs
+ * Features: Semantic sections, tabbed navigation with responsive behavior
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// PORTFOLIO MAIN SECTION
+// ============================================================================
+
+.portfolio-page {
+  margin: 0 auto;
+
+  // Semantic section styling (matching Bio page)
+  section {
+    margin-bottom: $gap-xl;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ============================================================================
+// FILTER TABS
+// ============================================================================
+
+.portfolio-filters {
+  margin-bottom: $gap-xl;
+  padding: $gap 0;
+  font-family: $font-alt;
+
+  .card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: $color-bg-primary;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-base;
+    border: 1px solid $color-border-light;
+  }
+
+  .card-body {
+    padding: $padding-lg;
+  }
+
+  .filter-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-md;
+    flex-wrap: wrap;
+    position: relative;
+
+    .filter-icon {
+      color: $primary;
+      font-size: $font-size-xl;
+      margin-right: $space-sm;
+      flex-shrink: 0;
+    }
+
+    .filter-tab {
+      background: $color-bg-secondary;
+      border: 2px solid $color-border-light;
+      border-radius: $radius-lg;
+      padding: $padding-md $padding-xl;
+      min-height: 48px; // Ensure minimum touch target size for accessibility
+      font-size: $font-size-xs;
+      font-weight: $weight-semibold;
+      color: $color-text-secondary;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: $space-md;
+      position: relative;
+      white-space: nowrap;
+      box-shadow: $shadow-sm;
+
+      i {
+        font-size: 1.125rem;
+        transition: color 0.2s ease;
+      }
+
+      &:hover {
+        color: $primary;
+        background: $color-bg-primary;
+        border-color: $brand-primary-200;
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+
+        i {
+          color: $primary;
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: $shadow-sm;
+      }
+
+      &.active {
+        color: $text-white;
+        font-weight: $weight-bold;
+        background: linear-gradient(135deg, $primary 0%, $brand-primary-light 100%);
+        border-color: $primary;
+        box-shadow: $shadow-md;
+
+        i {
+          color: $text-white;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-lg;
+        }
+      }
+    }
+
+    // Tablet: Horizontal scroll
+    @media (max-width: $bp-md) {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      justify-content: flex-start;
+      gap: $space-sm;
+      padding: $space-md $space-lg;
+      
+      // Scroll snap for better UX
+      scroll-snap-type: x proximity;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      // Add scroll indicators
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        background: linear-gradient(to right, transparent, $background-light);
+        pointer-events: none;
+      }
+      
+      .filter-tab {
+        padding: $padding-sm $padding-lg;
+        font-size: 0.875rem;
+        gap: $space-sm;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+
+        i {
+          font-size: 1rem;
+        }
+
+        span {
+          display: inline;
+        }
+      }
+    }
+
+    // Mobile: Icon-only compact view
+    @media (max-width: $bp-sm) {
+      gap: $space-xs;
+      padding: $space-sm $space-md;
+      
+      .filter-tab {
+        padding: $padding-sm $padding-md;
+        gap: $space-xs;
+        min-width: auto;
+
+        span {
+          display: none;
+        }
+
+        i {
+          font-size: 1.125rem;
+          margin: 0;
+        }
+
+        &.active span {
+          display: inline;
+        }
+      }
+    }
+
+    // Extra small screens: Stack vertically
+    @media (max-width: 480px) {
+      &.filter-tabs--stacked {
+        flex-direction: column;
+        align-items: stretch;
+        overflow-x: visible;
+        
+        .filter-tab {
+          justify-content: center;
+          width: 100%;
+          
+          span {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}

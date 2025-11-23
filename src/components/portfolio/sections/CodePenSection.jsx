@@ -1,4 +1,3 @@
-import React from "react";
 import { TechBadge } from "../../common";
 
 const CodePenSection = ({ codepenProjects, show }) => {

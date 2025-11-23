@@ -275,9 +275,6 @@ pre:hover .copy-button {
   line-height: 1.5;
   padding: 20px 8px;
   text-align: right;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .post-content .code-block-with-lines .line-numbers span {
@@ -407,10 +404,7 @@ pre:hover .copy-button {
 }
 @media (max-width: 768px) {
   .content-sidebar-wrapper {
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-    -ms-flex-direction: column !important;
-    flex-direction: column !important;
+    flex-direction: column;
     gap: 20px;
   }
   .content-sidebar-wrapper .single-content {

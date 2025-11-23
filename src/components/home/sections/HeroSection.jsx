@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import profileImg from "../../../assets/images/riadkilani-profile.webp";
 import profileImgFallback from "../../../assets/images/riadkilani-profile.png";

@@ -1,0 +1,598 @@
+/**
+ * Partial: _portfolio-dark-mode.scss
+ * Purpose: Dark mode styles for all portfolio sections
+ * Features: Complete dark mode theming for filters, cards, modals
+ * Dependencies: Uses _variables.scss dark mode color tokens
+ * Last updated: 2025-11-19
+ */
+@use '../../abstracts/variables' as *;
+
+// ============================================================================
+// DARK MODE STYLES
+// ============================================================================
+
+html.dark-mode {
+  .portfolio-page {
+    background: $dark-bg;
+    color: $dark-text;
+  }
+
+  // Filter Tabs
+  .portfolio-filters {
+    .card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .filter-tabs {
+      .filter-icon {
+        color: $brand-primary-light;
+      }
+
+      .filter-tab {
+        background: $dark-bg;
+        border-color: $dark-border;
+        color: $dark-text;
+
+        &:hover {
+          color: $brand-primary-light;
+          background: rgba($brand-primary-light, 0.1);
+          border-color: $brand-primary-light;
+        }
+
+        &.active {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+          color: $dark-bg;
+          border-color: $brand-primary-light;
+
+          i {
+            color: $dark-bg;
+          }
+        }
+      }
+    }
+  }
+
+  // Project Cards
+  .portfolio-projects-section {
+    .project-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        border-color: $brand-primary-light;
+      }
+
+      .project-content {
+        h3 {
+          color: $brand-primary-light;
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .tech-tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        color: $dark-bg;
+
+        &:hover {
+          box-shadow: 0 8px 24px rgba($brand-primary-light, 0.3);
+        }
+      }
+    }
+  }
+
+  // Design Showcase
+  .portfolio-design-section {
+    .design-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .design-content {
+        h3 {
+          color: $dark-text;
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .design-tags .tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+
+        .btn-link {
+          background: $dark-bg-secondary;
+          border-color: $dark-border;
+          color: $dark-text;
+
+          i {
+            color: $brand-primary-light;
+          }
+
+          &:hover {
+            background: $brand-primary-light;
+            color: $dark-bg;
+            border-color: $brand-primary-light;
+
+            i {
+              color: $dark-bg;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // GitHub Cards
+  .portfolio-github-section {
+    .github-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .github-thumbnail {
+        background: $dark-bg-secondary;
+      }
+
+      .github-content {
+        h3 {
+          color: $dark-text;
+
+          i {
+            color: $brand-primary-light;
+          }
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .github-stats {
+          color: $dark-text-muted;
+
+          i {
+            color: $brand-primary-light;
+          }
+        }
+
+        .github-tech .tech-pill {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+
+        .github-link {
+          color: $brand-primary-light;
+
+          &:hover {
+            color: $primary-dark;
+          }
+        }
+      }
+    }
+  }
+
+  // CodePen Cards
+  .portfolio-codepen-section {
+    .codepen-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .codepen-embed {
+        background: #1e1f26;
+      }
+
+      .codepen-content {
+        h3 {
+          color: $dark-text;
+        }
+
+        p {
+          color: $dark-text-muted;
+        }
+
+        .codepen-tags .tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+      }
+
+      .btn-secondary {
+        background: $dark-bg-secondary;
+        color: $dark-text;
+        border-color: $dark-border;
+
+        i {
+          color: $brand-primary-light;
+        }
+
+        &:hover {
+          background: #1e1f26;
+          color: $text-white;
+          border-color: #1e1f26;
+
+          i {
+            color: $text-white;
+          }
+        }
+      }
+    }
+  }
+
+  // Case Study Cards
+  .portfolio-case-studies-section {
+    .case-study-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        background: rgba($dark-card-bg, 0.9);
+        border-color: $brand-primary-light;
+      }
+
+      .case-study-content {
+        .case-study-meta {
+          color: $dark-text-muted;
+
+          .year::before,
+          .duration::before {
+            color: $brand-primary-light;
+          }
+        }
+
+        h3 {
+          color: $dark-text;
+        }
+
+        .subtitle {
+          color: $brand-primary-light;
+        }
+
+        .summary {
+          color: $dark-text-muted;
+        }
+
+        .case-study-tags .tag {
+          background: rgba($brand-primary-light, 0.15);
+          color: $brand-primary-light;
+          border-color: rgba($brand-primary-light, 0.3);
+        }
+
+        .btn-primary {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+          color: $dark-bg;
+        }
+      }
+    }
+  }
+
+  // CTA Section
+  .portfolio-cta-section {
+    .cta-card {
+      background: linear-gradient(135deg, $dark-bg 0%, $dark-bg-secondary 100%);
+      border-color: $dark-border;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+      h2 {
+        color: $brand-primary-light;
+      }
+
+      p {
+        color: $dark-text-muted;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+        color: $dark-bg;
+      }
+
+      .btn-secondary {
+        background: $dark-bg-secondary;
+        color: $dark-text;
+        border-color: $dark-border;
+
+        &:hover {
+          background: rgba($brand-primary-light, 0.15);
+          border-color: $brand-primary-light;
+          color: $brand-primary-light;
+        }
+      }
+    }
+  }
+  
+  // GitHub CTA Row
+  .portfolio-cta-row {
+    .portfolio-cta-button,
+    .github-cta-button {
+      background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+      color: $dark-bg;
+      box-shadow: 0 4px 16px rgba($brand-primary-light, 0.3);
+      
+      .cta-content {
+        .cta-text {
+          strong,
+          small {
+            color: $dark-bg;
+          }
+        }
+      }
+      
+      .cta-arrow {
+        color: $dark-bg;
+      }
+      
+      &:hover {
+        box-shadow: 0 8px 24px rgba($brand-primary-light, 0.4);
+        
+        .cta-arrow {
+          color: $dark-bg;
+        }
+      }
+    }
+  }
+
+  // Portfolio Modal
+  .portfolio-modal {
+    .modal-dialog {
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+      }
+    }
+    
+    .modal-content {
+      background: $dark-bg;
+    }
+
+    .modal-close-btn {
+      background: rgba(42, 42, 42, 0.95);
+
+      i {
+        color: $text-light;
+      }
+
+      &:hover {
+        background: $dark-bg-secondary;
+      }
+    }
+
+    .modal-hero {
+      background: $dark-bg-secondary;
+    }
+
+    .modal-header-section {
+      border-bottom-color: $dark-border;
+
+      .project-title {
+        color: $brand-primary-light;
+      }
+
+      .meta-item {
+        background: $dark-bg-secondary;
+        color: $text-light;
+      }
+
+      .btn-action {
+        &.btn-primary {
+          background: linear-gradient(135deg, $brand-primary-light 0%, $primary 100%);
+          color: $dark-bg;
+        }
+
+        &.btn-secondary {
+          background: $dark-bg-secondary;
+          color: $text-light;
+          border-color: $dark-border;
+
+          &:hover {
+            border-color: $brand-primary-light;
+            color: $brand-primary-light;
+          }
+        }
+      }
+    }
+
+    .content-card {
+      background: $dark-bg-secondary;
+      border-color: $dark-border;
+
+      &:hover {
+        border-color: $brand-primary-light;
+      }
+
+      .card-title {
+        color: $brand-primary-light;
+
+        i {
+          color: $brand-primary-light;
+        }
+      }
+
+      .card-content {
+        color: $text-light;
+
+        p {
+          color: $text-light;
+        }
+
+        ul li {
+          color: $text-light;
+        }
+      }
+    }
+
+    .tech-stack-grid .tech-item {
+      background: $dark-bg;
+      color: $text-light;
+      border-color: $dark-border;
+
+      span {
+        color: $text-light;
+      }
+
+      &:hover {
+        border-color: currentColor;
+      }
+    }
+
+    .challenge-list li,
+    .learning-list li {
+      color: $text-light;
+
+      &::before {
+        color: $brand-primary-light;
+      }
+    }
+
+    .media-gallery .media-item {
+      background: $dark-bg-secondary;
+      border-color: $dark-border;
+    }
+  }
+
+  // Design Modal
+  .design-modal-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .design-modal-content {
+    background: $dark-card-bg;
+
+    .design-modal-info {
+      background: $dark-card-bg;
+
+      .design-category-badge {
+        background: $brand-primary-light;
+        color: $dark-bg;
+      }
+
+      h2 {
+        color: $dark-text;
+      }
+
+      .design-description {
+        color: $dark-text-muted;
+      }
+
+      .ux-breakdown {
+        h3 {
+          color: $brand-primary-light;
+        }
+
+        .breakdown-content {
+          color: $dark-text-muted;
+        }
+      }
+    }
+  }
+
+  // CodePen Experiments Component
+  .codepen-experiments {
+    background: $dark-bg;
+
+    .section-header {
+      h2 {
+        color: $dark-text;
+      }
+
+      p {
+        color: $dark-text-muted;
+      }
+    }
+
+    .codepen-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        border-color: $brand-primary-light;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .card-media {
+        background: $dark-bg-secondary;
+      }
+
+      .card-body {
+        .card-title {
+          color: $dark-text;
+        }
+
+        .card-desc {
+          color: $dark-text-muted;
+        }
+
+        .card-footer {
+          border-top-color: $dark-border;
+
+          a {
+            color: $brand-primary-light;
+
+            i {
+              color: $brand-primary-light;
+            }
+
+            &:hover {
+              color: $primary-dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // CodePen Section (new component)
+  .codepen-section {
+    .section-sub {
+      color: $dark-text-muted;
+    }
+
+    .codepen-card {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+
+      &:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .card-desc {
+      color: $dark-text-muted;
+    }
+  }
+}

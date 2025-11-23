@@ -1,0 +1,136 @@
+/**
+ * Shared social links component styles
+ * Purpose: Reusable social media link cards used across Bio, Contact, and Home pages
+ * Features: Card grid layout, hover effects, brand colors, responsive design
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-23
+ */
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// SOCIAL LINKS - CARD GRID (Connect variant)
+// ============================================================================
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $gap-lg;
+  margin: 0 auto;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+
+  .social-link {
+    @include card('flat');
+    @include card-interactive(-8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+    padding: $padding-xl;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+
+    // Top border accent that grows on hover
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    i {
+      font-size: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    span {
+      font-family: $font-alt;
+      font-size: $font-size-base;
+      font-weight: $weight-semibold;
+      color: $text-dark;
+      transition: color 0.3s ease;
+    }
+
+    // Hover effects
+    &:hover {
+      &::before {
+        transform: scaleX(1);
+      }
+
+      i {
+        transform: scale(1.15);
+      }
+    }
+
+    // Focus states
+    &:focus {
+      outline: 3px solid currentColor;
+      outline-offset: 4px;
+      transform: translateY(-8px);
+      box-shadow: $shadow-hover-md;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid currentColor;
+      outline-offset: 4px;
+    }
+
+    // Brand-specific colors
+    &.linkedin {
+      color: #0A66C2;
+    }
+
+    &.github {
+      color: #181717;
+    }
+
+    &.codepen {
+      color: #000000;
+    }
+
+    &.twitter {
+      color: #000000;
+    }
+  }
+}
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+html.dark-mode {
+  .social-links .social-link {
+    background: $dark-bg;
+    border-color: $overlay-white-light;
+
+    span {
+      color: $text-light;
+    }
+
+    // Invert dark logos to white
+    &.github,
+    &.codepen,
+    &.twitter {
+      color: #FFFFFF;
+    }
+  }
+}

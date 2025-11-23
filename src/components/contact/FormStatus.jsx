@@ -1,6 +1,6 @@
-import React from "react";
+import { forwardRef } from "react";
 
-const FormStatus = React.forwardRef(({ status }, ref) => {
+const FormStatus = forwardRef(({ status }, ref) => {
   if (!status) return null;
 
   const isSuccess = status.includes('success');

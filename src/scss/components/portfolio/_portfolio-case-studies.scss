@@ -1,0 +1,132 @@
+/**
+ * Partial: _portfolio-case-studies.scss
+ * Purpose: Case studies section with detailed project cards
+ * Features: Grid layout, category badges, metadata, tags
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+@use 'sass:math';
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// CASE STUDIES SECTION
+// ============================================================================
+
+.portfolio-case-studies-section {
+  .case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: $gap-xl;
+    align-items: stretch; // Equal heights per row
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+    }
+
+    .case-study-card {
+      @include card('elevated');
+      @include card-interactive(-8px);
+      @include flex-column;
+      height: 100%; // Fill grid cell height
+
+      .case-study-image {
+        @include card-image(math.div(16, 9), 1.05);
+
+        .case-study-category {
+          position: absolute;
+          top: $space-lg;
+          left: $space-lg;
+          padding: $padding-xs $padding-md;
+          background: rgba($primary, 0.95);
+          color: $text-white;
+          border-radius: $radius-full;
+          font-size: 0.75rem;
+          font-weight: $weight-bold;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          backdrop-filter: blur(4px);
+        }
+      }
+
+      .case-study-content {
+        @include card-body;
+
+        .case-study-meta {
+          display: flex;
+          gap: $gap;
+          font-size: $font-size-sm;
+          color: $color-text-muted;
+          font-weight: $weight-medium;
+
+          .year, .duration {
+            display: flex;
+            align-items: center;
+            gap: $space-xs;
+
+            &::before {
+              content: '•';
+              color: $primary;
+            }
+
+            &:first-child::before {
+              display: none;
+            }
+          }
+        }
+
+        h3 {
+          font-size: $font-size-xl;
+          color: $color-text-primary;
+          margin: 0;
+          line-height: 1.3;
+          font-weight: $weight-semibold;
+        }
+
+        .subtitle {
+          font-size: $font-size-sm;
+          color: $primary;
+          font-weight: $weight-semibold;
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        .summary {
+          font-size: $font-size-base;
+          color: $color-text-secondary;
+          line-height: 1.7;
+          margin: 0;
+          flex: 1;
+        }
+
+        .case-study-tags {
+          @include flex-gap($space-sm);
+          flex-wrap: wrap;
+          margin-top: $gap-sm;
+
+          .tag {
+            @include tag-style(0.08, 0.2);
+          }
+        }
+
+        .btn-primary {
+          @include btn;
+          @include btn-with-icon;
+          @include gradient-bg(135deg, $primary, $brand-primary-light);
+          color: $text-white;
+          border: none;
+          margin-top: $gap;
+          width: 100%;
+          justify-content: center;
+          font-weight: $weight-semibold;
+          padding: $padding-md $padding-xl;
+
+          &:hover {
+            transform: translateY(-2px);
+            @include elevation(3);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+/**
+ * Partial: _portfolio-github.scss
+ * Purpose: GitHub projects section with repository cards
+ * Features: Two-column grid, thumbnails, tech pills, dual action buttons
+ * Dependencies: Uses _variables.scss and _mixins.scss
+ * Last updated: 2025-11-19
+ */
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+// ============================================================================
+// GITHUB PROJECTS SECTION
+// ============================================================================
+
+.portfolio-github-section {
+  .github-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-lg;
+    align-items: stretch; // Equal heights per row
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .github-card {
+    @include card-base;
+    @include card-hover-effect(-4px);
+    @include flex-column;
+    overflow: hidden;
+    height: 100%; // Fill grid cell height
+
+    .github-thumbnail {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: linear-gradient(135deg, $gray-100 0%, $gray-200 100%);
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    .github-content {
+      padding: $padding-xl;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      flex: 1;
+    }
+
+    .github-header {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+
+      i {
+        font-size: $font-size-xl;
+        color: #181717;
+      }
+
+      h3 {
+        font-size: $font-size-lg;
+        color: $color-text-primary;
+        margin: 0;
+        font-weight: $weight-bold;
+      }
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-secondary;
+      line-height: $line-height-relaxed;
+      flex: 1;
+      margin: 0;
+    }
+
+    .github-tech {
+      @include flex-gap($space-sm);
+      flex-wrap: wrap;
+
+      .tech-pill {
+        @include tag-style(0.08, 0.2);
+      }
+    }
+
+    .github-actions {
+      display: flex;
+      gap: $gap-sm;
+      margin-top: $gap-sm;
+      padding-top: $gap;
+      border-top: 1px solid $color-border-light;
+
+      @media (max-width: $bp-sm) {
+        flex-direction: column;
+      }
+
+      a {
+        @include btn;
+        flex: 1;
+        @include inline-flex-center;
+        gap: $space-sm;
+        font-weight: $weight-semibold;
+        font-size: 0.875rem;
+        padding: $padding-md $padding-lg;
+        border-radius: $radius;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        i {
+          font-size: 1rem;
+          transition: transform 0.3s ease;
+        }
+
+        &.btn-primary {
+          background: $primary;
+          color: $text-white;
+          border: 1px solid $primary;
+
+          &:hover {
+            background: $brand-primary-dark;
+            border-color: $brand-primary-dark;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary, 0.3);
+
+            i {
+              transform: translateX(2px);
+            }
+          }
+        }
+
+        &.btn-secondary {
+          background: $color-bg-secondary;
+          color: $color-text-primary;
+          border: 1px solid $color-border-medium;
+
+          i {
+            color: #181717;
+          }
+
+          &:hover {
+            background: #181717;
+            color: $text-white;
+            border-color: #181717;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+            i {
+              color: $text-white;
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -196,8 +196,8 @@
       }
 
       .tech-badge {
-        background: rgba(0, 0, 0, 0.75) !important;
-        color: $text-white !important;
+        background: rgba(0, 0, 0, 0.75);
+        color: $text-white;
         border: 2px solid;
         box-shadow: 0 2px 6px $overlay-light;
         cursor: pointer;
@@ -207,7 +207,7 @@
 
         &:hover {
           transform: translateY(-3px) scale(1.05);
-          background: rgba(0, 0, 0, 0.85) !important;
+          background: rgba(0, 0, 0, 0.85);
           box-shadow: 0 4px 12px var(--tech-color, $brand-primary), 
                       0 2px 8px rgba(0, 0, 0, 0.3);
         }
@@ -215,11 +215,11 @@
         &.tech-badge-more {
           border-color: $primary;
           color: $text-white;
-          background: $primary !important;
+          background: $primary;
           font-weight: 800;
 
           &:hover {
-            background: $primary-dark !important;
+            background: $primary-dark;
             box-shadow: 0 0 12px $brand-primary-400, 0 4px 8px $brand-primary-200;
           }
         }
