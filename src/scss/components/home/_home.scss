@@ -35,26 +35,6 @@
   .blog-header {
     contain: layout style paint;
   }
-
-  // Unified section header styles
-  .home-section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    // Animation handled by Framer Motion in SectionHeader component
-
-    .badge {
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-family: $font-heading;
-      @include font-size-xxl;
-      color: $color-text-primary;
-      margin-bottom: 16px;
-      font-weight: 400;
-      letter-spacing: 1px;
-    }
-  }
 }
 
 // Dark mode support

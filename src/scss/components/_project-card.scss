@@ -184,8 +184,16 @@
 
     .project-tech-stack {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 8px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .tech-badge {
         background: rgba(0, 0, 0, 0.75) !important;
@@ -194,6 +202,8 @@
         box-shadow: 0 2px 6px $overlay-light;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        flex-shrink: 0;
+        white-space: nowrap;
 
         &:hover {
           transform: translateY(-3px) scale(1.05);
@@ -271,8 +281,16 @@
       .project-tech {
         display: flex;
         gap: $space-sm;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         margin-top: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; // Firefox
+        
+        &::-webkit-scrollbar {
+          display: none; // Chrome, Safari, Edge
+        }
 
         .tech-tag {
           @include tag-style(0.1, 0.2);
@@ -281,6 +299,8 @@
           gap: $space-xs;
           padding: $padding-xs $padding-sm;
           border-radius: $radius;
+          white-space: nowrap;
+          flex-shrink: 0;
 
           i {
             font-size: 14px;

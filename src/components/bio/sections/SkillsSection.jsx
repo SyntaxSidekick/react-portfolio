@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHeader from "../../common/SectionHeader";
 import TechIcon from "../../TechIcon";
 
 const SKILL_GROUPS = [
@@ -88,10 +89,11 @@ const SKILL_GROUPS = [
 const SkillsSection = ({ skillsRefs }) => {
   return (
     <section className="bio-skills-section" aria-labelledby="skills-heading">
-      <header>
-        <h2 id="skills-heading">My Skills</h2>
-        <p>I've built a deep and focused set of front-end skills over my career—skills shaped by real engineering challenges, design systems work, and high-performance UI development.</p>
-      </header>
+      <SectionHeader
+        id="skills-heading"
+        title="My Skills"
+        subtitle="I've built a deep and focused set of front-end skills over my career—skills shaped by real engineering challenges, design systems work, and high-performance UI development."
+      />
       <div className="section-content">
         <div className="bio-skills-wrapper">
           {SKILL_GROUPS.map((group) => (

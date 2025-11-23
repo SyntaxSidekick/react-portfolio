@@ -18,7 +18,7 @@ const SectionHeader = ({
   className = ""
 }) => {
   const HeaderContent = () => (
-    <header className={`home-section-header ${className}`}>
+    <header className={`section-header ${className}`}>
       {badge && <span className="badge badge-outline">{badge}</span>}
       <h2 id={id}>{title}</h2>
       {subtitle && <p className="section-intro">{subtitle}</p>}

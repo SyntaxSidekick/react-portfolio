@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { TechBadge } from "./";
 import { parseProjectTitle, getMetricLabel } from "../../utils/homeUtils";
@@ -12,6 +12,63 @@ const ProjectCard = ({
 }) => {
   const { mainTitle, type } = parseProjectTitle(project.title);
   const isFeatured = variant === "featured" || project.featured;
+  const techContainerRef = useRef(null);
+  const [visibleTechCount, setVisibleTechCount] = useState(4);
+
+  // Calculate how many tech badges can fit on one line
+  useEffect(() => {
+    if (!project.tech || variant === "featured") return;
+
+    const calculateVisibleBadges = () => {
+      // Start with conservative estimate based on common badge widths
+      // Design Systems, Material-UI are ~120-140px, shorter ones ~80-100px
+      const containerWidth = techContainerRef.current?.offsetWidth || 280;
+      const moreButtonWidth = 60; // "+N" badge width
+      const gap = 8; // gap between badges
+      
+      // Average badge widths (approximation)
+      const badgeWidths = {
+        'Design Systems': 140,
+        'Material-UI': 120,
+        'JavaScript': 105,
+        'Photoshop': 110,
+        'Illustrator': 105,
+        'TypeScript': 110,
+        'Bootstrap': 100,
+        'Vue.js': 75,
+        'React': 75,
+        'HTML5': 80,
+        'CSS3': 75,
+        'Sass': 70,
+        'PHP': 65,
+        'Git': 60,
+        'XD': 55,
+      };
+
+      let totalWidth = 0;
+      let count = 0;
+      const availableWidth = containerWidth - moreButtonWidth - gap;
+
+      for (let i = 0; i < project.tech.length && i < 5; i++) {
+        const techName = project.tech[i].name;
+        const estimatedWidth = badgeWidths[techName] || 90; // default estimate
+        
+        if (totalWidth + estimatedWidth + (count > 0 ? gap : 0) <= availableWidth) {
+          totalWidth += estimatedWidth + (count > 0 ? gap : 0);
+          count++;
+        } else {
+          break;
+        }
+      }
+
+      // Ensure at least 3 badges are shown if possible
+      setVisibleTechCount(Math.max(3, Math.min(count, 4)));
+    };
+
+    calculateVisibleBadges();
+    window.addEventListener('resize', calculateVisibleBadges);
+    return () => window.removeEventListener('resize', calculateVisibleBadges);
+  }, [project.tech, variant]);
 
   const handleClick = () => {
     if (onClick) onClick(project);
@@ -131,8 +188,8 @@ const ProjectCard = ({
         <h3>{project.title}</h3>
         <p>{project.desc.split('\n')[0]}</p>
         {project.tech && (
-          <div className="project-tech" aria-label="Technologies used">
-            {project.tech.slice(0, 4).map((tech, i) => (
+          <div className="project-tech" ref={techContainerRef} aria-label="Technologies used">
+            {project.tech.slice(0, visibleTechCount).map((tech, i) => (
               <TechBadge 
                 key={i}
                 name={tech.name}
@@ -141,9 +198,9 @@ const ProjectCard = ({
                 className="tech-tag"
               />
             ))}
-            {project.tech.length > 4 && (
-              <span className="tech-tag more" aria-label={`${project.tech.length - 4} more technologies`}>
-                +{project.tech.length - 4}
+            {project.tech.length > visibleTechCount && (
+              <span className="tech-tag more" aria-label={`${project.tech.length - visibleTechCount} more technologies`}>
+                +{project.tech.length - visibleTechCount}
               </span>
             )}
           </div>

@@ -6,7 +6,7 @@ const FrontEndProjectsSection = ({ projects, projectRefs, onProjectClick, show }
 
   return (
     <section className="portfolio-projects-section" aria-labelledby="frontend-heading">
-      <header>
+      <header className="section-header">
         <h2 id="frontend-heading">Front-End Projects</h2>
         <p>Full-stack applications, React platforms, and enterprise-level UI engineering showcasing scalable architecture and modern development practices.</p>
       </header>

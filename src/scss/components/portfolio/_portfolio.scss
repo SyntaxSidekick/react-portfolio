@@ -24,10 +24,6 @@
     &:last-child {
       margin-bottom: 0;
     }
-
-    header {
-      @include section-header;
-    }
   }
 }
 
@@ -726,7 +722,203 @@
 }
 
 // ============================================================================
-// CODEPEN EXPERIMENTS SECTION
+// CODEPEN EXPERIMENTS SECTION (CodepenExperiments.jsx)
+// ============================================================================
+
+.codepen-section {
+  padding: 56px 0;
+
+  .section-head {
+    margin-bottom: 18px;
+  }
+
+  .section-sub {
+    color: #666;
+    margin-bottom: 28px;
+  }
+
+  // Masonry Layout
+  .codepen-grid {
+    column-gap: 20px;
+    column-count: 3;
+
+    @media (max-width: 1100px) {
+      column-count: 2;
+    }
+
+    @media (max-width: 640px) {
+      column-count: 1;
+    }
+  }
+
+  .codepen-card {
+    display: block;
+    break-inside: avoid;
+    margin: 0 0 20px;
+    background: $color-bg-primary;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 18px rgba(20, 20, 30, 0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(20, 20, 30, 0.12);
+    }
+  }
+
+  .card-media {
+    position: relative;
+    width: 100%;
+  }
+
+  .preview-img,
+  .preview-video {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.06));
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .card-title {
+    margin: 0 0 6px;
+    font-size: 1.04rem;
+  }
+
+  .card-desc {
+    margin: 0 0 12px;
+    color: #666;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+
+  // CTA Row
+  .codepen-cta-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  // Portfolio CTA Button (Homepage parity)
+  .portfolio-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: $font-ui;
+    min-width: 280px;
+    max-width: 500px;
+
+    .cta-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      i {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .cta-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+
+        strong {
+          font-size: 1rem;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+        }
+
+        small {
+          font-size: 0.875rem;
+          opacity: 0.9;
+          font-weight: 400;
+          letter-spacing: 0.2px;
+        }
+      }
+    }
+
+    .cta-arrow {
+      font-size: 1.125rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 115, 170, 0.4);
+
+      .cta-arrow {
+        transform: translateX(4px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba(0, 115, 170, 0.5);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      min-width: auto;
+      width: 100%;
+      max-width: 100%;
+      padding: 14px 24px;
+
+      .cta-content i {
+        font-size: 1.125rem;
+      }
+
+      .cta-arrow {
+        font-size: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+
+      &:hover {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0, 115, 170, 0.3);
+
+        .cta-arrow {
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// LEGACY PORTFOLIO CODEPEN SECTION (May not be in use)
 // ============================================================================
 
 .portfolio-codepen-section {
@@ -924,30 +1116,64 @@
 }
 
 // ============================================================================
-// PORTFOLIO MODAL - Material Design 3
+// PORTFOLIO MODAL - Material Design 3 with MUI
 // ============================================================================
 
 .portfolio-modal {
+  // MUI Modal styles
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   .modal-dialog {
     max-width: 1200px;
+    width: 90%;
     margin: $gap-xl auto;
+    outline: none;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
 
     @media (max-width: $bp-lg) {
       max-width: 95%;
+      width: 95%;
       margin: $gap auto;
     }
   }
 
   .modal-content {
+    background: $color-bg-primary;
     border: none;
     border-radius: $radius-xl;
     overflow: hidden;
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 
                 0 8px 16px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+
+  .modal-body {
+    padding: 0;
   }
 
   .modal-wrapper {
-    background: $color-bg-primary;
     position: relative;
   }
 
@@ -986,13 +1212,18 @@
     width: 100%;
     overflow: hidden;
     background: $gray-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $gap;
 
     .hero-image {
-      width: 100%;
+      width: auto;
+      max-width: 100%;
       height: auto;
       display: block;
-      object-fit: cover;
-      max-height: 500px;
+      object-fit: contain;
+      max-height: 600px;
     }
   }
 
@@ -1675,7 +1906,21 @@ html.dark-mode {
 
   // Portfolio Modal
   .portfolio-modal {
-    .modal-wrapper {
+    .modal-dialog {
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+      }
+    }
+    
+    .modal-content {
       background: $dark-bg;
     }
 
@@ -1909,6 +2154,12 @@ html.dark-mode {
   backdrop-filter: blur(4px);
 }
 
+.custom-modal {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.design-modal-overlay .custom-modal,
 .design-modal {
   background: $color-bg-primary;
   border-radius: $radius-xl;

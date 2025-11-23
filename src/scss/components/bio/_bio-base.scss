@@ -10,28 +10,6 @@
   section {
     margin-bottom: $gap-xl;
     &:last-child { margin-bottom: 0; }
-    header {
-      max-width: 900px;
-      margin: 0 auto $gap-lg;
-      text-align: center;
-      h2 {
-        font-family: $font-heading;
-        font-size: $font-size-2xl;
-        color: $primary;
-        margin: 0 0 $gap;
-        font-weight: $weight-normal;
-        letter-spacing: $letter-spacing-wide;
-        @media (max-width: $bp-md) { font-size: $font-size-xl; }
-      }
-      p {
-        font-size: $font-size-md;
-        color: $text-dark;
-        line-height: $line-height-relaxed;
-        margin: 0;
-        max-width: 800px;
-        margin-left: auto; margin-right: auto;
-      }
-    }
   }
 
   .visually-hidden { @include visually-hidden; }
@@ -81,13 +59,6 @@
       }
     }
   }
-
-  .section-header { max-width: 900px; margin: $gap-xl auto $gap-lg; text-align: center;
-    h3 { font-family: $font-heading; font-size: $font-size-2xl; color: $primary; margin: 0 0 $gap; font-weight: $weight-normal; letter-spacing: $letter-spacing-wide;
-      @media (max-width: $bp-md) { font-size: $font-size-xl; }
-    }
-    p { font-size: $font-size-md; color: $text-dark; line-height: $line-height-relaxed; margin: 0; max-width: 800px; margin-left: auto; margin-right: auto; }
-  }
 }
 
 html.dark-mode .bio-page {
@@ -99,7 +70,6 @@ html.dark-mode .bio-page {
       .text-wrap p { color: $text-light; span { color: $brand-primary-light; } }
     }
   }
-  section header { h2 { color: $brand-primary-light; } p { color: $text-light; } }
 }
 
 .btn { display: inline-block; margin-right: 10px; margin-top: 8px; @include btn; font-size: 14px;

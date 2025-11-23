@@ -1,5 +1,9 @@
 # Ignore progress.html
 progress.html
+
+# Legacy folder - migration scripts, backups, unused files
+legacy/
+
 # Logs
 logs
 *.log

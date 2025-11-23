@@ -94,7 +94,7 @@ const Modal = ({
       aria-labelledby={title ? "modal-title" : undefined}
     >
       <div 
-        className={`modal modal-${size}`}
+        className={`custom-modal custom-modal-${size}`}
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
       >

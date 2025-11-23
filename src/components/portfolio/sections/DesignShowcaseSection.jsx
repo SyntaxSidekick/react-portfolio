@@ -5,7 +5,7 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
 
   return (
     <section className="portfolio-design-section" aria-labelledby="design-heading">
-      <header>
+      <header className="section-header">
         <h2 id="design-heading">UI/UX & Design</h2>
         <p>Design systems, mobile interfaces, and high-fidelity prototypes demonstrating user-centered thinking and visual craft.</p>
       </header>

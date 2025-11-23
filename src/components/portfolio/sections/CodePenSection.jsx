@@ -6,7 +6,7 @@ const CodePenSection = ({ codepenProjects, show }) => {
 
   return (
     <section className="portfolio-codepen-section" aria-labelledby="codepen-heading">
-      <header>
+      <header className="section-header">
         <h2 id="codepen-heading">CodePen Experiments</h2>
         <p>Creative micro-interactions, animations, and UI components exploring the boundaries of CSS, JavaScript, and accessibility.</p>
       </header>

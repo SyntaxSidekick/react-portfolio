@@ -6,14 +6,27 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
 
   return (
     <section className="portfolio-case-studies-section" aria-labelledby="case-studies-heading">
-      <header>
+      <header className="section-header">
         <h2 id="case-studies-heading">Case Studies</h2>
         <p>In-depth explorations of complex projects showcasing problem-solving, process, and measurable impact.</p>
       </header>
       <div className="section-content">
         <div className="case-studies-grid">
           {caseStudies.map((study, i) => (
-            <article key={study.id || `${study.title || 'case-study'}-${i}`} className="case-study-card">
+            <article 
+              key={study.id || `${study.title || 'case-study'}-${i}`} 
+              className="case-study-card card-interactive"
+              onClick={() => onCaseStudyClick(study)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onCaseStudyClick(study);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label={`View ${study.title} case study details`}
+            >
               <div className="case-study-image">
                 <img 
                   src={study.thumbnail} 
@@ -37,7 +50,10 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
                 </div>
                 <button 
                   className="btn-primary"
-                  onClick={() => onCaseStudyClick(study)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onCaseStudyClick(study);
+                  }}
                   aria-label={`Read ${study.title} case study`}
                 >
                   Read Case Study

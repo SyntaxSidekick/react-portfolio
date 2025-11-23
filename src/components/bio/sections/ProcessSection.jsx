@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHeader from "../../common/SectionHeader";
 import step1Image from "../../../assets/images/steps/discovery-planning-step-1.png";
 import step2Image from "../../../assets/images/steps/wirefaming-design-step-2.png";
 import step3Image from "../../../assets/images/steps/development-step-3.png";
@@ -42,10 +43,11 @@ const PROCESS_STEPS = [
 const ProcessSection = ({ processRefs, bioContentRef }) => {
   return (
     <section className="bio-process-section" ref={bioContentRef} aria-labelledby="process-heading">
-      <header>
-        <h2 id="process-heading">My Front-End Process</h2>
-        <p>I follow a clear, structured front-end process designed to turn complex ideas into fast, accessible, and intuitive user experiences. From early discovery to long-term optimization, every stage is focused on quality, clarity, and performance.</p>
-      </header>
+      <SectionHeader
+        id="process-heading"
+        title="My Front-End Process"
+        subtitle="I follow a clear, structured front-end process designed to turn complex ideas into fast, accessible, and intuitive user experiences. From early discovery to long-term optimization, every stage is focused on quality, clarity, and performance."
+      />
       <div className="section-content">
         <ol className="bio-process" aria-label="Six-step front-end development process">
           {PROCESS_STEPS.map((step, i) => (

@@ -3,7 +3,7 @@ import { PageHeader } from "../";
 import DynamicTitle from "../../DynamicTitle";
 import { projects, designShowcase, githubProjects, codepenProjects, caseStudies } from "./projects";
 import PortfolioModal from "./PortfolioModal";
-import { Modal, CTAButton } from "../common";
+import { CTAButton } from "../common";
 import {
   FilterTabs,
   FrontEndProjectsSection,
@@ -14,7 +14,6 @@ import {
   CTASection,
 } from "./sections";
 import CodepenExperiments from "./CodepenExperiments";
-import "../../css/codepen.css";
 
 // Filter categories
 const FILTERS = [
@@ -30,8 +29,6 @@ const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDesign, setSelectedDesign] = useState(null);
-  const [designModalOpen, setDesignModalOpen] = useState(false);
   const projectRefs = useRef([]);
 
   // Open project modal
@@ -43,19 +40,23 @@ const Portfolio = () => {
   // Close project modal
   const closeProjectModal = () => {
     setModalOpen(false);
-    setSelectedProject(null);
+    // A brief delay allows the fade-out animation to complete before clearing the data
+    setTimeout(() => setSelectedProject(null), 300);
   };
 
-  // Open design modal
-  const openDesignModal = (design) => {
-    setSelectedDesign(design);
-    setDesignModalOpen(true);
-  };
-
-  // Close design modal
-  const closeDesignModal = () => {
-    setDesignModalOpen(false);
-    setSelectedDesign(null);
+  // Handle UI/UX & Design card click
+  const handleDesignClick = (design) => {
+    // Adapt the design object to the structure expected by PortfolioModal
+    const projectData = {
+      title: design.title,
+      img: design.image,
+      desc: design.description,
+      category: design.category,
+      // Use the 'problem' field to display the UX Breakdown
+      problem: design.breakdown ? `<h3>UX Breakdown</h3>${design.breakdown}` : null,
+      tech: design.tools || [], // Assuming tools are the tech stack
+    };
+    openProjectModal(projectData);
   };
   
   // Handle case study click
@@ -151,7 +152,7 @@ const Portfolio = () => {
 
       <DesignShowcaseSection
         designShowcase={designShowcase}
-        onDesignClick={openDesignModal}
+        onDesignClick={handleDesignClick}
         show={activeFilter === "all" || activeFilter === "design"}
       />
 
@@ -192,39 +193,6 @@ const Portfolio = () => {
         modalProject={selectedProject}
         closeModal={closeProjectModal}
       />
-
-      <Modal
-        isOpen={designModalOpen}
-        onClose={closeDesignModal}
-        size="xl"
-        className="design-modal-overlay"
-      >
-        {selectedDesign && (
-          <div className="design-modal-content">
-            <div className="design-modal-image">
-              <img 
-                src={selectedDesign.image} 
-                alt={selectedDesign.title}
-              />
-            </div>
-            
-            <div className="design-modal-info">
-              <span className="design-category-badge">{selectedDesign.category}</span>
-              <h2>{selectedDesign.title}</h2>
-              <p className="design-description">{selectedDesign.description}</p>
-              
-              {selectedDesign.breakdown && (
-                <div className="ux-breakdown">
-                  <h3>UX Breakdown</h3>
-                  <div className="breakdown-content">
-                    {selectedDesign.breakdown}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </Modal>
       
     </main>
   );

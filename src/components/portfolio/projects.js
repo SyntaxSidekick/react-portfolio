@@ -35,15 +35,7 @@ export const projects = [
         "icon": "fas fa-layer-group"
       },
       {
-        "name": "Illustrator",
-        "icon": "svg"
-      },
-      {
-        "name": "InDesign",
-        "icon": "svg"
-      },
-      {
-        "name": "InVision",
+        "name": "XD",
         "icon": "svg"
       },
       {
@@ -51,7 +43,15 @@ export const projects = [
         "icon": "svg"
       },
       {
-        "name": "XD",
+        "name": "Illustrator",
+        "icon": "svg"
+      },
+      {
+        "name": "InVision",
+        "icon": "svg"
+      },
+      {
+        "name": "InDesign",
         "icon": "svg"
       }
     ],
@@ -91,52 +91,52 @@ export const projects = [
     "secimg": "/images/portfolio/projects/virtued-2.png",
     "tech": [
       {
-        "name": "Bootstrap",
-        "icon": "fab fa-bootstrap"
-      },
-      {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
-      },
-      {
-        "name": "Figma",
-        "icon": "fab fa-figma"
-      },
-      {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      },
-      {
-        "name": "Gulp",
-        "icon": "fab fa-gulp"
-      },
-      {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        "name": "React",
+        "icon": "fab fa-react"
       },
       {
         "name": "JavaScript",
         "icon": "fab fa-js"
       },
       {
-        "name": "Material-UI",
-        "icon": "fas fa-layer-group"
+        "name": "HTML5",
+        "icon": "fab fa-html5"
       },
       {
-        "name": "Photoshop",
-        "icon": "svg"
-      },
-      {
-        "name": "React",
-        "icon": "fab fa-react"
+        "name": "CSS3",
+        "icon": "fab fa-css3-alt"
       },
       {
         "name": "Sass",
         "icon": "fab fa-sass"
       },
       {
+        "name": "Material-UI",
+        "icon": "fas fa-layer-group"
+      },
+      {
+        "name": "Bootstrap",
+        "icon": "fab fa-bootstrap"
+      },
+      {
+        "name": "Figma",
+        "icon": "fab fa-figma"
+      },
+      {
+        "name": "Photoshop",
+        "icon": "svg"
+      },
+      {
         "name": "Vite",
         "icon": "fas fa-bolt"
+      },
+      {
+        "name": "Gulp",
+        "icon": "fab fa-gulp"
+      },
+      {
+        "name": "Git",
+        "icon": "fab fa-git-alt"
       }
     ],
     "githubUrl": "",
@@ -169,48 +169,48 @@ export const projects = [
     "secimg": "/images/portfolio/projects/time2visit-2.png",
     "tech": [
       {
-        "name": "Bootstrap",
-        "icon": "fab fa-bootstrap"
-      },
-      {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
-      },
-      {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      },
-      {
-        "name": "Gulp",
-        "icon": "fab fa-gulp"
-      },
-      {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
-      },
-      {
-        "name": "Illustrator",
-        "icon": "svg"
+        "name": "Vue.js",
+        "icon": "fab fa-vuejs"
       },
       {
         "name": "JavaScript",
         "icon": "fab fa-js"
       },
       {
-        "name": "PHP",
-        "icon": "fab fa-php"
+        "name": "HTML5",
+        "icon": "fab fa-html5"
       },
       {
-        "name": "Photoshop",
-        "icon": "svg"
+        "name": "CSS3",
+        "icon": "fab fa-css3-alt"
       },
       {
         "name": "Sass",
         "icon": "fab fa-sass"
       },
       {
-        "name": "Vue.js",
-        "icon": "fab fa-vuejs"
+        "name": "PHP",
+        "icon": "fab fa-php"
+      },
+      {
+        "name": "Bootstrap",
+        "icon": "fab fa-bootstrap"
+      },
+      {
+        "name": "Photoshop",
+        "icon": "svg"
+      },
+      {
+        "name": "Illustrator",
+        "icon": "svg"
+      },
+      {
+        "name": "Gulp",
+        "icon": "fab fa-gulp"
+      },
+      {
+        "name": "Git",
+        "icon": "fab fa-git-alt"
       }
     ],
     "githubUrl": "",
@@ -243,20 +243,36 @@ export const projects = [
     "secimg": "/images/portfolio/projects/andor-2.png",
     "tech": [
       {
+        "name": "React",
+        "icon": "fab fa-react"
+      },
+      {
+        "name": "JavaScript",
+        "icon": "fab fa-js"
+      },
+      {
+        "name": "HTML5",
+        "icon": "fab fa-html5"
+      },
+      {
         "name": "CSS3",
         "icon": "fab fa-css3-alt"
+      },
+      {
+        "name": "Sass",
+        "icon": "fab fa-sass"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "svg"
       },
       {
         "name": "Design Systems",
         "icon": "fas fa-layer-group"
       },
       {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      },
-      {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        "name": "Photoshop",
+        "icon": "svg"
       },
       {
         "name": "Illustrator",
@@ -267,24 +283,8 @@ export const projects = [
         "icon": "svg"
       },
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
-      },
-      {
-        "name": "Photoshop",
-        "icon": "svg"
-      },
-      {
-        "name": "React",
-        "icon": "fab fa-react"
-      },
-      {
-        "name": "Sass",
-        "icon": "fab fa-sass"
-      },
-      {
-        "name": "Tailwind CSS",
-        "icon": "svg"
+        "name": "Git",
+        "icon": "fab fa-git-alt"
       }
     ],
     "githubUrl": "",
@@ -318,8 +318,24 @@ export const projects = [
     "secimg": "/images/portfolio/projects/saveur-1.png",
     "tech": [
       {
+        "name": "JavaScript",
+        "icon": "fab fa-js"
+      },
+      {
+        "name": "HTML5",
+        "icon": "fab fa-html5"
+      },
+      {
         "name": "CSS3",
         "icon": "fab fa-css3-alt"
+      },
+      {
+        "name": "Sass",
+        "icon": "fab fa-sass"
+      },
+      {
+        "name": "PHP",
+        "icon": "fab fa-php"
       },
       {
         "name": "Drupal",
@@ -328,22 +344,6 @@ export const projects = [
       {
         "name": "Git",
         "icon": "fab fa-git-alt"
-      },
-      {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
-      },
-      {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
-      },
-      {
-        "name": "PHP",
-        "icon": "fab fa-php"
-      },
-      {
-        "name": "Sass",
-        "icon": "fab fa-sass"
       }
     ],
     "githubUrl": "",
@@ -376,8 +376,24 @@ export const projects = [
     "secimg": "/images/portfolio/projects/popsci-1.png",
     "tech": [
       {
+        "name": "JavaScript",
+        "icon": "fab fa-js"
+      },
+      {
+        "name": "HTML5",
+        "icon": "fab fa-html5"
+      },
+      {
         "name": "CSS3",
         "icon": "fab fa-css3-alt"
+      },
+      {
+        "name": "Sass",
+        "icon": "fab fa-sass"
+      },
+      {
+        "name": "PHP",
+        "icon": "fab fa-php"
       },
       {
         "name": "Drupal",
@@ -386,22 +402,6 @@ export const projects = [
       {
         "name": "Git",
         "icon": "fab fa-git-alt"
-      },
-      {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
-      },
-      {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
-      },
-      {
-        "name": "PHP",
-        "icon": "fab fa-php"
-      },
-      {
-        "name": "Sass",
-        "icon": "fab fa-sass"
       }
     ],
     "githubUrl": "",
@@ -669,12 +669,12 @@ export const caseStudies = [
         "icon": "fab fa-react"
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
-      },
-      {
         "name": "JavaScript",
         "icon": "fab fa-js"
+      },
+      {
+        "name": "Sass",
+        "icon": "fab fa-sass"
       },
       {
         "name": "WCAG 2.1",
@@ -685,7 +685,7 @@ export const caseStudies = [
         "icon": "fas fa-tachometer-alt"
       }
     ],
-    "year": "2020-2021",
+    "year": "2024",
     "duration": "6 months",
     "createdAt": "2025-11-20T12:16:51.058Z"
   }

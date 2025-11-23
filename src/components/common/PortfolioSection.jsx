@@ -23,7 +23,7 @@ const PortfolioSection = ({
 
   return (
     <section className={`portfolio-${className}-section`} aria-labelledby={headingId}>
-      <header>
+      <header className="section-header">
         <h2 id={headingId}>{title}</h2>
         <p>{description}</p>
       </header>

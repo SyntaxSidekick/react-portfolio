@@ -62,7 +62,7 @@ const CodepenExperiments = ({ experiments = defaultExperiments }) => {
 
   return (
     <section className="codepen-section container" aria-labelledby="codepen-title">
-      <header className="section-head">
+      <header className="section-header">
         <h2 id="codepen-title">CodePen Experiments</h2>
         <p className="section-sub">
           Creative micro-interactions, accessibility demos, UI components, and JavaScript experiments.

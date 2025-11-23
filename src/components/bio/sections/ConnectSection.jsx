@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHeader from "../../common/SectionHeader";
 
 const SOCIAL_LINKS = [
   {
@@ -38,10 +39,11 @@ const SOCIAL_LINKS = [
 const ConnectSection = () => {
   return (
     <section className="bio-connect-section" aria-labelledby="connect-heading">
-      <header>
-        <h2 id="connect-heading">Let's Connect</h2>
-        <p>If you're interested in front-end engineering, design systems, or accessible UI development, let's connect. I share work, insights, and experiments across the platforms below.</p>
-      </header>
+      <SectionHeader
+        id="connect-heading"
+        title="Let's Connect"
+        subtitle="If you're interested in front-end engineering, design systems, or accessible UI development, let's connect. I share work, insights, and experiments across the platforms below."
+      />
       <div className="section-content">
         <div className="bio-connect">
           <nav className="social-links" aria-label="Social media profiles">

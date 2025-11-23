@@ -94,14 +94,14 @@ const HeroSection = ({ years, titleIndex }) => {
             }}
           >
             <CTAButton
-              href="#portfolio"
+              href="/portfolio"
               title="View My Work"
               trailingIcon="fas fa-arrow-right"
               variant="primary"
               ariaLabel="View my work section"
             />
             <CTAButton
-              href="#contact"
+              href="/contact"
               title="Let's Talk"
               trailingIcon="fas fa-comments"
               variant="secondary"

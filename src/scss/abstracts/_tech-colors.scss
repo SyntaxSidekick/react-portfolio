@@ -82,5 +82,10 @@ $tech-colors: map.merge($tech-colors, (
   "gtm": $tech-gtm,
   "a-b-testing": $tech-ab-testing,
   "seo": $tech-seo,
-  "responsive-design": $tech-responsive-design
+  "responsive-design": $tech-responsive-design,
+  "vite": $tech-vite,
+  "material-ui": $tech-material-ui,
+  "wcag": $tech-wcag,
+  "wcag-2-1": $tech-wcag,
+  "performance": $tech-performance
 ));

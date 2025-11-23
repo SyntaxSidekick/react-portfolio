@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Modal from "react-bootstrap/Modal";
+import { Modal, Backdrop, Fade } from "@mui/material";
 import TechIcon from "../TechIcon";
 
 const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
@@ -9,8 +9,12 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
   useEffect(() => {
     if (modalOpen) {
       lastActiveElement.current = document.activeElement;
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      
       setTimeout(() => {
-        const closeButton = document.querySelector('.portfolio-modal .btn-close');
+        const closeButton = document.querySelector('.portfolio-modal .modal-close-btn');
         if (closeButton) closeButton.focus();
       }, 100);
 
@@ -21,6 +25,7 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
       document.addEventListener("keydown", handleKeyDown);
       return () => {
         document.removeEventListener("keydown", handleKeyDown);
+        document.body.style.overflow = '';
         if (lastActiveElement.current) lastActiveElement.current.focus();
       };
     }
@@ -30,17 +35,24 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
 
   return (
     <Modal
-      show={modalOpen}
-      onHide={closeModal}
-      centered
-      size="xl"
+      open={modalOpen}
+      onClose={closeModal}
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: {
+          timeout: 500,
+        },
+      }}
       aria-labelledby="portfolio-modal-title"
       aria-modal="true"
       className="portfolio-modal"
-      backdrop="static"
     >
-      <Modal.Body className="p-0">
-        <div className="modal-wrapper">
+      <Fade in={modalOpen}>
+        <div className="modal-dialog modal-xl">
+          <div className="modal-content">
+            <div className="modal-body p-0">
+              <div className="modal-wrapper">
           
           {/* Close Button */}
           <button 
@@ -287,7 +299,11 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
 
           </div>
         </div>
-      </Modal.Body>
+
+      </div>
+    </div>
+    </div>
+      </Fade>
     </Modal>
   );
 };
