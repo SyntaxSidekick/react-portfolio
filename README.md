@@ -3,12 +3,16 @@
 
 A modern, high-performance portfolio website built with React 19, showcasing 12+ years of front-end development and UI/UX design expertise. Built with performance, accessibility, and maintainability as core principles.
 
+<img width="1293" height="687" alt="riadkilani-lighthouse-score" src="https://github.com/user-attachments/assets/e39d1431-c13b-49d1-a166-ed9f494c6eb4" />
+
 [![Lighthouse Performance](https://img.shields.io/badge/Performance-92-orange?logo=lighthouse&logoColor=white)](https://developers.google.com/web/tools/lighthouse)
 [![Lighthouse Accessibility](https://img.shields.io/badge/Accessibility-100-brightgreen?logo=lighthouse&logoColor=white)](https://developers.google.com/web/tools/lighthouse)
 [![Lighthouse Best Practices](https://img.shields.io/badge/Best%20Practices-100-brightgreen?logo=lighthouse&logoColor=white)](https://developers.google.com/web/tools/lighthouse)
 [![Lighthouse SEO](https://img.shields.io/badge/SEO-100-brightgreen?logo=lighthouse&logoColor=white)](https://developers.google.com/web/tools/lighthouse)
 
 ## 🌐 Live Demo
+
+<img width="1902" height="911" alt="riadkilani-portfolio" src="https://github.com/user-attachments/assets/557e638c-c419-482a-9422-0b416325d1c6" />
 
 **[https://riadkilani.com/](https://riadkilani.com/)**
 
