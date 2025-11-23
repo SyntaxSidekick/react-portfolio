@@ -69,6 +69,7 @@
       border: 2px solid $color-border-light;
       border-radius: $radius-lg;
       padding: $padding-md $padding-xl;
+      min-height: 48px; // Ensure minimum touch target size for accessibility
       font-size: $font-size-xs;
       font-weight: $weight-semibold;
       color: $color-text-secondary;

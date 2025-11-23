@@ -61,7 +61,12 @@ const CodepenExperiments = ({ experiments = defaultExperiments }) => {
   };
 
   return (
-    <section className="codepen-section container" aria-labelledby="codepen-title">
+    <section 
+      className="codepen-section container" 
+      id="codepen-panel"
+      role="tabpanel"
+      aria-labelledby="codepen-title"
+    >
       <header className="section-header">
         <h2 id="codepen-title">CodePen Experiments</h2>
         <p className="section-sub">
@@ -69,15 +74,15 @@ const CodepenExperiments = ({ experiments = defaultExperiments }) => {
         </p>
       </header>
 
-      <div className="codepen-grid" role="list">
+      <div className="codepen-grid">
         {experiments.map((exp, i) => (
           <motion.a
-            role="listitem"
             key={exp.id}
             href={exp.url}
             target="_blank"
             rel="noopener noreferrer"
             className="codepen-card"
+            aria-label={`${exp.title} - ${exp.description}`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Skeleton, SkeletonBlock } from '../Skeleton'
 import { PageHeader } from '../'
@@ -9,9 +9,16 @@ import BlogNav from './BlogNav'
 const BlogIndex = () => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [searchParams] = useSearchParams()
+  const searchQuery = searchParams.get('search')
 
   useEffect(() => {
-    fetch('https://blog.riadkilani.com/wp-json/wp/v2/posts?per_page=10&_embed')
+    const apiUrl = searchQuery 
+      ? `https://blog.riadkilani.com/wp-json/wp/v2/posts?per_page=10&_embed&search=${encodeURIComponent(searchQuery)}`
+      : 'https://blog.riadkilani.com/wp-json/wp/v2/posts?per_page=10&_embed'
+    
+    setLoading(true)
+    fetch(apiUrl)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch posts')
         return res.json()
@@ -23,22 +30,31 @@ const BlogIndex = () => {
       .catch(() => {
         setLoading(false)
       })
-  }, [])
+  }, [searchQuery])
 
   return (
     <>
       <BlogNav />
       <main className='blog-index-page' role="main" aria-labelledby="page-title">
         <PageHeader 
-          title="Latest Blog Posts"
-          subtitle="From random thoughts to insightful articles on web development, design, and technology."
+          title={searchQuery ? `Search Results for "${searchQuery}"` : "Latest Blog Posts"}
+          subtitle={searchQuery ? `Found ${posts.length} result${posts.length !== 1 ? 's' : ''}` : "From random thoughts to insightful articles on web development, design, and technology."}
         />
         <div className='container'>
         <div className='content-sidebar-wrapper'>
           <section className='listing-content blog-content' role="region" aria-label="Blog post list">
             <div className='blog-posts-grid'>
               {loading ? (
-                <div className='blog-loading'>Loading latest blog posts...</div>
+                <div className='blog-loading'>Loading{searchQuery ? ' search results' : ' latest blog posts'}...</div>
+              ) : posts.length === 0 ? (
+                <div className='blog-no-results'>
+                  <p>No posts found{searchQuery ? ` for "${searchQuery}"` : ''}.</p>
+                  {searchQuery && (
+                    <Link to="/blog" className="btn-primary">
+                      View All Posts
+                    </Link>
+                  )}
+                </div>
               ) : (
                 posts.map((post, i) => (
                   <motion.article 

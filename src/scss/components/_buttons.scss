@@ -32,6 +32,7 @@
   // Default size (medium)
   padding: $padding-md $padding-xl;
   font-size: $font-size-sm;
+  min-height: 48px; // Ensure minimum touch target size for accessibility
   
   &:focus {
     outline: 2px solid $brand-primary-200;

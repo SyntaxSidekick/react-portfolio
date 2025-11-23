@@ -638,6 +638,7 @@ li {
   line-height: 1;
   padding: 12px 20px;
   font-size: 0.875rem;
+  min-height: 48px;
 }
 .btn:focus {
   outline: 2px solid rgba(0, 115, 170, 0.2);
@@ -6251,6 +6252,7 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   border: 2px solid #e3e3e3;
   border-radius: 8px;
   padding: 12px 20px;
+  min-height: 48px;
   font-size: 0.75rem;
   font-weight: 600;
   color: #595959;

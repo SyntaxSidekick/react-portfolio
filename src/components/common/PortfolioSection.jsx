@@ -22,7 +22,12 @@ const PortfolioSection = ({
   if (!show) return null;
 
   return (
-    <section className={`portfolio-${className}-section`} aria-labelledby={headingId}>
+    <section 
+      className={`portfolio-${className}-section`} 
+      id={`${className}-panel`}
+      role="tabpanel"
+      aria-labelledby={headingId}
+    >
       <header className="section-header">
         <h2 id={headingId}>{title}</h2>
         <p>{description}</p>

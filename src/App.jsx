@@ -1,18 +1,20 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/home/Home';
-import Bio from './components/bio/Bio';
-import Portfolio from './components/portfolio/Portfolio';
-import BlogIndex from './components/blog/BlogIndex';
-import Blog from './components/blog/Blog';
-import BlogArchive from './components/blog/BlogArchive';
-import BlogTagArchive from './components/blog/BlogTagArchive';
+import { lazy, Suspense, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Contact from './components/contact/Contact';
-
 import DynamicTitle from './DynamicTitle';
-import { useState } from 'react';
+import Loader from './components/Loader';
+
+// Lazy load route components for code splitting
+const Home = lazy(() => import('./components/home/Home'));
+const Bio = lazy(() => import('./components/bio/Bio'));
+const Portfolio = lazy(() => import('./components/portfolio/Portfolio'));
+const BlogIndex = lazy(() => import('./components/blog/BlogIndex'));
+const Blog = lazy(() => import('./components/blog/Blog'));
+const BlogArchive = lazy(() => import('./components/blog/BlogArchive'));
+const BlogTagArchive = lazy(() => import('./components/blog/BlogTagArchive'));
+const Contact = lazy(() => import('./components/contact/Contact'));
 
 
 
@@ -23,6 +25,7 @@ function App() {
     <BrowserRouter>
       <DynamicTitle postTitle={postTitle} />
       <Header />
+      <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/bio" element={<Bio />} />
@@ -34,6 +37,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         {/* Add more routes as needed */}
       </Routes>
+      </Suspense>
       <Footer />
     </BrowserRouter>
   );

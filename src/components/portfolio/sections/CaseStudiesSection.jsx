@@ -5,7 +5,7 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
   if (!show) return null;
 
   return (
-    <section className="portfolio-case-studies-section" aria-labelledby="case-studies-heading">
+    <section className="portfolio-case-studies-section" id="case-studies-panel" role="tabpanel" aria-labelledby="case-studies-heading">
       <header className="section-header">
         <h2 id="case-studies-heading">Case Studies</h2>
         <p>In-depth explorations of complex projects showcasing problem-solving, process, and measurable impact.</p>
@@ -32,6 +32,8 @@ const CaseStudiesSection = ({ caseStudies, onCaseStudyClick, show }) => {
                   src={study.thumbnail} 
                   alt={study.title}
                   loading="lazy"
+                  width="600"
+                  height="400"
                 />
                 <span className="case-study-category">{study.category}</span>
               </div>

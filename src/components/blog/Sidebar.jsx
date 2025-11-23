@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Skeleton, SkeletonBlock } from "../Skeleton";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [recent, setRecent] = useState([]);
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
@@ -29,7 +30,8 @@ const Sidebar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (search.trim()) {
-      window.open(`https://blog.riadkilani.com/?s=${encodeURIComponent(search)}`, "_blank");
+      navigate(`/blog?search=${encodeURIComponent(search.trim())}`);
+      setSearch(""); // Clear search input after submitting
     }
   };
 

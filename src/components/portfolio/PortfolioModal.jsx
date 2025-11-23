@@ -69,6 +69,8 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
               src={modalProject.img}
               alt={modalProject.title}
               className="hero-image"
+              width="1200"
+              height="675"
             />
           </div>
 
@@ -264,8 +266,13 @@ const PortfolioModal = ({ modalOpen, modalProject, closeModal }) => {
                     {modalProject.videos && modalProject.videos.length > 0 && (
                       modalProject.videos.map((video, idx) => (
                         <div key={`video-${idx}`} className="media-item">
-                          <video controls preload="metadata">
+                          <video 
+                            controls 
+                            preload="metadata"
+                            aria-label={`${modalProject.title} - Demo video ${idx + 1}`}
+                          >
                             <source src={video} type="video/mp4" />
+                            <track kind="captions" />
                             Your browser does not support the video tag.
                           </video>
                         </div>

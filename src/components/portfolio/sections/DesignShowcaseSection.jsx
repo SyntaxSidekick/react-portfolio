@@ -4,7 +4,7 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
   if (!show) return null;
 
   return (
-    <section className="portfolio-design-section" aria-labelledby="design-heading">
+    <section className="portfolio-design-section" id="design-panel" role="tabpanel" aria-labelledby="design-heading">
       <header className="section-header">
         <h2 id="design-heading">UI/UX & Design</h2>
         <p>Design systems, mobile interfaces, and high-fidelity prototypes demonstrating user-centered thinking and visual craft.</p>
@@ -26,6 +26,8 @@ const DesignShowcaseSection = ({ designShowcase, onDesignClick, show }) => {
                   src={item.image} 
                   alt={item.title}
                   loading="lazy"
+                  width="600"
+                  height="450"
                 />
                 <span className="design-category">{item.category}</span>
               </div>

@@ -15,7 +15,7 @@ const GitHubProjectsSection = ({ githubProjects, show }) => {
           <article key={`github-${index}-${repo.name.replace(/\s+/g, '-').toLowerCase()}`} className="github-card">
             {repo.thumbnail && (
               <div className="github-thumbnail">
-                <img src={repo.thumbnail} alt={`${repo.name} preview`} loading="lazy" />
+                <img src={repo.thumbnail} alt={`${repo.name} preview`} loading="lazy" width="600" height="400" />
               </div>
             )}
             <div className="github-content">

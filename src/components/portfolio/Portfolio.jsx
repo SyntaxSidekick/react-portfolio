@@ -143,6 +143,7 @@ const Portfolio = () => {
         onFilterChange={setActiveFilter}
       />
 
+      <div id="all-panel" role="tabpanel" aria-labelledby="all-filter">
       <FrontEndProjectsSection
         projects={projects}
         projectRefs={projectRefs}
@@ -186,6 +187,7 @@ const Portfolio = () => {
       />
 
       <CTASection />
+      </div>
       </div>
       
       <PortfolioModal 
