@@ -37,6 +37,7 @@ npm run import:portfolio
 
 # This will:
 # ✅ Extract JSON files to src/data/portfolio/
+# ✅ Convert CSV files in `src/data/portfolio/` to JSON
 # ✅ Optimize images to public/images/portfolio/
 # ✅ Generate WebP + fallback formats
 # ✅ Update all image paths automatically
@@ -70,7 +71,7 @@ portfolio-export-2025-11-20.zip
 ### Generated Files
 
 1. **projects.js** - Ready to drop into React app
-2. **JSON files** - Individual data files per category
+2. **JSON/CSV files** - Individual data files per category (CSV is auto-converted to JSON on import)
 3. **Images** - All extracted from base64, organized by category
 4. **README.txt** - Step-by-step import instructions
 
@@ -123,6 +124,7 @@ portfolio-export-2025-11-20.zip
 - Automatic ZIP detection (most recent)
 - Image optimization with Sharp
 - WebP primary + JPEG/PNG fallback
+- CSV-to-JSON conversion for data files
 - Path updates in JSON files
 - Progress reporting
 - Error handling
@@ -137,7 +139,7 @@ npm run import:portfolio
 ```
 
 1. **Finds ZIP**: Locates `portfolio-export-*.zip` in project root
-2. **Extracts JSON**: Copies to `src/data/portfolio/`
+2. **Extracts Data**: Copies JSON and converts CSV to JSON in `src/data/portfolio/`
 3. **Processes Images**: Optimizes and saves to `public/images/portfolio/`
 4. **Generates Formats**:
    - Primary: `.webp` (85% quality)

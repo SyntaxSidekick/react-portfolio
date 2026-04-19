@@ -16,6 +16,7 @@ import { promisify } from 'util';
 import AdmZip from 'adm-zip';
 import sharp from 'sharp';
 import { glob } from 'glob';
+import { parse as parseCsv } from 'csv-parse/sync';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,6 +45,7 @@ const CONFIG = {
 // Statistics tracking
 const stats = {
     jsonFiles: 0,
+    csvFiles: 0,
     imagesExtracted: 0,
     imagesOptimized: 0,
     webpGenerated: 0,
@@ -107,39 +109,96 @@ async function ensureDir(dir) {
 }
 
 /**
- * Process and save JSON files
+ * Convert common CSV row values to typed JSON values
+ */
+function normalizeCsvItem(item) {
+    const normalized = { ...item };
+    const arrayFields = ['addimg', 'images', 'techStack', 'tags', 'tools'];
+    const booleanFields = ['featured'];
+
+    arrayFields.forEach((field) => {
+        if (typeof normalized[field] !== 'string') return;
+        const value = normalized[field].trim();
+
+        if (!value) {
+            normalized[field] = [];
+            return;
+        }
+
+        try {
+            const parsed = JSON.parse(value);
+            if (Array.isArray(parsed)) {
+                normalized[field] = parsed;
+                return;
+            }
+        } catch {
+            // Fall back to delimited parsing.
+        }
+
+        normalized[field] = value
+            .split(/[|,]/)
+            .map((segment) => segment.trim())
+            .filter(Boolean);
+    });
+
+    booleanFields.forEach((field) => {
+        if (typeof normalized[field] !== 'string') return;
+        const value = normalized[field].trim().toLowerCase();
+        if (value === 'true') normalized[field] = true;
+        if (value === 'false') normalized[field] = false;
+    });
+
+    return normalized;
+}
+
+/**
+ * Process and save data files (JSON and CSV)
  */
 async function processJsonFiles(zip) {
-    console.log('\n📄 Processing JSON files...');
+    console.log('\n📄 Processing data files...');
     
     const dataDir = await ensureDir(CONFIG.dataOutputDir);
     const zipEntries = zip.getEntries();
     
-    const jsonFiles = zipEntries.filter(entry => 
+    const dataFiles = zipEntries.filter(entry => 
         entry.entryName.includes('src/data/portfolio/') && 
-        entry.entryName.endsWith('.json')
+        /\.(json|csv)$/i.test(entry.entryName)
     );
     
-    for (const entry of jsonFiles) {
+    for (const entry of dataFiles) {
         const filename = path.basename(entry.entryName);
-        const outputPath = path.join(dataDir, filename);
+        const ext = path.extname(filename).toLowerCase();
+        const outputFilename = ext === '.csv' ? filename.replace(/\.csv$/i, '.json') : filename;
+        const outputPath = path.join(dataDir, outputFilename);
         
         try {
             const content = entry.getData().toString('utf8');
-            const data = JSON.parse(content);
+            const data = ext === '.csv'
+                ? parseCsv(content, {
+                    columns: true,
+                    skip_empty_lines: true,
+                    trim: true,
+                    bom: true
+                }).map(normalizeCsvItem)
+                : JSON.parse(content);
             
             // Write JSON file with pretty formatting
             await writeFile(outputPath, JSON.stringify(data, null, 2));
             
             stats.jsonFiles++;
-            console.log(`  ✅ ${filename} (${data.length} items)`);
+            if (ext === '.csv') {
+                stats.csvFiles++;
+                console.log(`  ✅ ${filename} → ${outputFilename} (${data.length} items)`);
+            } else {
+                console.log(`  ✅ ${filename} (${data.length} items)`);
+            }
         } catch (error) {
             console.error(`  ❌ Failed to process ${filename}: ${error.message}`);
             stats.errors++;
         }
     }
     
-    return jsonFiles.map(e => path.basename(e.entryName));
+    return dataFiles.map(e => path.basename(e.entryName));
 }
 
 /**
@@ -321,6 +380,7 @@ function printSummary(zipPath, startTime) {
     console.log(`Duration: ${duration}s`);
     console.log('');
     console.log(`✅ JSON Files Copied: ${stats.jsonFiles}`);
+    console.log(`✅ CSV Files Converted: ${stats.csvFiles}`);
     console.log(`✅ Images Extracted: ${stats.imagesExtracted}`);
     console.log(`✅ Images Optimized: ${stats.imagesOptimized}`);
     console.log(`✅ WebP Generated: ${stats.webpGenerated}`);
