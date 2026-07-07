@@ -2660,71 +2660,73 @@ figure {
   animation: rotateIn 0.3s ease;
 }
 .site-header .dark-mode-toggle {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 2px solid #dee2e6;
-  border-radius: 50%;
+  position: relative;
+  width: 56px;
+  height: 28px;
+  background: #dee2e6;
+  border: 2px solid #ced4da;
+  border-radius: 50px;
   padding: 0;
   cursor: pointer;
   z-index: 100;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  margin-left: 20px;
 }
 .site-header .dark-mode-toggle:hover {
   border-color: #0073aa;
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 115, 170, 0.3);
 }
 .site-header .dark-mode-toggle:focus-visible {
   outline: 2px solid #0073aa;
   outline-offset: 2px;
 }
-.site-header .dark-mode-toggle .sun-moon {
-  width: 24px;
-  height: 24px;
-  overflow: visible;
+.site-header .dark-mode-toggle .toggle-icon {
+  font-size: 12px;
+  z-index: 2;
+  transition: all 0.3s ease;
+  position: relative;
 }
-.site-header .dark-mode-toggle .sun-moon .sun {
-  fill: #6c757d;
-  transform-origin: center;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.site-header .dark-mode-toggle .light-icon {
+  color: #ffc107;
 }
-.site-header .dark-mode-toggle .sun-moon .sun-beams {
-  stroke: #6c757d;
-  stroke-width: 2px;
-  stroke-linecap: round;
-  transform-origin: center;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.site-header .dark-mode-toggle .dark-icon {
+  color: #adb5bd;
 }
-.site-header .dark-mode-toggle[aria-checked=false] .sun {
-  fill: #ced4da;
-  transform: scale(1.5);
-}
-.site-header .dark-mode-toggle[aria-checked=false] .sun-beams {
-  opacity: 0;
-  transform: rotate(-25deg);
-  stroke: #ced4da;
+.site-header .dark-mode-toggle .toggle-slider {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .site-header .dark-mode-toggle[aria-checked=true] {
   background: linear-gradient(135deg, rgba(0, 115, 170, 0.1), rgba(0, 115, 170, 0.05));
   border-color: #0073aa;
 }
-.site-header .dark-mode-toggle[aria-checked=true] .sun {
-  fill: #0073aa;
-  transform: scale(1);
-  mask: url(#moon-mask);
+.site-header .dark-mode-toggle[aria-checked=true] .light-icon {
+  color: #0073aa;
 }
-.site-header .dark-mode-toggle[aria-checked=true] .sun-beams {
-  opacity: 1;
-  transform: rotate(0deg);
-  stroke: #0073aa;
+.site-header .dark-mode-toggle[aria-checked=true] .dark-icon {
+  color: #ced4da;
+}
+.site-header .dark-mode-toggle[aria-checked=true] .toggle-slider {
+  transform: translateX(28px);
+  background: #0073aa;
+}
+.site-header .dark-mode-toggle[aria-checked=false] .toggle-slider {
+  transform: translateX(0);
+}
+.site-header .dark-mode-toggle[aria-checked=false] .dark-icon {
+  color: #495057;
 }
 
 .menu-backdrop {
@@ -2765,13 +2767,26 @@ body.no-scroll {
     padding: 12px 3vw;
   }
   .site-header .dark-mode-toggle {
+    position: absolute;
     right: 60px;
-    width: 36px;
-    height: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    width: 50px;
+    height: 25px;
   }
-  .site-header .dark-mode-toggle .sun-moon {
-    width: 20px;
-    height: 20px;
+  .site-header .dark-mode-toggle:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+  .site-header .dark-mode-toggle .toggle-icon {
+    font-size: 11px;
+  }
+  .site-header .dark-mode-toggle .toggle-slider {
+    width: 18px;
+    height: 18px;
+  }
+  .site-header .dark-mode-toggle[aria-checked=true] .toggle-slider {
+    transform: translateX(25px);
   }
   .site-header nav {
     position: absolute;
@@ -3892,6 +3907,31 @@ html.dark-mode a:hover {
   color: #F05032;
 }
 
+html.dark-mode .modal-dialog::-webkit-scrollbar,
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar,
+html.dark-mode [class*=modal] .modal-dialog::-webkit-scrollbar {
+  width: 10px;
+}
+html.dark-mode .modal-dialog::-webkit-scrollbar-track,
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar-track,
+html.dark-mode [class*=modal] .modal-dialog::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+html.dark-mode .modal-dialog::-webkit-scrollbar-thumb,
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar-thumb,
+html.dark-mode [class*=modal] .modal-dialog::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2c94da 0%, #0073aa 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .modal-dialog::-webkit-scrollbar-thumb:hover,
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar-thumb:hover,
+html.dark-mode [class*=modal] .modal-dialog::-webkit-scrollbar-thumb:hover {
+  background: #0073aa;
+  border-color: rgba(44, 148, 218, 0.5);
+}
+
 /**
  * Partial: _skip-link.scss
  * Purpose: Accessibility skip-to-main-content link
@@ -4596,14 +4636,17 @@ html.dark-mode .social-links .social-link.github, html.dark-mode .social-links .
   display: block;
   color: #333333;
 }
+.hero .hero-content .hero-heading .hero-rotating-wrapper {
+  display: flex;
+  align-items: center;
+  height: 133px;
+}
 .hero .hero-content .hero-heading .hero-heading-animated {
-  display: block;
   background: linear-gradient(135deg, #0073aa 0%, #2c94da 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  min-height: 1.2em;
   animation: gradientShift 3s ease infinite;
 }
 @keyframes gradientShift {
@@ -8182,6 +8225,23 @@ html.dark-mode .about-cta .bio-cta-button:hover {
   width: 100%;
   height: auto;
   display: block;
+}
+
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar {
+  width: 10px;
+}
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar-thumb {
+  background: #0073aa !important;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+html.dark-mode .portfolio-modal .modal-dialog::-webkit-scrollbar-thumb:hover {
+  background: #2c94da !important;
+  border-color: rgba(44, 148, 218, 0.5);
 }
 
 /**

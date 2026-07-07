@@ -43,14 +43,16 @@ const Home = () => {
       });
   }, []);
 
-  // Rotate hero titles every 3 seconds
+  // Rotate hero titles every 3 seconds (pause when modal is open)
   useEffect(() => {
+    if (modalOpen) return; // Don't rotate when modal is open
+    
     const HERO_TITLES_LENGTH = 4; // Number of titles in HeroSection
     const interval = setInterval(() => {
       setTitleIndex((prev) => (prev + 1) % HERO_TITLES_LENGTH);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [modalOpen]);
 
   const openModal = (project) => {
     setModalProject(project);

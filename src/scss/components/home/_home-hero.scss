@@ -98,14 +98,18 @@
         color: $text-dark;
       }
 
+      .hero-rotating-wrapper {
+        display: flex;
+        align-items: center;
+        height: 133px;
+      }
+
       .hero-heading-animated {
-        display: block;
         background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
         background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        min-height: 1.2em;
         animation: gradientShift 3s ease infinite;
       }
     }

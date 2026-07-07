@@ -128,26 +128,25 @@
   }
 
   .dark-mode-toggle {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid $gray-300;
-    border-radius: 50%;
+    position: relative;
+    width: 56px;
+    height: 28px;
+    background: $gray-300;
+    border: 2px solid $gray-400;
+    border-radius: 50px;
     padding: 0;
     cursor: pointer;
     z-index: 100;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    margin-left: 20px;
 
     &:hover {
       border-color: $brand-primary;
-      transform: translateY(-50%) scale(1.1);
+      transform: scale(1.05);
       box-shadow: 0 4px 12px rgba($brand-primary, 0.3);
     }
 
@@ -156,53 +155,58 @@
       outline-offset: 2px;
     }
 
-    .sun-moon {
-      width: 24px;
-      height: 24px;
-      overflow: visible;
-
-      .sun {
-        fill: $gray-600;
-        transform-origin: center;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .sun-beams {
-        stroke: $gray-600;
-        stroke-width: 2px;
-        stroke-linecap: round;
-        transform-origin: center;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+    .toggle-icon {
+      font-size: 12px;
+      z-index: 2;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    &[aria-checked="false"] {
-      .sun {
-        fill: $gray-400;
-        transform: scale(1.5);
-      }
+    .light-icon {
+      color: $color-warning;
+    }
 
-      .sun-beams {
-        opacity: 0;
-        transform: rotate(-25deg);
-        stroke: $gray-400;
-      }
+    .dark-icon {
+      color: $gray-500;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     &[aria-checked="true"] {
       background: linear-gradient(135deg, $brand-primary-100, $brand-primary-50);
       border-color: $brand-primary;
 
-      .sun {
-        fill: $primary;
-        transform: scale(1);
-        mask: url(#moon-mask);
+      .light-icon {
+        color: $primary;
       }
 
-      .sun-beams {
-        opacity: 1;
-        transform: rotate(0deg);
-        stroke: $primary;
+      .dark-icon {
+        color: $gray-400;
+      }
+
+      .toggle-slider {
+        transform: translateX(28px);
+        background: $primary;
+      }
+    }
+
+    &[aria-checked="false"] {
+      .toggle-slider {
+        transform: translateX(0);
+      }
+
+      .dark-icon {
+        color: $gray-700;
       }
     }
   }
@@ -249,13 +253,29 @@ body.no-scroll {
   }
 
   .site-header .dark-mode-toggle {
+    position: absolute;
     right: 60px;
-    width: 36px;
-    height: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    width: 50px;
+    height: 25px;
 
-    .sun-moon {
-      width: 20px;
-      height: 20px;
+    &:hover {
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .toggle-icon {
+      font-size: 11px;
+    }
+
+    .toggle-slider {
+      width: 18px;
+      height: 18px;
+    }
+
+    &[aria-checked="true"] .toggle-slider {
+      transform: translateX(25px);
     }
   }
 

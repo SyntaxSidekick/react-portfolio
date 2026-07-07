@@ -122,7 +122,7 @@
     max-height: 90vh;
     overflow-y: auto;
     
-    // Custom scrollbar
+    // Custom scrollbar - Light Mode
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -537,6 +537,35 @@
         width: 100%;
         height: auto;
         display: block;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// DARK MODE SCROLLBAR
+// ============================================================================
+
+html.dark-mode {
+  .portfolio-modal .modal-dialog {
+    // Custom scrollbar - Riadkilani Blue
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 5px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: $primary !important;
+      border-radius: 5px;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      
+      &:hover {
+        background: $brand-primary-light !important;
+        border-color: rgba($brand-primary-light, 0.5);
       }
     }
   }

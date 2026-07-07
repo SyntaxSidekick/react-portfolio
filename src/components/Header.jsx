@@ -92,7 +92,6 @@ const Header = () => {
           </Link>
         </div>
         <MenuToggle menuOpen={menuOpen} onToggle={handleToggle} />
-        <DarkModeToggle darkMode={darkMode} onToggle={handleDarkModeToggle} />
         <nav
           id="main-navigation"
           aria-label="Primary"
@@ -115,6 +114,7 @@ const Header = () => {
             ))}
           </ul>
         </nav>
+        <DarkModeToggle darkMode={darkMode} onToggle={handleDarkModeToggle} />
       </div>
     </header>
   );

@@ -165,3 +165,35 @@
     }
   }
 }
+
+// ============================================================================
+// GLOBAL MODAL SCROLLBAR - DARK MODE
+// ============================================================================
+
+html.dark-mode {
+  // Apply to all modal dialogs in dark mode
+  .modal-dialog,
+  .portfolio-modal .modal-dialog,
+  [class*="modal"] .modal-dialog {
+    // Custom scrollbar - Riadkilani Blue
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, $brand-primary-light 0%, $primary 100%);
+      border-radius: 5px;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      
+      &:hover {
+        background: $primary;
+        border-color: rgba($brand-primary-light, 0.5);
+      }
+    }
+  }
+}

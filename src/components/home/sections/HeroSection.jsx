@@ -58,18 +58,20 @@ const HeroSection = ({ years, titleIndex }) => {
             }}
           >
             <span className="hero-heading-line">I'm a</span>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={titleIndex}
-                className="hero-heading-animated"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                {HERO_TITLES[titleIndex]}
-              </motion.span>
-            </AnimatePresence>
+            <span className="hero-rotating-wrapper">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={titleIndex}
+                  className="hero-heading-animated"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {HERO_TITLES[titleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
             <span className="hero-heading-line">based in Orlando</span>
           </motion.h1>
 

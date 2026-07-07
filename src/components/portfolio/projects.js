@@ -8,412 +8,522 @@
 
 export const projects = [
   {
-    "title": "Vistana – Mobile App Design",
-    "desc": "Cross-platform mobile app design for Vistana Signature Experiences, enhancing guest engagement across iOS, Android, and web platforms for 3 major brands.",
-    "overview": "<p>Served as Front-End Interactive Designer, delivering responsive, accessible UIs for mobile and web while resolving offshore development challenges. Developed style guides and design systems to standardize branding and improve design-to-development efficiency. Conducted user research and A/B testing to enhance usability and engagement.</p>",
-    "problem": "<p>Design consistent, interactive mobile experiences while coordinating with offshore developers and maintaining brand standards. Due to breaks in communication I had to completely design entire app screen by screen totaling over 200 screens for both mobile and tablet. </p>",
-    "challenges": [
-      "Creating a unified design system that worked across three luxury vacation brands while maintaining each brand's unique identity",
-      "Documenting 200+ reusable components with precise specifications for offshore development teams",
-      "User-Centered Design: Creating intuitive interfaces that improve usability and engagement.",
-      "Designing dual-mode experiences (authenticated vs. public) without confusing navigation patterns",
-      "Producing page-by-page Photoshop and InDesign assets detailed enough to eliminate ambiguity for developers in different time zones"
+    title: "SyntaxSidekick – Modern Coding Blog",
+    desc: "A custom WordPress platform delivering tutorials, guides, and resources on modern front-end development, UX, accessibility, performance, SEO, and best practices for today's web developers.",
+
+    overview:
+      "<p>Designed and developed SyntaxSidekick as a complete educational platform showcasing modern front-end engineering, UX best practices, accessibility, and performance optimization. Rather than relying on pre-built themes, I architected a custom WordPress solution featuring a bespoke design system, responsive layouts, advanced mega navigation, dark mode, reusable components, and SEO-first content architecture. Every aspect of the site was built with maintainability, scalability, accessibility, and performance in mind while serving as both a technical publication and a demonstration of senior front-end engineering practices.</p>",
+
+    problem:
+      "<p>Create a content platform that demonstrates senior-level front-end architecture instead of simply publishing articles. The project needed to balance exceptional user experience, scalable content management, modern CSS architecture, accessibility, performance optimization, and SEO while remaining easy to maintain and expand as new content types and features are introduced.</p><p>Note: This project is currently in Soft Launch.</p>",
+
+    challenges: [
+      "Architecting a scalable custom WordPress theme instead of relying on page builders or commercial themes",
+      "Designing a reusable design system with modern CSS architecture using native CSS features instead of preprocessors",
+      "Building responsive navigation and mega menus that function consistently across desktop, tablet, and mobile devices",
+      "Creating reusable templates for tutorials, guides, articles, and downloadable resources while maintaining visual consistency",
+      "Balancing Core Web Vitals, accessibility, SEO, and maintainability without sacrificing the overall user experience",
     ],
-    "learnings": [
-      "Comprehensive design systems eliminate 80% of back-and-forth with development teams, dramatically accelerating delivery",
-      "Over-communication in design documentation is never wasted—what seems obvious to designers often isn't to developers",
-      "Reusable component libraries must be exhaustively documented with states, variants, and edge cases to be truly effective",
-      "Working with offshore teams requires anticipating questions before they arise through detailed specifications",
-      "Design systems are living documents—version control and update protocols are as important as initial creation"
+
+    learnings: [
+      "A well-designed component system dramatically reduces long-term maintenance while improving consistency across an entire website",
+      "Native CSS has evolved enough to replace many traditional preprocessor workflows when used with modern architecture",
+      "Content architecture is just as important as visual design for educational platforms with growing libraries of technical content",
+      "Accessibility and performance deliver the greatest value when incorporated from the beginning instead of treated as post-launch improvements",
+      "Building your own platform exposes architectural challenges that strengthen engineering, UX, SEO, and product design skills simultaneously",
     ],
-    "deliverables": "<p>Delivered production-ready, brand-consistent mobile apps that cut rework by 30%, accelerated app delivery, and enhanced user engagement across platforms.</p><p><br></p><p><strong>Key Deliverables- </strong>Cross-Platform UX/UI Design, Style Guides &amp; Design Systems, Interactive Prototypes in Adobe XD/Photoshop/InDesign/Illustrator, User Research &amp; A/B Testing, Accessibility &amp; Usability Improvements</p><p><br></p>",
-    "img": "/images/portfolio/projects/vistana-1.png",
-    "secimg": "/images/portfolio/projects/vistana-2.png",
-    "tech": [
+
+    deliverables:
+      "<p>Delivered a production-ready technical publication showcasing modern front-end engineering, UX engineering, accessibility, and performance optimization through a custom-built WordPress platform.</p><p><br></p><p><strong>Key Deliverables - </strong>Custom WordPress Theme, Modern CSS Architecture, Design System, Responsive UI Components, Mega Navigation, Dark Mode, Accessibility Improvements (WCAG), SEO Optimization, Performance Optimization, Technical Content Strategy, Rank Math Integration, Resource Library, Custom Post Types, Reusable Templates, Component-Based Architecture.</p><p><br></p>",
+
+    img: "/images/portfolio/projects/syntaxsidekick-1.png",
+    secimg: "",
+
+    tech: [
       {
-        "name": "Design Systems",
-        "icon": "fas fa-layer-group"
+        name: "WordPress",
+        icon: "fab fa-wordpress",
       },
       {
-        "name": "XD",
-        "icon": "svg"
+        name: "HTML5",
+        icon: "fab fa-html5",
       },
       {
-        "name": "Photoshop",
-        "icon": "svg"
+        name: "CSS3",
+        icon: "fab fa-css3-alt",
       },
       {
-        "name": "Illustrator",
-        "icon": "svg"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "InVision",
-        "icon": "svg"
+        name: "PHP",
+        icon: "fab fa-php",
       },
       {
-        "name": "InDesign",
-        "icon": "svg"
-      }
+        name: "Design Systems",
+        icon: "fas fa-layer-group",
+      },
+      {
+        name: "Accessibility",
+        icon: "fas fa-universal-access",
+      },
+      {
+        name: "SEO",
+        icon: "fas fa-search",
+      },
+      {
+        name: "Performance",
+        icon: "fas fa-gauge-high",
+      },
+      {
+        name: "Git",
+        icon: "fab fa-git-alt",
+      },
     ],
-    "githubUrl": "",
-    "liveUrl": "https://apps.apple.com/us/app/vistana-signature-experiences/id1342705498",
-    "role": "Lead UI/UX Designer & Design System Architect",
-    "year": "2019",
-    "featured": true,
-    "metrics": {
-      "reworkReduction": "30% decrease",
-      "acceleratedDelivery": "Projects completed 25% faster"
+    githubUrl: "",
+    liveUrl:
+      "https://syntaxsidekick.com",
+    role: "Founder",
+    year: "2026",
+    featured: true,
+    metrics: {
+      "lighthouseScore": "90+ Lighthouse scores",
+  "accessibility": "WCAG 2.1 AA focused architecture",
     },
-    "addimg": "/images/portfolio/projects/vistana-3.png,/images/portfolio/projects/vistana-4.png"
+    addimg:
+      "",
   },
   {
-    "title": "Virtued Online - Virtual Tutoring Platform",
-    "desc": "A scalable online tutoring platform connecting teachers, students, and parents with dashboards, scheduling, and virtual sessions.",
-    "overview": "<p>Revitalized a stalled tutoring platform and led front-end development with ReactJS, building a modular, scalable framework covering logins, dashboards, calendars, scheduling, payments, and virtual sessions via Amazon Chime. Implemented project workflows, team coordination, and a structured SASS library to improve development efficiency and maintainability. Delivered a production-ready platform <strong>6 months ahead of schedule</strong>.</p>",
-    "problem": "<p>After more than a year in development, the virtual tutoring platform was at risk of being shelved. The existing framework was failing to deliver results, leaving stakeholders frustrated and questioning the project's viability. There was no clear project roadmap, limited accountability across teams, and mounting technical debt that made progress nearly impossible.\n\nThe platform needed to support live video tutoring sessions, user authentication, scheduling, payment processing, and a comprehensive admin dashboard—all while maintaining performance and scalability. Without intervention, the project would have been abandoned, representing significant lost investment and opportunity.</p>",
-    "challenges": [
+    title: "Vistana – Mobile App Design",
+desc:
+  "Designed cross-platform mobile experiences for three Vistana Signature Experiences brands, creating more than 1,000 production-ready page designs and detailed style guides for offshore development teams.",
+overview:
+  "<p>Served as Interactive Designer, brought in to overcome design and communication challenges with offshore development teams. Designed the complete mobile application experience page by page across all three Vistana Signature Experiences brands, producing more than 1,000 production-ready page designs along with matching page-by-page style guides. The detailed documentation improved consistency, reduced ambiguity, and streamlined implementation across iOS, Android, and tablet experiences.</p>",
+problem:
+  "<p>Offshore development teams struggled with communication and inconsistent implementation across multiple brands. I was brought in to design the application page by page for all three Vistana brands while creating comprehensive page-by-page style guides that clearly documented every screen, interaction, and design detail for development teams.</p>",
+challenges: [
+  "Designing the complete application experience page by page across three hospitality brands while maintaining each brand's unique identity",
+  "Producing more than 1,000 production-ready page designs covering mobile and tablet experiences",
+  "Creating matching page-by-page style guides detailed enough to eliminate ambiguity for offshore development teams",
+  "Maintaining consistency across hundreds of screens while supporting evolving business requirements",
+  "Ensuring every design was accurately implemented despite time zone and communication barriers",
+],
+learnings: [
+  "Detailed design documentation dramatically improves collaboration with distributed development teams",
+  "Consistency at the page level is just as important as consistency at the component level",
+  "Comprehensive style guides significantly reduce implementation errors and rework",
+  "Designing complete user journeys exposes usability improvements that individual screen design can miss",
+  "Clear communication through documentation is critical when working with offshore teams",
+],
+deliverables:
+  "<p>Delivered production-ready mobile application designs and comprehensive page-by-page style guides covering more than 1,000 page designs across three Vistana brands. The documentation reduced development ambiguity, improved implementation consistency, and streamlined offshore collaboration.</p><p><br></p><p><strong>Key Deliverables - </strong>Cross-Platform UI Design, Mobile & Tablet Application Design, 1,000+ Production Page Designs, Page-by-Page Style Guides, Adobe XD, Photoshop, Illustrator, InDesign Assets, Developer Documentation, User Experience Design</p><p><br></p>",
+img: "/images/portfolio/projects/vistana-1.png",
+secimg: "/images/portfolio/projects/vistana-2.png",
+tech: [
+  {
+    name: "Design Systems",
+    icon: "fas fa-layer-group",
+  },
+  {
+    name: "XD",
+    icon: "svg",
+  },
+  {
+    name: "Photoshop",
+    icon: "svg",
+  },
+  {
+    name: "Illustrator",
+    icon: "svg",
+  },
+  {
+    name: "InVision",
+    icon: "svg",
+  },
+  {
+    name: "InDesign",
+    icon: "svg",
+  },
+],
+githubUrl: "",
+liveUrl:
+  "https://apps.apple.com/us/app/vistana-signature-experiences/id1342705498",
+role: "Interactive Designer",
+year: "2019",
+featured: true,
+metrics: {
+  pageDesigns: "1,000+ page designs",
+  brandsSupported: "3 vacation ownership brands",
+},
+addimg:
+  "/images/portfolio/projects/vistana-3.png,/images/portfolio/projects/vistana-4.png",
+  },
+  {
+    title: "Virtued Online - Virtual Tutoring Platform",
+    desc: "A scalable online tutoring platform connecting teachers, students, and parents with dashboards, scheduling, and virtual sessions.",
+    overview:
+      "<p>Revitalized a stalled tutoring platform and led front-end development with ReactJS, building a modular, scalable framework covering logins, dashboards, calendars, scheduling, payments, and virtual sessions via Amazon Chime. Implemented project workflows, team coordination, and a structured SASS library to improve development efficiency and maintainability. Delivered a production-ready platform <strong>6 months ahead of schedule</strong>.</p>",
+    problem:
+      "<p>After more than a year in development, the virtual tutoring platform was at risk of being shelved. The existing framework was failing to deliver results, leaving stakeholders frustrated and questioning the project's viability. There was no clear project roadmap, limited accountability across teams, and mounting technical debt that made progress nearly impossible.\n\nThe platform needed to support live video tutoring sessions, user authentication, scheduling, payment processing, and a comprehensive admin dashboard—all while maintaining performance and scalability. Without intervention, the project would have been abandoned, representing significant lost investment and opportunity.</p>",
+    challenges: [
       "Inheriting a failing codebase with over a year of technical debt and poor architecture decisions",
       "Establishing project management processes and accountability across distributed teams with no existing framework",
       "Building a complete React framework from scratch while maintaining feature parity with original specs",
       "Integrating real-time video streaming, secure payment processing, and complex scheduling logic",
       "Delivering a production-ready platform in 7 months despite starting from ground zero",
-      "Managing stakeholder expectations while rebuilding trust in the project's viability"
+      "Managing stakeholder expectations while rebuilding trust in the project's viability",
     ],
-    "learnings": [
+    learnings: [
       "End-to-End UX Design: Learned to design complete user journeys for multiple personas.",
       "Clear project management frameworks (Jira, sprint planning, daily standups) can transform team productivity overnight",
       "Stakeholder communication and transparency are just as important as technical execution in rescuing failing projects",
       "Scalable ReactJS Architecture: Built a modular system that accelerates feature development.",
-      "Technical leadership means making hard decisions quickly and standing behind them with execution"
+      "Technical leadership means making hard decisions quickly and standing behind them with execution",
     ],
-    "deliverables": "<p>Delivered a production-ready, modular tutoring platform 6 months early, improving usability, scalability, and development efficiency for future feature expansions.\n\n<strong>Key Deliverables</strong>: Project Managment and Documentation, UI/UX Design/ Development, Prototyping, User stories and flows, HTML/CSS/JS templating, ReactJS Front-End Development &amp; Modular Components, Dashboard, Calendar, Scheduling &amp; Payment Systems</p>",
-    "img": "/images/portfolio/projects/virtued-1.png",
-    "secimg": "/images/portfolio/projects/virtued-2.png",
-    "tech": [
+    deliverables:
+      "<p>Delivered a production-ready, modular tutoring platform 6 months early, improving usability, scalability, and development efficiency for future feature expansions.\n\n<strong>Key Deliverables</strong>: Project Managment and Documentation, UI/UX Design/ Development, Prototyping, User stories and flows, HTML/CSS/JS templating, ReactJS Front-End Development &amp; Modular Components, Dashboard, Calendar, Scheduling &amp; Payment Systems</p>",
+    img: "/images/portfolio/projects/virtued-1.png",
+    secimg: "/images/portfolio/projects/virtued-2.png",
+    tech: [
       {
-        "name": "React",
-        "icon": "fab fa-react"
+        name: "React",
+        icon: "fab fa-react",
       },
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        name: "HTML5",
+        icon: "fab fa-html5",
       },
       {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
+        name: "CSS3",
+        icon: "fab fa-css3-alt",
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
+        name: "Sass",
+        icon: "fab fa-sass",
       },
       {
-        "name": "Material-UI",
-        "icon": "fas fa-layer-group"
+        name: "Material-UI",
+        icon: "fas fa-layer-group",
       },
       {
-        "name": "Bootstrap",
-        "icon": "fab fa-bootstrap"
+        name: "Bootstrap",
+        icon: "fab fa-bootstrap",
       },
       {
-        "name": "Figma",
-        "icon": "fab fa-figma"
+        name: "Figma",
+        icon: "fab fa-figma",
       },
       {
-        "name": "Photoshop",
-        "icon": "svg"
+        name: "Photoshop",
+        icon: "svg",
       },
       {
-        "name": "Vite",
-        "icon": "fas fa-bolt"
+        name: "Vite",
+        icon: "fas fa-bolt",
       },
       {
-        "name": "Gulp",
-        "icon": "fab fa-gulp"
+        name: "Gulp",
+        icon: "fab fa-gulp",
       },
       {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      }
+        name: "Git",
+        icon: "fab fa-git-alt",
+      },
     ],
-    "githubUrl": "",
-    "liveUrl": "https://virtuedonline.com",
-    "role": "Project Lead & Lead Front-End Developer",
-    "year": "2024",
-    "featured": true,
-    "metrics": {
-      "delivery": "8 months (6 months ahead of schedule)",
-      "modularComponents": "40+ reusable components"
-    }
+    githubUrl: "",
+    liveUrl: "https://virtuedonline.com",
+    role: "Project Lead & Lead Front-End Developer",
+    year: "2024",
+    featured: true,
+    metrics: {
+      delivery: "8 months (6 months ahead of schedule)",
+      modularComponents: "40+ reusable components",
+    },
   },
   {
-    "title": "Time 2 Visit - Travel Booking Platform",
-    "desc": "A responsive travel booking platform focused on the timeshare industry, delivering interactive package and hotel listings with optimized UX.",
-    "overview": "<p>Led front-end development and team management for Time2Visit, creating scalable, maintainable architectures using VueJS, HTML, and CSS. Designed full website UI with Adobe XD and Photoshop, enabling interactive prototypes that improved stakeholder alignment. Managed development workflows with Jira, Confluence, Webpack, and Vite, while using A/B testing and analytics to optimize user engagement.</p>",
-    "problem": "<p>The project faced several technical hurdles, including integrating multiple third-party services while maintaining performance, as well as ensuring data security and user privacy compliance. Managing component lifecycle and state synchronization across the application required careful architectural planning. Backend optimization and efficient API design were crucial for maintaining fast response times. Creating a consistent design system while allowing for customization required thoughtful CSS architecture. Additionally, the project needed to meet tight deadlines while maintaining high code quality and comprehensive testing coverage. These challenges required innovative problem-solving and close collaboration between design and development teams.</p>",
-    "challenges": [
+    title: "Time 2 Visit - Travel Booking Platform",
+    desc: "A responsive travel booking platform focused on the timeshare industry, delivering interactive package and hotel listings with optimized UX.",
+    overview:
+      "<p>Led front-end development and team management for Time2Visit, creating scalable, maintainable architectures using VueJS, HTML, and CSS. Designed full website UI with Adobe XD and Photoshop, enabling interactive prototypes that improved stakeholder alignment. Managed development workflows with Jira, Confluence, Webpack, and Vite, while using A/B testing and analytics to optimize user engagement.</p>",
+    problem:
+      "<p>The project faced several technical hurdles, including integrating multiple third-party services while maintaining performance, as well as ensuring data security and user privacy compliance. Managing component lifecycle and state synchronization across the application required careful architectural planning. Backend optimization and efficient API design were crucial for maintaining fast response times. Creating a consistent design system while allowing for customization required thoughtful CSS architecture. Additionally, the project needed to meet tight deadlines while maintaining high code quality and comprehensive testing coverage. These challenges required innovative problem-solving and close collaboration between design and development teams.</p>",
+    challenges: [
       "Scalable Front-End Architecture: Creating a maintainable VueJS framework for evolving booking features.",
       "Cross-Team Coordination: Managing offshore developers, stakeholders, and design handoff to minimize errors.",
-      "Data-Driven UX: Implementing A/B testing and analytics to optimize user interactions and conversion rates."
+      "Data-Driven UX: Implementing A/B testing and analytics to optimize user interactions and conversion rates.",
     ],
-    "learnings": [
+    learnings: [
       "Efficient Team Management: Improved workflows and coordination for distributed teams.",
       "Data-Informed Design: Learned to integrate analytics and testing into iterative front-end development.",
-      "Scalable UI Architecture: Built modular, maintainable front-end systems for complex booking features."
+      "Scalable UI Architecture: Built modular, maintainable front-end systems for complex booking features.",
     ],
-    "deliverables": "<p>Delivered a high-performance, responsive travel booking site with improved user engagement, faster design-to-development handoffs, and scalable architecture supporting future feature expansion.</p><p><br></p><p><strong>Key Deliverables- </strong>UX Architecture &amp; UI Implementation, VueJS Front-End Development, Responsive Design &amp; Accessibility, Compliance, Booking &amp; Package Listing Systems, Workflow Optimization with Jira/Confluence, Analytics &amp; A/B Testing Integration</p><p><br></p>",
-    "img": "/images/portfolio/projects/time2visit-1.png",
-    "secimg": "/images/portfolio/projects/time2visit-2.png",
-    "tech": [
+    deliverables:
+      "<p>Delivered a high-performance, responsive travel booking site with improved user engagement, faster design-to-development handoffs, and scalable architecture supporting future feature expansion.</p><p><br></p><p><strong>Key Deliverables- </strong>UX Architecture &amp; UI Implementation, VueJS Front-End Development, Responsive Design &amp; Accessibility, Compliance, Booking &amp; Package Listing Systems, Workflow Optimization with Jira/Confluence, Analytics &amp; A/B Testing Integration</p><p><br></p>",
+    img: "/images/portfolio/projects/time2visit-1.png",
+    secimg: "/images/portfolio/projects/time2visit-2.png",
+    tech: [
       {
-        "name": "Vue.js",
-        "icon": "fab fa-vuejs"
+        name: "Vue.js",
+        icon: "fab fa-vuejs",
       },
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        name: "HTML5",
+        icon: "fab fa-html5",
       },
       {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
+        name: "CSS3",
+        icon: "fab fa-css3-alt",
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
+        name: "Sass",
+        icon: "fab fa-sass",
       },
       {
-        "name": "PHP",
-        "icon": "fab fa-php"
+        name: "PHP",
+        icon: "fab fa-php",
       },
       {
-        "name": "Bootstrap",
-        "icon": "fab fa-bootstrap"
+        name: "Bootstrap",
+        icon: "fab fa-bootstrap",
       },
       {
-        "name": "Photoshop",
-        "icon": "svg"
+        name: "Photoshop",
+        icon: "svg",
       },
       {
-        "name": "Illustrator",
-        "icon": "svg"
+        name: "Illustrator",
+        icon: "svg",
       },
       {
-        "name": "Gulp",
-        "icon": "fab fa-gulp"
+        name: "Gulp",
+        icon: "fab fa-gulp",
       },
       {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      }
+        name: "Git",
+        icon: "fab fa-git-alt",
+      },
     ],
-    "githubUrl": "",
-    "liveUrl": "",
-    "role": "Project Lead & Lead Front-End Developer",
-    "year": "2018",
-    "featured": true,
-    "metrics": {
-      "teamEfficiencyIncrease": "30% faster development cycles",
-      "engagementImprovement": "25% uplift in bookings via optimized UI"
-    }
+    githubUrl: "",
+    liveUrl: "",
+    role: "Project Lead & Lead Front-End Developer",
+    year: "2018",
+    featured: true,
+    metrics: {
+      teamEfficiencyIncrease: "30% faster development cycles",
+      engagementImprovement: "25% uplift in bookings via optimized UI",
+    },
   },
   {
-    "title": "Andor Health - Virtual Healthcare App",
-    "desc": "Healthcare platform with admin, physician, and patient dashboards designed to streamline communications and clinical workflows.",
-    "overview": "<p>As a full-featured platform, Andor Health - Virtual Healthcare App Healthcare platform with admin, physician, and patient dashboards designed to streamline communications and clinical workflows. The application leverages React for a dynamic, component-based architecture that ensures maintainability and scalability. CSS3 and Sass and Tailwind CSS provide a modern, responsive design system that adapts seamlessly across all device sizes. Key features include accessibility compliance, intuitive user interface, real-time interactions, all working together to create an engaging and efficient solution. This project showcases modern development best practices, clean code architecture, and a user-centered design approach that prioritizes both functionality and aesthetics.</p>",
-    "problem": "<p>The primary challenge in developing Andor Health - Virtual Healthcare App was balancing feature richness with simplicity and usability, as well as optimizing performance while maintaining visual appeal. Managing component lifecycle and state synchronization across the application required careful architectural planning. Creating a consistent design system while allowing for customization required thoughtful CSS architecture. Additionally, the project needed to meet tight deadlines while maintaining high code quality and comprehensive testing coverage. These challenges required innovative problem-solving and close collaboration between design and development teams.</p>",
-    "challenges": [
+    title: "Andor Health - Virtual Healthcare App",
+    desc: "Healthcare platform with admin, physician, and patient dashboards designed to streamline communications and clinical workflows.",
+    overview:
+      "<p>As a full-featured platform, Andor Health - Virtual Healthcare App Healthcare platform with admin, physician, and patient dashboards designed to streamline communications and clinical workflows. The application leverages React for a dynamic, component-based architecture that ensures maintainability and scalability. CSS3 and Sass and Tailwind CSS provide a modern, responsive design system that adapts seamlessly across all device sizes. Key features include accessibility compliance, intuitive user interface, real-time interactions, all working together to create an engaging and efficient solution. This project showcases modern development best practices, clean code architecture, and a user-centered design approach that prioritizes both functionality and aesthetics.</p>",
+    problem:
+      "<p>The primary challenge in developing Andor Health - Virtual Healthcare App was balancing feature richness with simplicity and usability, as well as optimizing performance while maintaining visual appeal. Managing component lifecycle and state synchronization across the application required careful architectural planning. Creating a consistent design system while allowing for customization required thoughtful CSS architecture. Additionally, the project needed to meet tight deadlines while maintaining high code quality and comprehensive testing coverage. These challenges required innovative problem-solving and close collaboration between design and development teams.</p>",
+    challenges: [
       "Complex Integration: Seamlessly connecting with Epic’s system while maintaining data security and interoperability.",
       "User Experience Design: Designing an intuitive platform for both providers and patients with varying tech familiarity.",
-      "Scalable Architecture: Building a modular solution that supports AI features and future expansion."
+      "Scalable Architecture: Building a modular solution that supports AI features and future expansion.",
     ],
-    "learnings": [
+    learnings: [
       "Health IT Integration: Gained expertise in integrating complex healthcare systems securely and efficiently.",
       "Design for Diverse Users: Learned to craft UX/UI that accommodates multiple user types and accessibility needs.",
-      "Modular Development Practices: Developed scalable, reusable components that accelerate future feature deployment."
+      "Modular Development Practices: Developed scalable, reusable components that accelerate future feature deployment.",
     ],
-    "deliverables": "<p>The project delivered a robust, scalable <strong>telehealth platform</strong> that exceeded initial requirements. Key deliverables include <strong>UX architecture, UI implementation, front-end development, full-stack integration, responsive web application, comprehensive documentation, and a maintainable, modular codebase</strong>. By integrating with Epic, the platform enables <strong>providers and patients to connect virtually</strong> and leverages AI to enhance patient care. The solution has improved user engagement and satisfaction, while its modular architecture has significantly reduced development time for future iterations.</p>",
-    "img": "/images/portfolio/projects/andor.png",
-    "secimg": "/images/portfolio/projects/andor-2.png",
-    "tech": [
+    deliverables:
+      "<p>The project delivered a robust, scalable <strong>telehealth platform</strong> that exceeded initial requirements. Key deliverables include <strong>UX architecture, UI implementation, front-end development, full-stack integration, responsive web application, comprehensive documentation, and a maintainable, modular codebase</strong>. By integrating with Epic, the platform enables <strong>providers and patients to connect virtually</strong> and leverages AI to enhance patient care. The solution has improved user engagement and satisfaction, while its modular architecture has significantly reduced development time for future iterations.</p>",
+    img: "/images/portfolio/projects/andor.png",
+    secimg: "/images/portfolio/projects/andor-2.png",
+    tech: [
       {
-        "name": "React",
-        "icon": "fab fa-react"
+        name: "React",
+        icon: "fab fa-react",
       },
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        name: "HTML5",
+        icon: "fab fa-html5",
       },
       {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
+        name: "CSS3",
+        icon: "fab fa-css3-alt",
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
+        name: "Sass",
+        icon: "fab fa-sass",
       },
       {
-        "name": "Tailwind CSS",
-        "icon": "svg"
+        name: "Tailwind CSS",
+        icon: "svg",
       },
       {
-        "name": "Design Systems",
-        "icon": "fas fa-layer-group"
+        name: "Design Systems",
+        icon: "fas fa-layer-group",
       },
       {
-        "name": "Photoshop",
-        "icon": "svg"
+        name: "Photoshop",
+        icon: "svg",
       },
       {
-        "name": "Illustrator",
-        "icon": "svg"
+        name: "Illustrator",
+        icon: "svg",
       },
       {
-        "name": "InVision",
-        "icon": "svg"
+        name: "InVision",
+        icon: "svg",
       },
       {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      }
+        name: "Git",
+        icon: "fab fa-git-alt",
+      },
     ],
-    "githubUrl": "",
-    "liveUrl": "",
-    "role": "",
-    "year": "2025",
-    "metrics": {
-      "virtualConnectionsEnabled": "10,000+ patient-provider sessions",
-      "developmentTimeSaved": "60% faster rollout for new features"
+    githubUrl: "",
+    liveUrl: "",
+    role: "",
+    year: "2025",
+    metrics: {
+      virtualConnectionsEnabled: "10,000+ patient-provider sessions",
+      developmentTimeSaved: "60% faster rollout for new features",
     },
-    "featured": false
+    featured: false,
   },
   {
-    "title": "Saveur - Cooking Site",
-    "desc": "Led complete Drupal migration and created modular SCSS framework that became the foundation for all future brand deployments.",
-    "overview": "<p><strong>Saveur – Cooking Site</strong> is a full-featured web application built using modern JavaScript, HTML5, and CSS3, showcasing best practices in responsive design, performance optimization, and intuitive user interactions. The platform delivers a seamless and engaging user experience that goes beyond traditional cooking websites.</p><p><br></p><p>During a major migration to the latest version of the CMS—a complete overhaul of the framework—I quickly realized that many components could be made reusable. This insight led me to develop a custom front-end framework designed to streamline future migrations across multiple brands.</p><p><br></p><p>The impact was immediate: while the initial Saveur migration was projected at 8 months, leveraging the new framework for subsequent projects reduced development time from 7 months to just 2 months, demonstrating significant efficiency gains and scalable design.</p>",
-    "problem": "<p>Lead the migration from an existing CMS to a completely reworked version with overhauled functionality. This migration would serve as the blueprint for upcoming projects across multiple brands. After collaborating with project managers, developers, designers, and other front-end engineers, the initial project timeline was estimated at 8 months.</p>",
-    "challenges": [
+    title: "Saveur - Cooking Site",
+    desc: "Led complete Drupal migration and created modular SCSS framework that became the foundation for all future brand deployments.",
+    overview:
+      "<p><strong>Saveur – Cooking Site</strong> is a full-featured web application built using modern JavaScript, HTML5, and CSS3, showcasing best practices in responsive design, performance optimization, and intuitive user interactions. The platform delivers a seamless and engaging user experience that goes beyond traditional cooking websites.</p><p><br></p><p>During a major migration to the latest version of the CMS—a complete overhaul of the framework—I quickly realized that many components could be made reusable. This insight led me to develop a custom front-end framework designed to streamline future migrations across multiple brands.</p><p><br></p><p>The impact was immediate: while the initial Saveur migration was projected at 8 months, leveraging the new framework for subsequent projects reduced development time from 7 months to just 2 months, demonstrating significant efficiency gains and scalable design.</p>",
+    problem:
+      "<p>Lead the migration from an existing CMS to a completely reworked version with overhauled functionality. This migration would serve as the blueprint for upcoming projects across multiple brands. After collaborating with project managers, developers, designers, and other front-end engineers, the initial project timeline was estimated at 8 months.</p>",
+    challenges: [
       "Complex CMS Migration: Transitioning to a completely reworked version of the CMS, requiring deep understanding of new functionality and architecture.",
       "Cross-Functional Coordination: Aligning project managers, designers, and multiple front-end developers to ensure seamless collaboration and accurate timeline estimation.",
-      "Scalability for Future Projects: Designing a migration approach that could serve as a reusable framework for subsequent brand migrations while minimizing development time."
+      "Scalability for Future Projects: Designing a migration approach that could serve as a reusable framework for subsequent brand migrations while minimizing development time.",
     ],
-    "learnings": [
+    learnings: [
       "Framework Development for Reusability: Learned to create reusable front-end modules that drastically reduce development time for future projects.",
       "Efficient Project Planning: Gained experience accurately estimating timelines and coordinating across cross-functional teams for complex migrations.",
       "Scalable Architecture Practices: Learned how to design front-end solutions that can scale across multiple brands and projects.",
-      "Problem-Solving Under Complexity: Developed strategies to navigate a full CMS overhaul while maintaining performance, usability, and code quality."
+      "Problem-Solving Under Complexity: Developed strategies to navigate a full CMS overhaul while maintaining performance, usability, and code quality.",
     ],
-    "deliverables": "<p>Saveur became the flagship site for all subsequent brand migrations to the latest version of Drupal. I led the complete front-end redevelopment, designing a modular SCSS system that evolved into a scalable front-end framework—still in use today. This framework enabled rapid deployment, consistent UI implementation, and standardized design execution across brands, significantly reducing development time for future projects.</p><p><br></p><p><strong>Key Deliverables:</strong> UI Development, Front-end Architecture, Drupal Theming &amp; Template Integration, Performance Optimization, Responsive Design, Accessibility Compliance</p>",
-    "img": "/images/portfolio/projects/saveur.png",
-    "secimg": "/images/portfolio/projects/saveur-1.png",
-    "tech": [
+    deliverables:
+      "<p>Saveur became the flagship site for all subsequent brand migrations to the latest version of Drupal. I led the complete front-end redevelopment, designing a modular SCSS system that evolved into a scalable front-end framework—still in use today. This framework enabled rapid deployment, consistent UI implementation, and standardized design execution across brands, significantly reducing development time for future projects.</p><p><br></p><p><strong>Key Deliverables:</strong> UI Development, Front-end Architecture, Drupal Theming &amp; Template Integration, Performance Optimization, Responsive Design, Accessibility Compliance</p>",
+    img: "/images/portfolio/projects/saveur.png",
+    secimg: "/images/portfolio/projects/saveur-1.png",
+    tech: [
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        name: "HTML5",
+        icon: "fab fa-html5",
       },
       {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
+        name: "CSS3",
+        icon: "fab fa-css3-alt",
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
+        name: "Sass",
+        icon: "fab fa-sass",
       },
       {
-        "name": "PHP",
-        "icon": "fab fa-php"
+        name: "PHP",
+        icon: "fab fa-php",
       },
       {
-        "name": "Drupal",
-        "icon": "fab fa-drupal"
+        name: "Drupal",
+        icon: "fab fa-drupal",
       },
       {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      }
+        name: "Git",
+        icon: "fab fa-git-alt",
+      },
     ],
-    "githubUrl": "",
-    "liveUrl": "https://savuer.com",
-    "role": "Front-end Developer",
-    "year": "",
-    "metrics": {
-      "developmentTimeReduction": "2 months vs 8 months (75% faster)",
-      "reusableComponentAdoption": "50+ modules used across 60 brand migrations"
+    githubUrl: "",
+    liveUrl: "https://savuer.com",
+    role: "Front-end Developer",
+    year: "",
+    metrics: {
+      developmentTimeReduction: "2 months vs 8 months (75% faster)",
+      reusableComponentAdoption: "50+ modules used across 60 brand migrations",
     },
-    "featured": false
+    featured: false,
   },
   {
-    "title": "Popular Science - Editorial Site",
-    "desc": "A modern editorial platform delivering engaging, interactive science content. Built with scalable front-end architecture and integrated with the latest CMS for seamless content management.",
-    "overview": "<p>Popular Science was the second brand migrated to the latest CMS using the <strong>front-end framework developed during the Saveur migration</strong>. Leveraging reusable components and modular architecture, the project delivered a fully responsive, high-performance editorial site with consistent UI/UX across articles, multimedia content, and interactive features.</p><p>The migration demonstrated how the framework could accelerate development, streamline collaboration, and standardize design implementation across brands.</p>",
-    "problem": "<p>Migrate a complex editorial platform to the new CMS while maintaining existing content, interactive media, and dynamic article features. The site required <strong>rapid deployment</strong> to meet tight editorial deadlines and ensure brand consistency across multiple sections.</p>",
-    "challenges": [
+    title: "Popular Science - Editorial Site",
+    desc: "A modern editorial platform delivering engaging, interactive science content. Built with scalable front-end architecture and integrated with the latest CMS for seamless content management.",
+    overview:
+      "<p>Popular Science was the second brand migrated to the latest CMS using the <strong>front-end framework developed during the Saveur migration</strong>. Leveraging reusable components and modular architecture, the project delivered a fully responsive, high-performance editorial site with consistent UI/UX across articles, multimedia content, and interactive features.</p><p>The migration demonstrated how the framework could accelerate development, streamline collaboration, and standardize design implementation across brands.</p>",
+    problem:
+      "<p>Migrate a complex editorial platform to the new CMS while maintaining existing content, interactive media, and dynamic article features. The site required <strong>rapid deployment</strong> to meet tight editorial deadlines and ensure brand consistency across multiple sections.</p>",
+    challenges: [
       "Content Complexity: Migrating large volumes of articles, multimedia, and interactive elements without data loss.",
       "Tight Deadlines: Ensuring timely delivery while maintaining high-quality performance and UX standards.",
-      "Cross-Brand Consistency: Adapting the reusable framework to fit brand-specific editorial design and functionality."
+      "Cross-Brand Consistency: Adapting the reusable framework to fit brand-specific editorial design and functionality.",
     ],
-    "learnings": [
+    learnings: [
       "Efficient Content Migration: Improved strategies for handling complex editorial content in a new CMS.",
       "Rapid Front-End Implementation: Leveraged modular components to accelerate development under tight deadlines.",
-      "Brand-Specific Adaptation: Learned to balance framework standardization with brand-specific UX and design needs."
+      "Brand-Specific Adaptation: Learned to balance framework standardization with brand-specific UX and design needs.",
     ],
-    "deliverables": "<p>Popular Science successfully launched as a fully responsive, performant editorial site with a consistent, modular front-end design. The migration confirmed the <strong>effectiveness of the reusable framework</strong>, reducing development time significantly while maintaining quality across multiple content types.</p><p><strong>Key Deliverables-  </strong>UX Architecture &amp; UI Implementation, Front-End Development &amp; Theming, CMS Integration &amp; Template, Development, Performance Optimization, Responsive Design &amp; Accessibility Compliance, Multimedia &amp; Interactive Feature Integration</p><p><br></p>",
-    "img": "/images/portfolio/projects/popsci.png",
-    "secimg": "/images/portfolio/projects/popsci-1.png",
-    "tech": [
+    deliverables:
+      "<p>Popular Science successfully launched as a fully responsive, performant editorial site with a consistent, modular front-end design. The migration confirmed the <strong>effectiveness of the reusable framework</strong>, reducing development time significantly while maintaining quality across multiple content types.</p><p><strong>Key Deliverables-  </strong>UX Architecture &amp; UI Implementation, Front-End Development &amp; Theming, CMS Integration &amp; Template, Development, Performance Optimization, Responsive Design &amp; Accessibility Compliance, Multimedia &amp; Interactive Feature Integration</p><p><br></p>",
+    img: "/images/portfolio/projects/popsci.png",
+    secimg: "/images/portfolio/projects/popsci-1.png",
+    tech: [
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "HTML5",
-        "icon": "fab fa-html5"
+        name: "HTML5",
+        icon: "fab fa-html5",
       },
       {
-        "name": "CSS3",
-        "icon": "fab fa-css3-alt"
+        name: "CSS3",
+        icon: "fab fa-css3-alt",
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
+        name: "Sass",
+        icon: "fab fa-sass",
       },
       {
-        "name": "PHP",
-        "icon": "fab fa-php"
+        name: "PHP",
+        icon: "fab fa-php",
       },
       {
-        "name": "Drupal",
-        "icon": "fab fa-drupal"
+        name: "Drupal",
+        icon: "fab fa-drupal",
       },
       {
-        "name": "Git",
-        "icon": "fab fa-git-alt"
-      }
+        name: "Git",
+        icon: "fab fa-git-alt",
+      },
     ],
-    "githubUrl": "",
-    "liveUrl": "https://www.popsci.com/",
-    "role": "",
-    "year": "2025",
-    "metrics": {
-      "developmentTimeReductio": "2 months vs initial 7–8 months for Saveur (75% faster)",
-      "reusableComponentAdoption": "50+ modules applied across Popular Science and remaining brand migrations"
+    githubUrl: "",
+    liveUrl: "https://www.popsci.com/",
+    role: "",
+    year: "2025",
+    metrics: {
+      developmentTimeReductio:
+        "2 months vs initial 7–8 months for Saveur (75% faster)",
+      reusableComponentAdoption:
+        "50+ modules applied across Popular Science and remaining brand migrations",
     },
-    "featured": false
-  }
+    featured: false,
+  },
 ];
 
 // ============================================
@@ -422,113 +532,88 @@ export const projects = [
 
 export const designShowcase = [
   {
-    "title": "Vistana Mobile App - Ownership Portal",
-    "category": "Mobile App Design",
-    "image": "/images/portfolio/mobile/vistana-signature-experiences-connect-ownership.png",
-    "description": "Designed comprehensive ownership dashboard allowing members to view balances, benefits, and StarOptions in a clean, accessible interface.",
-    "tags": [
-      "Mobile UI",
-      "Design System",
-      "User Portal"
-    ],
-    "createdAt": "2025-11-20T12:16:51.055Z"
+    title: "Vistana Mobile App - Ownership Portal",
+    category: "Mobile App Design",
+    image:
+      "/images/portfolio/mobile/vistana-signature-experiences-connect-ownership.png",
+    description:
+      "Designed comprehensive ownership dashboard allowing members to view balances, benefits, and StarOptions in a clean, accessible interface.",
+    tags: ["Mobile UI", "Design System", "User Portal"],
+    createdAt: "2025-11-20T12:16:51.055Z",
   },
   {
-    "title": "Vistana Mobile App - Destinations",
-    "category": "Mobile App Design",
-    "image": "/images/portfolio/mobile/vistana-signature-experiences-destinations.png",
-    "description": "Created imagery-driven destination browser with seamless navigation and inspirational photography to drive engagement.",
-    "tags": [
-      "Mobile UI",
-      "Visual Design",
-      "Navigation"
-    ],
-    "createdAt": "2025-11-20T12:16:51.056Z"
+    title: "Vistana Mobile App - Destinations",
+    category: "Mobile App Design",
+    image:
+      "/images/portfolio/mobile/vistana-signature-experiences-destinations.png",
+    description:
+      "Created imagery-driven destination browser with seamless navigation and inspirational photography to drive engagement.",
+    tags: ["Mobile UI", "Visual Design", "Navigation"],
+    createdAt: "2025-11-20T12:16:51.056Z",
   },
   {
-    "title": "Vistana Mobile App - Profile Management",
-    "category": "Mobile App Design",
-    "image": "/images/portfolio/mobile/vistana-signature-experiences-profile.png",
-    "description": "Built intuitive profile management system with clear information hierarchy and easy access to account settings.",
-    "tags": [
-      "Mobile UI",
-      "User Settings",
-      "Forms"
-    ],
-    "createdAt": "2025-11-20T12:16:51.056Z"
+    title: "Vistana Mobile App - Profile Management",
+    category: "Mobile App Design",
+    image: "/images/portfolio/mobile/vistana-signature-experiences-profile.png",
+    description:
+      "Built intuitive profile management system with clear information hierarchy and easy access to account settings.",
+    tags: ["Mobile UI", "User Settings", "Forms"],
+    createdAt: "2025-11-20T12:16:51.056Z",
   },
   {
-    "title": "Time2Visit - Credit Card Payment Modal",
-    "category": "Interaction Prototype",
-    "image": "/images/portfolio/mockups/time2visit-credit-card-modal.png",
-    "description": "Designed secure payment modal with clear visual feedback and error handling for seamless checkout experience.",
-    "tags": [
-      "UI Components",
-      "Forms",
-      "Payment Flow"
-    ],
-    "createdAt": "2025-11-20T12:16:51.056Z"
+    title: "Time2Visit - Credit Card Payment Modal",
+    category: "Interaction Prototype",
+    image: "/images/portfolio/mockups/time2visit-credit-card-modal.png",
+    description:
+      "Designed secure payment modal with clear visual feedback and error handling for seamless checkout experience.",
+    tags: ["UI Components", "Forms", "Payment Flow"],
+    createdAt: "2025-11-20T12:16:51.056Z",
   },
   {
-    "title": "Time2Visit - Package Confirmation",
-    "category": "Wireframe to High-Fidelity",
-    "image": "/images/portfolio/mockups/time2visit-package-confirmation.jpg",
-    "description": "Developed confirmation flow from low-fidelity wireframes to polished UI with clear call-to-actions and booking details.",
-    "tags": [
-      "Wireframes",
-      "Visual Design",
-      "Booking Flow"
-    ],
-    "createdAt": "2025-11-20T12:16:51.056Z"
+    title: "Time2Visit - Package Confirmation",
+    category: "Wireframe to High-Fidelity",
+    image: "/images/portfolio/mockups/time2visit-package-confirmation.jpg",
+    description:
+      "Developed confirmation flow from low-fidelity wireframes to polished UI with clear call-to-actions and booking details.",
+    tags: ["Wireframes", "Visual Design", "Booking Flow"],
+    createdAt: "2025-11-20T12:16:51.056Z",
   },
   {
-    "title": "LG Rewards Me - Social Layout",
-    "category": "Component Design",
-    "image": "/images/portfolio/mockups/lg-rewards-me-social-layout.jpg",
-    "description": "Created modular social feed components with card-based design and flexible content layouts for rewards platform.",
-    "tags": [
-      "Components",
-      "Social Features",
-      "Card Design"
-    ],
-    "createdAt": "2025-11-20T12:16:51.057Z"
+    title: "LG Rewards Me - Social Layout",
+    category: "Component Design",
+    image: "/images/portfolio/mockups/lg-rewards-me-social-layout.jpg",
+    description:
+      "Created modular social feed components with card-based design and flexible content layouts for rewards platform.",
+    tags: ["Components", "Social Features", "Card Design"],
+    createdAt: "2025-11-20T12:16:51.057Z",
   },
   {
-    "title": "Paetec Rewards Program",
-    "category": "Figma Preview",
-    "image": "/images/portfolio/mockups/paetec-rewards-program.jpg",
-    "description": "Designed comprehensive rewards program interface with tier visualization and point tracking system.",
-    "tags": [
-      "Figma",
-      "Visual Design",
-      "Dashboard"
-    ],
-    "createdAt": "2025-11-20T12:16:51.057Z"
+    title: "Paetec Rewards Program",
+    category: "Figma Preview",
+    image: "/images/portfolio/mockups/paetec-rewards-program.jpg",
+    description:
+      "Designed comprehensive rewards program interface with tier visualization and point tracking system.",
+    tags: ["Figma", "Visual Design", "Dashboard"],
+    createdAt: "2025-11-20T12:16:51.057Z",
   },
   {
-    "title": "Time2Visit - Package Booking Page",
-    "category": "High-Fidelity UI",
-    "image": "/images/portfolio/mockups/time2visit-package-page.jpg",
-    "description": "Built detailed package booking interface with image galleries, pricing breakdowns, and seamless booking flow.",
-    "tags": [
-      "UI Design",
-      "E-commerce",
-      "Visual Hierarchy"
-    ],
-    "createdAt": "2025-11-20T12:16:51.057Z"
+    title: "Time2Visit - Package Booking Page",
+    category: "High-Fidelity UI",
+    image: "/images/portfolio/mockups/time2visit-package-page.jpg",
+    description:
+      "Built detailed package booking interface with image galleries, pricing breakdowns, and seamless booking flow.",
+    tags: ["UI Design", "E-commerce", "Visual Hierarchy"],
+    createdAt: "2025-11-20T12:16:51.057Z",
   },
   {
-    "title": "American Concept & Design",
-    "category": "Figma Preview",
-    "image": "/images/portfolio/mockups/american-concept-and-design.png",
-    "description": "Corporate website design featuring clean typography, professional imagery, and service-focused layouts.",
-    "tags": [
-      "Figma",
-      "Corporate Design",
-      "Web Layout"
-    ],
-    "createdAt": "2025-11-20T12:16:51.057Z"
-  }
+    title: "American Concept & Design",
+    category: "Figma Preview",
+    image: "/images/portfolio/mockups/american-concept-and-design.png",
+    description:
+      "Corporate website design featuring clean typography, professional imagery, and service-focused layouts.",
+    tags: ["Figma", "Corporate Design", "Web Layout"],
+    createdAt: "2025-11-20T12:16:51.057Z",
+  },
 ];
 
 // ============================================
@@ -537,158 +622,174 @@ export const designShowcase = [
 
 export const caseStudies = [
   {
-    "title": "VirtuedOnline Platform Modernization",
-    "subtitle": "Modernizing a Learning & Coaching Platform Through Scalable Front-End Architecture and UX Engineering",
-    "category": "UX Engineering",
-    "tags": [
+    title: "VirtuedOnline Platform Modernization",
+    subtitle:
+      "Modernizing a Learning & Coaching Platform Through Scalable Front-End Architecture and UX Engineering",
+    category: "UX Engineering",
+    tags: [
       "Front-End Architecture",
       "UX Engineering",
       "Performance",
-      "Accessibility"
+      "Accessibility",
     ],
-    "thumbnail": "/images/portfolio/projects/virtued-1.png",
-    "featured": true,
-    "summary": "VirtuedOnline needed a cleaner, more intuitive, and scalable front-end to support their growing platform. I led the front-end engineering and UX modernization efforts, focusing on improving usability, redesigning core flows, and implementing a more maintainable and high-performance interface architecture.",
-    "challenge": {
-      "title": "The Challenge",
-      "content": "VirtuedOnline was expanding quickly, but the UI was held back by:\n\n• Outdated front-end structure with legacy patterns and frameworks\n• Inconsistent UI patterns across different sections and pages\n• Limited scalability for implementing new features without breaking existing functionality\n• Performance bottlenecks causing slow page loads and poor user experience\n• Accessibility gaps and inconsistent interaction patterns failing WCAG standards\n• Hard-to-maintain CSS and scattered components making updates time-consuming\n\nThe team needed a modern, cohesive UI foundation that would allow them to iterate faster without compromising quality."
+    thumbnail: "/images/portfolio/projects/virtued-1.png",
+    featured: true,
+    summary:
+      "VirtuedOnline needed a cleaner, more intuitive, and scalable front-end to support their growing platform. I led the front-end engineering and UX modernization efforts, focusing on improving usability, redesigning core flows, and implementing a more maintainable and high-performance interface architecture.",
+    challenge: {
+      title: "The Challenge",
+      content:
+        "VirtuedOnline was expanding quickly, but the UI was held back by:\n\n• Outdated front-end structure with legacy patterns and frameworks\n• Inconsistent UI patterns across different sections and pages\n• Limited scalability for implementing new features without breaking existing functionality\n• Performance bottlenecks causing slow page loads and poor user experience\n• Accessibility gaps and inconsistent interaction patterns failing WCAG standards\n• Hard-to-maintain CSS and scattered components making updates time-consuming\n\nThe team needed a modern, cohesive UI foundation that would allow them to iterate faster without compromising quality.",
     },
-    "role": {
-      "title": "My Role",
-      "position": "Senior Front-End Engineer / UX Engineer",
-      "responsibilities": [
+    role: {
+      title: "My Role",
+      position: "Senior Front-End Engineer / UX Engineer",
+      responsibilities: [
         "Rebuilding UI components into a modern, scalable architecture",
         "Improving key user flows and removing UX friction",
         "Establishing consistent interaction patterns",
         "Implementing accessibility best practices (WCAG-focused)",
         "Optimizing performance across the entire front-end",
-        "Collaborating with leadership and product teams to align UX with business goals"
-      ]
+        "Collaborating with leadership and product teams to align UX with business goals",
+      ],
     },
-    "approach": [
+    approach: [
       {
-        "title": "UI/UX Audit & Information Architecture Review",
-        "description": "Performed a full audit of the platform's UI components, flows, and design inconsistencies.",
-        "deliverables": [
+        title: "UI/UX Audit & Information Architecture Review",
+        description:
+          "Performed a full audit of the platform's UI components, flows, and design inconsistencies.",
+        deliverables: [
           "Component inventory and pattern analysis",
           "Interaction design issues documentation",
           "Performance bottleneck analysis",
-          "Recommendations for navigation and layout patterns"
-        ]
+          "Recommendations for navigation and layout patterns",
+        ],
       },
       {
-        "title": "Modern Component-Based Architecture",
-        "description": "Rebuilt the front-end structure using a component-driven approach.",
-        "deliverables": [
+        title: "Modern Component-Based Architecture",
+        description:
+          "Rebuilt the front-end structure using a component-driven approach.",
+        deliverables: [
           "Consolidated duplicated UI patterns into reusable components",
           "Established layout templates and interaction models",
           "Created architecture allowing team to add features without breaking existing UI",
-          "Implemented clear naming conventions and modular Sass architecture"
-        ]
+          "Implemented clear naming conventions and modular Sass architecture",
+        ],
       },
       {
-        "title": "Experience Design Improvements",
-        "description": "Redesigned critical areas of the platform to reduce cognitive load and improve usability.",
-        "areas": [
+        title: "Experience Design Improvements",
+        description:
+          "Redesigned critical areas of the platform to reduce cognitive load and improve usability.",
+        areas: [
           "Dashboard layouts",
           "Course/lesson views",
           "Coaching and communication tools",
           "Profile and settings flows",
-          "Payment and subscription interactions"
+          "Payment and subscription interactions",
         ],
-        "goals": [
+        goals: [
           "Reducing cognitive load",
           "Improving visual hierarchy",
           "Making navigation predictable",
-          "Adding consistent spacing, alignment, and responsivity"
-        ]
+          "Adding consistent spacing, alignment, and responsivity",
+        ],
       },
       {
-        "title": "Accessibility Enhancements",
-        "description": "Ensured an inclusive platform meeting WCAG 2.1 AA standards.",
-        "improvements": [
+        title: "Accessibility Enhancements",
+        description:
+          "Ensured an inclusive platform meeting WCAG 2.1 AA standards.",
+        improvements: [
           "Improved semantic HTML structure",
           "Added proper ARIA labels and roles where needed",
           "Implemented keyboard navigation and focus management",
           "Improved color contrast ratios",
-          "Ensured forms, modals, and interactive elements were fully accessible"
-        ]
+          "Ensured forms, modals, and interactive elements were fully accessible",
+        ],
       },
       {
-        "title": "Performance Optimization",
-        "description": "Improved platform performance through strategic refactoring and optimization.",
-        "optimizations": [
+        title: "Performance Optimization",
+        description:
+          "Improved platform performance through strategic refactoring and optimization.",
+        optimizations: [
           "Refactored heavy scripts and reduced bundle sizes",
           "Reduced DOM complexity",
           "Optimized image assets and implemented lazy loading",
           "Improved CSS for faster rendering",
-          "Cleaned up unused code and dependencies"
-        ]
+          "Cleaned up unused code and dependencies",
+        ],
       },
       {
-        "title": "Collaboration & Documentation",
-        "description": "Created comprehensive documentation to ensure long-term maintainability.",
-        "documentation": [
+        title: "Collaboration & Documentation",
+        description:
+          "Created comprehensive documentation to ensure long-term maintainability.",
+        documentation: [
           "Component documentation and usage guidelines",
           "Code standards and best practices",
           "Reusable templates for UI patterns",
-          "Guidelines for spacing, typography, and component usage"
-        ]
-      }
+          "Guidelines for spacing, typography, and component usage",
+        ],
+      },
     ],
-    "results": [
+    results: [
       {
-        "title": "Faster Development Velocity",
-        "description": "Reusable components and cleaner architecture reduced development time for new features."
+        title: "Faster Development Velocity",
+        description:
+          "Reusable components and cleaner architecture reduced development time for new features.",
       },
       {
-        "title": "Improved Usability and Engagement",
-        "description": "Refined flows and modern UI patterns made the platform easier for users to navigate and understand."
+        title: "Improved Usability and Engagement",
+        description:
+          "Refined flows and modern UI patterns made the platform easier for users to navigate and understand.",
       },
       {
-        "title": "Stronger Design Consistency",
-        "description": "Users experienced predictable interactions and visuals across all parts of the platform."
+        title: "Stronger Design Consistency",
+        description:
+          "Users experienced predictable interactions and visuals across all parts of the platform.",
       },
       {
-        "title": "Accessibility Compliance",
-        "description": "Platform moved significantly closer to WCAG AA, reducing friction for keyboard and assistive-tech users."
+        title: "Accessibility Compliance",
+        description:
+          "Platform moved significantly closer to WCAG AA, reducing friction for keyboard and assistive-tech users.",
       },
       {
-        "title": "Performance Improvements",
-        "description": "Reduced load times and improved perceived performance across core pages."
+        title: "Performance Improvements",
+        description:
+          "Reduced load times and improved perceived performance across core pages.",
       },
       {
-        "title": "Easier Long-Term Maintenance",
-        "description": "Clear patterns and documentation reduced tech debt and made the UI future-proof."
-      }
+        title: "Easier Long-Term Maintenance",
+        description:
+          "Clear patterns and documentation reduced tech debt and made the UI future-proof.",
+      },
     ],
-    "conclusion": "My work on VirtuedOnline brought modern engineering practices, improved UX foundation, and scalable UI architecture to a platform that continues to grow. By combining front-end development with UX engineering, I helped create a cleaner, more accessible, and more maintainable experience for users and developers alike.",
-    "tech": [
+    conclusion:
+      "My work on VirtuedOnline brought modern engineering practices, improved UX foundation, and scalable UI architecture to a platform that continues to grow. By combining front-end development with UX engineering, I helped create a cleaner, more accessible, and more maintainable experience for users and developers alike.",
+    tech: [
       {
-        "name": "React",
-        "icon": "fab fa-react"
+        name: "React",
+        icon: "fab fa-react",
       },
       {
-        "name": "JavaScript",
-        "icon": "fab fa-js"
+        name: "JavaScript",
+        icon: "fab fa-js",
       },
       {
-        "name": "Sass",
-        "icon": "fab fa-sass"
+        name: "Sass",
+        icon: "fab fa-sass",
       },
       {
-        "name": "WCAG 2.1",
-        "icon": "fas fa-universal-access"
+        name: "WCAG 2.1",
+        icon: "fas fa-universal-access",
       },
       {
-        "name": "Performance",
-        "icon": "fas fa-tachometer-alt"
-      }
+        name: "Performance",
+        icon: "fas fa-tachometer-alt",
+      },
     ],
-    "year": "2024",
-    "duration": "6 months",
-    "createdAt": "2025-11-20T12:16:51.058Z"
-  }
+    year: "2024",
+    duration: "6 months",
+    createdAt: "2025-11-20T12:16:51.058Z",
+  },
 ];
 
 // ============================================
@@ -697,101 +798,77 @@ export const caseStudies = [
 
 export const githubProjects = [
   {
-    "name": "JS Learning Lab",
-    "description": "A collection of JavaScript exercises, tutorials, and experiments for learning core concepts and modern practices",
-    "url": "https://github.com/SyntaxSidekick/js-learning-lab",
-    "liveUrl": "https://syntaxsidekick.github.io/js-learning-lab",
-    "thumbnail": "/images/portfolio/github/js-learning-lab.png",
-    "topics": [
-      "JavaScript",
-      "Learning",
-      "Tutorials",
-      "ES6+"
-    ],
-    "language": "JavaScript",
-    "icon": "fab fa-js",
-    "createdAt": "2025-11-20T12:16:51.058Z"
+    name: "JS Learning Lab",
+    description:
+      "A collection of JavaScript exercises, tutorials, and experiments for learning core concepts and modern practices",
+    url: "https://github.com/SyntaxSidekick/js-learning-lab",
+    liveUrl: "https://syntaxsidekick.github.io/js-learning-lab",
+    thumbnail: "/images/portfolio/github/js-learning-lab.png",
+    topics: ["JavaScript", "Learning", "Tutorials", "ES6+"],
+    language: "JavaScript",
+    icon: "fab fa-js",
+    createdAt: "2025-11-20T12:16:51.058Z",
   },
   {
-    "name": "HistoriSnap",
-    "description": "Interactive historical timeline application with snapshot visualizations and educational content",
-    "url": "https://github.com/SyntaxSidekick/historisnap",
-    "liveUrl": "https://syntaxsidekick.github.io/historisnap",
-    "thumbnail": "/images/portfolio/github/historiSnap.png",
-    "topics": [
-      "React",
-      "History",
-      "Visualization",
-      "Education"
-    ],
-    "language": "JavaScript",
-    "icon": "fab fa-react",
-    "createdAt": "2025-11-20T12:16:51.059Z"
+    name: "HistoriSnap",
+    description:
+      "Interactive historical timeline application with snapshot visualizations and educational content",
+    url: "https://github.com/SyntaxSidekick/historisnap",
+    liveUrl: "https://syntaxsidekick.github.io/historisnap",
+    thumbnail: "/images/portfolio/github/historiSnap.png",
+    topics: ["React", "History", "Visualization", "Education"],
+    language: "JavaScript",
+    icon: "fab fa-react",
+    createdAt: "2025-11-20T12:16:51.059Z",
   },
   {
-    "name": "Vanilla Card Slider",
-    "description": "Lightweight, dependency-free card carousel component built with pure JavaScript",
-    "url": "https://github.com/SyntaxSidekick/vanilla-cardSlider",
-    "liveUrl": "https://syntaxsidekick.github.io/vanilla-cardSlider",
-    "thumbnail": "/images/portfolio/github/vanilla-cardSlider.png",
-    "topics": [
-      "JavaScript",
-      "Carousel",
-      "UI Component",
-      "Vanilla JS"
-    ],
-    "language": "JavaScript",
-    "icon": "fab fa-js",
-    "createdAt": "2025-11-20T12:16:51.059Z"
+    name: "Vanilla Card Slider",
+    description:
+      "Lightweight, dependency-free card carousel component built with pure JavaScript",
+    url: "https://github.com/SyntaxSidekick/vanilla-cardSlider",
+    liveUrl: "https://syntaxsidekick.github.io/vanilla-cardSlider",
+    thumbnail: "/images/portfolio/github/vanilla-cardSlider.png",
+    topics: ["JavaScript", "Carousel", "UI Component", "Vanilla JS"],
+    language: "JavaScript",
+    icon: "fab fa-js",
+    createdAt: "2025-11-20T12:16:51.059Z",
   },
   {
-    "name": "Flash Cards",
-    "description": "Interactive flashcard application for studying and memorization with spaced repetition",
-    "url": "https://github.com/SyntaxSidekick/flash-cards",
-    "liveUrl": "https://syntaxsidekick.github.io/flash-cards",
-    "thumbnail": "/images/portfolio/github/flash-cards.png",
-    "topics": [
-      "React",
-      "Education",
-      "Learning Tool",
-      "SPA"
-    ],
-    "language": "JavaScript",
-    "icon": "fab fa-react",
-    "createdAt": "2025-11-20T12:16:51.059Z"
+    name: "Flash Cards",
+    description:
+      "Interactive flashcard application for studying and memorization with spaced repetition",
+    url: "https://github.com/SyntaxSidekick/flash-cards",
+    liveUrl: "https://syntaxsidekick.github.io/flash-cards",
+    thumbnail: "/images/portfolio/github/flash-cards.png",
+    topics: ["React", "Education", "Learning Tool", "SPA"],
+    language: "JavaScript",
+    icon: "fab fa-react",
+    createdAt: "2025-11-20T12:16:51.059Z",
   },
   {
-    "name": "Video Carousel",
-    "description": "Responsive video carousel component with controls, autoplay, and lazy loading",
-    "url": "https://github.com/SyntaxSidekick/video-carousel",
-    "liveUrl": "https://syntaxsidekick.github.io/video-carousel",
-    "thumbnail": "/images/portfolio/github/video-carousel.png",
-    "topics": [
-      "JavaScript",
-      "Video",
-      "Carousel",
-      "Media"
-    ],
-    "language": "JavaScript",
-    "icon": "fab fa-js",
-    "createdAt": "2025-11-20T12:16:51.059Z"
+    name: "Video Carousel",
+    description:
+      "Responsive video carousel component with controls, autoplay, and lazy loading",
+    url: "https://github.com/SyntaxSidekick/video-carousel",
+    liveUrl: "https://syntaxsidekick.github.io/video-carousel",
+    thumbnail: "/images/portfolio/github/video-carousel.png",
+    topics: ["JavaScript", "Video", "Carousel", "Media"],
+    language: "JavaScript",
+    icon: "fab fa-js",
+    createdAt: "2025-11-20T12:16:51.059Z",
   },
   {
-    "name": "Modern Card Collection",
-    "description": "Collection of modern, responsive card components with various styles and animations",
-    "url": "https://github.com/SyntaxSidekick/modern-card-collection",
-    "liveUrl": "https://syntaxsidekick.github.io/modern-card-collection",
-    "thumbnail": "/images/portfolio/github/modern-card-collection.png",
-    "topics": [
-      "CSS",
-      "UI Components",
-      "Animations",
-      "Responsive"
-    ],
-    "language": "CSS",
-    "icon": "fab fa-css3-alt",
-    "createdAt": "2025-11-20T12:16:51.059Z"
-  }
+    name: "Modern Card Collection",
+    description:
+      "Collection of modern, responsive card components with various styles and animations",
+    url: "https://github.com/SyntaxSidekick/modern-card-collection",
+    liveUrl: "https://syntaxsidekick.github.io/modern-card-collection",
+    thumbnail: "/images/portfolio/github/modern-card-collection.png",
+    topics: ["CSS", "UI Components", "Animations", "Responsive"],
+    language: "CSS",
+    icon: "fab fa-css3-alt",
+    createdAt: "2025-11-20T12:16:51.059Z",
+  },
 ];
 
 // ============================================
@@ -800,84 +877,66 @@ export const githubProjects = [
 
 export const codepenProjects = [
   {
-    "title": "Interactive Component",
-    "description": "Creative UI experiment with animations and interactions",
-    "url": "https://codepen.io/SyntaxSidekick/pen/myVXvdQ",
-    "embedUrl": "https://codepen.io/SyntaxSidekick/embed/myVXvdQ?default-tab=result",
-    "previewVideo": "/assets/previews/interactive-component.mp4",
-    "tags": [
-      "Animation",
-      "Interactive",
-      "UI"
-    ],
-    "featured": true,
-    "createdAt": "2025-11-20T12:16:51.060Z"
+    title: "Interactive Component",
+    description: "Creative UI experiment with animations and interactions",
+    url: "https://codepen.io/SyntaxSidekick/pen/myVXvdQ",
+    embedUrl:
+      "https://codepen.io/SyntaxSidekick/embed/myVXvdQ?default-tab=result",
+    previewVideo: "/assets/previews/interactive-component.mp4",
+    tags: ["Animation", "Interactive", "UI"],
+    featured: true,
+    createdAt: "2025-11-20T12:16:51.060Z",
   },
   {
-    "title": "Creative Animation",
-    "description": "Exploring modern CSS animations and transitions",
-    "url": "https://codepen.io/SyntaxSidekick/pen/WbrMgJW",
-    "embedUrl": "https://codepen.io/SyntaxSidekick/embed/WbrMgJW?default-tab=result",
-    "tags": [
-      "CSS",
-      "Animation",
-      "Design"
-    ],
-    "featured": true,
-    "createdAt": "2025-11-20T12:16:51.060Z"
+    title: "Creative Animation",
+    description: "Exploring modern CSS animations and transitions",
+    url: "https://codepen.io/SyntaxSidekick/pen/WbrMgJW",
+    embedUrl:
+      "https://codepen.io/SyntaxSidekick/embed/WbrMgJW?default-tab=result",
+    tags: ["CSS", "Animation", "Design"],
+    featured: true,
+    createdAt: "2025-11-20T12:16:51.060Z",
   },
   {
-    "title": "UI Component",
-    "description": "Interactive UI component with smooth transitions",
-    "url": "https://codepen.io/SyntaxSidekick/pen/KwVeLmY",
-    "embedUrl": "https://codepen.io/SyntaxSidekick/embed/KwVeLmY?default-tab=result",
-    "tags": [
-      "JavaScript",
-      "UI",
-      "Interactive"
-    ],
-    "featured": true,
-    "createdAt": "2025-11-20T12:16:51.060Z"
+    title: "UI Component",
+    description: "Interactive UI component with smooth transitions",
+    url: "https://codepen.io/SyntaxSidekick/pen/KwVeLmY",
+    embedUrl:
+      "https://codepen.io/SyntaxSidekick/embed/KwVeLmY?default-tab=result",
+    tags: ["JavaScript", "UI", "Interactive"],
+    featured: true,
+    createdAt: "2025-11-20T12:16:51.060Z",
   },
   {
-    "title": "Visual Effect",
-    "description": "Creative visual effect using CSS and JavaScript",
-    "url": "https://codepen.io/SyntaxSidekick/pen/GgoGqyK",
-    "embedUrl": "https://codepen.io/SyntaxSidekick/embed/GgoGqyK?default-tab=result",
-    "tags": [
-      "CSS",
-      "JavaScript",
-      "Effects"
-    ],
-    "featured": true,
-    "createdAt": "2025-11-20T12:16:51.060Z"
+    title: "Visual Effect",
+    description: "Creative visual effect using CSS and JavaScript",
+    url: "https://codepen.io/SyntaxSidekick/pen/GgoGqyK",
+    embedUrl:
+      "https://codepen.io/SyntaxSidekick/embed/GgoGqyK?default-tab=result",
+    tags: ["CSS", "JavaScript", "Effects"],
+    featured: true,
+    createdAt: "2025-11-20T12:16:51.060Z",
   },
   {
-    "title": "Interactive Demo",
-    "description": "Experimental interaction with modern web technologies",
-    "url": "https://codepen.io/SyntaxSidekick/pen/JoGZKOa",
-    "embedUrl": "https://codepen.io/SyntaxSidekick/embed/JoGZKOa?default-tab=result",
-    "tags": [
-      "Interactive",
-      "Demo",
-      "Web"
-    ],
-    "featured": true,
-    "createdAt": "2025-11-20T12:16:51.061Z"
+    title: "Interactive Demo",
+    description: "Experimental interaction with modern web technologies",
+    url: "https://codepen.io/SyntaxSidekick/pen/JoGZKOa",
+    embedUrl:
+      "https://codepen.io/SyntaxSidekick/embed/JoGZKOa?default-tab=result",
+    tags: ["Interactive", "Demo", "Web"],
+    featured: true,
+    createdAt: "2025-11-20T12:16:51.061Z",
   },
   {
-    "title": "Animation Showcase",
-    "description": "Showcasing advanced animation techniques and timing",
-    "url": "https://codepen.io/SyntaxSidekick/pen/MYaZoRG",
-    "embedUrl": "https://codepen.io/SyntaxSidekick/embed/MYaZoRG?default-tab=result",
-    "tags": [
-      "Animation",
-      "CSS",
-      "Showcase"
-    ],
-    "featured": true,
-    "createdAt": "2025-11-20T12:16:51.061Z"
-  }
+    title: "Animation Showcase",
+    description: "Showcasing advanced animation techniques and timing",
+    url: "https://codepen.io/SyntaxSidekick/pen/MYaZoRG",
+    embedUrl:
+      "https://codepen.io/SyntaxSidekick/embed/MYaZoRG?default-tab=result",
+    tags: ["Animation", "CSS", "Showcase"],
+    featured: true,
+    createdAt: "2025-11-20T12:16:51.061Z",
+  },
 ];
 
 // ============================================
@@ -885,10 +944,9 @@ export const codepenProjects = [
 // ============================================
 
 export const galleryTabs = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'frontend', label: 'Front-End' },
-    { id: 'design', label: 'UI/UX Design' },
-    { id: 'github', label: 'GitHub' },
-    { id: 'codepen', label: 'CodePen' }
+  { id: "all", label: "All Projects" },
+  { id: "frontend", label: "Front-End" },
+  { id: "design", label: "UI/UX Design" },
+  { id: "github", label: "GitHub" },
+  { id: "codepen", label: "CodePen" },
 ];
-
