@@ -370,27 +370,20 @@
 
     .hero-content {
       max-width: 100%;
+      text-align: center;
 
-      .hero-greeting {
-        @include font-size-sm;
-        letter-spacing: 1.5px;
+      .badge {
+        margin-inline: auto;
       }
 
-      .hero-name {
-        @include font-size-hero-md;
-        line-height: 1.2;
-      }
+      .hero-heading {
+        .hero-rotating-wrapper {
+          justify-content: center;
+          text-align: center;
+        }
 
-      .hero-title-wrapper {
-        min-height: 50px;
-
-        .hero-rotating {
-          @include font-size-md;
-          
-          &::before {
-            width: 30px;
-            height: 2px;
-          }
+        .hero-heading-animated {
+          text-align: center;
         }
       }
 
@@ -398,10 +391,17 @@
         max-width: 100%;
         @include font-size-sm;
         line-height: 1.65;
+        margin-inline: auto;
       }
 
-      .hero-cta {
+      .hero-cta-buttons {
         justify-content: center;
+      }
+
+      .hero-stats-grid {
+        .stat-item {
+          text-align: center;
+        }
       }
     }
 
@@ -420,26 +420,17 @@
     }
 
     .hero-content {
-      .hero-greeting {
-        @include font-size-xs;
-        letter-spacing: 1.5px;
-      }
+      .hero-heading {
+        .hero-rotating-wrapper {
+          min-height: 0;
+          height: 96px;
+          justify-content: center;
+        }
 
-      .hero-name {
-        @include font-size-hero-sm;
-        line-height: 1.25;
-      }
-
-      .hero-title-wrapper {
-        min-height: 40px;
-
-        .hero-rotating {
-          @include font-size-sm;
-
-          &::before {
-            width: 24px;
-            margin-right: 8px;
-          }
+        .hero-heading-animated {
+          display: block;
+          width: 100%;
+          text-align: center;
         }
       }
 
@@ -448,14 +439,23 @@
         line-height: 1.6;
       }
 
-      .hero-cta {
+      .hero-cta-buttons {
         flex-direction: column;
         align-items: stretch;
+        width: 100%;
 
-        .btn {
+        .btn,
+        .btn-primary,
+        .btn-secondary {
           width: 100%;
           justify-content: center;
           padding: 12px 24px;
+        }
+      }
+
+      .hero-stats-grid {
+        .stat-item {
+          text-align: center;
         }
       }
     }

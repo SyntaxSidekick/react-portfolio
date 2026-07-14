@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SectionHeader, CTAButton } from "../../common";
 import TechIcon from "../../TechIcon";
 import { expertiseCards, technologies } from "./aboutData";
 
 const AboutMe = ({ years }) => {
+  const prefersReducedMotion = useReducedMotion();
+  const [openExpertiseId, setOpenExpertiseId] = useState(expertiseCards[0]?.id ?? null);
   const [selectedTech, setSelectedTech] = useState('javascript'); // Permanently selected (default: javascript)
   const [previewedTech, setPreviewedTech] = useState(null); // Temporarily previewed on hover/focus
   const [arrowPosition, setArrowPosition] = useState(50); // Position of upward arrow in percentage
+  const [isMobileLayout, setIsMobileLayout] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  );
   const techSectionRef = useRef(null);
   const techButtonRefs = useRef({});
   const techGridRef = useRef(null);
@@ -16,8 +21,27 @@ const AboutMe = ({ years }) => {
   const displayedTechId = previewedTech ?? selectedTech;
   const displayedTech = technologies.find((tech) => tech.id === displayedTechId);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const handleChange = (event) => {
+      setIsMobileLayout(event.matches);
+      if (event.matches) {
+        setPreviewedTech(null);
+      }
+    };
+
+    setIsMobileLayout(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   // Calculate arrow position based on active button
   useEffect(() => {
+    if (isMobileLayout) {
+      return;
+    }
+
     const activeButton = techButtonRefs.current[displayedTechId];
     const grid = techGridRef.current;
     
@@ -30,12 +54,12 @@ const AboutMe = ({ years }) => {
       const position = ((buttonCenter - gridLeft) / gridWidth) * 100;
       setArrowPosition(position);
     }
-  }, [displayedTechId]);
+  }, [displayedTechId, isMobileLayout]);
 
   // Handle Escape key to return to selected technology
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && techSectionRef.current?.contains(document.activeElement)) {
         setPreviewedTech(null); // Clear preview, return to selected
         // Return focus to the selected technology button
         techButtonRefs.current[selectedTech]?.focus();
@@ -47,33 +71,119 @@ const AboutMe = ({ years }) => {
   }, [selectedTech]);
 
   // Handle technology card click (permanent selection)
+  const scrollTechIntoView = (techId) => {
+    if (!isMobileLayout) {
+      return;
+    }
+
+    const rail = techGridRef.current;
+    const button = techButtonRefs.current[techId];
+
+    if (!rail || !button) {
+      return;
+    }
+
+    const maxScrollLeft = rail.scrollWidth - rail.clientWidth;
+    const targetScrollLeft = Math.min(button.offsetLeft, maxScrollLeft);
+
+    rail.scrollTo({
+      left: Math.max(0, targetScrollLeft),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
+
   const handleTechClick = (techId) => {
     setSelectedTech(techId);
     setPreviewedTech(null); // Clear preview when clicking
+
+    scrollTechIntoView(techId);
+  };
+
+  useEffect(() => {
+    scrollTechIntoView(selectedTech);
+  }, [selectedTech, isMobileLayout]);
+
+  const focusTechByIndex = (index) => {
+    const tech = technologies[index];
+
+    if (!tech) {
+      return;
+    }
+
+    handleTechClick(tech.id);
+    techButtonRefs.current[tech.id]?.focus();
   };
 
   // Handle keyboard activation (Enter/Space)
   const handleTechKeyDown = (e, techId) => {
+    const currentIndex = technologies.findIndex((tech) => tech.id === techId);
+
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setSelectedTech(techId);
-      setPreviewedTech(null);
+      handleTechClick(techId);
+      return;
+    }
+
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      focusTechByIndex((currentIndex + 1) % technologies.length);
+      return;
+    }
+
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      focusTechByIndex((currentIndex - 1 + technologies.length) % technologies.length);
+      return;
+    }
+
+    if (e.key === "Home") {
+      e.preventDefault();
+      focusTechByIndex(0);
+      return;
+    }
+
+    if (e.key === "End") {
+      e.preventDefault();
+      focusTechByIndex(technologies.length - 1);
     }
   };
 
   // Handle mouse hover (preview)
   const handleTechHover = (techId) => {
+    if (isMobileLayout) {
+      return;
+    }
+
     setPreviewedTech(techId);
   };
 
   // Handle focus (preview)
   const handleTechFocus = (techId) => {
+    if (isMobileLayout) {
+      return;
+    }
+
     setPreviewedTech(techId);
   };
 
   // Handle mouse leave from entire technology section
   const handleSectionMouseLeave = () => {
+    if (isMobileLayout) {
+      return;
+    }
+
     setPreviewedTech(null); // Return to selected technology
+  };
+
+  const handleExpertiseToggle = (cardId) => {
+    setOpenExpertiseId((currentId) => (currentId === cardId ? null : cardId));
+  };
+
+  const handleExpertiseKeyDown = (event, cardId) => {
+    if (event.key === "Escape" && openExpertiseId === cardId) {
+      setOpenExpertiseId(null);
+      event.currentTarget.blur();
+    }
   };
 
   return (
@@ -124,6 +234,60 @@ const AboutMe = ({ years }) => {
           ))}
         </div>
 
+        <div className="expertise-accordion" aria-label="Areas of expertise">
+          {expertiseCards.map((card) => {
+            const isOpen = openExpertiseId === card.id;
+
+            return (
+              <div key={card.id} className={`expertise-accordion-item ${isOpen ? "is-open" : ""}`}>
+                <h3 className="expertise-accordion-heading">
+                  <button
+                    type="button"
+                    className="expertise-accordion-trigger"
+                    aria-expanded={isOpen}
+                    aria-controls={`expertise-panel-${card.id}`}
+                    id={`expertise-trigger-${card.id}`}
+                    onClick={() => handleExpertiseToggle(card.id)}
+                    onKeyDown={(event) => handleExpertiseKeyDown(event, card.id)}
+                  >
+                    <span className="expertise-accordion-icon" aria-hidden="true">
+                      <i className={card.icon}></i>
+                    </span>
+                    <span className="expertise-accordion-title">{card.title}</span>
+                    <span className="expertise-accordion-metric">{card.metric}</span>
+                    <span className="expertise-accordion-chevron" aria-hidden="true">
+                      <i className="fas fa-chevron-down"></i>
+                    </span>
+                  </button>
+                </h3>
+
+                <AnimatePresence initial={false}>
+                  {isOpen ? (
+                    <motion.div
+                      key={card.id}
+                      id={`expertise-panel-${card.id}`}
+                      className="expertise-accordion-panel"
+                      role="region"
+                      aria-labelledby={`expertise-trigger-${card.id}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: "easeOut" }}
+                    >
+                      <div className="expertise-accordion-panel-inner">
+                        <p className="expertise-accordion-description">{card.description}</p>
+                        <hr className="expertise-accordion-divider" aria-hidden="true" />
+                        <div className="expertise-accordion-metric-detail">{card.metric}</div>
+                        <div className="expertise-accordion-metric-label">{card.metricLabel}</div>
+                      </div>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
         {/* Technology Section */}
         <motion.div
           ref={techSectionRef}
@@ -153,11 +317,12 @@ const AboutMe = ({ years }) => {
                   onKeyDown={(e) => handleTechKeyDown(e, tech.id)}
                   onMouseEnter={() => handleTechHover(tech.id)}
                   onFocus={() => handleTechFocus(tech.id)}
+                  aria-selected={displayedTechId === tech.id}
                   aria-expanded={displayedTechId === tech.id}
                   aria-controls="tech-detail-panel"
                   aria-label={tech.name}
                 >
-                  <TechIcon name={tech.techName} size={48} decorative />
+                  <TechIcon name={tech.techName} size={isMobileLayout ? 36 : 48} decorative />
                   <span className="tech-name">{tech.name}</span>
                 </button>
               ))}
@@ -176,7 +341,7 @@ const AboutMe = ({ years }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.2, ease: "easeOut" }}
                 >
                   {/* Upward Arrow Indicator */}
                   <div 
@@ -188,7 +353,7 @@ const AboutMe = ({ years }) => {
                   <div className="tech-detail-content">
                     {/* Column 1: Technology Icon */}
                     <div className="tech-detail-icon">
-                      <TechIcon name={displayedTech.techName} size={72} decorative />
+                      <TechIcon name={displayedTech.techName} size={isMobileLayout ? 56 : 72} decorative />
                     </div>
 
                     {/* Column 2: Summary */}

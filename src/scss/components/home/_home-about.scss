@@ -106,6 +106,135 @@
       grid-template-columns: 1fr;
       gap: 16px;
     }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .expertise-accordion {
+    display: none;
+    margin-bottom: 48px;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .expertise-accordion-item {
+    background: $text-white;
+    border: 1px solid $color-border-light;
+    border-radius: $radius-lg;
+    overflow: hidden;
+
+    & + .expertise-accordion-item {
+      margin-top: 12px;
+    }
+  }
+
+  .expertise-accordion-heading {
+    margin: 0;
+  }
+
+  .expertise-accordion-trigger {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) auto 20px;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 0;
+    background: transparent;
+    color: $text-dark;
+    text-align: left;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 3px solid $brand-primary;
+      outline-offset: -3px;
+    }
+  }
+
+  .expertise-accordion-icon {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $brand-primary-50, $brand-primary-100);
+
+    i {
+      font-size: 22px;
+      color: $brand-primary;
+    }
+  }
+
+  .expertise-accordion-title {
+    font-size: $font-size-sm;
+    font-weight: 700;
+    line-height: 1.35;
+    min-width: 0;
+  }
+
+  .expertise-accordion-metric {
+    font-size: $font-size-sm;
+    font-weight: 700;
+    color: $brand-primary;
+    white-space: nowrap;
+  }
+
+  .expertise-accordion-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-muted;
+    transition: transform 0.25s ease;
+  }
+
+  .expertise-accordion-item.is-open {
+    .expertise-accordion-chevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  .expertise-accordion-panel {
+    overflow: hidden;
+  }
+
+  .expertise-accordion-panel-inner {
+    padding: 0 16px 16px;
+  }
+
+  .expertise-accordion-description {
+    margin: 0;
+    font-size: $font-size-sm;
+    line-height: 1.65;
+    color: $text-muted;
+  }
+
+  .expertise-accordion-divider {
+    width: 100%;
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, rgba($brand-primary, 0.24), rgba($brand-primary, 0.4));
+    margin: 16px 0 14px;
+  }
+
+  .expertise-accordion-metric-detail {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: $brand-primary;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .expertise-accordion-metric-label {
+    font-size: $font-size-xs;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .expertise-card {
@@ -237,6 +366,7 @@
   // Technology Section
   .technology-section {
     margin-bottom: 48px;
+    min-width: 0;
   }
 
   .technology-panel {
@@ -245,6 +375,10 @@
     padding: 40px 32px 32px;
     background: $text-white;
     position: relative;
+    min-width: 0;
+    max-width: 100%;
+    overflow: visible;
+    box-sizing: border-box;
 
     @media (max-width: $bp-md) {
       padding: 32px 20px 24px;
@@ -280,6 +414,7 @@
     grid-template-columns: repeat(8, 1fr);
     gap: 16px;
     margin-bottom: 0;
+    padding-top: 6px;
 
     @media (max-width: $bp-lg) {
       grid-template-columns: repeat(4, 1fr);
@@ -293,6 +428,34 @@
     @media (max-width: $bp-sm) {
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      --tech-rail-gap: #{$space-sm};
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--tech-rail-gap);
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-right: 0;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      scroll-padding-inline: 0;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      box-sizing: border-box;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &::after {
+        content: "";
+        flex: 0 0 calc((100% - (3 * var(--tech-rail-gap))) / 7);
+      }
     }
   }
 
@@ -314,6 +477,37 @@
     @media (max-width: $bp-sm) {
       padding: 16px 10px;
       gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      flex: 0 0 calc((100% - (3 * var(--tech-rail-gap))) / 3.5);
+      width: calc((100% - (3 * var(--tech-rail-gap))) / 3.5);
+      min-width: calc((100% - (3 * var(--tech-rail-gap))) / 3.5);
+      max-width: none;
+      min-height: auto;
+      aspect-ratio: 1 / 1;
+      padding: 12px 8px;
+      gap: 8px;
+      scroll-snap-align: center;
+      transform: none;
+      box-sizing: border-box;
+
+      .tech-icon {
+        transform: none;
+        width: 36px;
+        height: 36px;
+      }
+
+      .tech-name {
+        font-size: 11px;
+        line-height: 1.2;
+        text-align: center;
+      }
+    }
+
+    .tech-icon--ai,
+    .tech-icon--openai {
+      color: #000;
     }
 
     // TechIcon SVG styling
@@ -380,7 +574,7 @@
         filter: drop-shadow(0 2px 4px rgba($brand-primary, 0.3));
         z-index: 3;
 
-        @media (max-width: $bp-sm) {
+        @media (max-width: 768px) {
           display: none;
         }
       }
@@ -398,7 +592,7 @@
         z-index: 2;
         box-shadow: 0 0 4px rgba($brand-primary, 0.5);
 
-        @media (max-width: $bp-sm) {
+        @media (max-width: 768px) {
           display: none;
         }
       }
@@ -431,6 +625,10 @@
     border-radius: $radius-lg;
     box-shadow: 0 4px 20px rgba($brand-primary, 0.15);
     position: relative;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 
     @media (max-width: $bp-md) {
       padding: 28px 24px;
@@ -440,6 +638,12 @@
     @media (max-width: $bp-sm) {
       padding: 24px 16px;
       margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 18px;
+      padding: 20px 16px;
+      min-height: 0;
     }
   }
 
@@ -462,6 +666,10 @@
       display: none;
     }
 
+    @media (max-width: 768px) {
+      display: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       transition: none;
     }
@@ -473,13 +681,15 @@
     grid-template-columns: 110px minmax(260px, 1.5fr) minmax(180px, 1fr) minmax(180px, 1fr);
     gap: 40px;
     align-items: start;
+    min-width: 0;
+    max-width: 100%;
 
     @media (max-width: 1100px) {
       grid-template-columns: 100px minmax(220px, 1fr) minmax(160px, 1fr) minmax(160px, 1fr);
       gap: 32px;
     }
 
-    @media (max-width: $bp-md) {
+    @media (max-width: 768px) {
       grid-template-columns: 100px 1fr;
       grid-template-areas:
         "icon summary"
@@ -487,14 +697,16 @@
       gap: 32px 24px;
     }
 
-    @media (max-width: $bp-sm) {
+    @media (max-width: 768px) {
       grid-template-columns: 1fr;
       grid-template-areas:
         "icon"
         "summary"
         "uses"
         "projects";
-      gap: 28px;
+      gap: 20px;
+      min-height: 0;
+      width: 100%;
     }
   }
 
@@ -505,6 +717,7 @@
     justify-content: center;
     padding: 16px 0;
     position: relative;
+    min-width: 0;
 
     // Vertical separator after icon column
     &::after {
@@ -516,7 +729,7 @@
       width: 1px;
       background: linear-gradient(180deg, transparent, $color-border-light 20%, $color-border-light 80%, transparent);
 
-      @media (max-width: $bp-md) {
+      @media (max-width: 768px) {
         display: none;
       }
     }
@@ -527,19 +740,25 @@
       }
     }
 
-    @media (max-width: $bp-md) {
+    @media (max-width: 768px) {
       grid-area: icon;
     }
 
-    @media (max-width: $bp-sm) {
+    @media (max-width: 768px) {
       justify-content: center;
       padding: 0;
+
+      .tech-icon {
+        transform: scale(1.05);
+      }
     }
   }
 
   // Column 2: Summary (Name + Level + Description + Experience)
   .tech-detail-summary {
     position: relative;
+    min-width: 0;
+    max-width: 100%;
 
     // Vertical separator after summary column
     &::after {
@@ -551,16 +770,16 @@
       width: 1px;
       background: linear-gradient(180deg, transparent, $color-border-light 20%, $color-border-light 80%, transparent);
 
-      @media (max-width: $bp-md) {
+      @media (max-width: 768px) {
         display: none;
       }
     }
 
-    @media (max-width: $bp-md) {
+    @media (max-width: 768px) {
       grid-area: summary;
     }
 
-    @media (max-width: $bp-sm) {
+    @media (max-width: 768px) {
       text-align: center;
     }
 
@@ -569,8 +788,9 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 16px;
+      min-width: 0;
 
-      @media (max-width: $bp-sm) {
+      @media (max-width: 768px) {
         flex-direction: column;
         gap: 8px;
       }
@@ -583,6 +803,7 @@
       font-family: $font-alt;
       line-height: 1.2;
       margin: 0;
+      overflow-wrap: anywhere;
     }
 
     .tech-detail-level {
@@ -602,6 +823,7 @@
       line-height: 1.7;
       color: $text-muted;
       margin-bottom: 16px;
+      overflow-wrap: anywhere;
     }
 
     .tech-detail-experience {
@@ -612,7 +834,7 @@
       align-items: center;
       gap: 6px;
 
-      @media (max-width: $bp-sm) {
+      @media (max-width: 768px) {
         justify-content: center;
       }
 
@@ -624,7 +846,9 @@
 
   // Columns 3 & 4: What I Use and Recent Projects
   .tech-detail-column {
-    @media (max-width: $bp-md) {
+    min-width: 0;
+
+    @media (max-width: 768px) {
       &:nth-child(3) {
         grid-area: uses;
       }
@@ -643,6 +867,10 @@
       margin-bottom: 16px;
       padding-bottom: 10px;
       border-bottom: 1px solid $color-border-light;
+
+      @media (max-width: 768px) {
+        margin-bottom: 12px;
+      }
     }
 
     .tech-detail-list {
@@ -658,6 +886,8 @@
         align-items: flex-start;
         gap: 8px;
         line-height: 1.6;
+        min-width: 0;
+        overflow-wrap: anywhere;
 
         &:last-child {
           margin-bottom: 0;
@@ -669,6 +899,12 @@
           margin-top: 5px;
           flex-shrink: 0;
         }
+      }
+    }
+
+    @media (max-width: 768px) {
+      &:not(:last-child) {
+        padding-bottom: 4px;
       }
     }
   }
@@ -756,6 +992,42 @@ html.dark-mode {
       }
     }
 
+    .expertise-accordion-item {
+      background: $dark-card-bg;
+      border-color: $dark-border;
+    }
+
+    .expertise-accordion-trigger {
+      color: $dark-text;
+
+      &:focus-visible {
+        outline-color: $brand-primary-light;
+      }
+    }
+
+    .expertise-accordion-icon {
+      background: linear-gradient(135deg, rgba($brand-primary-light, 0.1), rgba($brand-primary-light, 0.2));
+
+      i {
+        color: $brand-primary-light;
+      }
+    }
+
+    .expertise-accordion-metric,
+    .expertise-accordion-metric-detail {
+      color: $brand-primary-light;
+    }
+
+    .expertise-accordion-chevron,
+    .expertise-accordion-metric-label,
+    .expertise-accordion-description {
+      color: $dark-text-muted;
+    }
+
+    .expertise-accordion-divider {
+      background: linear-gradient(90deg, rgba($brand-primary-light, 0.24), rgba($brand-primary-light, 0.4));
+    }
+
     .technology-panel {
       background: $dark-card-bg;
       border-color: $dark-border;
@@ -769,6 +1041,11 @@ html.dark-mode {
     .tech-button {
       background: rgba($dark-card-bg, 0.6);
       border-color: $dark-border;
+
+      .tech-icon--ai,
+      .tech-icon--openai {
+        color: $text-white;
+      }
 
       i {
         color: $dark-text-muted;
