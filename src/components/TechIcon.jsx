@@ -33,6 +33,7 @@ import WebpackIcon from "../assets/icons/webpack.svg?react";
 import AzureIcon from "../assets/icons/microsoft-azure.svg?react";
 import GoogleAnalyticsIcon from "../assets/icons/google-analytics.svg?react";
 import GtmIcon from "../assets/icons/gtm.svg?react";
+import OpenAiIcon from "../assets/icons/openai.svg?react";
 
 /**
  * TechIcon Component
@@ -99,6 +100,8 @@ const TechIcon = ({ name, icon, title, className = "", size = 'md', decorative =
     azure: AzureIcon,
     'google-analytics': GoogleAnalyticsIcon,
     gtm: GtmIcon,
+    openai: OpenAiIcon,
+    ai: OpenAiIcon,
   };
 
   const IconComponent = svgComponents[key];

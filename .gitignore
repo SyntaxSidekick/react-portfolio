@@ -4,6 +4,11 @@ progress.html
 # Legacy folder - migration scripts, backups, unused files
 legacy/
 
+# Large zip archives - too big for GitHub
+*.zip
+legacy.zip
+docs.zip
+
 # Logs
 logs
 *.log

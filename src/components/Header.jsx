@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MenuToggle from "/src/components/common/MenuToggleBtn";
 import DarkModeToggle from "/src/components/common/DarkModeToggleBtn";
-import logo from "../assets/images/riad-kilani-logo.webp";
+import logo from "../assets/images/riad-kilani-logo.svg";
 
 const navLinks = Object.freeze([
   { to: "/bio", label: "Bio", title: "View Bio" },
