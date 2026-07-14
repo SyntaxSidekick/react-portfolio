@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import DynamicTitle from './DynamicTitle';
 import Loader from './components/Loader';
 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 // Lazy load route components for code splitting
 const Home = lazy(() => import('./components/home/Home'));
 const Bio = lazy(() => import('./components/bio/Bio'));

@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "dev": "vite",
-    "build": "gulp styles && vite build",
+    "build": "npm run images:optimize && gulp styles && vite build",
     "styles": "gulp styles",
     "build:staging": "npm run styles && cross-env BUILD_OUT_DIR=staging vite build",
     "images:optimize": "node tools/optimize-images.mjs",

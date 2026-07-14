@@ -8,7 +8,7 @@ const FeaturedWorkSection = ({ projects, onProjectClick }) => {
         <SectionHeader 
           badge="Portfolio"
           title="Featured Work"
-          subtitle="Discover my most impactful projects showcasing modern web development, design excellence, and user-centered solutions."
+          subtitle="Selected projects showcasing front-end engineering, UX, accessibility, performance, and measurable business impact."
           id="portfolio-title"
         />
         

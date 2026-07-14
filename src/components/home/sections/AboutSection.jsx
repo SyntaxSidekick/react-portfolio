@@ -3,10 +3,12 @@ import { SectionHeader, CTAButton } from "../../common";
 
 const TECH_STACK = [
   { name: "React", icon: "fab fa-react", color: "#61dafb", proficiency: 95 },
+  //{ name: "TypeScript", icon: "fa-brands fa-typescript", color: "#3060ff", proficiency: 95 },
   { name: "JavaScript", icon: "fab fa-js", color: "#f0db4f", proficiency: 93 },
   { name: "HTML5", icon: "fab fa-html5", color: "#e44d26", proficiency: 100 },
-  { name: "CSS3/Sass", icon: "fab fa-sass", color: "#cd6799", proficiency: 100 },
-  { name: "Git", icon: "fab fa-git-alt", color: "#f05032", proficiency: 92 },
+  { name: "CSS3", icon: "fab fa-css3", color: "#4078f0", proficiency: 100 },
+  { name: "Accessibility", icon: "fa-solid fa-universal-access", color: "#9eb7ec", proficiency: 100 },
+  //{ name: "Git", icon: "fab fa-git-alt", color: "#f05032", proficiency: 92 },
   { name: "Figma", icon: "fab fa-figma", color: "#f24e1e", proficiency: 89 },
 ];
 
@@ -14,10 +16,10 @@ const AboutSection = ({ years }) => {
   return (
     <section className="about" id="about" aria-labelledby="about-title">
       <div className="container">
-        <SectionHeader 
+        <SectionHeader
           badge="About Me"
-          title="Crafting Digital Experiences"
-          subtitle={`With over ${years}+ years of experience, I specialize in building modern, accessible, and high-performance web applications using React, TypeScript, and cutting-edge tools.`}
+          title="Building Products That Solve Real Business Problems"
+          subtitle={`With over ${years}+ years of experience, I help organizations build scalable, accessible, and high-performance digital products by combining front-end engineering, UX, accessibility, and design systems.`}
           id="about-title"
         />
 
@@ -66,9 +68,9 @@ const AboutSection = ({ years }) => {
             <CTAButton 
               href="/bio"
               icon="fas fa-user-circle"
-              title="Learn More About Me"
+              title="Learn More About My Experience"
               subtitle="View my full bio, process, and complete skillset"
-              ariaLabel="View my complete bio, skills, and experience"
+              ariaLabel="See my background, process, experience, and complete skillset."
               variant="bio"
             />
           </motion.div>

@@ -95,6 +95,86 @@ export const projects = [
       "",
   },
   {
+    title: "Brisa Oceano – Luxury Hospitality Platform",
+desc: "Modernized a luxury hospitality website through UX-driven front-end development, improving user engagement, reducing bounce rates, and increasing conversions through data-driven design enhancements.",
+
+overview:
+  "<p>Served as Senior Front-End Developer Consultant, partnering with stakeholders and engineering teams to modernize the user experience across Brisa Oceano's digital platform. Redesigned user flows, refined interaction patterns, and implemented front-end improvements based on analytics and user behavior insights. Collaborated closely with development teams to ensure design intent translated accurately into production while improving usability, engagement, and conversion performance.</p>",
+
+problem:
+  "<p>The existing website experienced high bounce rates and conversion opportunities were being lost due to friction within the user experience. The objective was to improve user journeys through data-driven design decisions, optimize interaction patterns, and ensure the implemented experience aligned with both business goals and user expectations.</p>",
+
+challenges: [
+  "Analyzing user behavior to identify friction points affecting engagement and conversions",
+  "Redesigning user flows while maintaining the existing brand identity and visual consistency",
+  "Balancing business objectives with user-centered design improvements",
+  "Collaborating closely with engineering teams to ensure accurate implementation of UX improvements",
+  "Iterating on designs using analytics and testing data to continuously improve the customer experience",
+],
+
+learnings: [
+  "Analytics provide valuable insight into where users struggle and where improvements create the greatest impact",
+  "Small UX improvements across key user journeys can significantly improve engagement and conversion rates",
+  "Successful projects require continuous collaboration between design and development throughout implementation",
+  "Data-driven iteration produces better long-term outcomes than relying on assumptions alone",
+  "User experience optimization is an ongoing process rather than a one-time redesign effort",
+],
+
+deliverables:
+  "<p>Delivered UX-focused front-end improvements that modernized the customer experience, reduced bounce rates, increased conversions, and strengthened collaboration between design and engineering.</p><p><br></p><p><strong>Key Deliverables - </strong>User Flow Optimization, Front-End Development, UX Improvements, Interaction Design, Responsive User Interfaces, Analytics-Driven Design, Conversion Optimization, Cross-Functional Collaboration, Production UI Implementation.</p><p><br></p>",
+
+img: "/images/portfolio/projects/brisa.png",
+secimg: "",
+
+tech: [
+  {
+    name: "HTML5",
+    icon: "fab fa-html5",
+  },
+  {
+    name: "CSS3",
+    icon: "fab fa-css3-alt",
+  },
+  {
+    name: "JavaScript",
+    icon: "fab fa-js",
+  },
+  {
+    name: "WordPress",
+    icon: "fab fa-wordpress",
+  },
+  {
+    name: "UX Design",
+    icon: "fas fa-pencil-ruler",
+  },
+  {
+    name: "Analytics",
+    icon: "fas fa-chart-line",
+  },
+  {
+    name: "A/B Testing",
+    icon: "fas fa-flask",
+  },
+  {
+    name: "Performance",
+    icon: "fas fa-gauge-high",
+  },
+],
+
+githubUrl: "",
+liveUrl:
+  "",
+role: "Senior Front-End Developer Consultant",
+year: "2024-2025",
+featured: true,
+metrics: {
+  bounceRate: "40% reduction",
+  conversionIncrease: "15% booking increase in 30 days.",
+},
+addimg:
+  "",
+},
+  {
     title: "Vistana – Mobile App Design",
 desc:
   "Designed cross-platform mobile experiences for three Vistana Signature Experiences brands, creating more than 1,000 production-ready page designs and detailed style guides for offshore development teams.",
@@ -151,7 +231,7 @@ liveUrl:
   "https://apps.apple.com/us/app/vistana-signature-experiences/id1342705498",
 role: "Interactive Designer",
 year: "2019",
-featured: true,
+featured: false,
 metrics: {
   pageDesigns: "1,000+ page designs",
   brandsSupported: "3 vacation ownership brands",
@@ -832,6 +912,18 @@ export const githubProjects = [
     language: "JavaScript",
     icon: "fab fa-js",
     createdAt: "2025-11-20T12:16:51.059Z",
+  },
+  {
+    name: "Riad Kilani Design System",
+    description:
+      "Design system used here on riadkilani.com",
+    url: "https://github.com/SyntaxSidekick/rk-design-system",
+    liveUrl: "https://syntaxsidekick.github.io/rk-design-system/",
+    thumbnail: "/images/portfolio/github/rk-design-system.png",
+    topics: ["Design System", "UX", "UI Component", "Accessibility"],
+    language: "JavaScript",
+    icon: "fab fa-js",
+    createdAt: "2025",
   },
   {
     name: "Flash Cards",

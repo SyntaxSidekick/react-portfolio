@@ -3,11 +3,14 @@ const react = require('@vitejs/plugin-react');
 const { viteStaticCopy } = require('vite-plugin-static-copy');
 const svgr = require('vite-plugin-svgr').default;
 const criticalCssPlugin = require('./vite-plugin-critical-css.cjs');
+const optimizeImagePaths = require('./vite-plugin-optimize-images.cjs');
 
 // https://vite.dev/config/
 module.exports = defineConfig({
   build: {
     outDir: process.env.BUILD_OUT_DIR ?? 'dist',
+    copyPublicDir: false, // Disable auto-copy of public folder during build - we manually control it
+
     cssCodeSplit: true, // Split CSS per route for better caching
     chunkSizeWarningLimit: 600, // Slightly higher limit for vendor chunks
     rollupOptions: {
@@ -65,6 +68,7 @@ module.exports = defineConfig({
   plugins: [
     react(),
     svgr(),
+    optimizeImagePaths(),
     criticalCssPlugin(),
     viteStaticCopy({
       targets: [
@@ -76,6 +80,21 @@ module.exports = defineConfig({
         {
           src: 'public/sitemap.xml',
           dest: '.'
+        },
+        // Copy optimized portfolio images only (exclude raw portfolio folder)
+        {
+          src: 'public/images/portfolio-optimized/**/*',
+          dest: 'images/portfolio-optimized'
+        },
+        // Copy other image assets (excluding portfolio folder)
+        {
+          src: 'public/images/.gitkeep',
+          dest: 'images'
+        },
+        // Copy previews folder if it exists
+        {
+          src: 'public/assets/**/*',
+          dest: 'assets'
         }
       ]
     })

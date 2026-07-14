@@ -1,108 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#142D58" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="theme-color" content="#0073AA" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>Riad Kilani - Web Developer & Designer</title>
+    <title>Riad Kilani | Senior Front-End Engineer & UX Engineer</title>
+    <meta name="description" content="Senior Front-End Engineer and UX Engineer with 17+ years of experience building scalable, accessible, high-performance web applications and design systems." />
+    <meta name="keywords" content="senior front-end engineer, UX engineer, React, TypeScript, JavaScript, design systems, accessibility, web performance, Riad Kilani" />
+    <meta name="author" content="Riad Kilani" />
 
-  <!-- Social Media Preview Image -->
-  <meta property="og:title" content="Riad Kilani - Front-end Developer | React Specialist | UI/UX Modernist" />
-  <meta property="og:description"
-    content="Riad Kilani - Professional front-end developer and designer with 12+ years of experience. Specializing in modern web development, UI/UX design, and performance optimization." />
-  <meta property="og:image" content="https://riadkilani.com/assets/images/riadkilani-portfolio.png" />
-  <meta property="og:url" content="https://riadkilani.com/" />
-  <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="https://riadkilani.com/" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Riad Kilani - Front-end Developer | React Specialist | UI/UX Modernist" />
-  <meta name="twitter:description"
-    content="Riad Kilani - Professional front-end developer and designer with 12+ years of experience. Specializing in modern web development, UI/UX design, and performance optimization." />
-  <meta name="twitter:image" content="https://riadkilani.com/assets/images/riadkilani-portfolio.png" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Riad Kilani" />
+    <meta property="og:title" content="Riad Kilani | Senior Front-End Engineer & UX Engineer" />
+    <meta property="og:description" content="Building scalable, accessible, high-performance web applications through front-end engineering, UX, and design systems." />
+    <meta property="og:image" content="https://riadkilani.com/assets/images/riadkilani-portfolio.png" />
+    <meta property="og:image:alt" content="Riad Kilani, Senior Front-End Engineer and UX Engineer" />
+    <meta property="og:url" content="https://riadkilani.com/" />
 
-  <!-- SEO Meta Tags -->
-  <meta name="description"
-    content="Riad Kilani - Professional front-end developer and designer with 12+ years of experience. Specializing in modern web development, UI/UX design, and performance optimization." />
-  <meta name="keywords" content="front-end developer, designer, JavaScript, React, PHP, portfolio, Riad Kilani" />
-  <meta name="author" content="Riad Kilani" />
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://riadkilani.com/" />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Riad Kilani | Senior Front-End Engineer & UX Engineer" />
+    <meta name="twitter:description" content="Building scalable, accessible, high-performance web applications through front-end engineering, UX, and design systems." />
+    <meta name="twitter:image" content="https://riadkilani.com/assets/images/riadkilani-portfolio.png" />
+    <meta name="twitter:image:alt" content="Riad Kilani, Senior Front-End Engineer and UX Engineer" />
 
-  <!-- DNS Prefetch for faster domain resolution -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  <link rel="dns-prefetch" href="https://use.typekit.net" />
-  <link rel="dns-prefetch" href="https://p.typekit.net" />
-  <link rel="dns-prefetch" href="https://blog.riadkilani.com" />
+    <!-- Connection Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://use.typekit.net" />
+    <link rel="dns-prefetch" href="https://p.typekit.net" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin />
 
-  <!-- Preconnect to top 4 most critical origins only (Lighthouse limit) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-  <link rel="preconnect" href="https://blog.riadkilani.com" crossorigin />
-  
-  <!-- Non-blocking font loading with media="print" trick -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <link rel="preload" as="style" href="https://use.typekit.net/njn2mng.css" onload="this.onload=null;this.rel='stylesheet'" />
-  
-  <!-- Fallback for no-JS -->
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@900&display=swap" />
-    <link rel="stylesheet" href="https://use.typekit.net/njn2mng.css" />
-  </noscript>
-  
-  <!-- TypeKit font-display override - force swap on all variants -->
-  <style>
-    /* Override TypeKit fonts to use font-display: swap */
-    @font-face {
-      font-family: 'trajan-pro-3';
-      font-display: swap;
-      src: local('trajan-pro-3');
-    }
-    @font-face {
-      font-family: 'trajan-pro-3';
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-      src: local('trajan-pro-3');
-    }
-    @font-face {
-      font-family: 'trajan-pro-3';
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-      src: local('trajan-pro-3');
-    }
-    
-    /* Critical above-the-fold CSS - inline for immediate render */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 1rem; line-height: 1.6; color: #333; }
-    .hero { position: relative; min-height: 60vh; display: flex; align-items: center; overflow: hidden; background: linear-gradient(135deg, #f4f3f4 0%, #fff 100%); }
-    .hero .container { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 50px; padding: 50px 40px; max-width: 1200px; margin: 0 auto; }
-    .hero-content { flex: 1; max-width: 600px; }
-    .hero-image { flex: 0 0 auto; }
-    .hero-image-wrapper { position: relative; width: 360px; height: 360px; border-radius: 50%; overflow: hidden; }
-    .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  </style>
+    <!-- Non-Blocking Fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@900&family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" as="style" href="https://use.typekit.net/njn2mng.css" onload="this.onload=null;this.rel='stylesheet'" />
 
-  <!-- Defer Font Awesome loading to prevent render blocking -->
-  <link rel="preload" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" /></noscript>
-</head>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@900&family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,700&display=swap" />
+      <link rel="stylesheet" href="https://use.typekit.net/njn2mng.css" />
+    </noscript>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
+    <!-- Critical Above-the-Fold CSS -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box}*{margin:0;padding:0}body{min-width:320px;font:400 1rem/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.hero{position:relative;display:flex;align-items:center;min-height:60vh;overflow:hidden}.hero .container{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:3.125rem;width:100%;max-width:75rem;margin-inline:auto;padding:3.125rem 2.5rem}.hero-content{flex:1;max-width:37.5rem}.hero-image{flex:0 0 auto}.hero-image-wrapper{position:relative;width:22.5rem;height:22.5rem;overflow:hidden;border-radius:50%}.hero-image-wrapper img{display:block;width:100%;height:100%;object-fit:cover}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
+      /* ==========================================================
+   Featured Projects
+========================================================== */
 
+.featured-work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.featured-project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-neutral-900);
+  border: 1px solid var(--color-neutral-800);
+  border-radius: 1.25rem;
+  transition: .3s ease;
+}
+
+.featured-project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-brand-400);
+}
+
+/* ==========================================================
+   Image
+========================================================== */
+
+.featured-project-card__image-link {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+.featured-project-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.featured-project-card:hover .featured-project-card__image {
+  transform: scale(1.04);
+}
+
+/* ==========================================================
+   Body
+========================================================== */
+
+.featured-project-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+}
+
+.featured-project-card__eyebrow {
+  margin: 0;
+  color: var(--color-brand-400);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.featured-project-card__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.featured-project-card__title button {
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.featured-project-card__meta {
+  margin: -.75rem 0 0;
+  color: var(--color-neutral-400);
+  font-size: .9rem;
+}
+
+.featured-project-card__description {
+  margin: 0;
+  color: var(--color-neutral-300);
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   Metrics
+========================================================== */
+
+.featured-project-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1rem;
+  margin: .5rem 0;
+}
+
+.featured-project-card__metric {
+  padding: 1.25rem;
+  text-align: center;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--color-neutral-800);
+  border-radius: .9rem;
+}
+
+.featured-project-card__metric dt {
+  margin-bottom: .4rem;
+  color: var(--color-neutral-500);
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.featured-project-card__metric dd {
+  margin: 0;
+  color: var(--color-brand-400);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* ==========================================================
+   Footer
+========================================================== */
+
+.featured-project-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid var(--color-neutral-800);
+}
+
+/* ==========================================================
+   Tech Stack
+========================================================== */
+
+.featured-project-card__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.featured-project-card__technologies li {
+  padding: .45rem .85rem;
+  color: var(--color-neutral-300);
+  font-size: .8rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--color-neutral-700);
+  border-radius: 999px;
+}
+
+/* ==========================================================
+   CTA
+========================================================== */
+
+.featured-project-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 0;
+  color: var(--color-brand-400);
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  transition: gap .2s ease;
+}
+
+.featured-project-card__cta:hover {
+  gap: .9rem;
+}
+
+/* ==========================================================
+   Mobile
+========================================================== */
+
+@media (max-width: 992px) {
+
+  .featured-work-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .featured-project-card__content {
+    padding: 1.5rem;
+  }
+
+  .featured-project-card__title {
+    font-size: 1.65rem;
+  }
+
+  .featured-project-card__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-project-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

@@ -4,16 +4,16 @@ import profileImgFallback from "../../../assets/images/riadkilani-profile.png";
 import { StatItem, CTAButton } from "../../common";
 
 const HERO_TITLES = [
-  "Senior Front-End Developer",
-  "React Specialist",
-  "UI/UX Expert",
-  "Design Systems Architect"
+  "Senior Front-End Engineer",
+  "UX Engineer",
+  "Design Systems Architect",
+  "Accessibility Advocate",
 ];
 
 const HERO_STATS = [
   { number: "100+", label: "Projects Delivered" },
   { number: "1M+", label: "Users Served" },
-  { number: "99.4%", label: "Client Satisfaction" }
+  { number: "99.4%", label: "Client Satisfaction" },
 ];
 
 const HeroSection = ({ years, titleIndex }) => {
@@ -23,7 +23,7 @@ const HeroSection = ({ years, titleIndex }) => {
         <div className="hero-gradient"></div>
       </div>
       <div className="container">
-        <motion.div 
+        <motion.div
           className="hero-content"
           initial="hidden"
           animate="visible"
@@ -33,65 +33,78 @@ const HeroSection = ({ years, titleIndex }) => {
               opacity: 1,
               transition: {
                 staggerChildren: 0.15,
-                delayChildren: 0.1
-              }
-            }
+                delayChildren: 0.1,
+              },
+            },
           }}
         >
           {/* Availability Badge */}
           <motion.div
             variants={{
               hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 }
+              visible: { opacity: 1, x: 0 },
             }}
           >
-            <span className="badge badge-success">Available for Opportunities</span>
+            <span className="badge badge-success">
+              Available for Opportunities
+            </span>
           </motion.div>
 
           {/* Main Heading with Rotating Text */}
-          <motion.h1 
-            id="hero-title" 
+          <motion.h1
+            id="hero-title"
             className="hero-heading"
             variants={{
               hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 }
+              visible: { opacity: 1, x: 0 },
             }}
           >
-            <span className="hero-heading-line">I'm a</span>
-            <span className="hero-rotating-wrapper">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={titleIndex}
-                  className="hero-heading-animated"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {HERO_TITLES[titleIndex]}
-                </motion.span>
-              </AnimatePresence>
+            <span className="sr-only">
+              Senior Front-End Engineer and UX Engineer based in Orlando
             </span>
-            <span className="hero-heading-line">based in Orlando</span>
+
+            <span aria-hidden="true">
+              <span className="hero-heading-line">I'm a</span>
+
+              <span className="hero-rotating-wrapper">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={titleIndex}
+                    className="hero-heading-animated"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {HERO_TITLES[titleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+
+              <span className="hero-heading-line">based in Orlando</span>
+            </span>
           </motion.h1>
 
           {/* Description */}
-          <motion.p 
+          <motion.p
             className="hero-description"
             variants={{
               hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 }
+              visible: { opacity: 1, x: 0 },
             }}
           >
-            Building scalable, performant web experiences with <span className="highlight-text">{years}+ years</span> of expertise. I transform ideas into elegant, user-centric solutions that drive measurable business impact.
+            Building scalable, accessible, and high-performance web applications
+            with <span className="highlight-text">{years}+ years</span> of
+            experience. I combine front-end engineering, UX, and design systems
+            to create products that solve real business problems.
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div 
+          <motion.div
             className="hero-cta-buttons"
             variants={{
               hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 }
+              visible: { opacity: 1, x: 0 },
             }}
           >
             <CTAButton
@@ -99,23 +112,21 @@ const HeroSection = ({ years, titleIndex }) => {
               title="View My Work"
               trailingIcon="fas fa-arrow-right"
               variant="primary"
-              ariaLabel="View my work section"
             />
             <CTAButton
               href="/contact"
               title="Let's Talk"
               trailingIcon="fas fa-comments"
               variant="secondary"
-              ariaLabel="Open contact section"
             />
           </motion.div>
 
           {/* Stats Grid */}
-          <motion.div 
+          <motion.div
             className="hero-stats-grid"
             variants={{
               hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 }
+              visible: { opacity: 1, x: 0 },
             }}
           >
             <StatItem number={`${years}+`} label="Years Experience" />
@@ -125,13 +136,13 @@ const HeroSection = ({ years, titleIndex }) => {
           </motion.div>
         </motion.div>
 
-        <motion.figure className="hero-image" aria-label="Profile photo">
-          <motion.div className="hero-image-wrapper">
+        <div className="hero-image">
+          <div className="hero-image-wrapper">
             <picture>
               <source srcSet={profileImg} type="image/webp" />
               <img
                 src={profileImgFallback}
-                alt="Riad Kilani - Front-end Developer"
+                alt="Riad Kilani, Senior Front-End Engineer and UX Engineer"
                 className="hero-profile-image"
                 loading="eager"
                 fetchPriority="high"
@@ -139,8 +150,8 @@ const HeroSection = ({ years, titleIndex }) => {
                 height="360"
               />
             </picture>
-          </motion.div>
-        </motion.figure>
+          </div>
+        </div>
       </div>
     </section>
   );
